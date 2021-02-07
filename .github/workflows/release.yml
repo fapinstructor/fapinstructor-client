@@ -12,39 +12,38 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-        - name: Setup Variables
-          id: vars
-          run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+      - name: Setup Variables
+        id: vars
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
 
-        - name: Install dependencies
-          run: yarn 
+      - name: Install dependencies
+        run: yarn
 
-        - name: Build
-          env: 
-            REACT_APP_SENTRY_DSN: ${{ secrets.REACT_APP_SENTRY_DSN }}
-            REACT_APP_SENTRY_RELEASE: ${{ steps.vars.outputs.sha_short }}
-          run: yarn build
+      - name: Build
+        env:
+          REACT_APP_SENTRY_DSN: ${{ secrets.REACT_APP_SENTRY_DSN }}
+          REACT_APP_SENTRY_RELEASE: ${{ steps.vars.outputs.sha_short }}
+        run: yarn build
 
-        - name: Create Sentry release
-          uses: tclindner/sentry-releases-action@v1.2.0
-          env:
-            SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-            SENTRY_ORG: fapinstructor
-            SENTRY_PROJECT: fapinstructor
-          with:
-            tagName: ${{ steps.vars.outputs.sha_short }}
-            environment: production
-            sourceMapOptions: '{"include": ["build/static/js"], "urlPrefix": "~/static/js", "rewrite": false}'
+      - name: Create Sentry release
+        uses: tclindner/sentry-releases-action@v1.2.0
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: fapinstructor
+          SENTRY_PROJECT: fapinstructor
+        with:
+          tagName: ${{ steps.vars.outputs.sha_short }}
+          environment: production
+          sourceMapOptions: '{"include": ["build/static/js"], "urlPrefix": "~/static/js", "rewrite": false}'
 
-
-        - name: Deploy 
-          uses: reggionick/s3-deploy@v3
-          with:
-            folder: build
-            bucket: ${{ secrets.S3_BUCKET }}
-            bucket-region: ${{ secrets.S3_BUCKET_REGION }}
-            dist-id: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
-            invalidation: /
-            delete-removed: true
-            no-cache: true
-            private: true
+      - name: Deploy
+        uses: reggionick/s3-deploy@v3
+        with:
+          folder: build
+          bucket: ${{ secrets.S3_BUCKET }}
+          bucket-region: ${{ secrets.S3_BUCKET_REGION }}
+          dist-id: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+          invalidation: /
+          delete-removed: true
+          no-cache: true
+          private: true
