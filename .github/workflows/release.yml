@@ -1,8 +1,8 @@
 name: Release
-on: 
-  push: 
+on:
+  push:
     branches:
-      - main 
+      - main
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -10,7 +10,7 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     steps:
-        - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
         - name: Setup Variables
           id: vars
