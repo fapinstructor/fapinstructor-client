@@ -1,11 +1,7 @@
 import createNotification from "engine/createNotification";
 import { getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
-import {
-  getCurrentStrokeStyle,
-  setStrokeStyle,
-  setStrokeStyleHandsOff,
-} from "game/enums/StrokeStyle";
+import { setStrokeStyle, setStrokeStyleHandsOff } from "game/enums/StrokeStyle";
 import { getRandom_handsOff_message } from "game/texts/messages";
 import { strokerRemoteControl } from "game/loops/strokeEmitter";
 
@@ -33,8 +29,6 @@ const handsOff = async (
     HANDS_OFF_DURATION_MAX
   )
 ) => {
-  const style = getCurrentStrokeStyle();
-
   createNotification({
     message: getRandom_handsOff_message(),
     duration: duration * 1000,
@@ -49,7 +43,7 @@ const handsOff = async (
   await delay(duration * 1000);
 
   strokerRemoteControl.play();
-  await setStrokeStyle(style);
+  await setStrokeStyle();
   createNotification({ message: "Start stroking again" });
 };
 handsOff.label = "Hands Off";
