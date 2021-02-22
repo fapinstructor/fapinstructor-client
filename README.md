@@ -2,7 +2,6 @@
 
 ![Release](https://github.com/fapinstructor/fapinstructor-client/workflows/Release/badge.svg)
 
-
 A fap/joi game where you follow the provided instructions while watching a stream of content that teases and torments you.
 
 ## Installation

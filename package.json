@@ -12,7 +12,7 @@
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx,.snap . --max-warnings=0",
-    "prettier": "prettier --ignore-path .gitignore  \"**/*.+(js|ts|tsx|json|yml|md|lock)\"",
+    "prettier": "prettier --ignore-path .gitignore  \"**/*.+(js|ts|tsx|json|yml|md)\"",
     "format": "yarn prettier --write",
     "check-format": "yarn prettier --list-different",
     "check-types": "tsc --noEmit",

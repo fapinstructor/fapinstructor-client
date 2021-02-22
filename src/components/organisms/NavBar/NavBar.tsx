@@ -6,6 +6,7 @@ import FapInstructorMenuButton from "components/molecules/buttons/FapInstructorM
 import DiscordMenuButton from "components/molecules/buttons/DiscordMenuButton";
 import PatreonMenuButton from "components/molecules/buttons/PatreonMenuButton";
 import ChangeLogMenuButton from "components/molecules/buttons/ChangeLogMenuButton";
+import FaqMenuButton from "components/molecules/buttons/FaqMenuButton";
 import SearchGameMenuButton from "components/molecules/buttons/SearchGameMenuButton";
 import Grow from "components/atoms/Grow";
 
@@ -18,6 +19,7 @@ const NavBar = () => {
         <SearchGameMenuButton />
         <DiscordMenuButton />
         <PatreonMenuButton />
+        <FaqMenuButton />
         <ChangeLogMenuButton />
         <ProfileButton />
       </Toolbar>
