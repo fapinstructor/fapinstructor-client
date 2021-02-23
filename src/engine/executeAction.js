@@ -40,7 +40,7 @@ const executeAction = (action, shouldInterrupt = false) => {
     .then((trigger) => {
       if (trigger) {
         setTimeout(() => {
-          engine.actionTriggers = Array.of(...trigger);
+          engine.actionTriggers = Array.isArray(trigger) ? trigger : [trigger];
         }, TIME_DELAY / 2);
       }
       engine.executing = false;
