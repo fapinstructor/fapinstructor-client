@@ -21,7 +21,9 @@ type Auth0ProviderProps = PropsWithChildren<{
 }>;
 
 // Expose the auth client so it can be used outside of React
-let authClient: Auth0ContextInterface | undefined;
+const authClient: { current?: Auth0ContextInterface } = {
+  current: undefined,
+};
 export { authClient };
 export { useAuth0 };
 
@@ -37,13 +39,13 @@ export default function AppAuth0Provider({
 
   function ApplyAuth() {
     const auth0 = useAuth0();
-    authClient = auth0;
+    authClient.current = auth0;
 
     useEffect(() => {
-      if (auth0.user) {
+      if (auth0.user && auth0.isAuthenticated) {
         fetchProfile(auth0.user.sub);
       }
-    }, [auth0.user]);
+    }, [auth0.user, auth0.isAuthenticated]);
 
     return <>{children}</>;
   }

@@ -8,12 +8,18 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use(async (config) => {
-  if (authClient?.isAuthenticated) {
+  if (authClient.current?.isAuthenticated) {
     try {
-      const token = await authClient.getAccessTokenSilently();
+      const token = await authClient.current.getAccessTokenSilently();
 
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
+      } else {
+        throw new Error(
+          `User exists ${JSON.stringify(
+            authClient.current.user
+          )}, but no token was present`
+        );
       }
     } catch (error) {
       captureError(error);
