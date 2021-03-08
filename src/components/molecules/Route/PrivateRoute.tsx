@@ -16,7 +16,7 @@ const PrivateRoute = ({ component, path, location, ...rest }: RouteProps) => {
       }
     };
     fn();
-  }, [isAuthenticated, isLoading, loginWithRedirect, path, location]);
+  }, [isAuthenticated, isLoading, loginWithRedirect, location]);
 
   return (
     <Route
