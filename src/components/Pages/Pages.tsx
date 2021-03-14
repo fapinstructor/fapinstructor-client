@@ -13,7 +13,7 @@ import NavBar from "components/organisms/NavBar";
 const BASE_TITLE = "Fap Instructor";
 
 function getTitle(page: string) {
-  return `${BASE_TITLE} | ${page}`;
+  return `${page} - ${BASE_TITLE}`;
 }
 
 export default function Pages() {
