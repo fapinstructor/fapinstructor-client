@@ -4,38 +4,50 @@ import FullscreenIcon from "@material-ui/icons/Fullscreen";
 import FullscreenExitIcon from "@material-ui/icons/FullscreenExit";
 
 function isFullScreenSupported() {
-  var doc = window.document;
-  var docEl = doc.documentElement;
+  const doc = window.document;
+  const docEl = doc.documentElement;
 
-  var requestFullScreen =
+  const requestFullScreen =
     docEl.requestFullscreen ||
+    // @ts-expect-error
     docEl.mozRequestFullScreen ||
+    // @ts-expect-error
     docEl.webkitRequestFullScreen ||
+    // @ts-expect-error
     docEl.msRequestFullscreen;
 
   return Boolean(requestFullScreen);
 }
 
 function toggleFullScreen() {
-  var doc = window.document;
-  var docEl = doc.documentElement;
+  const doc = window.document;
+  const docEl = doc.documentElement;
 
-  var requestFullScreen =
+  const requestFullScreen =
     docEl.requestFullscreen ||
+    // @ts-expect-error
     docEl.mozRequestFullScreen ||
+    // @ts-expect-error
     docEl.webkitRequestFullScreen ||
+    // @ts-expect-error
     docEl.msRequestFullscreen;
 
-  var cancelFullScreen =
+  const cancelFullScreen =
     doc.exitFullscreen ||
+    // @ts-expect-error
     doc.mozCancelFullScreen ||
+    // @ts-expect-error
     doc.webkitExitFullscreen ||
+    // @ts-expect-error
     doc.msExitFullscreen;
 
   if (
     !doc.fullscreenElement &&
+    // @ts-expect-error
     !doc.mozFullScreenElement &&
+    // @ts-expect-error
     !doc.webkitFullscreenElement &&
+    // @ts-expect-error
     !doc.msFullscreenElement
   ) {
     requestFullScreen.call(docEl);
@@ -45,12 +57,15 @@ function toggleFullScreen() {
 }
 
 function isFullScreen() {
-  var doc = window.document;
+  const doc = window.document;
 
   if (
     !doc.fullscreenElement &&
+    // @ts-expect-error
     !doc.mozFullScreenElement &&
+    // @ts-expect-error
     !doc.webkitFullscreenElement &&
+    // @ts-expect-error
     !doc.msFullscreenElement
   ) {
     return false;
@@ -58,7 +73,7 @@ function isFullScreen() {
   return true;
 }
 
-const FullScreenButton = () => {
+export default function FullScreenButton() {
   const fullscreen = isFullScreen();
 
   return isFullScreenSupported() ? (
@@ -75,6 +90,4 @@ const FullScreenButton = () => {
       )}
     </span>
   ) : null;
-};
-
-export default FullScreenButton;
+}

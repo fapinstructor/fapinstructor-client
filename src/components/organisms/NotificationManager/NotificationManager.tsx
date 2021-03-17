@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import { Notification as INotification } from "common/store/notifications";
@@ -17,13 +17,13 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export interface NotificationManagerProps {
+export type NotificationManagerProps = {
   notifications: INotification[];
-}
+};
 
-const NotificationManager: FC<NotificationManagerProps> = ({
+export default function NotificationManager({
   notifications,
-}) => {
+}: NotificationManagerProps) {
   const classes = useStyles();
 
   return (
@@ -40,6 +40,4 @@ const NotificationManager: FC<NotificationManagerProps> = ({
       </Box>
     </div>
   );
-};
-
-export default NotificationManager;
+}

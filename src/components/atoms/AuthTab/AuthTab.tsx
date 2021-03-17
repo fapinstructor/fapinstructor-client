@@ -1,10 +1,10 @@
-import React, { FC } from "react";
+import React from "react";
 import { useAuth0 } from "AuthProvider";
 import { Tab, TabProps, Tooltip } from "@material-ui/core";
 
 export type AuthTabProps = TabProps;
 
-const AuthTab: FC<TabProps> = ({ ...props }) => {
+export default function AuthTab(props: TabProps) {
   const { isAuthenticated } = useAuth0();
 
   return (
@@ -19,6 +19,4 @@ const AuthTab: FC<TabProps> = ({ ...props }) => {
       </span>
     </Tooltip>
   );
-};
-
-export default AuthTab;
+}

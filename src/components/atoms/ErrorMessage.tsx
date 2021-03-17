@@ -1,16 +1,14 @@
-import React, { FC } from "react";
+import React from "react";
 import Typography from "@material-ui/core/Typography";
 
-export interface ErrorMessageProps {
+export type ErrorMessageProps = {
   message: string;
-}
+};
 
-const ErrorMessage: FC<ErrorMessageProps> = ({ message }) => {
+export default function ErrorMessage({ message }: ErrorMessageProps) {
   return (
     <Typography variant="subtitle2" color="secondary">
       {message}
     </Typography>
   );
-};
-
-export default ErrorMessage;
+}

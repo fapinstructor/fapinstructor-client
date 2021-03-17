@@ -1,17 +1,16 @@
-import React, { FC } from "react";
+import React, { ReactNode } from "react";
 import MuiLink from "@material-ui/core/Link";
 import { Link } from "react-router-dom";
 
-export interface RouteButtonProps {
+export type RouteButtonProps = {
+  children: ReactNode;
   to: string;
-}
+};
 
-const RouteLink: FC<RouteButtonProps> = ({ children, to }) => {
+export default function RouteLink({ children, to }: RouteButtonProps) {
   return (
     <MuiLink color="inherit" component={Link} to={to}>
       {children}
     </MuiLink>
   );
-};
-
-export default RouteLink;
+}

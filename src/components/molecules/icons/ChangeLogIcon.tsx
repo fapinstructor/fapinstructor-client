@@ -1,8 +1,12 @@
-import React, { FC } from "react";
+import React from "react";
 import ChangeLogImage from "@material-ui/icons/FormatListBulleted";
-import Icon, { IconProps } from "components/atoms/Icon";
+import Icon from "components/atoms/Icon";
 
-const ChangeLogIcon: FC<IconProps> = ({ size }) => {
+type ChangeLogProps = {
+  size: number;
+};
+
+export default function ChangeLogIcon({ size }: ChangeLogProps) {
   return (
     <Icon size={size}>
       <ChangeLogImage
@@ -10,6 +14,4 @@ const ChangeLogIcon: FC<IconProps> = ({ size }) => {
       />
     </Icon>
   );
-};
-
-export default ChangeLogIcon;
+}

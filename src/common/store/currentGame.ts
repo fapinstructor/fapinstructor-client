@@ -5,6 +5,7 @@ import { AppThunk } from "common/store";
 import Game from "common/types/Game";
 import { createNotification, Severity } from "common/store/notifications";
 import { validSubreddit } from "utils/regex";
+import { StrokeStyleString } from "game/enums/StrokeStyle";
 
 type StateType = "idle" | "pending" | "resolved" | "rejected";
 
@@ -56,6 +57,16 @@ export const fetchGame = (gameId: string): AppThunk => async (dispatch) => {
 
     const res = await api.get(url);
     const game = res.data;
+
+    /**
+     * Configs currently store the default stroke style as an index,
+     * but we now use a typescript union. This will convert it to
+     * the correct type.
+     */
+    if (typeof game.config.defaultStrokeStyle === "number") {
+      game.config.defaultStrokeStyle =
+        StrokeStyleString[game.config.defaultStrokeStyle] ?? "dominant";
+    }
 
     /**
      * Older games were created before subreddit validation.

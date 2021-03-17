@@ -20,7 +20,8 @@ describe("test ticker", () => {
       });
     });
 
-    store.enableTicks = true;
+    store.localStorage.enableTicks = true;
+    // @ts-expect-error Other fields aren't relevant
     store.game = {
       strokeSpeed: 1000,
     };

@@ -17,15 +17,15 @@ export interface SwitchWithLabelProps extends FieldProps, SwitchProps {
   >;
 }
 
-const SwitchWithLabel = ({ Label, ...props }: SwitchWithLabelProps) => {
+export default function SwitchWithLabel({
+  Label,
+  ...props
+}: SwitchWithLabelProps) {
   return (
     <FormControlLabel
       control={<MuiSwitch {...fieldToSwitch(props)} />}
       {...Label}
     />
   );
-};
-
+}
 SwitchWithLabel.displayName = "FormikMaterialUISwitchWithLabel";
-
-export default SwitchWithLabel;

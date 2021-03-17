@@ -4,7 +4,7 @@ import Page from "components/atoms/Page";
 import ProfileCard from "components/organisms/ProfileCard";
 import { useAuth0 } from "AuthProvider";
 
-const ProfilePage = () => {
+export default function ProfilePage() {
   const { user } = useAuth0();
 
   return (
@@ -14,6 +14,4 @@ const ProfilePage = () => {
       </Box>
     </Page>
   );
-};
-
-export default ProfilePage;
+}

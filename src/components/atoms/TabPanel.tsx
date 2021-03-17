@@ -1,17 +1,16 @@
-import React, { FC } from "react";
+import React, { ReactNode } from "react";
 import { Box } from "@material-ui/core";
 
-interface TabPanelProps {
+type TabPanelProps = {
+  children: ReactNode;
   index: number;
   value: number;
-}
+};
 
-const TabPanel: FC<TabPanelProps> = ({ children, value, index }) => {
+export default function TabPanel({ children, value, index }: TabPanelProps) {
   return (
     <div hidden={value !== index}>
       {value === index && <Box p={3}>{children}</Box>}
     </div>
   );
-};
-
-export default TabPanel;
+}

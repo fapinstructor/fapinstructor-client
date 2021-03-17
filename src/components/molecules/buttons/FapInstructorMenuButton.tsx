@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactNode } from "react";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import RouteLink from "components/atoms/RouteLink";
@@ -12,7 +12,11 @@ const useStyles = makeStyles({
   },
 });
 
-const Title: FC = ({ children }) => {
+type TitleProps = {
+  children: ReactNode;
+};
+
+function Title({ children }: TitleProps) {
   const classes = useStyles();
 
   return (
@@ -20,9 +24,9 @@ const Title: FC = ({ children }) => {
       {children}
     </Typography>
   );
-};
+}
 
-const FapInstructorMenuButton = () => {
+export default function FapInstructorMenuButton() {
   return (
     <RouteLink to="/">
       <MenuItem
@@ -32,6 +36,4 @@ const FapInstructorMenuButton = () => {
       />
     </RouteLink>
   );
-};
-
-export default FapInstructorMenuButton;
+}

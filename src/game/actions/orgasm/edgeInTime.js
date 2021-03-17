@@ -9,10 +9,10 @@ import delay from "utils/delay";
 import { edging, getToTheEdge, stopEdging } from "game/actions/orgasm/edge";
 import punishment from "game/actions/punishment";
 import {
-  getRandom_edgeAdvanced_message,
-  getRandom_edgeInTime_message,
-  getRandom_edgeLadder_message,
-  getRandom_hurryUp_message,
+  getRandomEdgeAdvancedMessage,
+  getRandomEdgeInTimeMessage,
+  getRandomEdgeLadderMessage,
+  getRandomHurryUpMessage,
 } from "game/texts/messages";
 import executeAction from "engine/executeAction";
 import { edge } from "./edge";
@@ -27,7 +27,7 @@ import handsOff from "game/actions/speed/handsOff";
  *   the notificationId
  */
 export const getToTheEdgeAdvanced = async (
-  message = getRandom_edgeAdvanced_message()
+  message = getRandomEdgeAdvancedMessage()
 ) => {
   if (store.enableVoice) {
     play(audioLibrary.Edge);
@@ -41,7 +41,7 @@ export const getToTheEdgeAdvanced = async (
  */
 export const edgeAdvanced = async (
   time,
-  message = getRandom_edgeAdvanced_message()
+  message = getRandomEdgeAdvancedMessage()
 ) => {
   const notificationId = await getToTheEdgeAdvanced(message);
 
@@ -78,7 +78,7 @@ export const initializeEdgingLadder = async () => {
     store.game.edgingLadderLength = 5;
   }
   const messageID = createNotification({
-    message: getRandom_edgeLadder_message(),
+    message: getRandomEdgeLadderMessage(),
     delay: true,
   });
 
@@ -138,7 +138,7 @@ export const edgingLadder = async (
  */
 export const edgeInTime = async (
   holdTime = getRandomInclusiveInteger(10, 40),
-  message = getRandom_edgeInTime_message(),
+  message = getRandomEdgeInTimeMessage(),
   timer = getRandomInclusiveInteger(10, 40),
   edgeFunc = getToTheEdge
 ) => {
@@ -164,7 +164,7 @@ export const edgeInTime = async (
   };
 
   const timerId = createNotification({
-    message: getRandom_hurryUp_message(),
+    message: getRandomHurryUpMessage(),
     duration: timer * 1000,
     showProgress: true,
   });
@@ -185,7 +185,7 @@ export const edgeInTime = async (
  */
 export const edgeAdvancedInTime = async (
   holdTime = getRandomInclusiveInteger(10, 40),
-  message = getRandom_edgeInTime_message()
+  message = getRandomEdgeInTimeMessage()
 ) => {
   const timer = getRandomInclusiveInteger(20, 60);
   return await edgeInTime(holdTime, message, timer, getToTheEdgeAdvanced);

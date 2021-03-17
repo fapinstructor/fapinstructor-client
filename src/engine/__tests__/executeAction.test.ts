@@ -46,6 +46,8 @@ describe("executeAction tests", () => {
     jest.runOnlyPendingTimers();
 
     expect(store.engine.executing).toBeFalsy();
+    expect(store.engine.actionTriggers).toBeTruthy();
+    // @ts-expect-error Shouldn't be undefined
     expect(store.engine.actionTriggers[0]).toEqual(done);
   });
 
@@ -61,6 +63,8 @@ describe("executeAction tests", () => {
     jest.runOnlyPendingTimers();
 
     expect(store.engine.executing).toBeFalsy();
+    expect(store.engine.actionTriggers).toBeTruthy();
+    // @ts-expect-error Shouldn't be undefined
     expect(store.engine.actionTriggers[0]).toEqual(done);
   });
 });

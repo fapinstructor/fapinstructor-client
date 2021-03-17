@@ -1,13 +1,15 @@
-import React, { FC } from "react";
+import React from "react";
 import SearchImage from "@material-ui/icons/Search";
-import Icon, { IconProps } from "components/atoms/Icon";
+import Icon from "components/atoms/Icon";
 
-const SearchIcon: FC<IconProps> = ({ size }) => {
+type SearchIconProps = {
+  size: number;
+};
+
+export default function SearchIcon({ size }: SearchIconProps) {
   return (
     <Icon size={size}>
       <SearchImage style={{ color: "black", width: "100%", height: "100%" }} />
     </Icon>
   );
-};
-
-export default SearchIcon;
+}

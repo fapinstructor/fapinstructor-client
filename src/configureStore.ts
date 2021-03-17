@@ -1,13 +1,90 @@
 import store from "store";
 import { GripStrengthEnum } from "game/enums/GripStrength";
-import { StrokeStyleEnum } from "./game/enums/StrokeStyle";
+import { StrokeStyle } from "game/enums/StrokeStyle";
+
+export type GameConfig = {
+  isDefaultConfig: boolean;
+  redditId: string;
+  gifs: boolean;
+  pictures: boolean;
+  videos: boolean;
+  slideDuration: number; // sec
+  finalOrgasmAllowed: boolean;
+  allowedProbability: number; // percent
+  finalOrgasmDenied: boolean;
+  deniedProbability: number; // percent
+  finalOrgasmRuined: boolean;
+  ruinedProbability: number; // percent
+  finalOrgasmRandom: boolean;
+  minimumGameTime: number; // min
+  maximumGameTime: number; // min
+  minimumEdges: number;
+  minimumRuinedOrgasms: number;
+  maximumRuinedOrgasms: number;
+  maximumOrgasms: number;
+  postOrgasmTorture: boolean;
+  postOrgasmTortureMinimumTime: number;
+  postOrgasmTortureMaximumTime: number;
+  advancedEdging: boolean;
+  advancedOrgasm: boolean;
+  edgeCooldown: number; // sec
+  edgeFrequency: number; // percent
+  ruinCooldown: number; // sec
+  slowestStrokeSpeed: number; // sec
+  fastestStrokeSpeed: number; // sec
+  initialGripStrength: number;
+  defaultStrokeStyle: StrokeStyle;
+  actionFrequency: number; // sec
+  tasks: {
+    //Stroke Speed
+    doubleStrokes: boolean;
+    halvedStrokes: boolean;
+    teasingStrokes: boolean;
+    accelerationCycles: boolean;
+    randomBeat: boolean;
+    randomStrokeSpeed: boolean;
+    redLightGreenLight: boolean;
+    clusterStrokes: boolean;
+    gripChallenge: boolean;
+    //Stroke Style
+    dominant: boolean;
+    nondominant: boolean;
+    headOnly: boolean;
+    shaftOnly: boolean;
+    overhandGrip: boolean;
+    bothHands: boolean;
+    handsOff: boolean;
+    //Grip Strength
+    gripAdjustments: boolean;
+    //CBT
+    bindCockBalls: boolean;
+    rubberBands: boolean;
+    ballSlaps: boolean;
+    squeezeBalls: boolean;
+    headPalming: boolean;
+    icyHot: boolean;
+    toothpaste: boolean;
+    breathPlay: boolean;
+    scratching: boolean;
+    flicking: boolean;
+    cbtIce: boolean;
+    //CEI
+    precum: boolean;
+    //Anal
+    buttplug: boolean;
+    //Nipples
+    rubNipples: boolean;
+    clothespins: boolean;
+    nipplesAndStroke: boolean;
+    //Misc
+    pickYourPoison: boolean;
+  };
+};
 
 /**
  * A big enum containing all setup information of the game.
- *
- * @since 03.08.2018
  */
-const defaultConfig = {
+const defaultConfig: GameConfig = {
   isDefaultConfig: true,
   redditId:
     "NSFW_GIF, gonewild, nsfw, 60fpsporn, porninaminute, holdthemoan, cumsluts, realgirls, gwcouples, porninfifteenseconds, cuckold, hotwife, anal, blowjobs, bustypetite, ass, collegesluts, wifesharing, creampies, ruinedorgasms, chastitycouples, postorgasm",
@@ -39,7 +116,7 @@ const defaultConfig = {
   slowestStrokeSpeed: 0.25, // sec
   fastestStrokeSpeed: 5, // sec
   initialGripStrength: GripStrengthEnum.Normal,
-  defaultStrokeStyle: StrokeStyleEnum.dominant,
+  defaultStrokeStyle: "dominant",
   actionFrequency: 20, // sec
   tasks: {
     //Stroke Speed
@@ -86,8 +163,6 @@ const defaultConfig = {
     pickYourPoison: false,
   },
 };
-
-export type GameConfig = typeof defaultConfig;
 
 export default () => {
   store.config = defaultConfig;

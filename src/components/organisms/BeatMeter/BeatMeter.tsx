@@ -1,3 +1,4 @@
+// TODO: Clean this file up
 import React from "react";
 import type {
   StrokeEmitterObservable,

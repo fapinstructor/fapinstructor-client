@@ -1,12 +1,12 @@
-import React, { FC } from "react";
+import React from "react";
 import { IconButton, Tooltip } from "@material-ui/core";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
 
-export interface BookmarkButtonProps {
+export type BookmarkButtonProps = {
   onClick: () => void;
-}
+};
 
-const BookmarkButton: FC<BookmarkButtonProps> = ({ onClick }) => {
+export default function BookmarkButton({ onClick }: BookmarkButtonProps) {
   return (
     <Tooltip title="Bookmark" placement="bottom">
       <IconButton color="inherit" onClick={onClick}>
@@ -14,6 +14,4 @@ const BookmarkButton: FC<BookmarkButtonProps> = ({ onClick }) => {
       </IconButton>
     </Tooltip>
   );
-};
-
-export default BookmarkButton;
+}

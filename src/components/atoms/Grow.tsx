@@ -1,7 +1,5 @@
 import React from "react";
 
-const Grow = () => {
+export default function Grow() {
   return <span style={{ flexGrow: 1 }} />;
-};
-
-export default Grow;
+}

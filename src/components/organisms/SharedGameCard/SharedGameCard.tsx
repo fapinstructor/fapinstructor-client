@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Box, Button, CircularProgress } from "@material-ui/core";
 import NodeRow from "components/templates/NodeRow";
 import ErrorCard from "components/molecules/ErrorCard";
@@ -9,7 +9,7 @@ import deepCopy from "utils/deepCopy";
 import Game from "common/types/Game";
 import Profile from "common/types/Profile";
 
-export interface SharedGameCardProps {
+export type SharedGameCardProps = {
   gameConfigId: string;
   onStart: () => void;
   loading: boolean;
@@ -18,9 +18,9 @@ export interface SharedGameCardProps {
   profile: Profile | null;
   fetchGame: (gameId: string) => void;
   appendGameHistory: (userId: string, gameId: string) => void;
-}
+};
 
-const SharedGameCard: FC<SharedGameCardProps> = ({
+export default function SharedGameCard({
   loading,
   error,
   game,
@@ -29,7 +29,7 @@ const SharedGameCard: FC<SharedGameCardProps> = ({
   appendGameHistory,
   gameConfigId,
   onStart,
-}) => {
+}: SharedGameCardProps) {
   useEffect(() => {
     fetchGame(gameConfigId);
   }, [gameConfigId, fetchGame]);
@@ -76,6 +76,4 @@ const SharedGameCard: FC<SharedGameCardProps> = ({
     );
   }
   return <>{content}</>;
-};
-
-export default SharedGameCard;
+}

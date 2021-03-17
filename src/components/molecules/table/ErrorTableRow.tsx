@@ -1,11 +1,11 @@
-import React, { FC } from "react";
+import React from "react";
 import TableRow from "@material-ui/core/TableRow";
 import SpanningTableCell from "components/molecules/table/SpanningTableCell";
 import ErrorMessage, { ErrorMessageProps } from "components/atoms/ErrorMessage";
 
 export type ErrorTableRowProps = ErrorMessageProps;
 
-const ErrorTableRow: FC<ErrorTableRowProps> = ({ message }) => {
+export default function ErrorTableRow({ message }: ErrorTableRowProps) {
   return (
     <TableRow>
       <SpanningTableCell>
@@ -13,6 +13,4 @@ const ErrorTableRow: FC<ErrorTableRowProps> = ({ message }) => {
       </SpanningTableCell>
     </TableRow>
   );
-};
-
-export default ErrorTableRow;
+}

@@ -2,7 +2,7 @@ import React from "react";
 import { TableRow, LinearProgress } from "@material-ui/core";
 import SpanningTableCell from "components/molecules/table/SpanningTableCell";
 
-const LoadingTableRow = () => {
+export default function LoadingTableRow() {
   return (
     <TableRow>
       <SpanningTableCell>
@@ -10,6 +10,4 @@ const LoadingTableRow = () => {
       </SpanningTableCell>
     </TableRow>
   );
-};
-
-export default LoadingTableRow;
+}

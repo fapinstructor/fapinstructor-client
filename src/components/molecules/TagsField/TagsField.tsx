@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Field } from "formik";
 import FormikAutocomplete from "components/molecules/fields/FormikAutocomplete";
 import TextField from "@material-ui/core/TextField";
@@ -11,21 +11,21 @@ const textFieldProps = {
   helperText: "Enter tag name and then press enter ",
 };
 
-export interface TagsFieldProps {
+export type TagsFieldProps = {
   value?: string[];
   onChange?: (tags: string[]) => void;
   tags: string[];
   loading: boolean;
   fetchTags: () => void;
-}
+};
 
-const TagsField: FC<TagsFieldProps> = ({
+export default function TagsField({
   value,
   onChange,
   fetchTags,
   tags,
   loading,
-}) => {
+}: TagsFieldProps) {
   useEffect(() => {
     fetchTags();
   }, [fetchTags]);
@@ -58,6 +58,4 @@ const TagsField: FC<TagsFieldProps> = ({
       options={tags}
     />
   );
-};
-
-export default TagsField;
+}

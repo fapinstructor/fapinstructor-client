@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Slide from "@material-ui/core/Slide";
@@ -14,10 +14,10 @@ import StarIcon from "@material-ui/icons/Grade";
 import CloseIcon from "@material-ui/icons/Close";
 import ProgressBar from "components/atoms/ProgressBar";
 
-interface StyleProps {
+type StyleProps = {
   severity?: Severity;
   dismissible?: boolean;
-}
+};
 
 const useStyles = makeStyles((theme) => ({
   root: ({ severity }: StyleProps) => {
@@ -49,17 +49,17 @@ const useStyles = makeStyles((theme) => ({
   }),
 }));
 
-export interface NotificationProps {
+export type NotificationProps = {
   notification: INotification;
   dismissNotification: (id: string) => void;
-}
+};
 
 const iconSeverityMap = {
   [Severity.ERROR]: <ErrorIcon />,
   [Severity.INFO]: <StarIcon />,
 };
 
-const Notification: FC<NotificationProps> = ({
+export default function Notification({
   notification: {
     id,
     message,
@@ -70,7 +70,7 @@ const Notification: FC<NotificationProps> = ({
     delay = 0,
   },
   dismissNotification,
-}) => {
+}: NotificationProps) {
   const [isOpen, setOpen] = useState(false);
   const isAutoDismiss = duration >= 0;
   const isDismissible = dismissible ? true : !isAutoDismiss;
@@ -138,6 +138,4 @@ const Notification: FC<NotificationProps> = ({
       </Paper>
     </Slide>
   );
-};
-
-export default Notification;
+}

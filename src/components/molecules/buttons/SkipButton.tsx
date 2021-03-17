@@ -1,12 +1,12 @@
-import React, { FC } from "react";
+import React from "react";
 import { IconButton, Tooltip } from "@material-ui/core";
 import SkipNextIcon from "@material-ui/icons/SkipNext";
 
-export interface SkipButtonProps {
+export type SkipButtonProps = {
   onClick: () => void;
-}
+};
 
-const SkipButton: FC<SkipButtonProps> = ({ onClick }) => {
+export default function SkipButton({ onClick }: SkipButtonProps) {
   return (
     <Tooltip title="Skip" placement="bottom">
       <IconButton color="inherit" onClick={onClick}>
@@ -14,6 +14,4 @@ const SkipButton: FC<SkipButtonProps> = ({ onClick }) => {
       </IconButton>
     </Tooltip>
   );
-};
-
-export default SkipButton;
+}

@@ -9,7 +9,7 @@ import PlayedGamesTable from "components/organisms/GamesTable/PlayedGamesTable";
 import TabPanel from "components/atoms/TabPanel";
 import AuthTab from "components/atoms/AuthTab";
 
-const SearchPage = () => {
+export default function SearchPage() {
   const [activeTab, setActiveTab] = useState(0);
 
   const handleTabChange = (event: React.ChangeEvent<{}>, tab: number) => {
@@ -36,6 +36,4 @@ const SearchPage = () => {
       </TabPanel>
     </Paper>
   );
-};
-
-export default SearchPage;
+}

@@ -14,7 +14,7 @@ import NotificationManager from "components/organisms/NotificationManager";
 
 const engineStore = configureStore();
 
-const render = () => {
+function render() {
   const Root = require("./components/Root").default;
 
   ReactDOM.render(
@@ -24,7 +24,7 @@ const render = () => {
     </Provider>,
     document.getElementById("root")
   );
-};
+}
 
 render();
 

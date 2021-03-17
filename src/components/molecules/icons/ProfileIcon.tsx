@@ -1,6 +1,11 @@
 import React from "react";
+import { User } from "AuthProvider";
 
-export default function ProfileIcon({ user }) {
+type ProfileIconProps = {
+  user: User;
+};
+
+export default function ProfileIcon({ user }: ProfileIconProps) {
   return (
     <img
       src={user.picture}

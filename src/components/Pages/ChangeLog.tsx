@@ -6,7 +6,7 @@ import Page from "components/atoms/Page";
 
 const ChangeLogMDUrl = `${config.publicUrl}/CHANGELOG.md`;
 
-const ChangeLog = () => {
+export default function ChangeLog() {
   const [changeLogMD, setChangeLogMD] = useState("");
 
   useEffect(() => {
@@ -20,6 +20,4 @@ const ChangeLog = () => {
       <ReactMarkdown source={changeLogMD} />
     </Page>
   );
-};
-
-export default ChangeLog;
+}

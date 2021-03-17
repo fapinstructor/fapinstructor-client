@@ -1,20 +1,18 @@
-import React, { FC } from "react";
+import React from "react";
 import { Button, Box, FormHelperText, ButtonProps } from "@material-ui/core";
 
-export interface ButtonWithHelperTextProps extends ButtonProps {
+export type ButtonWithHelperTextProps = ButtonProps & {
   helperText: string;
-}
+};
 
-const ButtonWithHelperText: FC<ButtonWithHelperTextProps> = ({
+export default function ButtonWithHelperText({
   helperText,
   ...props
-}) => {
+}: ButtonWithHelperTextProps) {
   return (
     <Box display="inline-flex" flexDirection="column" alignItems="center">
       <Button {...props}>Share Game</Button>
       <FormHelperText>{helperText}</FormHelperText>
     </Box>
   );
-};
-
-export default ButtonWithHelperText;
+}

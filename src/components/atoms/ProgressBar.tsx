@@ -1,10 +1,10 @@
-import React, { FC } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 
-interface StyleProps {
+type StyleProps = {
   duration?: number;
-}
+};
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,12 +29,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export interface ProgressBarProps {
+export type ProgressBarProps = {
   className?: string;
   duration: number;
-}
+};
 
-const ProgressBar: FC<ProgressBarProps> = ({ className, duration }) => {
+export default function ProgressBar({ className, duration }: ProgressBarProps) {
   const classes = useStyles({ duration });
 
   return (
@@ -42,6 +42,4 @@ const ProgressBar: FC<ProgressBarProps> = ({ className, duration }) => {
       <div className={clsx(classes.progress, className)} />
     </div>
   );
-};
-
-export default ProgressBar;
+}

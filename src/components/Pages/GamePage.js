@@ -74,27 +74,6 @@ class GamePage extends React.Component {
       });
     }
 
-    // Load global game preferences
-    try {
-      store.enableVoice = localStorage.getItem("enableVoice")
-        ? localStorage.getItem("enableVoice") === "true"
-        : true;
-      store.enableMoans = localStorage.getItem("enableMoans")
-        ? localStorage.getItem("enableMoans") === "true"
-        : true;
-      store.videoMuted = localStorage.getItem("videoMuted")
-        ? localStorage.getItem("videoMuted") === "true"
-        : false;
-      store.enableTicks = localStorage.getItem("enableTicks")
-        ? localStorage.getItem("enableTicks") === "true"
-        : true;
-      store.enableBeatMeter = localStorage.getItem("enableBeatMeter")
-        ? localStorage.getItem("enableBeatMeter") === "true"
-        : true;
-    } catch {
-      // In some cases local storage might be disabled
-    }
-
     Sentry.setTag("page", "game");
     Sentry.setContext("game_config", {
       gameConfigId,

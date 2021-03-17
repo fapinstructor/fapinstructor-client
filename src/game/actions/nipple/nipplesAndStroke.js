@@ -7,7 +7,7 @@ import { getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
 import {
   getCurrentStrokeStyle,
-  setRandomStrokeStyle_OneHand,
+  setRandomOneHandedStrokeStyle,
   setStrokeStyle,
 } from "game/enums/StrokeStyle";
 
@@ -29,7 +29,7 @@ const nipplesAndStroke = async () => {
 
   // task duration (= total time in this case)
   const taskDuration = getRandomInclusiveInteger(10, 25);
-  await setRandomStrokeStyle_OneHand();
+  await setRandomOneHandedStrokeStyle();
 
   let message = `Use one of your hands to ${strength}play with your ${left_or_right} nipple`;
 

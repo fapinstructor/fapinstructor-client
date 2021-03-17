@@ -1,18 +1,19 @@
-import React, { FC } from "react";
+import React, { ReactNode } from "react";
 import TableBody from "@material-ui/core/TableBody";
 import LoadingTableRow from "components/molecules/table/LoadingTableRow";
 import ErrorTableRow from "components/molecules/table/ErrorTableRow";
 
-export interface AsyncTableBodyProps {
+export type AsyncTableBodyProps = {
+  children: ReactNode;
   loading: boolean;
   error?: string;
-}
+};
 
-const AsyncTableBody: FC<AsyncTableBodyProps> = ({
+export default function AsyncTableBody({
+  children,
   loading,
   error,
-  children,
-}) => {
+}: AsyncTableBodyProps) {
   return (
     <TableBody>
       {loading && <LoadingTableRow />}
@@ -20,6 +21,4 @@ const AsyncTableBody: FC<AsyncTableBodyProps> = ({
       {children}
     </TableBody>
   );
-};
-
-export default AsyncTableBody;
+}

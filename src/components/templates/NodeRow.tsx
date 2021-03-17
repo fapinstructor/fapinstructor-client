@@ -1,11 +1,11 @@
-import React, { FC, ReactNode, ReactNodeArray } from "react";
+import React, { ReactNode, ReactNodeArray } from "react";
 import Box from "@material-ui/core/Box";
 
-export interface NodeRowProps {
+export type NodeRowProps = {
   children: ReactNodeArray;
-}
+};
 
-const NodeRow: FC<NodeRowProps> = ({ children }) => {
+export default function NodeRow({ children }: NodeRowProps) {
   return (
     <Box display="flex">
       {children.map((button: ReactNode, index: number) => (
@@ -15,6 +15,4 @@ const NodeRow: FC<NodeRowProps> = ({ children }) => {
       ))}
     </Box>
   );
-};
-
-export default NodeRow;
+}

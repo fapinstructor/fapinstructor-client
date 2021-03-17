@@ -12,7 +12,7 @@ export const moanRemoteControl = Object.create(remoteControl);
 
 const moanLoop = ({ progress }: GameLoopArgs) => {
   if (!moanRemoteControl.paused) {
-    if (store.enableMoans) {
+    if (store.localStorage.enableMoans) {
       if (lastMoan > moanDelay * 1000) {
         play(getRandomAudioVariation("Moan"));
         lastMoan = 0;

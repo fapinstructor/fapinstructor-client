@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Table,
   TableHead,
@@ -21,7 +21,7 @@ import {
 } from "common/api/schemas/games";
 import { PaginateParams, Pagination } from "common/types/pagination";
 
-export interface GamesTableProps {
+export type GamesTableProps = {
   createdBy?: string;
   playedBy?: string;
   searchGames: (request: SearchGamesRequest) => void;
@@ -29,9 +29,9 @@ export interface GamesTableProps {
   pagination: Pagination;
   loading: boolean;
   error?: string;
-}
+};
 
-const GamesTable: FC<GamesTableProps> = ({
+export default function GamesTable({
   createdBy,
   playedBy,
   searchGames,
@@ -39,7 +39,7 @@ const GamesTable: FC<GamesTableProps> = ({
   pagination,
   loading,
   error,
-}) => {
+}: GamesTableProps) {
   const [paginate, setPaginate] = useState<PaginateParams>({
     perPage: 10,
     currentPage: 1,
@@ -145,6 +145,4 @@ const GamesTable: FC<GamesTableProps> = ({
       </TableFooter>
     </Table>
   );
-};
-
-export default GamesTable;
+}

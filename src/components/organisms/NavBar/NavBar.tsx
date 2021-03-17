@@ -10,7 +10,7 @@ import FaqMenuButton from "components/molecules/buttons/FaqMenuButton";
 import SearchGameMenuButton from "components/molecules/buttons/SearchGameMenuButton";
 import Grow from "components/atoms/Grow";
 
-const NavBar = () => {
+export default function NavBar() {
   return (
     <AppBar position="static" color="secondary">
       <Toolbar>
@@ -25,6 +25,4 @@ const NavBar = () => {
       </Toolbar>
     </AppBar>
   );
-};
-
-export default NavBar;
+}

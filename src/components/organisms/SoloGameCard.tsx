@@ -1,13 +1,13 @@
-import React, { FC } from "react";
+import React from "react";
 import { Button } from "@material-ui/core";
 import NodeRow from "components/templates/NodeRow";
 import BackToConfigButton from "components/molecules/buttons/BackToConfigButton";
 
-export interface SoloGameCardProps {
+export type SoloGameCardProps = {
   onStart: () => void;
-}
+};
 
-const SoloGameCard: FC<SoloGameCardProps> = ({ onStart }) => {
+export default function SoloGameCard({ onStart }: SoloGameCardProps) {
   return (
     <>
       <NodeRow>
@@ -18,6 +18,4 @@ const SoloGameCard: FC<SoloGameCardProps> = ({ onStart }) => {
       </NodeRow>
     </>
   );
-};
-
-export default SoloGameCard;
+}

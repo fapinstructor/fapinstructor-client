@@ -12,7 +12,7 @@
  * @param {Number}     probability   with the probability "probability"
  *
  */
-export default (func, probability) => ({
+export default (func: () => void, probability: number) => ({
   func,
   probability,
 });

@@ -26,7 +26,7 @@ const ticker = ({ timestamp }: GameLoopArgs) => {
   if (nextStrokeTime > 0 && timestamp - TIME_DELAY / 2 >= nextStrokeTime) {
     nextStrokeTime = 0;
 
-    if (store.enableTicks) {
+    if (store.localStorage.enableTicks) {
       if (!playTick(store.game.strokeSpeed)) {
         play(audioLibrary.Tick);
       }

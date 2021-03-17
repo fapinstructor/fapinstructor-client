@@ -6,13 +6,16 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import { NavLink as RouteNavLink } from "react-router-dom";
 import { useAuth0 } from "AuthProvider";
+import { PopoverProps } from "@material-ui/core";
 
-function ProfileButton() {
+export default function ProfileButton() {
   const { logout, user, loginWithRedirect, isLoading } = useAuth0();
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorEl, setAnchorEl] = useState<PopoverProps["anchorEl"]>(null);
   const isMenuOpen = Boolean(anchorEl);
 
-  const handleProfileMenuOpen = (event) => {
+  const handleProfileMenuOpen = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -72,5 +75,3 @@ function ProfileButton() {
     );
   }
 }
-
-export default ProfileButton;

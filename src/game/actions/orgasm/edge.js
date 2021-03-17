@@ -12,7 +12,7 @@ import { getRandomBoolean, getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
 import { strokerRemoteControl } from "game/loops/strokeEmitter";
 import handsOff from "game/actions/speed/handsOff";
-import { getRandom_edge_message } from "game/texts/messages";
+import { getRandomEdgeMessage } from "game/texts/messages";
 import punishment from "../punishment";
 import { getRandomEdge } from "./edgeInTime";
 import { clearStrokeEmissions } from "game/loops/strokeEmitter";
@@ -125,7 +125,7 @@ export const stopEdging = async () => {
  * @returns {Promise<*>}
  *   the notificationId
  */
-export const getToTheEdge = async (message = getRandom_edge_message()) => {
+export const getToTheEdge = async (message = getRandomEdgeMessage()) => {
   const {
     config: { fastestStrokeSpeed },
   } = store;
@@ -146,7 +146,7 @@ export const getToTheEdge = async (message = getRandom_edge_message()) => {
  *
  * @returns {Promise<*[]>}
  */
-export const edge = async (time, message = getRandom_edge_message()) => {
+export const edge = async (time, message = getRandomEdgeMessage()) => {
   const notificationId = await getToTheEdge(message);
 
   const trigger = async () => {

@@ -1,8 +1,6 @@
 import React from "react";
 import store from "store";
-// mui
 import { withStyles } from "@material-ui/core/styles";
-
 import {
   Button,
   Grid,
@@ -25,17 +23,10 @@ import {
 import Alert from "@material-ui/lab/Alert";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { withRouter } from "react-router-dom";
-// internal
 import { getRandomBoolean } from "utils/math";
 import Group from "components/molecules/Group";
 import TaskList from "containers/TaskList";
 import { GripStrengthEnum, GripStrengthString } from "game/enums/GripStrength";
-import {
-  getStrokeStyleName,
-  StrokeStyleArray,
-  StrokeStyleEnum,
-  StrokeStyleString,
-} from "game/enums/StrokeStyle";
 import config from "config";
 import ShareGame from "components/organisms/ShareGame";
 import { validSubreddit } from "utils/regex";
@@ -307,18 +298,6 @@ class ConfigPage extends React.Component {
           }
           break;
         }
-        case "defaultStrokeStyle": {
-          // New UI makes this error never happen
-          delete errors[name];
-          if (!store.config.tasks[StrokeStyleArray[value][0]]) {
-            errors[name] =
-              "You disabled '" +
-              StrokeStyleString[value] +
-              "' below. " +
-              "Only active Styles can be set as default Style!";
-          }
-          break;
-        }
         default: {
         }
       }
@@ -415,7 +394,7 @@ class ConfigPage extends React.Component {
     this.setState({ errors: this.validateConfig() });
   };
 
-  handleTaskRandomize = (except) => (event) => {
+  handleTaskRandomize = (except = []) => (event) => {
     event.stopPropagation();
 
     Object.keys(store.config.tasks).forEach((task) => {
@@ -1041,7 +1020,7 @@ class ConfigPage extends React.Component {
             <Group title="Stroke">
               <Grid container spacing={10}>
                 <Grid item xs={12} md={3}>
-                  <FormControl
+                  {/* <FormControl
                     className={classes.control}
                     error={!!errors.defaultStrokeStyle}
                     title={
@@ -1054,10 +1033,10 @@ class ConfigPage extends React.Component {
                       value={store.config.defaultStrokeStyle}
                       onChange={this.handleChange("defaultStrokeStyle", Number)}
                     >
-                      {Object.keys(StrokeStyleEnum).map((key) => (
+                      {StrokeStyles.entries(([strokeStyle, config]) => (
                         <MenuItem
-                          key={key}
-                          value={StrokeStyleEnum[key]}
+                          key={strokeStyle}
+                          value={config.label}
                           disabled={
                             !store.config.tasks[key] || key === "handsOff"
                           }
@@ -1067,7 +1046,7 @@ class ConfigPage extends React.Component {
                       ))}
                     </Select>
                     <FormHelperText>{errors.defaultStrokeStyle}</FormHelperText>
-                  </FormControl>
+                  </FormControl> */}
                 </Grid>
                 <Grid item xs={12} md={3}>
                   <FormControl className={classes.control}>
@@ -1139,9 +1118,10 @@ class ConfigPage extends React.Component {
                     variant="contained"
                     color="primary"
                     className={classes.button}
-                    onClick={this.handleTaskRandomize([
-                      getStrokeStyleName(store.config.defaultStrokeStyle),
-                    ])}
+                    onClick={this.handleTaskRandomize()}
+                    // onClick={this.handleTaskRandomize([
+                    //   getStrokeStyleName(store.config.defaultStrokeStyle),
+                    // ])}
                   >
                     Randomize
                   </Button>
@@ -1183,9 +1163,9 @@ class ConfigPage extends React.Component {
                         <TaskList
                           title="Style"
                           error={errors.style}
-                          except={[
-                            getStrokeStyleName(store.config.defaultStrokeStyle),
-                          ]}
+                          // except={[
+                          //   getStrokeStyleName(store.config.defaultStrokeStyle),
+                          // ]}
                           tasks={{
                             dominant: "Dominant",
                             nondominant: "Nondominant",

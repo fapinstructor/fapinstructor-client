@@ -16,11 +16,11 @@ import {
 } from "game/actions/orgasm/orgasm";
 import punishment from "game/actions/punishment";
 import {
-  getRandom_didYouCum_message,
-  getRandom_hurryUp_message,
-  getRandom_orgasm_message,
-  getRandom_orgasmAdvanced_message,
-  getRandom_orgasmInTime_message,
+  getRandomDidYouCumMessage,
+  getRandomHurryUpMessage,
+  getRandomEdgeInTimeMessage,
+  getRandomOrgasmAdvancedMessage,
+  getRandomOrgasmInTimeMessage,
 } from "game/texts/messages";
 import { setDefaultGrip } from "game/actions/grip";
 import { setDefaultStrokeStyle } from "game/enums/StrokeStyle";
@@ -37,7 +37,7 @@ import createProbability from "game/utils/createProbability";
  * @returns {Promise<*>}
  *   notificationId - the id of the message to be dismissed in the next step.
  */
-export const getToTheOrgasm = (message = getRandom_orgasm_message()) => {
+export const getToTheOrgasm = (message = getRandomEdgeInTimeMessage()) => {
   const {
     config: { fastestStrokeSpeed },
     enableVoice,
@@ -62,7 +62,7 @@ export const getToTheOrgasm = (message = getRandom_orgasm_message()) => {
  * @returns {*}
  */
 export const getToTheOrgasmAdvanced = (
-  message = getRandom_orgasmAdvanced_message()
+  message = getRandomOrgasmAdvancedMessage()
 ) => {
   if (store.enableVoice) {
     play(getRandomAudioVariation("Orgasm"));
@@ -84,7 +84,7 @@ export const doOrgasmInTime = async (
 ) => {
   let orgasmed = false;
 
-  const notificationId = await orgasmFunc(getRandom_orgasmInTime_message());
+  const notificationId = await orgasmFunc(getRandomOrgasmInTimeMessage());
 
   const trigger_done = async () => {
     orgasmed = true;
@@ -109,7 +109,7 @@ export const doOrgasmInTime = async (
   };
 
   const timerId = createNotification({
-    message: getRandom_hurryUp_message(),
+    message: getRandomHurryUpMessage(),
     duration: timer * 1000,
     showProgress: true,
   });
@@ -130,7 +130,7 @@ export const doOrgasmInTime = async (
  */
 export const doOrgasmAdvanced = async () => {
   const notificationId = await getToTheOrgasmAdvanced(
-    getRandom_orgasmAdvanced_message()
+    getRandomOrgasmAdvancedMessage()
   );
 
   const trigger_done = async () => {
@@ -238,7 +238,7 @@ export const doOrgasmCountdown = async () => {
 
   // After the countdown, did the user cum?
   const didYouID = createNotification({
-    message: getRandom_didYouCum_message(),
+    message: getRandomDidYouCumMessage(),
   });
 
   const trigger_done = async () => {

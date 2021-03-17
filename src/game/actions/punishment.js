@@ -22,12 +22,12 @@ import { insertButtPlug } from "game/actions/anal/buttPlug";
 import handsOff from "game/actions/speed/handsOff";
 import { applyProbability } from "game/actions/generateAction";
 import createNotification from "engine/createNotification";
-import { getRandom_punishment_message } from "game/texts/teasing_messages";
+import { getRandomPunishmentMessage } from "game/texts/teasing_messages";
 import delay from "utils/delay";
 import {
   getCurrentStrokeStyle,
   setStrokeStyleHandsOff,
-  setStrokeStyleQuiet,
+  setStrokeStyle,
 } from "game/enums/StrokeStyle";
 import { getRandomStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
 import { clearStrokeEmissions } from "game/loops/strokeEmitter";
@@ -56,7 +56,7 @@ const getRandomPunishment = () => {
  */
 const punishment = async () => {
   const punish = getRandomPunishment();
-  const message = getRandom_punishment_message();
+  const message = getRandomPunishmentMessage();
   clearStrokeEmissions();
   createNotification({ message });
 
@@ -70,7 +70,7 @@ const punishment = async () => {
 
   await executeAction(punish);
 
-  await setStrokeStyleQuiet(strokeStyle);
+  await setStrokeStyle(strokeStyle, true);
 
   await setStrokeSpeed(getRandomStrokeSpeed()); //since not every punishment does this ... it may happen twice
   // sometimes.

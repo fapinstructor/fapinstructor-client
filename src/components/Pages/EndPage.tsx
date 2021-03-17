@@ -1,12 +1,12 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import store from "store";
-import { withStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import BookmarkList from "components/molecules/BookmarkList";
 import config from "config";
 
-const styles = () => ({
+const useStyles = makeStyles({
   root: {
     display: "flex",
     flexDirection: "column",
@@ -19,7 +19,8 @@ const styles = () => ({
   },
 });
 
-function EndPage({ classes }) {
+export default function EndPage() {
+  const classes = useStyles();
   const history = useHistory();
 
   if (!store.game) {
@@ -41,13 +42,11 @@ function EndPage({ classes }) {
         Bookmarks
       </Typography>
       <BookmarkList
-        bookmarks={Object.values(store.game.bookmarks).map((bookmark) => ({
-          href: bookmark.sourceLink,
-          src: bookmark.directLink,
+        bookmarks={store.game.bookmarks.map((bookmark) => ({
+          href: bookmark.href,
+          src: bookmark.src,
         }))}
       />
     </div>
   );
 }
-
-export default withStyles(styles)(EndPage);

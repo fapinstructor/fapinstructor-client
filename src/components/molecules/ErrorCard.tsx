@@ -1,17 +1,15 @@
-import React, { FC } from "react";
+import React from "react";
 import { Typography } from "@material-ui/core";
 import Group from "components/molecules/Group";
 
-export interface ErrorCardProps {
+export type ErrorCardProps = {
   error: string;
-}
+};
 
-const ErrorCard: FC<ErrorCardProps> = ({ error }) => {
+export default function ErrorCard({ error }: ErrorCardProps) {
   return (
     <Group title="An error has occured">
       <Typography variant="body1">{error}</Typography>
     </Group>
   );
-};
-
-export default ErrorCard;
+}

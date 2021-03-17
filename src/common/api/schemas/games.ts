@@ -2,6 +2,7 @@ import * as yup from "yup";
 import { isAlpha } from "utils/regex";
 import { PaginateParams, WithPagination } from "common/types/pagination";
 import { Game } from "api/types";
+import { GameConfig } from "configureStore";
 
 export const CREATE_GAME_SCHEMA = yup.object().shape({
   title: yup.string().min(5).max(50).required(),
@@ -24,7 +25,7 @@ export interface CreateGameRequest {
   title: string;
   tags: string[];
   isPublic: boolean;
-  config: object;
+  config: GameConfig;
 }
 
 export interface CreateGameResponse {

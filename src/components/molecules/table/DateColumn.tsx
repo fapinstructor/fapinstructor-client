@@ -1,18 +1,20 @@
-import React, { FC } from "react";
+import React from "react";
 import moment from "moment";
 import { TableCell, TableCellProps, Typography } from "@material-ui/core";
 
-export interface DateColumnProps extends TableCellProps {
+export type DateColumnProps = TableCellProps & {
   date: Date;
   format: string;
-}
+};
 
-const DateColumn: FC<DateColumnProps> = ({ date, format, ...props }) => {
+export default function DateColumn({
+  date,
+  format,
+  ...props
+}: DateColumnProps) {
   return (
     <TableCell {...props}>
       <Typography noWrap>{moment(date).format(format)}</Typography>
     </TableCell>
   );
-};
-
-export default DateColumn;
+}

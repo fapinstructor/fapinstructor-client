@@ -1,11 +1,11 @@
-import React, { FC } from "react";
+import React from "react";
 
-export interface ImageProps {
+export type ImageProps = {
   alt: string;
   src: string;
-}
+};
 
-const Image: FC<ImageProps> = ({ alt, src }) => {
+export default function Image({ alt, src }: ImageProps) {
   return (
     <img
       style={{ objectFit: "contain", width: "100%", height: "100%" }}
@@ -13,6 +13,4 @@ const Image: FC<ImageProps> = ({ alt, src }) => {
       src={src}
     />
   );
-};
-
-export default Image;
+}

@@ -16,13 +16,13 @@ import elapsedGameTime from "game/utils/elapsedGameTime";
 import { stopGame } from "game";
 import { getRandomOrgasm } from "game/actions/orgasm/orgasmInTime";
 import {
-  getRandom_denied_message,
-  getRandom_edgeAndHold_message,
-  getRandom_ruinOrgasm_message,
+  getRandomDeniedMessage,
+  getRandomEdgeAndHoldMessage,
+  getRandomRuinOrgasmMessage,
 } from "game/texts/messages";
 import createProbability from "game/utils/createProbability";
 import { applyProbability } from "game/actions/generateAction";
-import { getRandom_youDidGood_message } from "../../texts/teasing_messages";
+import { getRandomYouDidGoodMessage } from "game/texts/teasing_messages";
 
 const SIXTY_SECONDS = 60; // That's what makes one minute
 const FINAL_EDGE_MIN = 15; // Seconds
@@ -93,7 +93,7 @@ export const doRuin = async () => {
     play(audioLibrary.RuinItForMe);
   }
 
-  const nid = createNotification(getRandom_ruinOrgasm_message());
+  const nid = createNotification(getRandomRuinOrgasmMessage());
 
   const done = async () => {
     dismissNotification(nid);
@@ -209,7 +209,7 @@ export const doDenied = async () => {
     play(getRandomAudioVariation("Denied"));
   }
 
-  const nid = createNotification({ message: getRandom_denied_message() });
+  const nid = createNotification({ message: getRandomDeniedMessage() });
 
   const done = async () => {
     dismissNotification(nid);
@@ -260,7 +260,7 @@ export const end = async () => {
   } else {
     setStrokeSpeed(0);
     createNotification({
-      message: getRandom_youDidGood_message(),
+      message: getRandomYouDidGoodMessage(),
       duration: -1,
     });
     await delay(15 * SECONDS_IN_MILLI_SECONDS);
@@ -279,7 +279,7 @@ export const end = async () => {
 const finalEdgeAndHold = async (
   edgingTime = getRandomInclusiveInteger(FINAL_EDGE_MIN, FINAL_EDGE_MAX)
 ) => {
-  return determineEdge(edgingTime, getRandom_edgeAndHold_message());
+  return determineEdge(edgingTime, getRandomEdgeAndHoldMessage());
 };
 
 /**

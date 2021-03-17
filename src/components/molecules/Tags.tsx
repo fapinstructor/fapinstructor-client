@@ -1,13 +1,12 @@
-import React, { FC } from "react";
+import React from "react";
 import { Box } from "@material-ui/core";
 import Tag from "components/molecules/Tag";
-// import { Tag as ITag } from "api/types";
 
-export interface TagsProps {
+export type TagsProps = {
   tags: string[];
-}
+};
 
-const Tags: FC<TagsProps> = ({ tags }) => {
+export default function Tags({ tags }: TagsProps) {
   return (
     <Box display="flex" justifyContent="flex-start">
       {tags.map((tag) => (
@@ -17,6 +16,4 @@ const Tags: FC<TagsProps> = ({ tags }) => {
       ))}
     </Box>
   );
-};
-
-export default Tags;
+}

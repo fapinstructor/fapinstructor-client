@@ -1,13 +1,13 @@
-import React, { ReactNode, FC } from "react";
+import React, { ReactNode } from "react";
 import Box from "@material-ui/core/Box";
 
-export interface MenuItemProps {
+export type MenuItemProps = {
   icon: ReactNode;
   title: ReactNode;
   smallTitle?: ReactNode;
-}
+};
 
-const MenuItem: FC<MenuItemProps> = ({ icon, title, smallTitle }) => {
+export default function MenuItem({ icon, title, smallTitle }: MenuItemProps) {
   return (
     <Box display="flex" alignItems="center">
       {icon}
@@ -19,6 +19,4 @@ const MenuItem: FC<MenuItemProps> = ({ icon, title, smallTitle }) => {
       </Box>
     </Box>
   );
-};
-
-export default MenuItem;
+}

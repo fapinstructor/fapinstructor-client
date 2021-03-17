@@ -1,17 +1,16 @@
-import React, { FC } from "react";
+import React, { ReactNode } from "react";
 import { NavLink } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 
-export interface RouteButtonProps {
+export type RouteButtonProps = {
+  children: ReactNode;
   to: string;
-}
+};
 
-const RouteButton: FC<RouteButtonProps> = ({ children, to }) => {
+export default function RouteButton({ children, to }: RouteButtonProps) {
   return (
     <Button color="inherit" component={NavLink} to={to}>
       {children}
     </Button>
   );
-};
-
-export default RouteButton;
+}

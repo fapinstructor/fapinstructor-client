@@ -1,14 +1,14 @@
-import React, { FC } from "react";
+import React from "react";
 import { Typography } from "@material-ui/core";
 import Group from "components/molecules/Group";
 import Tags from "components/molecules/Tags";
 import Game from "common/types/Game";
 
-export interface GameSummaryCardProps {
+export type GameSummaryCardProps = {
   game: Game;
-}
+};
 
-const GameSummaryCard: FC<GameSummaryCardProps> = ({ game }) => {
+export default function GameSummaryCard({ game }: GameSummaryCardProps) {
   return (
     <Group title="Game Summary">
       <Typography variant="h6" gutterBottom>
@@ -26,6 +26,4 @@ const GameSummaryCard: FC<GameSummaryCardProps> = ({ game }) => {
       )}
     </Group>
   );
-};
-
-export default GameSummaryCard;
+}

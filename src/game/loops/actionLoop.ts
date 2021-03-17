@@ -12,7 +12,7 @@ let playedStartAudio = false;
 const actionLoop = ({ progress }: GameLoopArgs) => {
   const {
     config: { actionFrequency },
-    enableVoice,
+    localStorage: { enableVoice },
   } = store;
   if (!playedStartAudio) {
     playedStartAudio = true;

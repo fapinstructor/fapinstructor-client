@@ -16,10 +16,8 @@ const HandSideArray = Object.entries(HandSideEnum);
  * Chooses either right or left for you
  * @returns {string}
  */
-const getRandomLeftOrRight = () => {
+export const getRandomLeftOrRight = () => {
   return HandSideStringArray[
     Math.floor(Math.random() * HandSideArray.length)
   ][1];
 };
-
-export { getRandomLeftOrRight };

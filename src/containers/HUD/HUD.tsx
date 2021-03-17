@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import store from "store";
 import StatusPanel from "containers/StatusPanel";
@@ -23,11 +23,11 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export interface HUDProps {
+export type HUDProps = {
   createNotification: (notification: Notify) => void;
-}
+};
 
-const HUD: FC<HUDProps> = ({ createNotification }) => {
+export default function HUD({ createNotification }: HUDProps) {
   const classes = useStyles();
 
   const bookmark = () => {
@@ -38,7 +38,12 @@ const HUD: FC<HUDProps> = ({ createNotification }) => {
       dismissible: true,
     });
 
-    store.game.bookmarks[link.sourceLink] = link;
+    if (link && link.sourceLink) {
+      store.game.bookmarks.push({
+        href: link.directLink,
+        src: link.sourceLink,
+      });
+    }
   };
 
   return (
@@ -86,20 +91,20 @@ const HUD: FC<HUDProps> = ({ createNotification }) => {
           <TriggerPanel />
 
           <ProxyStoreConsumer>
-            {({ enableBeatMeter }: { enableBeatMeter: boolean }) => (
-              <>
-                {enableBeatMeter && (
-                  <BeatMeter
-                    strokeEmitterObservable={strokeEmitterObservable}
-                  />
-                )}
-              </>
-            )}
+            {(store) => {
+              return (
+                <>
+                  {store?.localStorage?.enableBeatMeter && (
+                    <BeatMeter
+                      strokeEmitterObservable={strokeEmitterObservable}
+                    />
+                  )}
+                </>
+              );
+            }}
           </ProxyStoreConsumer>
         </div>
       </div>
     </div>
   );
-};
-
-export default HUD;
+}

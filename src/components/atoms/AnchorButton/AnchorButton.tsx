@@ -1,16 +1,15 @@
-import React, { FC } from "react";
+import React, { ReactNode } from "react";
 import Button from "@material-ui/core/Button";
 
-export interface AnchorButtonProps {
+export type AnchorButtonProps = {
+  children: ReactNode;
   href: string;
-}
+};
 
-const AnchorButton: FC<AnchorButtonProps> = ({ children, href }) => {
+export default function AnchorButton({ children, href }: AnchorButtonProps) {
   return (
     <Button target="_blank" color="inherit" href={href}>
       {children}
     </Button>
   );
-};
-
-export default AnchorButton;
+}

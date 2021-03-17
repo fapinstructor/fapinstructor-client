@@ -2,7 +2,7 @@ import createNotification from "engine/createNotification";
 import { getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
 import { setStrokeStyle, setStrokeStyleHandsOff } from "game/enums/StrokeStyle";
-import { getRandom_handsOff_message } from "game/texts/messages";
+import { getRandomHandsOffMessage } from "game/texts/messages";
 import { strokerRemoteControl } from "game/loops/strokeEmitter";
 
 const HANDS_OFF_DURATION_MIN = 10; // Seconds
@@ -30,7 +30,7 @@ const handsOff = async (
   )
 ) => {
   createNotification({
-    message: getRandom_handsOff_message(),
+    message: getRandomHandsOffMessage(),
     duration: duration * 1000,
     showProgress: true,
     delay: true,

@@ -8,19 +8,6 @@ type ErrorBoundaryProps = {
   children: React.ReactNode;
 };
 
-export default function ErrorBoundary({ children }: ErrorBoundaryProps) {
-  return (
-    <Sentry.ErrorBoundary
-      beforeCapture={(scope) => {
-        scope.setExtra("store", JSON.stringify(store));
-      }}
-      fallback={FallbackComponent}
-    >
-      {children}
-    </Sentry.ErrorBoundary>
-  );
-}
-
 function FallbackComponent() {
   return (
     <div
@@ -41,5 +28,18 @@ function FallbackComponent() {
         <img src={monkey} alt="code monkey" />
       </div>
     </div>
+  );
+}
+
+export default function ErrorBoundary({ children }: ErrorBoundaryProps) {
+  return (
+    <Sentry.ErrorBoundary
+      beforeCapture={(scope) => {
+        scope.setExtra("store", JSON.stringify(store));
+      }}
+      fallback={FallbackComponent}
+    >
+      {children}
+    </Sentry.ErrorBoundary>
   );
 }

@@ -38,7 +38,7 @@ export const getRandomStrokeSpeed = ({ slow = 2, fast = 1.4 } = {}) => {
   return getRandomArbitrary(minStrokeSpeed, maxStrokeSpeed);
 };
 
-export const setStrokeSpeed = (newSpeed) => {
+export const setStrokeSpeed = (newSpeed: number) => {
   const { slowestStrokeSpeed, fastestStrokeSpeed } = store.config;
 
   let speed = 0;

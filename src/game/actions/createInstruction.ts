@@ -14,13 +14,13 @@ import delay from "utils/delay";
 import { getRandomAudioVariation } from "audio";
 import getRandomDuration from "game/utils/getRandomDuration";
 
-export interface CreateInstructionOptions {
+export type CreateInstructionOptions = {
   label: string;
-}
+};
 
-export interface Instruction {
+export type Instruction = {
   label: string;
-}
+};
 
 /**
  * A factory method that composes useful functions and injects

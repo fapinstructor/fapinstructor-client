@@ -1,12 +1,16 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { BrowserRouter as Router } from "react-router-dom";
 import ErrorBoundary from "components/organisms/ErrorBoundary";
 import { ProxyStoreProvider } from "containers/StoreProvider";
 import Auth0Provider from "AuthProvider";
 import Pages from "./Pages";
+import { Store } from "store";
 
-const Root = ({ store }) => {
+type RootProps = {
+  store: Store;
+};
+
+export default function Root({ store }: RootProps) {
   return (
     <ErrorBoundary>
       <Router>
@@ -26,10 +30,4 @@ const Root = ({ store }) => {
       </Router>
     </ErrorBoundary>
   );
-};
-
-Root.propTypes = {
-  store: PropTypes.object.isRequired,
-};
-
-export default Root;
+}

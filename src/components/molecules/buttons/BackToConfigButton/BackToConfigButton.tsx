@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { Button } from "@material-ui/core";
 
-const BackToConfigButton = () => {
+export default function BackToConfigButton() {
   const history = useHistory();
 
   const handleBackToConfig = () => {
@@ -14,6 +14,4 @@ const BackToConfigButton = () => {
       Configure game
     </Button>
   );
-};
-
-export default BackToConfigButton;
+}

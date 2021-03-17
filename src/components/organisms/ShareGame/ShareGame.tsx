@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import store from "store";
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -36,14 +36,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export interface ShareGameProps {
+export type ShareGameProps = {
   disabled: boolean;
   loading: boolean;
   game: Game;
   createGame: (request: CreateGameRequest) => Promise<CreateGameResponse>;
-}
+};
 
-const ShareGame: FC<ShareGameProps> = ({ disabled, loading, createGame }) => {
+export default function ShareGame({
+  disabled,
+  // TODO: Should loading be used?
+  loading,
+  createGame,
+}: ShareGameProps) {
   const { user } = useAuth0();
   const inputLink = useRef<HTMLInputElement>();
   const [open, setOpen] = useState(false);
@@ -113,7 +118,8 @@ const ShareGame: FC<ShareGameProps> = ({ disabled, loading, createGame }) => {
         <Formik
           initialValues={{
             title: "",
-            tags: [],
+            // TODO: // Why do we need to specify an empty string for typescript not to hate us
+            tags: [""],
             isPublic: true,
             config: store.config,
           }}
@@ -216,6 +222,4 @@ const ShareGame: FC<ShareGameProps> = ({ disabled, loading, createGame }) => {
       </Dialog>
     </>
   );
-};
-
-export default ShareGame;
+}

@@ -1,13 +1,10 @@
-import React, { FC } from "react";
+import React from "react";
 import { Chip } from "@material-ui/core";
-// import { Tag as ITag } from "api/types";
 
-export interface TagProps {
+export type TagProps = {
   tag: string;
-}
-
-const Tag: FC<TagProps> = ({ tag }) => {
-  return <Chip key={tag} label={tag} />;
 };
 
-export default Tag;
+export default function Tag({ tag }: TagProps) {
+  return <Chip key={tag} label={tag} />;
+}

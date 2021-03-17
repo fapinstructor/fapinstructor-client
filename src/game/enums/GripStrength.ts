@@ -1,4 +1,4 @@
-const GripStrengthString = {
+export const GripStrengthString: { [key: number]: string } = {
   0: "Barely Touching",
   1: "Very Light",
   2: "Light",
@@ -8,7 +8,7 @@ const GripStrengthString = {
   6: "Death Grip",
 };
 
-const GripStrengthEnum = {
+export const GripStrengthEnum = {
   BarelyTouching: 0,
   VeryLight: 1,
   Light: 2,
@@ -17,5 +17,3 @@ const GripStrengthEnum = {
   VeryTight: 5,
   DeathGrip: 6,
 };
-
-export { GripStrengthString, GripStrengthEnum };

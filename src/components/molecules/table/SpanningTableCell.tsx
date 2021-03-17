@@ -1,8 +1,12 @@
-import React, { FC } from "react";
+import React, { ReactNode } from "react";
 import { TableCell } from "@material-ui/core";
 
-const SpanningTableCell: FC = ({ children }) => {
-  return <TableCell colSpan={100}>{children}</TableCell>;
+type SpanningTableCellProps = {
+  children: ReactNode;
 };
 
-export default SpanningTableCell;
+export default function SpanningTableCell({
+  children,
+}: SpanningTableCellProps) {
+  return <TableCell colSpan={100}>{children}</TableCell>;
+}

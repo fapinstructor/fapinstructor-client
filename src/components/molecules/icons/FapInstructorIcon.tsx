@@ -1,14 +1,16 @@
-import React, { FC } from "react";
+import React from "react";
 import FapInstructorImage from "images/logo.svg";
 import Image from "components/atoms/Image";
-import Icon, { IconProps } from "components/atoms/Icon";
+import Icon from "components/atoms/Icon";
 
-const FapInstructorIcon: FC<IconProps> = ({ size }) => {
+type FapInstructorIconProps = {
+  size: number;
+};
+
+export default function FapInstructorIcon({ size }: FapInstructorIconProps) {
   return (
     <Icon size={size}>
       <Image alt="Fap Instructor" src={FapInstructorImage} />
     </Icon>
   );
-};
-
-export default FapInstructorIcon;
+}

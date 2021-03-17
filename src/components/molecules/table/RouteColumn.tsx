@@ -1,13 +1,13 @@
-import React, { FC } from "react";
+import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { TableCell, Link, TableCellProps, Typography } from "@material-ui/core";
 
-export interface RouteColumnProps extends TableCellProps {
+export type RouteColumnProps = TableCellProps & {
   to: string;
   title: string;
-}
+};
 
-const RouteColumn: FC<RouteColumnProps> = ({ to, title, ...props }) => {
+export default function RouteColumn({ to, title, ...props }: RouteColumnProps) {
   return (
     <TableCell {...props} component="th" scope="row">
       <Link component={RouterLink} to={to}>
@@ -15,6 +15,4 @@ const RouteColumn: FC<RouteColumnProps> = ({ to, title, ...props }) => {
       </Link>
     </TableCell>
   );
-};
-
-export default RouteColumn;
+}

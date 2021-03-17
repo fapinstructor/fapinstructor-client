@@ -1,17 +1,17 @@
 import { getRandomInclusiveInteger } from "../../utils/math";
 
-export const getRandomMessage = (messageArray) => {
+export const getRandomMessage = (messageArray: string[]) => {
   return messageArray[getRandomInclusiveInteger(0, messageArray.length - 1)];
 };
+
 /* ########################################### //
                     EDGES
 // ########################################### */
-
-export const getRandom_edge_message = () => {
-  return getRandomMessage(edge_messages);
+export const getRandomEdgeMessage = () => {
+  return getRandomMessage(edgeMessages);
 };
 
-const edge_messages = [
+const edgeMessages = [
   "Edge! I know you can do it.",
   "Get to the edge for me",
   "Edge! Show me how much you love working that cock for me",
@@ -31,31 +31,11 @@ const edge_messages = [
   "Edge! Give it to me!",
 ];
 
-export const getRandom_edgeMore_message = () => {
-  return getRandomMessage(edgeMore_messages);
+export const getRandomEdgeAndHoldMessage = () => {
+  return getRandomMessage(edgeAndHoldMessages);
 };
 
-const edgeMore_messages = [
-  "Another Edge for you!",
-  "Again, Edge.",
-  "One more Edge!",
-  "Edge! Again!",
-  "Edge again!",
-  "Can you give me another Edge?",
-  "I want another Edge.",
-  "Give me another Edge.",
-  "Edge! Again and again.",
-  "Edge! You can take some more ...",
-  "Edge! Can you take more?",
-  "Edge! Once again, baby.",
-  "Edge! I'm not done with you yet ...",
-];
-
-export const getRandom_edgeAndHold_message = () => {
-  return getRandomMessage(edgeAndHold_messages);
-};
-
-const edgeAndHold_messages = [
+const edgeAndHoldMessages = [
   "Edge like this and hold.",
   "Edge like this and hold it.",
   "Edge like this! Then hold it!",
@@ -83,30 +63,30 @@ const edgeAndHold_messages = [
   "Edge just like this, then hold.",
 ];
 
-export const getRandom_edgeLadder_message = () => {
-  return getRandomMessage(edgeLadder_messages);
+export const getRandomEdgeLadderMessage = () => {
+  return getRandomMessage(edgeLadderMessages);
 };
 
-const edgeLadder_messages = [
+const edgeLadderMessages = [
   "We are going to play edge ladder. You'll have to climb it",
   "Edge ladder time for your poor cock",
   "Let's make you really happy! By climbing the edge ladder",
 ];
 
-export const getRandom_edgeAdvanced_message = () => {
-  return getRandomMessage(edgeAdvanced_messages);
+export const getRandomEdgeAdvancedMessage = () => {
+  return getRandomMessage(edgeAdvancedMessages);
 };
 
-const edgeAdvanced_messages = [
+const edgeAdvancedMessages = [
   "Get to the edge at this pace and grip, if you can...",
   "Don't speed up, and don't change your grip, get to the edge",
 ];
 
-export const getRandom_edgeInTime_message = () => {
-  return getRandomMessage(edgeInTime_messages);
+export const getRandomEdgeInTimeMessage = () => {
+  return getRandomMessage(edgeInTimeMessages);
 };
 
-const edgeInTime_messages = [
+const edgeInTimeMessages = [
   "Get to the edge now!",
   "I don't have much time for your dick today. Edge. Now!",
   "You want to get punished for not reaching the edge in time, don't you?",
@@ -118,12 +98,11 @@ const edgeInTime_messages = [
 /* ########################################### //
                    ORGASM
 // ########################################### */
-
-export const getRandom_orgasm_message = () => {
-  return getRandomMessage(orgasm_messages);
+export const getRandomOrgasmMessage = () => {
+  return getRandomMessage(orgasmMessages);
 };
 
-const orgasm_messages = [
+const orgasmMessages = [
   "You have permission to have a full orgasm",
   "Cum for me! This is your lucky day, slave! Enjoy your precious orgasm!",
   "CUM! That's right, baby! I allow it.",
@@ -131,74 +110,50 @@ const orgasm_messages = [
   "I decided to allow an orgasm for you today. Enjoy your reward!",
 ];
 
-export const getRandom_orgasmAdvanced_message = () => {
-  return getRandomMessage(orgasmAdvanced_messages);
+export const getRandomOrgasmAdvancedMessage = () => {
+  return getRandomMessage(orgasmAdvancedMessages);
 };
 
-const orgasmAdvanced_messages = [
+const orgasmAdvancedMessages = [
   "You have permission to have a full orgasm. But only if you keep stroking exactly the way you are stroking now!",
   "Take your time and keep on stroking until you cum",
   "You now may cum",
 ];
 
-export const getRandom_afterFullOrgasm_message = () => {
-  return getRandomMessage(afterFullOrgasm_messages);
+export const getRandomOrgasmInTimeMessage = () => {
+  return getRandomMessage(orgasmInTimeMessages);
 };
 
-const afterFullOrgasm_messages = [
-  "Now, I hope you enjoyed it. I still think you really need a longer denial to enjoy it better. ",
-  "Good boy! Cumming on Mistress's command like an obedient little denial-slave you are! Very good. Tomorrow we shall start anew, baby. Be ready.",
-  "I think I'm being too good to you. I mean, I think YOU really want ME to be stricter with you, deep down, don't you, slave? Well, that's okay. ",
-  "God, that looked like a good one. Are you happy? I would let you kiss my feet to thank me, but you can't touch me. That's why you are getting off with your hand like a looser, don't you?",
-];
-
-export const getRandom_orgasmInTime_message = () => {
-  return getRandomMessage(orgasmInTime_messages);
-};
-
-const orgasmInTime_messages = [
+const orgasmInTimeMessages = [
   "Orgasm now!",
   "I don't have time for your worthless cock. Cum. Now!",
   "I don't have time for your worthless cock today. Cum. Now!",
   "You will get punished if you don't cum now!",
   "You will get punished if you don't cum right now!",
 ];
+
 /* ########################################### //
                        RUIN
 // ########################################### */
-
-export const getRandom_ruinOrgasm_message = () => {
-  return getRandomMessage(ruinOrgasm_messages);
+export const getRandomRuinOrgasmMessage = () => {
+  return getRandomMessage(ruinOrgasmMessages);
 };
 
-const ruinOrgasm_messages = [
+const ruinOrgasmMessages = [
   "RUIN IT! That's right, no full orgasms for you!",
   "Ruin it, slave. Let it drip helplessly, as you kiss your satisfaction goodbye.",
   "RUIN! NOW! Don't you cheat me on that one, slave. I'm watching you!",
   "Ruin it, baby. Aww, look at it leaking out. So sad, baby... so sad...",
 ];
 
-export const getRandom_afterRuin_message = () => {
-  return getRandomMessage(afterRuin_messages);
-};
-
-const afterRuin_messages = [
-  "You know, I almost feel sorry for making you do it, baby. I would feel really sorry, if I didn't enjoy it so much, Ahaha~! Maybe next time you'll get lucky.",
-  "I just can't begin to imagine how it feels, baby. Well, perhaps it's for the best, I like to enjoy all my orgasms... Mmmm",
-  "God, I should do it more often... I mean, the face you make, Ahaha! Tomorrow we shall start a new session, baby, don't worry.",
-  "I love watching you suffer... Almost there... ALMOST, but not quite. And guess what - it's still an orgasm, so I get to tease you more tomorrow!",
-  "Good boy! Good, obedient little slave! Look at your precious release leaking away helplessly... All on my whim.",
-];
-
 /* ########################################### //
                        DENIED
 // ########################################### */
-
-export const getRandom_denied_message = () => {
-  return getRandomMessage(denied_messages);
+export const getRandomDeniedMessage = () => {
+  return getRandomMessage(deniedMessages);
 };
 
-const denied_messages = [
+const deniedMessages = [
   "Hands off! No cumming for you today, slave!",
   "Aaaand, Stop. Too bad, baby, this is not a happy ending day for you... Put your aching cock away now.",
   "STOP! No cumming for you, boy-toy! Too bad, so sad... Ahahaha.",
@@ -207,12 +162,11 @@ const denied_messages = [
 /* ########################################### //
                  Hands Off - REST
 // ########################################### */
-
-export const getRandom_handsOff_message = () => {
-  return getRandomMessage(handsOff_messages);
+export const getRandomHandsOffMessage = () => {
+  return getRandomMessage(handsOffMessages);
 };
 
-const handsOff_messages = [
+const handsOffMessages = [
   "Let go of your cock.",
   "Hands off!",
   "Hands off your cock.",
@@ -226,12 +180,11 @@ const handsOff_messages = [
 /* ########################################### //
                   Hurry Up
 // ########################################### */
-
-export const getRandom_hurryUp_message = () => {
-  return getRandomMessage(hurryUp_messages);
+export const getRandomHurryUpMessage = () => {
+  return getRandomMessage(hurryUpMessages);
 };
 
-const hurryUp_messages = [
+const hurryUpMessages = [
   "tick ... tock ... tick ... tock ...",
   "Hurry up, I don't want to wait this time",
   "Hurry up!",
@@ -242,12 +195,11 @@ const hurryUp_messages = [
 /* ########################################### //
                    Questions 
 // ########################################### */
-
-export const getRandom_didYouCum_message = () => {
-  return getRandomMessage(didYouCum_messages);
+export const getRandomDidYouCumMessage = () => {
+  return getRandomMessage(didYouCumMessages);
 };
 
-const didYouCum_messages = [
+const didYouCumMessages = [
   "Did you cum, my obedient little toy?",
   "Did you cum?",
   "Did you cum for your Mistress?",

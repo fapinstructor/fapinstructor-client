@@ -7,7 +7,7 @@ export type ProfileCardProps = {
   user: User;
 };
 
-const ProfileCard = ({ user }: ProfileCardProps) => {
+export default function ProfileCard({ user }: ProfileCardProps) {
   return (
     <Box component={Paper} display="flex" p={2} alignItems="center">
       <ProfileIcon user={user} />
@@ -16,6 +16,4 @@ const ProfileCard = ({ user }: ProfileCardProps) => {
       </Box>
     </Box>
   );
-};
-
-export default ProfileCard;
+}

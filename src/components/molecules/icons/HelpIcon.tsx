@@ -1,8 +1,12 @@
 import React from "react";
-import Icon, { IconProps } from "components/atoms/Icon";
 import HelpIconMUI from "@material-ui/icons/Help";
+import Icon from "components/atoms/Icon";
 
-export default function HelpIcon({ size }: IconProps) {
+type HelpIconProps = {
+  size: number;
+};
+
+export default function HelpIcon({ size }: HelpIconProps) {
   return (
     <Icon size={size}>
       <HelpIconMUI style={{ color: "black", width: "100%", height: "100%" }} />
