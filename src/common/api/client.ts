@@ -29,12 +29,15 @@ instance.interceptors.request.use(async (config) => {
   return config;
 });
 
+// Sentry has a quota, so we want to try and limit the number of events tracked
+const ignoreStatusCodes = [400, 404];
+
 instance.interceptors.response.use(
   (response) => response,
   async (error: AxiosError) => {
     const status = error.response?.status;
 
-    if (!status || status !== 400) {
+    if (!status || !ignoreStatusCodes.includes(status)) {
       captureError(error);
     }
 
