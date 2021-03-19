@@ -26,7 +26,6 @@ function calculateBaselineStrokeSpeed() {
 export function strokeSpeedBaseLineAdjustmentLoop({ progress }: GameLoopArgs) {
   if (lastBaselineAdjustment >= BASELINE_ADJUSTMENT_FREQUENCY_SEC * 1000) {
     store.game.strokeSpeedBaseline = calculateBaselineStrokeSpeed();
-    console.log("+Baseline: ", store.game.strokeSpeedBaseline);
 
     lastBaselineAdjustment = 0;
   } else {
@@ -55,7 +54,6 @@ export function strokeSpeedAdjustmentLoop({ progress }: GameLoopArgs) {
         store.game.strokeSpeed * (shouldDecreaseSpeed ? 0.9 : 1.1);
 
       setStrokeSpeed(strokeSpeed);
-      console.log("StrokeSpeed: ", strokeSpeed);
 
       lastStrokeSpeedAdjustment = 0;
     } else {

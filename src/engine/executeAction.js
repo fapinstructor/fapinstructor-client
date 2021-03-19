@@ -44,12 +44,19 @@ const executeAction = (action, shouldInterrupt = false) => {
         }, TIME_DELAY / 2);
       }
       engine.executing = false;
+
+      return false;
     })
     .catch((e) => {
       if (!e || e.reason !== "interrupt") {
         console.error(e);
       }
+      return true;
     });
+};
+
+window.onunhandledrejection = (event) => {
+  console.warn(`UNHANDLED PROMISE REJECTION: ${event.reason}`);
 };
 
 export default executeAction;

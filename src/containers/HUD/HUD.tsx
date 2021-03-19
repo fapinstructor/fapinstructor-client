@@ -89,7 +89,6 @@ export default function HUD({ createNotification }: HUDProps) {
         </div>
         <div>
           <TriggerPanel />
-
           <ProxyStoreConsumer>
             {(store) => {
               return (

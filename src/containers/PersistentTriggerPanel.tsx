@@ -27,8 +27,10 @@ export default function PersistentTriggerPanel() {
         disabled={ruinedOrgasmDisabled}
         onClick={() => {
           setRuinedOrgasmDisabled(true);
-          executeAction(ruinedOrgasm, true).then(() => {
-            setRuinedOrgasmDisabled(false);
+          executeAction(ruinedOrgasm, true).then((interrupted: boolean) => {
+            if (!interrupted) {
+              setRuinedOrgasmDisabled(false);
+            }
           });
         }}
       >
@@ -43,8 +45,10 @@ export default function PersistentTriggerPanel() {
         onClick={() => {
           setEdgeDisabled(true);
           store.game.edges++;
-          executeAction(punishment, true).then(() => {
-            setEdgeDisabled(false);
+          executeAction(punishment, true).then((interrupted: boolean) => {
+            if (!interrupted) {
+              setEdgeDisabled(false);
+            }
           });
         }}
       >

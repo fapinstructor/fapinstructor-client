@@ -63,7 +63,6 @@ export default function StatusPanel() {
       // local storage may not be supported on some devices
     }
     store.localStorage[name] = checked;
-    console.log(`Toggle ${name}: ${String(checked)}`);
   };
 
   type RenderToggleProps = {
