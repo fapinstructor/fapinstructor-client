@@ -21,8 +21,9 @@ type Auth0ProviderProps = PropsWithChildren<{
 }>;
 
 // Expose the auth client so it can be used outside of React
-const authClient: { current?: Auth0ContextInterface } = {
+const authClient: { current?: Auth0ContextInterface; error?: Error } = {
   current: undefined,
+  error: undefined,
 };
 export { authClient };
 export { useAuth0 };
@@ -47,6 +48,19 @@ export default function AppAuth0Provider({
       }
     }, [auth0.user, auth0.isAuthenticated]);
 
+    return <>{children}</>;
+  }
+
+  /**
+   * Auth requires sessionStorage and will fail if it doesn't exist.
+   * Catch the error and prevent logins instead of
+   * letting the Auth0Provider blow up.
+   */
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    window.sessionStorage;
+  } catch (error) {
+    authClient.error = error;
     return <>{children}</>;
   }
 

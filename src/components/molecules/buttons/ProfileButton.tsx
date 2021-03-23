@@ -4,8 +4,9 @@ import IconButton from "@material-ui/core/IconButton";
 import ProfileIcon from "components/molecules/icons/ProfileIcon";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
+import Tooltip from "@material-ui/core/Tooltip";
 import { NavLink as RouteNavLink } from "react-router-dom";
-import { useAuth0 } from "AuthProvider";
+import { useAuth0, authClient } from "AuthProvider";
 import { PopoverProps } from "@material-ui/core";
 
 export default function ProfileButton() {
@@ -52,6 +53,18 @@ export default function ProfileButton() {
       <MenuItem onClick={logoutWithRedirect}>Logout</MenuItem>
     </Menu>
   );
+
+  if (authClient.error) {
+    return (
+      <Tooltip title={authClient.error.message}>
+        <span>
+          <Button variant="contained" color="primary" disabled>
+            Login
+          </Button>
+        </span>
+      </Tooltip>
+    );
+  }
 
   if (!user) {
     return (
