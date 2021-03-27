@@ -5,7 +5,7 @@ if (
   process.env.REACT_APP_SENTRY_RELEASE
 ) {
   Sentry.init({
-    denyUrls: [/translate\.googleusercontent\.com/i],
+    denyUrls: [/translate\.googleusercontent\.com/i, /jerkofftocelebs\.com/i],
     dsn: process.env.REACT_APP_SENTRY_DSN,
     release: process.env.REACT_APP_SENTRY_RELEASE,
     environment: process.env.NODE_ENV,
