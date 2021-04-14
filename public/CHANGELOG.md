@@ -4,6 +4,10 @@ All notable changes to this project will be documented here.
 
 The overall procject roadmap and progress can be viewed on our [Trello Board](https://trello.com/b/JAIcnXRf/fap-instructor)
 
+## 2021-04-14
+
+- Added the ability for users to delete their profile
+
 ## 2021-02-22
 
 - Added an FAQ page

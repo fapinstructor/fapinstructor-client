@@ -5,6 +5,7 @@ import { State } from "common/store/rootReducer";
 import { AppThunk } from "common/store";
 import Profile from "common/types/Profile";
 import { createNotification, Severity } from "common/store/notifications";
+import { authClient } from "AuthProvider/Auth0Provider";
 
 interface CurrentUserState {
   loading: boolean;
@@ -47,6 +48,42 @@ export const selectProfile = (state: State) => state.currentUser.profile;
 export const { setLoading, setError, setProfile, logout } = currentUser.actions;
 
 export default currentUser.reducer;
+
+export const deleteProfile = (): AppThunk => async (dispatch, getState) => {
+  const profile = selectProfile(getState());
+
+  if (!profile) {
+    throw new Error("User profile doesn't exist");
+  }
+
+  const url = `/v1/users/${profile.id}/profile`;
+
+  try {
+    dispatch(setLoading(true));
+
+    await api.delete(url);
+
+    dispatch(logout());
+    authClient.current?.logout();
+    Sentry.configureScope((scope) => {
+      scope.setUser(null);
+    });
+  } catch (err) {
+    const message = `Error deleting profile: ${err.message}`;
+
+    dispatch(
+      createNotification({
+        message,
+        duration: -1,
+        severity: Severity.ERROR,
+      })
+    );
+
+    dispatch(setError(message));
+  } finally {
+    dispatch(setLoading(false));
+  }
+};
 
 // "Post-Redirect-Get" design pattern
 export const fetchProfile = (userId: string): AppThunk => async (dispatch) => {
