@@ -12,6 +12,7 @@ import AsyncTableBody from "components/molecules/table/AsyncTableBody";
 import DateColumn from "components/molecules/table/DateColumn";
 import RouteColumn from "components/molecules/table/RouteColumn";
 import TagsColumn from "components/molecules/table/TagsColumn";
+import StarsColumn from "components/molecules/table/StarsColumn";
 import SpanningTableCell from "components/molecules/table/SpanningTableCell";
 import { Game } from "api/types";
 import TagsField from "components/molecules/TagsField";
@@ -24,6 +25,7 @@ import { PaginateParams, Pagination } from "common/types/pagination";
 export type GamesTableProps = {
   createdBy?: string;
   playedBy?: string;
+  starredBy?: string;
   searchGames: (request: SearchGamesRequest) => void;
   games: Game[];
   pagination: Pagination;
@@ -34,6 +36,7 @@ export type GamesTableProps = {
 export default function GamesTable({
   createdBy,
   playedBy,
+  starredBy,
   searchGames,
   games,
   pagination,
@@ -54,11 +57,20 @@ export default function GamesTable({
     const req: SearchGamesRequest = {
       createdBy,
       playedBy,
+      starredBy,
       ...filters,
       ...paginate,
     };
     searchGames(req);
-  }, [searchGames, filters, createdBy, playedBy, paginate]);
+  }, [
+    searchGames,
+    filters,
+    createdBy,
+    playedBy,
+    starredBy,
+    paginate,
+    // isLoading,
+  ]);
 
   const handleChangePage = (_event: unknown, page: number) => {
     setPaginate({
@@ -104,11 +116,13 @@ export default function GamesTable({
     <Table aria-label="Games">
       <TableHead>
         <TableRow>
-          <TableCell style={{ width: "100%" }}>Title</TableCell>
+          <TableCell>Stars</TableCell>
+          <TableCell style={{ width: "50%" }}>Title</TableCell>
           <TableCell>Tags</TableCell>
           <TableCell align="right">Created At</TableCell>
         </TableRow>
         <TableRow>
+          <TableCell />
           <TableCell>
             <TextField
               placeholder="Filter by title"
@@ -123,8 +137,9 @@ export default function GamesTable({
         </TableRow>
       </TableHead>
       <AsyncTableBody loading={loading} error={error}>
-        {games?.map(({ id, title, tags, updatedAt }: Game) => (
+        {games?.map(({ id, title, tags, stars, starred, updatedAt }: Game) => (
           <TableRow key={id}>
+            <StarsColumn gameId={id} stars={stars} starred={starred} />
             <RouteColumn title={title} to={`/game/${id}`} />
             <TagsColumn tags={tags} />
             <DateColumn date={updatedAt} format="LLL" align="right" />

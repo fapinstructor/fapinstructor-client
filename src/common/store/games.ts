@@ -10,6 +10,8 @@ import {
   SearchGamesRequest,
   SearchGamesResponse,
 } from "common/api/schemas/games";
+import { selectProfile } from "./currentUser";
+import { selectGame, setGame } from "./currentGame";
 
 interface GamesState {
   loading: boolean;
@@ -48,6 +50,15 @@ export const gamesSlice = createSlice({
     setGames: (state: GamesState, action: PayloadAction<Game[]>) => {
       state.games = action.payload;
     },
+    updateGame: (state: GamesState, action: PayloadAction<Game>) => {
+      const { id, starred, stars } = action.payload;
+      const game = state.games.find((game) => game.id === id);
+
+      if (game) {
+        game.starred = starred;
+        game.stars = stars;
+      }
+    },
   },
 });
 
@@ -55,15 +66,59 @@ export const selectLoading = (state: State) => state.games.loading;
 export const selectError = (state: State) => state.games.error;
 export const selectGames = (state: State) => state.games.games;
 export const selectPagination = (state: State) => state.games.pagination;
+export const selectGameById = (state: State, gameId: string) => {
+  return state.games.games.find((game) => gameId === game.id);
+};
 
 export const {
   setError,
   setLoading,
   setGames,
   setPagination,
+  updateGame,
 } = gamesSlice.actions;
 
 export default gamesSlice.reducer;
+
+/**
+ * This is one ugly function.  It needs to update both the game in the table
+ * and the currentGame since they are stored as separate entities.
+ * TODO: Normalize it so games are stored in one location for both.
+ */
+export const toggleStar = (gameId: string): AppThunk => async (
+  dispatch,
+  getState
+) => {
+  const profile = selectProfile(getState());
+  if (!profile) {
+    throw new Error("User profile doesn't exist");
+  }
+
+  const currentGame = selectGame(getState());
+  const game = selectGameById(getState(), gameId);
+
+  if (!currentGame && !game) {
+    throw new Error("Game doesn't exist");
+  }
+
+  let stars = currentGame?.stars || game?.stars || 0;
+  const starred = currentGame?.starred || game?.starred;
+
+  if (starred) {
+    await api.delete(`/v1/users/${profile.id}/games/star/${gameId}`);
+    stars -= 1;
+  } else {
+    await api.post(`/v1/users/${profile.id}/games/star/${gameId}`);
+    stars += 1;
+  }
+
+  if (currentGame) {
+    dispatch(setGame({ ...currentGame, starred: !currentGame.starred, stars }));
+  }
+  if (game) {
+    dispatch(updateGame({ ...game, starred: !game.starred, stars }));
+  }
+};
 
 export const searchGames = (request: SearchGamesRequest): AppThunk => async (
   dispatch
@@ -72,12 +127,14 @@ export const searchGames = (request: SearchGamesRequest): AppThunk => async (
     dispatch(setLoading(true));
 
     let url;
+    const queryString = qs.stringify(request);
+
     if (request.playedBy) {
-      url = `/v1/users/${request.playedBy}/games/history?${qs.stringify(
-        request
-      )}`;
+      url = `/v1/users/${request.playedBy}/games/history?${queryString}`;
+    } else if (request.starredBy) {
+      url = `/v1/users/${request.starredBy}/games/starred?${queryString}`;
     } else {
-      url = `/v1/games?${qs.stringify(request)}`;
+      url = `/v1/games?${queryString}`;
     }
 
     const { data: games } = await api.get<SearchGamesResponse>(url);

@@ -13,6 +13,9 @@ import { Notify } from "common/store/notifications";
 import BeatMeter from "components/organisms/BeatMeter";
 import { strokeEmitterObservable } from "game/loops/strokeEmitter";
 import { ProxyStoreConsumer } from "containers/StoreProvider";
+import { useSelector } from "react-redux";
+import { selectGame } from "common/store/currentGame";
+import StarButton from "components/molecules/buttons/StarButton";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -29,6 +32,7 @@ export type HUDProps = {
 
 export default function HUD({ createNotification }: HUDProps) {
   const classes = useStyles();
+  const currentGame = useSelector(selectGame);
 
   const bookmark = () => {
     const link = store.game.activeLink;
@@ -77,12 +81,21 @@ export default function HUD({ createNotification }: HUDProps) {
                   flexDirection: "row-reverse",
                   pointerEvents: "auto",
                   color: "white",
+                  alignItems: "center",
                 }}
               >
                 <FullScreenButton />
                 <HomeButton />
                 <SkipButton onClick={nextSlide} />
                 <BookmarkButton onClick={bookmark} />
+                {currentGame ? (
+                  <StarButton
+                    color="inherit"
+                    gameId={currentGame.id}
+                    stars={currentGame.stars}
+                    starred={currentGame.starred}
+                  />
+                ) : null}
               </div>
             </div>
           </div>

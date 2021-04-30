@@ -8,6 +8,20 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use(async (config) => {
+  /**
+   * Wait until the auth has finished loading before making any requests
+   */
+  if (authClient.current?.isLoading) {
+    await new Promise<void>((resolve) => {
+      const interval = setInterval(() => {
+        if (!authClient.current?.isLoading) {
+          resolve();
+          clearInterval(interval);
+        }
+      }, 1);
+    });
+  }
+
   if (authClient.current?.isAuthenticated) {
     try {
       const token = await authClient.current.getAccessTokenSilently();

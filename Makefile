@@ -1,6 +1,6 @@
 .PHONY: start start-chrome
 
-start:
+dev:
 	yarn start
 
 start-chrome:

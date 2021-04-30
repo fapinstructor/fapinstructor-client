@@ -6,4 +6,6 @@ export default interface Game {
   tags: string[];
   isPublic: boolean;
   config: GameConfig;
+  stars: number;
+  starred: boolean;
 }

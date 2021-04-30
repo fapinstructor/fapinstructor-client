@@ -8,6 +8,8 @@ import CreatedGamesTable from "components/organisms/GamesTable/CreatedGamesTable
 import PlayedGamesTable from "components/organisms/GamesTable/PlayedGamesTable";
 import TabPanel from "components/atoms/TabPanel";
 import AuthTab from "components/atoms/AuthTab";
+import Star from "@material-ui/icons/Star";
+import StarredGamesTable from "components/organisms/GamesTable/StarredGamesTable";
 
 export default function SearchPage() {
   const [activeTab, setActiveTab] = useState(0);
@@ -21,6 +23,7 @@ export default function SearchPage() {
       <Paper square>
         <Tabs value={activeTab} onChange={handleTabChange} centered>
           <Tab label="Find Games" icon={<SearchIcon />} />
+          <AuthTab label="Starred Games" icon={<Star />} />
           <AuthTab label="Created Games" icon={<CreateIcon />} />
           <AuthTab label="History" icon={<HistoryIcon />} />
         </Tabs>
@@ -29,9 +32,12 @@ export default function SearchPage() {
         <GamesTable />
       </TabPanel>
       <TabPanel value={activeTab} index={1}>
-        <CreatedGamesTable />
+        <StarredGamesTable />
       </TabPanel>
       <TabPanel value={activeTab} index={2}>
+        <CreatedGamesTable />
+      </TabPanel>
+      <TabPanel value={activeTab} index={3}>
         <PlayedGamesTable />
       </TabPanel>
     </Paper>

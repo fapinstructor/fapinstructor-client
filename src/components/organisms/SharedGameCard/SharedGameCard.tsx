@@ -8,6 +8,7 @@ import store from "store";
 import deepCopy from "utils/deepCopy";
 import Game from "common/types/Game";
 import Profile from "common/types/Profile";
+import StarButton from "components/molecules/buttons/StarButton";
 
 export type SharedGameCardProps = {
   gameConfigId: string;
@@ -67,6 +68,12 @@ export default function SharedGameCard({
       <>
         <GameSummaryCard game={game} />
         <NodeRow>
+          <StarButton
+            gameId={game.id}
+            stars={game.stars}
+            starred={game.starred}
+            variant="outlined"
+          />
           <Button onClick={handleStart} variant="contained" color="secondary">
             start game
           </Button>

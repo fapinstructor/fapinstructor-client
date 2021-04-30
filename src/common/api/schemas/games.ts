@@ -37,6 +37,7 @@ export interface SearchGamesParams {
   tags?: string[];
   createdBy?: string;
   playedBy?: string;
+  starredBy?: string;
 }
 
 export interface SearchGamesRequest extends SearchGamesParams, PaginateParams {

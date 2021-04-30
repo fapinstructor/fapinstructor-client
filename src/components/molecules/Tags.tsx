@@ -9,8 +9,8 @@ export type TagsProps = {
 export default function Tags({ tags }: TagsProps) {
   return (
     <Box display="flex" justifyContent="flex-start">
-      {tags.map((tag) => (
-        <Box key={tag} mr={1}>
+      {tags.map((tag, index) => (
+        <Box key={index} mr={1}>
           <Tag tag={tag} />
         </Box>
       ))}
