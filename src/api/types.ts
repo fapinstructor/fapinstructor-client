@@ -5,4 +5,5 @@ export interface Game {
   stars: number;
   starred: boolean;
   updatedAt: Date;
+  averageGameLength: number;
 }

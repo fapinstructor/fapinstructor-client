@@ -7,6 +7,7 @@ The overall procject roadmap and progress can be viewed on our [Trello Board](ht
 ## 2021-04-30
 
 - Added ⭐ stars ⭐. You can now favourite any game and view them within the games table!
+- Added "Average Game Length" column to game search
 
 ## 2021-04-14
 

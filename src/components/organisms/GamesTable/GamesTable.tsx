@@ -7,6 +7,7 @@ import {
   TableCell,
   TablePagination,
   TextField,
+  Typography,
 } from "@material-ui/core";
 import AsyncTableBody from "components/molecules/table/AsyncTableBody";
 import DateColumn from "components/molecules/table/DateColumn";
@@ -118,6 +119,7 @@ export default function GamesTable({
         <TableRow>
           <TableCell>Stars</TableCell>
           <TableCell style={{ width: "50%" }}>Title</TableCell>
+          <TableCell>Average Game Length</TableCell>
           <TableCell>Tags</TableCell>
           <TableCell align="right">Created At</TableCell>
         </TableRow>
@@ -131,20 +133,35 @@ export default function GamesTable({
               onChange={handleTitleChange}
             />
           </TableCell>
+          <TableCell />
           <SpanningTableCell>
             <TagsField value={filters.tags} onChange={handleTagsChange} />
           </SpanningTableCell>
         </TableRow>
       </TableHead>
       <AsyncTableBody loading={loading} error={error}>
-        {games?.map(({ id, title, tags, stars, starred, updatedAt }: Game) => (
-          <TableRow key={id}>
-            <StarsColumn gameId={id} stars={stars} starred={starred} />
-            <RouteColumn title={title} to={`/game/${id}`} />
-            <TagsColumn tags={tags} />
-            <DateColumn date={updatedAt} format="LLL" align="right" />
-          </TableRow>
-        ))}
+        {games?.map(
+          ({
+            id,
+            title,
+            tags,
+            stars,
+            starred,
+            updatedAt,
+            averageGameLength,
+          }: Game) => (
+            <TableRow key={id}>
+              <StarsColumn gameId={id} stars={stars} starred={starred} />
+              <RouteColumn title={title} to={`/game/${id}`} />
+              <TableCell>
+                <Typography>{averageGameLength}</Typography>
+              </TableCell>
+              <TagsColumn tags={tags} />
+
+              <DateColumn date={updatedAt} format="LLL" align="right" />
+            </TableRow>
+          )
+        )}
       </AsyncTableBody>
       <TableFooter>
         <TableRow>
