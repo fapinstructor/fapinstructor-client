@@ -127,7 +127,9 @@ export const searchGames = (request: SearchGamesRequest): AppThunk => async (
     dispatch(setLoading(true));
 
     let url;
-    const queryString = qs.stringify(request);
+    const queryString = qs.stringify(request, {
+      arrayFormat: "comma",
+    });
 
     if (request.playedBy) {
       url = `/v1/users/${request.playedBy}/games/history?${queryString}`;

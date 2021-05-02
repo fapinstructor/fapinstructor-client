@@ -8,6 +8,7 @@ import {
   TablePagination,
   TextField,
   Typography,
+  TableSortLabel,
 } from "@material-ui/core";
 import AsyncTableBody from "components/molecules/table/AsyncTableBody";
 import DateColumn from "components/molecules/table/DateColumn";
@@ -34,6 +35,8 @@ export type GamesTableProps = {
   error?: string;
 };
 
+type SortDirection = "asc" | "desc" | undefined;
+
 export default function GamesTable({
   createdBy,
   playedBy,
@@ -54,6 +57,10 @@ export default function GamesTable({
     tags: [],
   });
 
+  const [sort, setSort] = useState<{
+    [key: string]: SortDirection;
+  }>({});
+
   useEffect(() => {
     const req: SearchGamesRequest = {
       createdBy,
@@ -61,17 +68,12 @@ export default function GamesTable({
       starredBy,
       ...filters,
       ...paginate,
+      sort: Object.entries(sort).map(([key, direction]) =>
+        direction === "asc" ? key : `-${key}`
+      ),
     };
     searchGames(req);
-  }, [
-    searchGames,
-    filters,
-    createdBy,
-    playedBy,
-    starredBy,
-    paginate,
-    // isLoading,
-  ]);
+  }, [searchGames, filters, sort, createdBy, playedBy, starredBy, paginate]);
 
   const handleChangePage = (_event: unknown, page: number) => {
     setPaginate({
@@ -113,15 +115,68 @@ export default function GamesTable({
     });
   };
 
+  function changeDirection(columnId: string) {
+    const currentDirection = sort[columnId];
+
+    let direction: SortDirection = undefined;
+    switch (currentDirection) {
+      case "asc":
+        direction = "desc";
+        break;
+      case "desc": {
+        direction = undefined;
+        break;
+      }
+      case undefined: {
+        direction = "asc";
+        break;
+      }
+    }
+
+    setSort({ ...sort, [columnId]: direction });
+  }
+
   return (
     <Table aria-label="Games">
       <TableHead>
         <TableRow>
-          <TableCell>Stars</TableCell>
-          <TableCell style={{ width: "50%" }}>Title</TableCell>
-          <TableCell>Average Game Length</TableCell>
+          <TableCell sortDirection={sort["stars"]}>
+            <TableSortLabel
+              active={!!sort["stars"]}
+              direction={sort["stars"]}
+              onClick={() => changeDirection("stars")}
+            >
+              Stars
+            </TableSortLabel>
+          </TableCell>
+          <TableCell style={{ width: "50%" }} sortDirection={sort["title"]}>
+            <TableSortLabel
+              active={!!sort["title"]}
+              direction={sort["title"]}
+              onClick={() => changeDirection("title")}
+            >
+              Title
+            </TableSortLabel>
+          </TableCell>
+          <TableCell sortDirection={sort["averageGameLength"]}>
+            <TableSortLabel
+              active={!!sort["averageGameLength"]}
+              direction={sort["averageGameLength"]}
+              onClick={() => changeDirection("averageGameLength")}
+            >
+              Average Game Length
+            </TableSortLabel>
+          </TableCell>
           <TableCell>Tags</TableCell>
-          <TableCell align="right">Created At</TableCell>
+          <TableCell align="right" sortDirection={sort["updatedAt"]}>
+            <TableSortLabel
+              active={!!sort["updatedAt"]}
+              direction={sort["updatedAt"]}
+              onClick={() => changeDirection("updatedAt")}
+            >
+              Created On
+            </TableSortLabel>
+          </TableCell>
         </TableRow>
         <TableRow>
           <TableCell />
@@ -157,7 +212,6 @@ export default function GamesTable({
                 <Typography>{averageGameLength}</Typography>
               </TableCell>
               <TagsColumn tags={tags} />
-
               <DateColumn date={updatedAt} format="LLL" align="right" />
             </TableRow>
           )

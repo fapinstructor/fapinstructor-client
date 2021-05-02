@@ -35,6 +35,7 @@ export interface CreateGameResponse {
 export interface SearchGamesParams {
   title?: string;
   tags?: string[];
+  sort?: string[];
   createdBy?: string;
   playedBy?: string;
   starredBy?: string;
