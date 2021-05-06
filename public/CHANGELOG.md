@@ -2,7 +2,11 @@
 
 All notable changes to this project will be documented here.
 
-The overall procject roadmap and progress can be viewed on our [Trello Board](https://trello.com/b/JAIcnXRf/fap-instructor)
+The overall project roadmap and progress can be viewed on our [Trello Board](https://trello.com/b/JAIcnXRf/fap-instructor)
+
+## 2021-05-05
+
+- Added hotkeys to allow triggering actions via keyboard
 
 ## 2021-05-02
 

@@ -41,6 +41,9 @@ export type Game = {
   edgingLadderLength: 2;
   edgingLadderRung: 0;
   edgingLadderCooldowns: 1; //every 4 ladder edges one long cooldown is required
+
+  edging: boolean;
+  ruining: boolean;
 };
 
 export default function initializeGame() {
@@ -85,5 +88,8 @@ export default function initializeGame() {
     edgingLadderLength: 2,
     edgingLadderRung: 0,
     edgingLadderCooldowns: 1, //every 4 ladder edges one long cooldown is required
+
+    edging: false,
+    ruining: false,
   };
 }
