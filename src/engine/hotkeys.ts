@@ -17,26 +17,31 @@ export const triggerHotkeys = [
 ];
 
 window.addEventListener("keydown", function (event) {
-  const { engine } = store;
+  const { engine, game } = store;
+
+  // Only enable hotkeys while playing a game
+  if (!game) {
+    return;
+  }
 
   // Ruin
-  if (event.key === "r" && !store.game.ruining) {
-    store.game.ruining = true;
+  if (event.key === "r" && !game.ruining) {
+    game.ruining = true;
     executeAction(ruinedOrgasm, true).then((interrupted: boolean) => {
       if (!interrupted) {
-        store.game.ruining = false;
+        game.ruining = false;
       }
     });
     return;
   }
 
   // Edge
-  if (event.key === "e" && !store.game.edging) {
-    store.game.edging = true;
-    store.game.edges++;
+  if (event.key === "e" && !game.edging) {
+    game.edging = true;
+    game.edges++;
     executeAction(punishment, true).then((interrupted: boolean) => {
       if (!interrupted) {
-        store.game.edging = false;
+        game.edging = false;
       }
     });
     return;
