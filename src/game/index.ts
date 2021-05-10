@@ -7,7 +7,6 @@ import { createAudioContext } from "engine/audio";
 import configureStore from "./configureStore";
 import actionLoop from "./loops/actionLoop";
 import strokerLoop from "./loops/strokeEmitter";
-import { nextSlide } from "./utils/fetchPictures";
 import moanLoop from "./loops/moanLoop";
 import ticker from "./loops/ticker";
 import {
@@ -15,6 +14,9 @@ import {
   strokeSpeedAdjustmentLoop,
   gripAdjustmentLoop,
 } from "./loops/strokeSpeedLoop";
+import store from "store";
+
+import { MediaService } from "game/xstate/services";
 
 const loops = [
   actionLoop,
@@ -31,7 +33,8 @@ const observers: number[] = [];
 const startGame = async () => {
   await createAudioContext();
   configureStore();
-  nextSlide();
+
+  MediaService.initialize(store.config);
 
   loops.forEach((loop) => {
     loop.reset();

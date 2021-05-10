@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { MediaType } from "common/types/Media";
+import MediaLink, { MediaType } from "common/types/Media";
 
 const useStyles = makeStyles(() => ({
   video: {
@@ -21,11 +21,7 @@ const useStyles = makeStyles(() => ({
 const isYouTube = (url: string) => url.includes("www.youtube-nocookie.com");
 
 export type MediaPlayerProps = {
-  link: {
-    directLink: string;
-    sourceLink?: string;
-    mediaType?: MediaType;
-  };
+  link: MediaLink;
   onEnded: () => void;
   duration: number;
   muted?: boolean;

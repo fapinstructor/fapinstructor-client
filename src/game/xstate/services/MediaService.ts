@@ -1,0 +1,49 @@
+import { interpret, InterpreterFrom } from "xstate";
+import { useService } from "@xstate/react";
+import { GameConfig } from "configureStore";
+import {
+  createMediaMachine,
+  MediaMachine,
+} from "game/xstate/machines/mediaMachine";
+
+type MediaService = InterpreterFrom<MediaMachine>;
+
+let machine: MediaMachine;
+let service: MediaService;
+
+export function getMediaService() {
+  if (!service) {
+    throw new Error("You must first initialize the service");
+  }
+  return service;
+}
+
+const MediaService = {
+  initialize(gameConfig: GameConfig) {
+    machine = createMediaMachine(gameConfig);
+    service = interpret(machine, { devTools: true }).onTransition((state) => {
+      if (state.value !== state.history?.value) {
+        console.log(`[MediaService] Transition: ${state.value}`);
+      }
+      console.log(`[MediaService] Event: ${state.event.type}`);
+    });
+
+    // Automatically start the service after it's created
+    service.start();
+  },
+  nextLink() {
+    getMediaService().send("NEXT_LINK");
+  },
+  pause() {
+    getMediaService().send("PAUSE");
+  },
+  play() {
+    getMediaService().send("PLAY");
+  },
+};
+
+export function useMediaService() {
+  return useService(service);
+}
+
+export default MediaService;

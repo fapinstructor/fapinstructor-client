@@ -11,6 +11,11 @@ import configureStore from "./configureStore";
 import { Provider } from "react-redux";
 import store from "common/store";
 import NotificationManager from "components/organisms/NotificationManager";
+import { inspect } from "@xstate/inspect";
+
+inspect({
+  iframe: false,
+});
 
 const engineStore = configureStore();
 

@@ -8,7 +8,6 @@ import FullScreenButton from "components/molecules/buttons/FullScreenButton";
 import BookmarkButton from "components/molecules/buttons/BookmarkButton";
 import SkipButton from "components/molecules/buttons/SkipButton";
 import HomeButton from "components/atoms/HomeButton";
-import { nextSlide } from "game/utils/fetchPictures";
 import { Notify } from "common/store/notifications";
 import BeatMeter from "components/organisms/BeatMeter";
 import { strokeEmitterObservable } from "game/loops/strokeEmitter";
@@ -16,6 +15,8 @@ import { ProxyStoreConsumer } from "containers/StoreProvider";
 import { useSelector } from "react-redux";
 import { selectGame } from "common/store/currentGame";
 import StarButton from "components/molecules/buttons/StarButton";
+
+import { useMediaService } from "game/xstate/services";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -33,9 +34,10 @@ export type HUDProps = {
 export default function HUD({ createNotification }: HUDProps) {
   const classes = useStyles();
   const currentGame = useSelector(selectGame);
+  const [{ context: media }, sendMediaEvent] = useMediaService();
 
   const bookmark = () => {
-    const link = store.game.activeLink;
+    const link = media.links[media.linkIndex];
 
     createNotification({
       message: "Bookmarked",
@@ -86,7 +88,7 @@ export default function HUD({ createNotification }: HUDProps) {
               >
                 <FullScreenButton />
                 <HomeButton />
-                <SkipButton onClick={nextSlide} />
+                <SkipButton onClick={() => sendMediaEvent("NEXT_LINK")} />
                 <BookmarkButton onClick={bookmark} />
                 {currentGame ? (
                   <StarButton

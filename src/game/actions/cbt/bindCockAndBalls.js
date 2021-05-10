@@ -8,13 +8,14 @@ import {
 } from "game/loops/strokeEmitter";
 import videoLibrary from "video";
 import { getRandomInclusiveInteger } from "utils/math";
-import { nextSlide } from "game/utils/fetchPictures";
+
+import { MediaService } from "game/xstate/services";
 
 const bindCockAndBalls = async () => {
   if (!store.game.cockAndBallsBound) {
     clearStrokeEmissions();
     strokerRemoteControl.pause();
-    store.game.mediaFrozen = true;
+    MediaService.pause();
     // pause images
     const nid = createNotification({
       message: `Bind your cock & balls`,
@@ -36,9 +37,8 @@ const bindCockAndBalls = async () => {
     const done = async () => {
       dismissNotification(nid);
       strokerRemoteControl.play();
-      store.game.mediaFrozen = false;
+      MediaService.play();
       store.game.cockAndBallsBound = true;
-      nextSlide();
     };
     done.label = "Bound";
 

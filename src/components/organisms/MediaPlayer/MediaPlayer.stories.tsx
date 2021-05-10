@@ -20,6 +20,7 @@ PlayImage.args = {
   link: {
     mediaType: MediaType.Picture,
     directLink: SampleImage,
+    sourceLink: "google.com",
   },
 };
 
@@ -28,6 +29,7 @@ PlayGif.args = {
   link: {
     mediaType: MediaType.Gif,
     directLink: SampleGif,
+    sourceLink: "google.com",
   },
 };
 
@@ -36,5 +38,6 @@ PlayVideo.args = {
   link: {
     mediaType: MediaType.Video,
     directLink: SampleVideo,
+    sourceLink: "google.com",
   },
 };

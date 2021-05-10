@@ -11,8 +11,8 @@ import {
   clearStrokeEmissions,
 } from "game/loops/strokeEmitter";
 import elapsedGameTime from "game/utils/elapsedGameTime";
-import { nextSlide } from "game/utils/fetchPictures";
 import { setRandomStrokeStyle } from "game/enums/StrokeStyle";
+import { MediaService } from "game/xstate/services";
 
 export const shouldRuin = () => {
   const {
@@ -50,10 +50,10 @@ export const shouldRuin = () => {
 };
 
 export const ruinedOrgasm = async () => {
-  if (store.game.mediaFrozen) {
-    store.game.mediaFrozen = false;
-    nextSlide();
+  if (MediaService.instance.state.matches("paused")) {
+    MediaService.play();
   }
+
   store.game.ruins++;
 
   if (store.enableVoice) {

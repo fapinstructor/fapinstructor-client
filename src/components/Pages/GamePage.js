@@ -5,11 +5,10 @@ import { withStyles } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
 import { startGame, stopGame } from "game";
 import store from "store";
-import { CircularProgress, Paper } from "@material-ui/core";
+import { Paper } from "@material-ui/core";
 import HUD from "containers/HUD";
 import MediaPlayer from "components/organisms/MediaPlayer";
 import NavBar from "components/organisms/NavBar";
-import { nextSlide } from "game/utils/fetchPictures";
 import isUUID from "utils/is-uuid";
 import config from "config";
 import ErrorCard from "components/molecules/ErrorCard";
@@ -17,6 +16,9 @@ import SharedGameCard from "components/organisms/SharedGameCard";
 import SoloGameCard from "components/organisms/SoloGameCard";
 import { ProxyStoreConsumer } from "containers/StoreProvider";
 import ExitGamePrompt from "components/organisms/ExitGamePrompt";
+import { MediaService, getMediaService } from "game/xstate/services";
+
+const DEFAULT_BACKGROUND_IMAGE = `${config.imageUrl}/default-image.jpg`;
 
 const styles = () => ({
   progress: {
@@ -42,7 +44,16 @@ const styles = () => ({
     backgroundSize: "cover",
     backgroundAttachment: "fixed",
   },
+  image: {
+    width: "100%",
+    height: "100%",
+    objectFit: "contain",
+  },
 });
+
+function handleSlideChange() {
+  MediaService.nextLink();
+}
 
 class GamePage extends React.Component {
   state = {
@@ -87,12 +98,24 @@ class GamePage extends React.Component {
   handleStartGame = () => {
     startGame().then((gameStarted) => {
       this.setState({ gameStarted });
+
+      getMediaService().onTransition((media) =>
+        this.setState({ media: media.context })
+      );
     });
   };
 
   render() {
-    const { gameStarted, isSharedGame, gameConfigId, error } = this.state;
+    const {
+      media,
+      gameStarted,
+      isSharedGame,
+      gameConfigId,
+      error,
+    } = this.state;
     const { classes } = this.props;
+
+    const activeLink = media && media.links[media.linkIndex];
 
     if (!gameStarted) {
       return (
@@ -119,7 +142,7 @@ class GamePage extends React.Component {
     return (
       <ProxyStoreConsumer>
         {({
-          game: { orgasms, activeLink },
+          game: { orgasms },
           config: { maximumOrgasms, slideDuration },
           videoMuted,
         }) => (
@@ -133,18 +156,16 @@ class GamePage extends React.Component {
                 {(activeLink && (
                   <MediaPlayer
                     link={activeLink}
-                    onEnded={nextSlide}
                     duration={slideDuration}
                     muted={videoMuted}
+                    onEnded={handleSlideChange}
                   />
                 )) || (
-                  <div className={this.props.classes.progress}>
-                    <CircularProgress
-                      color="secondary"
-                      size={100}
-                      thickness={2}
-                    />
-                  </div>
+                  <img
+                    className={classes.image}
+                    src={DEFAULT_BACKGROUND_IMAGE}
+                    alt=""
+                  />
                 )}
               </>
             )}

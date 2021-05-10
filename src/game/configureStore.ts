@@ -2,21 +2,12 @@ import store from "store";
 import moment, { Moment } from "moment";
 import { getRandomStrokeSpeed } from "game/utils/strokeSpeed";
 import { getRandomInclusiveInteger } from "utils/math";
-import MediaLink, { MediaType } from "common/types/Media";
-import config from "config";
 import { StrokeStyle } from "game/enums/StrokeStyle";
-import { MediaPlayerProps } from "components/organisms/MediaPlayer/MediaPlayer";
 import { BookmarkProps } from "components/atoms/Bookmark";
-
-const DEFAULT_BACKGROUND_IMAGE = `${config.imageUrl}/default-image.jpg`;
 
 export type Game = {
   strokes: number;
   startTime: Moment;
-  pictures: MediaLink[];
-  pictureIndex: number;
-  activeLink: MediaPlayerProps["link"] | null;
-  mediaFrozen: boolean;
   strokeSpeedBaseline: number;
   strokeSpeed: number;
   actualGameTime?: number;
@@ -50,16 +41,6 @@ export default function initializeGame() {
   store.game = {
     strokes: 0,
     startTime: moment(),
-    pictures: [
-      {
-        sourceLink: DEFAULT_BACKGROUND_IMAGE,
-        directLink: DEFAULT_BACKGROUND_IMAGE,
-        mediaType: MediaType.Picture,
-      },
-    ],
-    pictureIndex: -1,
-    activeLink: null,
-    mediaFrozen: false,
     strokeSpeedBaseline: 0,
     strokeSpeed: getRandomStrokeSpeed({ fast: 2 }),
     actualGameTime:
