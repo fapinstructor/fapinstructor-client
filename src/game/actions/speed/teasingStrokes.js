@@ -3,9 +3,10 @@ import createNotification from "engine/createNotification";
 import { setStrokeSpeed } from "game/utils/strokeSpeed";
 import { getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
+import { StrokeService } from "game/xstate/services";
 
 const teasingStrokes = async () => {
-  const strokeSpeed = store.game.strokeSpeed;
+  const previousStrokeSpeed = StrokeService.strokeSpeed;
   const totalTime = getRandomInclusiveInteger(15, 40);
 
   createNotification({
@@ -19,7 +20,7 @@ const teasingStrokes = async () => {
 
   await delay(totalTime * 1000);
 
-  setStrokeSpeed(strokeSpeed);
+  setStrokeSpeed(previousStrokeSpeed);
 };
 teasingStrokes.label = "Teasing Strokes";
 

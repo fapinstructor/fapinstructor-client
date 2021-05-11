@@ -4,10 +4,11 @@ import { getAverageStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
 import { getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
 import { setDeathGrip, setBarelyTouching, setGrip } from "../grip";
+import { StrokeService } from "game/xstate/services";
 
 const gripChallenge = async () => {
   const previousGripStrength = store.game.gripStrength;
-  const previousStrokeSpeed = store.game.strokeSpeed;
+  const previousStrokeSpeed = StrokeService.strokeSpeed;
   createNotification({
     message: "Get ready for a grip challenge!",
     delay: true,

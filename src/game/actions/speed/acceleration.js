@@ -3,23 +3,24 @@ import { setStrokeSpeed } from "game/utils/strokeSpeed";
 import delay from "utils/delay";
 import play from "engine/audio";
 import audioLibrary from "audio";
+import { StrokeService } from "game/xstate/services";
 
 const acceleration = async () => {
   const {
     config: { slowestStrokeSpeed, fastestStrokeSpeed },
     enableVoice,
   } = store;
-  const strokeSpeed = store.game.strokeSpeed;
+  const previousStrokeSpeed = StrokeService.strokeSpeed;
 
   setStrokeSpeed(slowestStrokeSpeed);
 
   let audioPlayed = false;
 
-  while (store.game.strokeSpeed < fastestStrokeSpeed) {
-    setStrokeSpeed(store.game.strokeSpeed * 1.05);
+  while (StrokeService.strokeSpeed < fastestStrokeSpeed) {
+    setStrokeSpeed(StrokeService.strokeSpeed * 1.05);
     await delay(1000);
 
-    if (!audioPlayed && store.game.strokeSpeed > fastestStrokeSpeed / 3) {
+    if (!audioPlayed && StrokeService.strokeSpeed > fastestStrokeSpeed / 3) {
       if (enableVoice) {
         play(audioLibrary.LongMoan);
       }
@@ -27,7 +28,7 @@ const acceleration = async () => {
     }
   }
 
-  setStrokeSpeed(strokeSpeed);
+  setStrokeSpeed(previousStrokeSpeed);
 };
 acceleration.label = "Acceleration Strokes";
 

@@ -2,12 +2,13 @@ import store from "store";
 import { getAverageStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
 import { getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
+import { StrokeService } from "game/xstate/services";
 
 const clusterStrokes = async () => {
   const {
     config: { fastestStrokeSpeed },
   } = store;
-  const strokeSpeed = store.game.strokeSpeed;
+  const previousStrokeSpeed = StrokeService.strokeSpeed;
 
   const sets = getRandomInclusiveInteger(3, 6);
   const reps = getRandomInclusiveInteger(3, 15);
@@ -36,7 +37,7 @@ const clusterStrokes = async () => {
     await delay(setGapTime * 1000);
   }
 
-  setStrokeSpeed(strokeSpeed);
+  setStrokeSpeed(previousStrokeSpeed);
 };
 clusterStrokes.label = "Cluster Strokes";
 

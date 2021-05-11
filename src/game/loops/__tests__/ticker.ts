@@ -4,6 +4,7 @@ import { strokeEmitterObservable } from "../strokeEmitter";
 import store from "store";
 import { playTick } from "engine/audio";
 import { TIME_DELAY } from "components/organisms/BeatMeter/settings";
+import { StrokeService } from "game/xstate/services";
 
 jest.mock("engine/audio");
 
@@ -22,9 +23,13 @@ describe("test ticker", () => {
 
     store.localStorage.enableTicks = true;
     // @ts-expect-error Other fields aren't relevant
-    store.game = {
-      strokeSpeed: 1000,
+    store.config = {
+      slowestStrokeSpeed: 0,
+      fastestStrokeSpeed: 0,
     };
+
+    StrokeService.initialize(store.config);
+    StrokeService.setStrokeSpeed(1000);
   });
 
   it("should execute appropriate amount of ticks", () => {

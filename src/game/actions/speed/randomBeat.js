@@ -2,9 +2,10 @@ import store from "store";
 import { getAverageStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
 import { getRandomArbitrary, getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
+import { StrokeService } from "game/xstate/services";
 
 const randomBeat = async () => {
-  const strokeSpeed = store.game.strokeSpeed;
+  const previousStrokeSpeed = StrokeService.strokeSpeed;
 
   // set count
   const setCount = getRandomInclusiveInteger(3, 6);
@@ -37,7 +38,7 @@ const randomBeat = async () => {
     await delay(slowTime * 1000);
   }
 
-  setStrokeSpeed(strokeSpeed);
+  setStrokeSpeed(previousStrokeSpeed);
 };
 randomBeat.label = "Random Beat";
 

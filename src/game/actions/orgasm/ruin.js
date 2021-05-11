@@ -13,10 +13,11 @@ import {
 import elapsedGameTime from "game/utils/elapsedGameTime";
 import { setRandomStrokeStyle } from "game/enums/StrokeStyle";
 import { MediaService } from "game/xstate/services";
+import { StrokeService } from "game/xstate/services";
 
 export const shouldRuin = () => {
   const {
-    game: { ruins, strokeSpeed },
+    game: { ruins },
     config: {
       maximumRuinedOrgasms,
       minimumGameTime,
@@ -30,7 +31,7 @@ export const shouldRuin = () => {
   const isAllowedChance =
     ruins < maximumRuinedOrgasms &&
     elapsedGameTime("minutes") >= minimumGameTime * 1.3 &&
-    strokeSpeed >= fastestStrokeSpeed / 1.7;
+    StrokeService.strokeSpeed >= fastestStrokeSpeed / 1.7;
 
   if (isAllowedChance) {
     const rand = Math.random();

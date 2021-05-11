@@ -13,7 +13,7 @@ let service: MediaService;
 
 export function getMediaService() {
   if (!service) {
-    throw new Error("You must first initialize the service");
+    throw new Error("You must first initialize the media service");
   }
   return service;
 }
@@ -25,7 +25,7 @@ const MediaService = {
       if (state.value !== state.history?.value) {
         console.log(`[MediaService] Transition: ${state.value}`);
       }
-      console.log(`[MediaService] Event: ${state.event.type}`);
+      console.log("[MediaService] Event:", state.event);
     });
 
     // Automatically start the service after it's created

@@ -5,13 +5,14 @@ import delay from "utils/delay";
 import { getRandomArbitrary, getRandomInclusiveInteger } from "utils/math";
 import play from "engine/audio";
 import audioLibrary from "audio";
+import { StrokeService } from "game/xstate/services";
 
 const redLightGreenLight = async () => {
   const {
     config: { fastestStrokeSpeed },
     enableVoice,
   } = store;
-  const strokeSpeed = store.game.strokeSpeed;
+  const previousStrokeSpeed = StrokeService.strokeSpeed;
 
   let timeLeft = getRandomInclusiveInteger(30, 60);
   let isGreen = false;
@@ -44,7 +45,7 @@ const redLightGreenLight = async () => {
     await delay(delayedTime * 1000);
   }
 
-  setStrokeSpeed(strokeSpeed);
+  setStrokeSpeed(previousStrokeSpeed);
 };
 redLightGreenLight.label = "Red Light/Green Light";
 

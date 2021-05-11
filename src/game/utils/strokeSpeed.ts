@@ -1,5 +1,6 @@
 import store from "store";
 import { clamp, getRandomArbitrary } from "utils/math";
+import { StrokeService } from "game/xstate/services";
 
 /**
  * Generates a random stroke speed
@@ -46,7 +47,8 @@ export const setStrokeSpeed = (newSpeed: number) => {
   if (newSpeed > 0) {
     speed = clamp(newSpeed, slowestStrokeSpeed, fastestStrokeSpeed);
   }
-  store.game.strokeSpeed = speed;
+
+  StrokeService.setStrokeSpeed(speed);
 };
 
 export const getAverageStrokeSpeed = () =>

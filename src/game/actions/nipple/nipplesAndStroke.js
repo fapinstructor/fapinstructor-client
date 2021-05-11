@@ -10,6 +10,7 @@ import {
   setRandomOneHandedStrokeStyle,
   setStrokeStyle,
 } from "game/enums/StrokeStyle";
+import { StrokeService } from "game/xstate/services";
 
 /**
  * Task to play with ones nipples while stroking ones cock.
@@ -21,7 +22,7 @@ import {
  * @memberof   actions
  */
 const nipplesAndStroke = async () => {
-  const previousStrokeSpeed = store.game.strokeSpeed;
+  const previousStrokeSpeed = StrokeService.strokeSpeed;
   const style = getCurrentStrokeStyle();
   // get Random strength
   const strength = getRandomRubStrength();

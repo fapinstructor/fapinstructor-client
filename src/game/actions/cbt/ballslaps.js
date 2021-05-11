@@ -5,9 +5,10 @@ import { getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
 import play from "engine/audio";
 import audioLibrary from "audio";
+import { StrokeService } from "game/xstate/services";
 
 const ballslaps = async () => {
-  const previousStrokeSpeed = store.game.strokeSpeed;
+  const previousStrokeSpeed = StrokeService.strokeSpeed;
   const ballSlapCount = getRandomInclusiveInteger(3, 10);
   const delayTime = 2;
   const ballSlapSpeed = getRandomStrokeSpeed({ fast: 2 });

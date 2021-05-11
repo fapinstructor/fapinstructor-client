@@ -1,5 +1,5 @@
-import store from "store";
 import createInstruction from "game/actions/createInstruction";
+import { StrokeService } from "game/xstate/services";
 
 const doubleStrokes = async ({
   playVoice,
@@ -10,7 +10,7 @@ const doubleStrokes = async ({
 }) => {
   const duration = getRandomDuration(5, 20);
 
-  setStrokeSpeed(store.game.strokeSpeed * 2);
+  setStrokeSpeed(StrokeService.strokeSpeed * 2);
 
   playVoice("Faster");
 

@@ -6,6 +6,7 @@ import { getRandomBoolean, getRandomInclusiveInteger } from "utils/math";
 import { strokerRemoteControl } from "game/loops/strokeEmitter";
 import { getRandomStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
 import delay from "utils/delay";
+import { StrokeService } from "game/xstate/services";
 
 export const addRubberBand = async () => {
   strokerRemoteControl.pause();
@@ -72,7 +73,7 @@ removeRubberBand.label = "Remove Rubberband";
 
 export const snapRubberBand = async () => {
   if (store.game.rubberBands > 0) {
-    const previousStrokeSpeed = store.game.strokeSpeed;
+    const previousStrokeSpeed = StrokeService.strokeSpeed;
     const snapCount = getRandomInclusiveInteger(3, 10);
     const delayTime = 2;
     const snapSpeed = getRandomStrokeSpeed({ fast: 2 });

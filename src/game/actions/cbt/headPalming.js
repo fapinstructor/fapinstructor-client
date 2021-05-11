@@ -3,9 +3,10 @@ import createNotification from "engine/createNotification";
 import { getAverageStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
 import { getRandomArbitrary, getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
+import { StrokeService } from "game/xstate/services";
 
 const headPalming = async () => {
-  const previousStrokeSpeed = store.game.strokeSpeed;
+  const previousStrokeSpeed = StrokeService.strokeSpeed;
   const palmCircleCount = getRandomInclusiveInteger(5, 20);
   const delayTime = 2;
   const palmSpeed = getRandomArbitrary(

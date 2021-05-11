@@ -1,6 +1,5 @@
 import store from "store";
 import moment, { Moment } from "moment";
-import { getRandomStrokeSpeed } from "game/utils/strokeSpeed";
 import { getRandomInclusiveInteger } from "utils/math";
 import { StrokeStyle } from "game/enums/StrokeStyle";
 import { BookmarkProps } from "components/atoms/Bookmark";
@@ -8,8 +7,6 @@ import { BookmarkProps } from "components/atoms/Bookmark";
 export type Game = {
   strokes: number;
   startTime: Moment;
-  strokeSpeedBaseline: number;
-  strokeSpeed: number;
   actualGameTime?: number;
   // TODO: Refactor into separte bookmark type
   bookmarks: BookmarkProps[];
@@ -41,8 +38,6 @@ export default function initializeGame() {
   store.game = {
     strokes: 0,
     startTime: moment(),
-    strokeSpeedBaseline: 0,
-    strokeSpeed: getRandomStrokeSpeed({ fast: 2 }),
     actualGameTime:
       store.config &&
       getRandomInclusiveInteger(

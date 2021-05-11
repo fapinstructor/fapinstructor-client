@@ -16,7 +16,7 @@ import {
 } from "./loops/strokeSpeedLoop";
 import store from "store";
 
-import { MediaService } from "game/xstate/services";
+import { MediaService, StrokeService } from "game/xstate/services";
 
 const loops = [
   actionLoop,
@@ -34,7 +34,9 @@ const startGame = async () => {
   await createAudioContext();
   configureStore();
 
+  // Start services
   MediaService.initialize(store.config);
+  StrokeService.initialize(store.config);
 
   loops.forEach((loop) => {
     loop.reset();

@@ -16,6 +16,7 @@ import { getRandomEdgeMessage } from "game/texts/messages";
 import punishment from "../punishment";
 import { getRandomEdge } from "./edgeInTime";
 import { clearStrokeEmissions } from "game/loops/strokeEmitter";
+import { StrokeService } from "game/xstate/services";
 
 /**
  * Determines if the user should edge.
@@ -59,7 +60,7 @@ export const shouldEdge = () => {
 export const rideTheEdge = async (time = getRandomInclusiveInteger(5, 30)) => {
   clearStrokeEmissions();
 
-  const strokeSpeed = store.game.strokeSpeed;
+  const previousStrokeSpeed = StrokeService.strokeSpeed;
   setStrokeSpeed(0);
   const notificationId = createNotification({
     message: "Ride the edge",
@@ -72,7 +73,7 @@ export const rideTheEdge = async (time = getRandomInclusiveInteger(5, 30)) => {
 
   await delay(time * 1000);
   dismissNotification(notificationId);
-  setStrokeSpeed(strokeSpeed);
+  setStrokeSpeed(previousStrokeSpeed);
 };
 
 /**

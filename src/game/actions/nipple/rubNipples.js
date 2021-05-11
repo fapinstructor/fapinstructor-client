@@ -9,6 +9,7 @@ import {
   setStrokeStyle,
   setStrokeStyleHandsOff,
 } from "game/enums/StrokeStyle";
+import { StrokeService } from "game/xstate/services";
 
 /**
  * Task to rub ones nipples while not touching ones cock.
@@ -20,7 +21,7 @@ import {
  * @memberof    actions
  */
 const rubNipples = async () => {
-  const previousStrokeSpeed = store.game.strokeSpeed;
+  const previousStrokeSpeed = StrokeService.strokeSpeed;
   const style = getCurrentStrokeStyle();
   const strength = getRandomRubStrength();
   const taskDuration = getRandomInclusiveInteger(15, 30);

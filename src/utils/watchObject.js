@@ -9,6 +9,7 @@ const watchObject = (object, onChange) =>
       return target[key];
     },
     set(target, key, value) {
+      // console.log("[WatchObject]:", { target, key, value });
       // treat moment as a scalar value
       if (value && typeof value === "object" && !moment.isMoment(value)) {
         // watch the object

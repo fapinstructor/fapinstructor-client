@@ -4,6 +4,7 @@ import { clamp, getRandomBoolean } from "utils/math";
 import { setStrokeSpeed } from "game/utils/strokeSpeed";
 import type { GameLoopArgs } from "engine/loop";
 import randomGripAdjustment from "game/actions/grip";
+import { StrokeService } from "game/xstate/services";
 
 const BASELINE_ADJUSTMENT_FREQUENCY_SEC = 60;
 let lastBaselineAdjustment = 0;
@@ -25,7 +26,7 @@ function calculateBaselineStrokeSpeed() {
  */
 export function strokeSpeedBaseLineAdjustmentLoop({ progress }: GameLoopArgs) {
   if (lastBaselineAdjustment >= BASELINE_ADJUSTMENT_FREQUENCY_SEC * 1000) {
-    store.game.strokeSpeedBaseline = calculateBaselineStrokeSpeed();
+    StrokeService.setStrokeSpeedBaseline(calculateBaselineStrokeSpeed());
 
     lastBaselineAdjustment = 0;
   } else {
@@ -44,14 +45,14 @@ export function strokeSpeedAdjustmentLoop({ progress }: GameLoopArgs) {
   if (!store.engine.executing && !store.engine.actionTriggers) {
     if (lastStrokeSpeedAdjustment >= STROKE_SPEED_ADJUSTMENT_FREQ_SEC * 1000) {
       const probabilityAdjustment =
-        (store.game.strokeSpeedBaseline - store.game.strokeSpeed) /
+        (StrokeService.strokeSpeedBaseline - StrokeService.strokeSpeed) /
         store.config.fastestStrokeSpeed;
       const weight = 0.5 * (1 + probabilityAdjustment);
       const shouldDecreaseSpeed = getRandomBoolean(weight);
 
       // Adjust speed by 10% in either direction
       const strokeSpeed =
-        store.game.strokeSpeed * (shouldDecreaseSpeed ? 0.9 : 1.1);
+        StrokeService.strokeSpeed * (shouldDecreaseSpeed ? 0.9 : 1.1);
 
       setStrokeSpeed(strokeSpeed);
 
