@@ -24,9 +24,9 @@ import {
 } from "game/texts/messages";
 import { setDefaultGrip } from "game/actions/grip";
 import { setDefaultStrokeStyle } from "game/enums/StrokeStyle";
-import executeAction from "engine/executeAction";
 import { applyProbability } from "game/actions/generateAction";
 import createProbability from "game/utils/createProbability";
+import { ActionService } from "game/xstate/services";
 
 /**
  * Plays a orgasm sound and creates a random orgasm notification.
@@ -100,10 +100,9 @@ export const doOrgasmInTime = async (
     await delay((timer + 1) * 1000); // Wait till the timer runs up
     // now check whether user did reach the orgasm in time
     if (!orgasmed) {
-      //store.engine.actionTriggers = null;
       dismissNotification(notificationId);
       dismissNotification(timerId);
-      await executeAction(punishment, true); // Interrupt other action (trigger_done)
+      await ActionService.execute(punishment, true); // Interrupt other action (trigger_done)
       await skip();
     }
   };

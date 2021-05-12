@@ -36,7 +36,6 @@ import {
 } from "game/enums/StrokeStyle";
 import eatPrecum from "./cei/eatPrecum";
 import { insertButtPlug, removeButtPlug } from "./anal/buttPlug";
-// import pickYourPoison from "./pickYourPoison";
 import acceleration from "./speed/acceleration";
 import rubNipples from "./nipple/rubNipples.js";
 import nipplesAndStroke from "./nipple/nipplesAndStroke";
@@ -93,8 +92,6 @@ const initializeActions = (taskConfigs) =>
     taskConfigs.clothespins && createProbability(removeClothespin, 1),
     taskConfigs.rubNipples && createProbability(rubNipples, 5),
     taskConfigs.nipplesAndStroke && createProbability(nipplesAndStroke, 10),
-    // misc.
-    // taskConfigs.pickYourPoison && createProbability(pickYourPoison, 15),
   ].filter((action) => !!action);
 
 export default initializeActions;

@@ -1,5 +1,4 @@
 import store from "store";
-import executeAction from "engine/executeAction";
 import createProbability from "game/utils/createProbability";
 import { addRubberBand, snapRubberBand } from "game/actions/cbt/rubberband";
 import { addClothespin } from "game/actions/nipple/clothespin";
@@ -31,6 +30,7 @@ import {
 } from "game/enums/StrokeStyle";
 import { getRandomStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
 import { clearStrokeEmissions } from "game/loops/strokeEmitter";
+import { ActionService } from "game/xstate/services";
 
 const SECONDS_IN_MILLI_SECONDS = 1000; // Factor
 
@@ -68,7 +68,7 @@ const punishment = async () => {
 
   await delay(6 * SECONDS_IN_MILLI_SECONDS);
 
-  await executeAction(punish);
+  await ActionService.execute(punish);
 
   await setStrokeStyle(strokeStyle, true);
 

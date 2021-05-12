@@ -1,10 +1,10 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
-import executeAction from "engine/executeAction";
 import { ruinedOrgasm } from "game/actions/orgasm/ruin";
 import punishment from "../game/actions/punishment";
 import { ProxyStoreConsumer } from "containers/StoreProvider";
+import { ActionService } from "game/xstate/services";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,7 +37,7 @@ export default function PersistentTriggerPanel() {
                 return;
               }
               store.game.ruining = true;
-              executeAction(ruinedOrgasm, true).then((interrupted: boolean) => {
+              ActionService.execute(ruinedOrgasm, true).then((interrupted) => {
                 if (!interrupted) {
                   store.game.ruining = false;
                 }
@@ -59,7 +59,7 @@ export default function PersistentTriggerPanel() {
               }
               store.game.edging = true;
               store.game.edges++;
-              executeAction(punishment, true).then((interrupted: boolean) => {
+              ActionService.execute(punishment, true).then((interrupted) => {
                 if (!interrupted) {
                   store.game.edging = false;
                 }

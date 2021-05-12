@@ -76,8 +76,6 @@ export type GameConfig = {
     rubNipples: boolean;
     clothespins: boolean;
     nipplesAndStroke: boolean;
-    //Misc
-    pickYourPoison: boolean;
   };
 };
 
@@ -159,8 +157,6 @@ const defaultConfig: GameConfig = {
     rubNipples: false,
     clothespins: false,
     nipplesAndStroke: false,
-    //Misc
-    pickYourPoison: false,
   },
 };
 

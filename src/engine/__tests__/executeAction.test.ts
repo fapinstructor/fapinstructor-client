@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import executeAction from "../executeAction";
-import store from "store";
+import { ActionService } from "game/xstate/services";
 
 const done = async () => {};
 
@@ -14,7 +13,11 @@ const actionWithSingleTrigger = async () => {
 
 const action = async () => {};
 
-describe("executeAction tests", () => {
+describe("execute action tests", () => {
+  beforeEach(() => {
+    ActionService.initialize();
+  });
+
   afterEach(() => {
     jest.useRealTimers();
   });
@@ -22,49 +25,49 @@ describe("executeAction tests", () => {
   it("should execute an action", async () => {
     jest.useFakeTimers();
 
-    const executingAction = executeAction(action);
+    const executingAction = ActionService.execute(action);
 
-    expect(store.engine.executing).toBeTruthy();
-    expect(store.engine.actionTriggers).toBeNull();
+    expect(ActionService.executing).toBeTruthy();
+    expect(ActionService.triggers).toBeNull();
 
     await executingAction;
     expect(jest.getTimerCount()).toBe(0);
 
-    expect(store.engine.executing).toBeFalsy();
-    expect(store.engine.actionTriggers).toBeNull();
+    expect(ActionService.executing).toBeFalsy();
+    expect(ActionService.triggers).toBeNull();
   });
 
   it("should execute an action with an array of triggers", async () => {
     jest.useFakeTimers();
 
-    const executingAction = executeAction(actionWithTriggerArray);
+    const executingAction = ActionService.execute(actionWithTriggerArray);
 
-    expect(store.engine.executing).toBeTruthy();
-    expect(store.engine.actionTriggers).toBeNull();
+    expect(ActionService.executing).toBeTruthy();
+    expect(ActionService.triggers).toBeNull();
 
     await executingAction;
     jest.runOnlyPendingTimers();
 
-    expect(store.engine.executing).toBeFalsy();
-    expect(store.engine.actionTriggers).toBeTruthy();
+    expect(ActionService.executing).toBeFalsy();
+    expect(ActionService.triggers).toBeTruthy();
     // @ts-expect-error Shouldn't be undefined
-    expect(store.engine.actionTriggers[0]).toEqual(done);
+    expect(ActionService.triggers[0]).toEqual(done);
   });
 
   it("should execute an action with a single trigger", async () => {
     jest.useFakeTimers();
 
-    const executingAction = executeAction(actionWithSingleTrigger);
+    const executingAction = ActionService.execute(actionWithSingleTrigger);
 
-    expect(store.engine.executing).toBeTruthy();
-    expect(store.engine.actionTriggers).toBeNull();
+    expect(ActionService.executing).toBeTruthy();
+    expect(ActionService.triggers).toBeNull();
 
     await executingAction;
     jest.runOnlyPendingTimers();
 
-    expect(store.engine.executing).toBeFalsy();
-    expect(store.engine.actionTriggers).toBeTruthy();
+    expect(ActionService.executing).toBeFalsy();
+    expect(ActionService.triggers).toBeTruthy();
     // @ts-expect-error Shouldn't be undefined
-    expect(store.engine.actionTriggers[0]).toEqual(done);
+    expect(ActionService.triggers[0]).toEqual(done);
   });
 });

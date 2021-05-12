@@ -20,6 +20,10 @@ export function getMediaService() {
 
 const MediaService = {
   initialize(gameConfig: GameConfig) {
+    if (service) {
+      service.stop();
+    }
+
     machine = createMediaMachine(gameConfig);
     service = interpret(machine, { devTools: true }).onTransition((state) => {
       if (state.value !== state.history?.value) {
@@ -43,7 +47,7 @@ const MediaService = {
 };
 
 export function useMediaService() {
-  return useService(service);
+  return useService(getMediaService());
 }
 
 export default MediaService;

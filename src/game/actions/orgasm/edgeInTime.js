@@ -14,11 +14,11 @@ import {
   getRandomEdgeLadderMessage,
   getRandomHurryUpMessage,
 } from "game/texts/messages";
-import executeAction from "engine/executeAction";
 import { edge } from "./edge";
 import createProbability from "game/utils/createProbability";
 import { applyProbability } from "game/actions/generateAction";
 import handsOff from "game/actions/speed/handsOff";
+import { ActionService } from "game/xstate/services";
 
 /**
  * You have to get to the edge with the current gripStrength, StrokeStyle and StrokeSpeed!
@@ -113,11 +113,11 @@ export const edgingLadder = async (
     await handsOff(30);
   }
   if (edgeLadderRung <= 1) {
-    await executeAction(edge);
+    await ActionService.execute(edge);
   } else if (edgeLadderRung <= numberOfEdges / 2) {
-    await executeAction(getRandomEdge());
+    await ActionService.execute(getRandomEdge());
   } else {
-    await executeAction(getRandomFinalLadderEdge());
+    await ActionService.execute(getRandomFinalLadderEdge());
   }
   store.game.edgingLadderRung++;
 };
@@ -159,7 +159,7 @@ export const edgeInTime = async (
     if (!edged) {
       dismissNotification(notificationId);
       dismissNotification(timerId);
-      executeAction(punishment, true); // Interrupts other action (trigger_edging)
+      ActionService.execute(punishment, true); // Interrupts other action (trigger_edging)
     }
   };
 

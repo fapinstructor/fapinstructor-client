@@ -1,9 +1,9 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import executeAction from "engine/executeAction";
-import { ProxyStoreConsumer } from "containers/StoreProvider";
 import { triggerHotkeys } from "engine/hotkeys";
+import { useActionService } from "game/xstate/services";
+import { ActionService } from "game/xstate/services";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,34 +24,33 @@ const useStyles = makeStyles((theme) => ({
 
 export default function TriggerPanel() {
   const classes = useStyles();
+  const [
+    {
+      context: { triggers },
+    },
+  ] = useActionService();
 
   return (
-    <ProxyStoreConsumer>
-      {(store) => (
-        <div className={classes.root}>
-          {store?.engine?.actionTriggers &&
-            store.engine.actionTriggers.map((trigger, index) => (
-              <Button
-                variant="contained"
-                color="secondary"
-                size="large"
-                style={{ margin: 10 }}
-                key={index}
-                onClick={() => executeAction(trigger)}
-              >
-                {trigger.label}
+    <div className={classes.root}>
+      {triggers &&
+        triggers.map((trigger, index) => (
+          <Button
+            variant="contained"
+            color="secondary"
+            size="large"
+            style={{ margin: 10 }}
+            key={index}
+            onClick={() => ActionService.execute(trigger)}
+          >
+            {trigger.label}
 
-                {store.engine.actionTriggers?.length === 1 ? (
-                  <span className={classes.hotkey}>[spacebar]</span>
-                ) : (
-                  <span className={classes.hotkey}>
-                    [{triggerHotkeys[index]}]
-                  </span>
-                )}
-              </Button>
-            ))}
-        </div>
-      )}
-    </ProxyStoreConsumer>
+            {triggers.length === 1 ? (
+              <span className={classes.hotkey}>[spacebar]</span>
+            ) : (
+              <span className={classes.hotkey}>[{triggerHotkeys[index]}]</span>
+            )}
+          </Button>
+        ))}
+    </div>
   );
 }

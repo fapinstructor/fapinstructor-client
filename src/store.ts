@@ -6,11 +6,6 @@ type Trigger = Promise<undefined> & {
   label: string;
 };
 
-export type Engine = {
-  actionTriggers?: Trigger[];
-  executing: boolean;
-};
-
 export type LocalStorage = {
   enableVoice: boolean;
   enableMoans: boolean;
@@ -25,7 +20,6 @@ export type Store = {
   config: GameConfig;
   localStorage: LocalStorage;
   game: Game;
-  engine: Engine;
 };
 
 declare global {
@@ -70,8 +64,6 @@ const store: Store = {
   game: undefined,
   // @ts-expect-error
   config: undefined,
-  // @ts-expect-error
-  engine: undefined,
 };
 
 type Subscriber = () => void;

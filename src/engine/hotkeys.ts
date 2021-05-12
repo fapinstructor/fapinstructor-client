@@ -1,7 +1,7 @@
 import store from "store";
-import executeAction from "engine/executeAction";
 import { ruinedOrgasm } from "game/actions/orgasm/ruin";
 import punishment from "../game/actions/punishment";
+import { ActionService } from "game/xstate/services";
 
 export const triggerHotkeys = [
   "z",
@@ -17,7 +17,7 @@ export const triggerHotkeys = [
 ];
 
 window.addEventListener("keydown", function (event) {
-  const { engine, game } = store;
+  const { game } = store;
 
   // Only enable hotkeys while playing a game
   if (!game) {
@@ -27,7 +27,7 @@ window.addEventListener("keydown", function (event) {
   // Ruin
   if (event.key === "r" && !game.ruining) {
     game.ruining = true;
-    executeAction(ruinedOrgasm, true).then((interrupted: boolean) => {
+    ActionService.execute(ruinedOrgasm, true).then((interrupted) => {
       if (!interrupted) {
         game.ruining = false;
       }
@@ -39,7 +39,7 @@ window.addEventListener("keydown", function (event) {
   if (event.key === "e" && !game.edging) {
     game.edging = true;
     game.edges++;
-    executeAction(punishment, true).then((interrupted: boolean) => {
+    ActionService.execute(punishment, true).then((interrupted) => {
       if (!interrupted) {
         game.edging = false;
       }
@@ -48,11 +48,11 @@ window.addEventListener("keydown", function (event) {
   }
 
   // Action triggers
-  if (engine.actionTriggers) {
-    if (engine.actionTriggers.length === 1) {
+  if (ActionService.triggers) {
+    if (ActionService.triggers.length === 1) {
       // When only one hotkey, map to space
       if (event.key === " ") {
-        executeAction(engine.actionTriggers[0]);
+        ActionService.execute(ActionService.triggers[0]);
         return;
       }
     } else {
@@ -60,8 +60,8 @@ window.addEventListener("keydown", function (event) {
       const hotkeyIndex = triggerHotkeys.findIndex((key) => event.key === key);
 
       if (hotkeyIndex > -1) {
-        const trigger = engine.actionTriggers[hotkeyIndex];
-        executeAction(trigger);
+        const trigger = ActionService.triggers[hotkeyIndex];
+        ActionService.execute(trigger);
         return;
       } else {
         // Too many triggers, ran out of hotkeys

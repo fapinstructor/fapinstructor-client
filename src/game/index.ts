@@ -15,8 +15,11 @@ import {
   gripAdjustmentLoop,
 } from "./loops/strokeSpeedLoop";
 import store from "store";
-
-import { MediaService, StrokeService } from "game/xstate/services";
+import {
+  MediaService,
+  StrokeService,
+  ActionService,
+} from "game/xstate/services";
 
 const loops = [
   actionLoop,
@@ -37,6 +40,7 @@ const startGame = async () => {
   // Start services
   MediaService.initialize(store.config);
   StrokeService.initialize(store.config);
+  ActionService.initialize();
 
   loops.forEach((loop) => {
     loop.reset();
