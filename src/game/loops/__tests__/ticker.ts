@@ -21,7 +21,6 @@ describe("test ticker", () => {
       });
     });
 
-    store.localStorage.enableTicks = true;
     // @ts-expect-error Other fields aren't relevant
     store.config = {
       slowestStrokeSpeed: 0,

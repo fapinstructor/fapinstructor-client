@@ -7,8 +7,10 @@ import createGame from "./createGame";
 import tags from "./tags";
 import games from "./games";
 import media from "./media";
+import settings from "./settings";
 
 export const rootReducer = combineReducers({
+  settings,
   notifications,
   currentUser,
   currentGame,

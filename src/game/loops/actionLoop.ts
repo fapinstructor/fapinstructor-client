@@ -1,10 +1,12 @@
-import store from "store";
+import proxyStore from "store";
 import generateAction from "../actions/generateAction";
 import play from "engine/audio";
 import audioLibrary from "audio";
 import warmup from "../actions/warmup";
 import type { GameLoopArgs } from "engine/loop";
 import { ActionService } from "game/xstate/services";
+import { selectEnableVoice } from "common/store/settings";
+import store from "common/store";
 
 let lastGeneratedAction = -5000;
 let playedStartAudio = false;
@@ -12,12 +14,12 @@ let playedStartAudio = false;
 const actionLoop = ({ progress }: GameLoopArgs) => {
   const {
     config: { actionFrequency },
-    localStorage: { enableVoice },
-  } = store;
+  } = proxyStore;
   if (!playedStartAudio) {
     playedStartAudio = true;
     ActionService.execute(warmup);
 
+    const enableVoice = selectEnableVoice(store.getState());
     if (enableVoice) {
       play(audioLibrary.StartGame);
       play(audioLibrary.CardShuffle);

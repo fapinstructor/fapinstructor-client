@@ -1,10 +1,11 @@
-import store from "store";
 import { strokeEmitterObservable } from "./strokeEmitter";
 import type { GameLoopArgs } from "engine/loop";
 import { TIME_DELAY } from "components/organisms/BeatMeter/settings";
 import play, { playTick } from "engine/audio";
 import audioLibrary from "audio";
 import { StrokeService } from "game/xstate/services";
+import { selectEnableTicks } from "common/store/settings";
+import store from "common/store";
 
 const strokeQueue: number[] = [];
 strokeEmitterObservable.subscribe((event) => {
@@ -27,7 +28,8 @@ const ticker = ({ timestamp }: GameLoopArgs) => {
   if (nextStrokeTime > 0 && timestamp - TIME_DELAY / 2 >= nextStrokeTime) {
     nextStrokeTime = 0;
 
-    if (store.localStorage.enableTicks) {
+    const enableTicks = selectEnableTicks(store.getState());
+    if (enableTicks) {
       if (!playTick(StrokeService.strokeSpeed)) {
         play(audioLibrary.Tick);
       }

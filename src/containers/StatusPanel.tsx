@@ -12,8 +12,20 @@ import elapsedGameTime from "game/utils/elapsedGameTime";
 import { GripStrengthString } from "game/enums/GripStrength";
 import { StrokeStyles } from "game/enums/StrokeStyle";
 import logo from "images/logo.svg";
-import store, { LocalStorage } from "store";
 import { ProxyStoreConsumer } from "containers/StoreProvider";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectEnableBeatMeter,
+  selectEnableMoans,
+  selectEnableTicks,
+  selectEnableVideoAudio,
+  selectEnableVoice,
+  toggleBeatMeter,
+  toggleMoans,
+  toggleTicks,
+  toggleVideoAudio,
+  toggleVoice,
+} from "common/store/settings";
 
 const useStyles = makeStyles({
   root: {
@@ -46,48 +58,43 @@ function Label({ value }: LabelProps) {
   );
 }
 
-// TODO: Breakout flags out of localstorage
-type Flags = keyof LocalStorage;
+type ToggleProps = {
+  id: string;
+  label: string;
+  checked: boolean;
+  onChange: () => void;
+};
+
+const useSwitchStyles = makeStyles({
+  toggle: {
+    color: "white",
+  },
+});
+
+function Toggle({ id, label, checked, onChange }: ToggleProps) {
+  const classes = useSwitchStyles();
+
+  return (
+    <FormControlLabel
+      control={<Switch value={id} checked={checked} onChange={onChange} />}
+      classes={{
+        label: classes.toggle,
+      }}
+      label={label}
+    />
+  );
+}
 
 export default function StatusPanel() {
-  const [open, setOpen] = useState(true);
   const classes = useStyles();
+  const [open, setOpen] = useState(true);
 
-  const handleCheckChange = (name: Flags) => (
-    event: React.ChangeEvent<HTMLInputElement>,
-    checked: boolean
-  ) => {
-    try {
-      localStorage.setItem(name, checked.toString());
-    } catch (e) {
-      // local storage may not be supported on some devices
-    }
-    store.localStorage[name] = checked;
-  };
-
-  type RenderToggleProps = {
-    id: Flags;
-    label: string;
-    checked: boolean;
-  };
-
-  const renderToggle = ({ id, label, checked }: RenderToggleProps) => {
-    return (
-      <FormControlLabel
-        control={
-          <Switch
-            checked={checked}
-            onChange={handleCheckChange(id)}
-            value={id}
-          />
-        }
-        classes={{
-          label: classes.toggle,
-        }}
-        label={label}
-      />
-    );
-  };
+  const dispatch = useDispatch();
+  const enableVoice = useSelector(selectEnableVoice);
+  const enableMoans = useSelector(selectEnableMoans);
+  const enableTicks = useSelector(selectEnableTicks);
+  const enableBeatMeter = useSelector(selectEnableBeatMeter);
+  const enableVideoAudio = useSelector(selectEnableVideoAudio);
 
   return (
     <div className={classes.root}>
@@ -110,14 +117,6 @@ export default function StatusPanel() {
             if (!store) {
               return;
             }
-
-            const {
-              enableVoice,
-              enableMoans,
-              enableTicks,
-              enableBeatMeter,
-              videoMuted,
-            } = store.localStorage;
 
             const {
               gripStrength,
@@ -160,32 +159,37 @@ export default function StatusPanel() {
                   </div>
                 </div>
                 <div>
-                  {renderToggle({
-                    id: "enableVoice",
-                    checked: enableVoice,
-                    label: "Voice",
-                  })}
-                  {renderToggle({
-                    id: "enableMoans",
-                    checked: enableMoans,
-                    label: "Moans",
-                  })}
-                  {renderToggle({
-                    id: "videoMuted",
-                    checked: videoMuted,
-                    label: "Mute Videos",
-                  })}
+                  <Toggle
+                    id="enableVoice"
+                    label="Voice"
+                    checked={enableVoice}
+                    onChange={() => dispatch(toggleVoice())}
+                  />
+                  <Toggle
+                    id="enableMoans"
+                    label="Moans"
+                    checked={enableMoans}
+                    onChange={() => dispatch(toggleMoans())}
+                  />
+                  <Toggle
+                    id="enableVideoAudio"
+                    label="Mute Videos"
+                    checked={!enableVideoAudio}
+                    onChange={() => dispatch(toggleVideoAudio())}
+                  />
                   <div>
-                    {renderToggle({
-                      id: "enableTicks",
-                      checked: enableTicks,
-                      label: "Metronome",
-                    })}
-                    {renderToggle({
-                      id: "enableBeatMeter",
-                      checked: enableBeatMeter,
-                      label: "Beat Meter",
-                    })}
+                    <Toggle
+                      id="enableTicks"
+                      label="Metronome"
+                      checked={enableTicks}
+                      onChange={() => dispatch(toggleTicks())}
+                    />
+                    <Toggle
+                      id="enableBeatMeter"
+                      label="Beat Meter"
+                      checked={enableBeatMeter}
+                      onChange={() => dispatch(toggleBeatMeter())}
+                    />
                   </div>
                 </div>
               </div>

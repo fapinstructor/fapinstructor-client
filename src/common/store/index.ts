@@ -1,9 +1,14 @@
 import { configureStore, Action } from "@reduxjs/toolkit";
 import { ThunkAction } from "redux-thunk";
+import { loadState, saveState } from "utils/localStorage";
 import rootReducer, { State } from "./rootReducer";
+import throttle from "lodash.throttle";
 
 const store = configureStore({
   reducer: rootReducer,
+  preloadedState: {
+    settings: loadState("settings"),
+  },
 });
 
 if (process.env.NODE_ENV === "development" && module.hot) {
@@ -15,5 +20,11 @@ if (process.env.NODE_ENV === "development" && module.hot) {
 
 export type AppDispatch = typeof store.dispatch;
 export type AppThunk<T = void> = ThunkAction<T, State, unknown, Action<string>>;
+
+store.subscribe(
+  throttle(() => {
+    saveState("settings", store.getState().settings);
+  }, 1000)
+);
 
 export default store;

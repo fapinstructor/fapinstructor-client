@@ -11,12 +11,12 @@ import HomeButton from "components/atoms/HomeButton";
 import { Notify } from "common/store/notifications";
 import BeatMeter from "components/organisms/BeatMeter";
 import { strokeEmitterObservable } from "game/loops/strokeEmitter";
-import { ProxyStoreConsumer } from "containers/StoreProvider";
 import { useSelector } from "react-redux";
 import { selectGame } from "common/store/currentGame";
 import StarButton from "components/molecules/buttons/StarButton";
 
 import { useMediaService } from "game/xstate/services";
+import { selectEnableBeatMeter } from "common/store/settings";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -35,6 +35,7 @@ export default function HUD({ createNotification }: HUDProps) {
   const classes = useStyles();
   const currentGame = useSelector(selectGame);
   const [{ context: media }, sendMediaEvent] = useMediaService();
+  const enableBeatMeter = useSelector(selectEnableBeatMeter);
 
   const bookmark = () => {
     const link = media.links[media.linkIndex];
@@ -104,19 +105,9 @@ export default function HUD({ createNotification }: HUDProps) {
         </div>
         <div>
           <TriggerPanel />
-          <ProxyStoreConsumer>
-            {(store) => {
-              return (
-                <>
-                  {store?.localStorage?.enableBeatMeter && (
-                    <BeatMeter
-                      strokeEmitterObservable={strokeEmitterObservable}
-                    />
-                  )}
-                </>
-              );
-            }}
-          </ProxyStoreConsumer>
+          {enableBeatMeter && (
+            <BeatMeter strokeEmitterObservable={strokeEmitterObservable} />
+          )}
         </div>
       </div>
     </div>
