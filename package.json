@@ -16,7 +16,8 @@
     "format": "yarn prettier --write",
     "check-format": "yarn prettier --list-different",
     "check-types": "tsc --noEmit",
-    "validate": "CI=true npm-run-all --parallel check-types test check-format lint"
+    "validate": "CI=true npm-run-all --parallel check-types test check-format lint",
+    "chromatic": "chromatic --exit-zero-on-changes"
   },
   "husky": {
     "hooks": {
@@ -99,6 +100,7 @@
     "@types/webpack-env": "^1.15.2",
     "@types/yup": "^0.29.0",
     "babel-loader": "^8.1.0",
+    "chromatic": "^5.8.3",
     "eslint-config-prettier": "^6.13.0",
     "eslint-plugin-jest": "^24.1.3",
     "eslint-plugin-testing-library": "^3.10.0",

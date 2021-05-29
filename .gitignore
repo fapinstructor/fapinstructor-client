@@ -19,3 +19,6 @@ yarn-error.log*
 # We use yarn, so npm files shouldn't exist
 package-lock.json
 npm-debug.log*
+
+# storybook log files
+build-storybook.log

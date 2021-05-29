@@ -11,7 +11,8 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     steps:
       - uses: actions/checkout@v2
-
+        with:
+          fetch-depth: 0
       - name: Setup Variables
         id: vars
         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
@@ -24,6 +25,12 @@ jobs:
           REACT_APP_SENTRY_DSN: ${{ secrets.REACT_APP_SENTRY_DSN }}
           REACT_APP_SENTRY_RELEASE: ${{ steps.vars.outputs.sha_short }}
         run: yarn build
+
+      - name: Publish to Chromatic
+        uses: chromaui/action@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
 
       - name: Create Sentry release
         uses: tclindner/sentry-releases-action@v1.2.0
