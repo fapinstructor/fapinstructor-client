@@ -1,5 +1,5 @@
 import store from "store";
-import play from "engine/audio";
+import { playCommand } from "engine/audio";
 import audioLibrary from "audio";
 import elapsedGameTime from "game/utils/elapsedGameTime";
 import { getRandomStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
@@ -67,9 +67,7 @@ export const rideTheEdge = async (time = getRandomInclusiveInteger(5, 30)) => {
     duration: -1,
   });
 
-  if (store.enableVoice) {
-    play(audioLibrary.KeepStroking);
-  }
+  playCommand(audioLibrary.KeepStroking);
 
   await delay(time * 1000);
   dismissNotification(notificationId);
@@ -111,9 +109,7 @@ export const stopEdging = async () => {
 
     strokerRemoteControl.play();
 
-    if (store.enableVoice) {
-      play(audioLibrary.StartStrokingAgain);
-    }
+    playCommand(audioLibrary.StartStrokingAgain);
     await delay(2000);
   }
 };
@@ -130,9 +126,7 @@ export const getToTheEdge = async (message = getRandomEdgeMessage()) => {
   const {
     config: { fastestStrokeSpeed },
   } = store;
-  if (store.enableVoice) {
-    play(audioLibrary.Edge);
-  }
+  playCommand(audioLibrary.Edge);
 
   setStrokeSpeed(fastestStrokeSpeed);
 

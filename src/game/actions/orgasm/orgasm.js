@@ -4,7 +4,7 @@ import createNotification, {
 } from "engine/createNotification";
 import { getRandomStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
 import delay from "utils/delay";
-import play from "engine/audio";
+import { playCommand } from "engine/audio";
 import audioLibrary, { getRandomAudioVariation } from "audio";
 import {
   strokerRemoteControl,
@@ -88,10 +88,7 @@ export const doRuin = async () => {
   } = store;
 
   setStrokeSpeed(fastestStrokeSpeed);
-
-  if (store.enableVoice) {
-    play(audioLibrary.RuinItForMe);
-  }
+  playCommand(audioLibrary.RuinItForMe);
 
   const nid = createNotification(getRandomRuinOrgasmMessage());
 
@@ -137,10 +134,7 @@ export const doOrgasm = async () => {
   } = store;
 
   setStrokeSpeed(fastestStrokeSpeed);
-
-  if (store.enableVoice) {
-    play(getRandomAudioVariation("Orgasm"));
-  }
+  playCommand(getRandomAudioVariation("Orgasm"));
 
   const nid = createNotification({
     message: "You have permission to have a full orgasm",
@@ -205,9 +199,7 @@ export const doDenied = async () => {
 
   setStrokeSpeed(fastestStrokeSpeed);
 
-  if (store.enableVoice) {
-    play(getRandomAudioVariation("Denied"));
-  }
+  playCommand(getRandomAudioVariation("Denied"));
 
   const nid = createNotification({ message: getRandomDeniedMessage() });
 
@@ -255,7 +247,7 @@ export const end = async () => {
     setStrokeSpeed(getRandomStrokeSpeed());
     strokerRemoteControl.play();
     createNotification({ message: "Start stroking again" });
-    play(audioLibrary.StartStrokingAgain);
+    playCommand(audioLibrary.StartStrokingAgain);
     await delay(3 * SECONDS_IN_MILLI_SECONDS);
   } else {
     setStrokeSpeed(0);

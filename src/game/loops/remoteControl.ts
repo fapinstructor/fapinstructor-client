@@ -1,4 +1,4 @@
-export default {
+const remoteControl = {
   paused: false,
   play() {
     this.paused = false;
@@ -9,3 +9,5 @@ export default {
     return this.paused;
   },
 };
+
+export default remoteControl;

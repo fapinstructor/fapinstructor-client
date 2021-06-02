@@ -1,6 +1,272 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots App/Pages Change Log Page 1`] = `
+exports[`Storyshots App/Pages Loading Page 1`] = `
+<header
+  class="MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorSecondary MuiPaper-elevation4"
+>
+  <div
+    class="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
+  >
+    <a
+      class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorInherit"
+      href="/"
+    >
+      <div
+        class="MuiBox-root MuiBox-root-30"
+      >
+        <div
+          class="MuiBox-root MuiBox-root-31"
+        >
+          <img
+            alt="Fap Instructor"
+            src="logo.svg"
+            style="object-fit: contain; width: 100%; height: 100%;"
+          />
+        </div>
+        <div
+          class="MuiBox-root MuiBox-root-32"
+        >
+          <h4
+            class="MuiTypography-root makeStyles-title-33 MuiTypography-h4"
+          >
+            Fap Instructor
+          </h4>
+        </div>
+        <div
+          class="MuiBox-root MuiBox-root-34"
+        >
+          <h4
+            class="MuiTypography-root makeStyles-title-33 MuiTypography-h4"
+          >
+            FI
+          </h4>
+        </div>
+      </div>
+    </a>
+    <span
+      style="flex-grow: 1;"
+    />
+    <a
+      aria-disabled="false"
+      class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
+      href="/games/search"
+      role="button"
+      tabindex="0"
+    >
+      <span
+        class="MuiButton-label"
+      >
+        <div
+          class="MuiBox-root MuiBox-root-35"
+        >
+          <div
+            class="MuiBox-root MuiBox-root-36"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root"
+              focusable="false"
+              style="color: black; width: 100%; height: 100%;"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+              />
+            </svg>
+          </div>
+          <div
+            class="MuiBox-root MuiBox-root-37"
+          >
+            Games
+          </div>
+          <div
+            class="MuiBox-root MuiBox-root-38"
+          />
+        </div>
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </a>
+    <a
+      aria-disabled="false"
+      class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
+      href="https://discord.gg/2CJPr9M"
+      tabindex="0"
+      target="_blank"
+    >
+      <span
+        class="MuiButton-label"
+      >
+        <div
+          class="MuiBox-root MuiBox-root-39"
+        >
+          <div
+            class="MuiBox-root MuiBox-root-40"
+          >
+            <img
+              alt="Discord"
+              src="discord.svg"
+              style="object-fit: contain; width: 100%; height: 100%;"
+            />
+          </div>
+          <div
+            class="MuiBox-root MuiBox-root-41"
+          >
+            Join us on Discord
+          </div>
+          <div
+            class="MuiBox-root MuiBox-root-42"
+          />
+        </div>
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </a>
+    <a
+      aria-disabled="false"
+      class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
+      href="https://www.patreon.com/bePatron?u=29098019"
+      tabindex="0"
+      target="_blank"
+    >
+      <span
+        class="MuiButton-label"
+      >
+        <div
+          class="MuiBox-root MuiBox-root-43"
+        >
+          <div
+            class="MuiBox-root MuiBox-root-44"
+          >
+            <img
+              alt="Patreon"
+              src="patreon.svg"
+              style="object-fit: contain; width: 100%; height: 100%;"
+            />
+          </div>
+          <div
+            class="MuiBox-root MuiBox-root-45"
+          >
+            Support this site!
+          </div>
+          <div
+            class="MuiBox-root MuiBox-root-46"
+          />
+        </div>
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </a>
+    <a
+      aria-disabled="false"
+      class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
+      href="/faq"
+      role="button"
+      tabindex="0"
+    >
+      <span
+        class="MuiButton-label"
+      >
+        <div
+          class="MuiBox-root MuiBox-root-47"
+        >
+          <div
+            class="MuiBox-root MuiBox-root-48"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root"
+              focusable="false"
+              style="color: black; width: 100%; height: 100%;"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"
+              />
+            </svg>
+          </div>
+          <div
+            class="MuiBox-root MuiBox-root-49"
+          >
+            FAQ
+          </div>
+          <div
+            class="MuiBox-root MuiBox-root-50"
+          />
+        </div>
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </a>
+    <a
+      aria-disabled="false"
+      class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
+      href="/changelog"
+      role="button"
+      tabindex="0"
+    >
+      <span
+        class="MuiButton-label"
+      >
+        <div
+          class="MuiBox-root MuiBox-root-51"
+        >
+          <div
+            class="MuiBox-root MuiBox-root-52"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root"
+              focusable="false"
+              style="color: black; width: 100%; height: 100%;"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M4 10.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0-6c-.83 0-1.5.67-1.5 1.5S3.17 7.5 4 7.5 5.5 6.83 5.5 6 4.83 4.5 4 4.5zm0 12c-.83 0-1.5.68-1.5 1.5s.68 1.5 1.5 1.5 1.5-.68 1.5-1.5-.67-1.5-1.5-1.5zM7 19h14v-2H7v2zm0-6h14v-2H7v2zm0-8v2h14V5H7z"
+              />
+            </svg>
+          </div>
+          <div
+            class="MuiBox-root MuiBox-root-53"
+          >
+            Change Log
+          </div>
+          <div
+            class="MuiBox-root MuiBox-root-54"
+          />
+        </div>
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </a>
+    <button
+      class="MuiButtonBase-root MuiIconButton-root"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="MuiIconButton-label"
+      >
+        <img
+          alt="Profile"
+          src="avatar.png"
+          style="width: 40px; border-radius: 50px;"
+        />
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </button>
+  </div>
+</header>
+`;
+
+exports[`Storyshots App/Pages Profile 1`] = `
 <header
   class="MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorSecondary MuiPaper-elevation4"
 >
@@ -203,9 +469,8 @@ exports[`Storyshots App/Pages Change Log Page 1`] = `
       />
     </a>
     <a
-      aria-current="page"
       aria-disabled="false"
-      class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit active"
+      class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
       href="/changelog"
       role="button"
       tabindex="0"
@@ -267,7 +532,7 @@ exports[`Storyshots App/Pages Change Log Page 1`] = `
 </header>
 `;
 
-exports[`Storyshots App/Pages Loading Page 1`] = `
+exports[`Storyshots App/Pages Unauthorized Page 1`] = `
 <header
   class="MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorSecondary MuiPaper-elevation4"
 >
@@ -504,538 +769,6 @@ exports[`Storyshots App/Pages Loading Page 1`] = `
           </div>
           <div
             class="MuiBox-root MuiBox-root-80"
-          />
-        </div>
-      </span>
-      <span
-        class="MuiTouchRipple-root"
-      />
-    </a>
-    <button
-      class="MuiButtonBase-root MuiIconButton-root"
-      tabindex="0"
-      type="button"
-    >
-      <span
-        class="MuiIconButton-label"
-      >
-        <img
-          alt="Profile"
-          src="avatar.png"
-          style="width: 40px; border-radius: 50px;"
-        />
-      </span>
-      <span
-        class="MuiTouchRipple-root"
-      />
-    </button>
-  </div>
-</header>
-`;
-
-exports[`Storyshots App/Pages Profile 1`] = `
-<header
-  class="MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorSecondary MuiPaper-elevation4"
->
-  <div
-    class="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
-  >
-    <a
-      class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorInherit"
-      href="/"
-    >
-      <div
-        class="MuiBox-root MuiBox-root-27"
-      >
-        <div
-          class="MuiBox-root MuiBox-root-28"
-        >
-          <img
-            alt="Fap Instructor"
-            src="logo.svg"
-            style="object-fit: contain; width: 100%; height: 100%;"
-          />
-        </div>
-        <div
-          class="MuiBox-root MuiBox-root-29"
-        >
-          <h4
-            class="MuiTypography-root makeStyles-title-30 MuiTypography-h4"
-          >
-            Fap Instructor
-          </h4>
-        </div>
-        <div
-          class="MuiBox-root MuiBox-root-31"
-        >
-          <h4
-            class="MuiTypography-root makeStyles-title-30 MuiTypography-h4"
-          >
-            FI
-          </h4>
-        </div>
-      </div>
-    </a>
-    <span
-      style="flex-grow: 1;"
-    />
-    <a
-      aria-disabled="false"
-      class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
-      href="/games/search"
-      role="button"
-      tabindex="0"
-    >
-      <span
-        class="MuiButton-label"
-      >
-        <div
-          class="MuiBox-root MuiBox-root-32"
-        >
-          <div
-            class="MuiBox-root MuiBox-root-33"
-          >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root"
-              focusable="false"
-              style="color: black; width: 100%; height: 100%;"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
-              />
-            </svg>
-          </div>
-          <div
-            class="MuiBox-root MuiBox-root-34"
-          >
-            Games
-          </div>
-          <div
-            class="MuiBox-root MuiBox-root-35"
-          />
-        </div>
-      </span>
-      <span
-        class="MuiTouchRipple-root"
-      />
-    </a>
-    <a
-      aria-disabled="false"
-      class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
-      href="https://discord.gg/2CJPr9M"
-      tabindex="0"
-      target="_blank"
-    >
-      <span
-        class="MuiButton-label"
-      >
-        <div
-          class="MuiBox-root MuiBox-root-36"
-        >
-          <div
-            class="MuiBox-root MuiBox-root-37"
-          >
-            <img
-              alt="Discord"
-              src="discord.svg"
-              style="object-fit: contain; width: 100%; height: 100%;"
-            />
-          </div>
-          <div
-            class="MuiBox-root MuiBox-root-38"
-          >
-            Join us on Discord
-          </div>
-          <div
-            class="MuiBox-root MuiBox-root-39"
-          />
-        </div>
-      </span>
-      <span
-        class="MuiTouchRipple-root"
-      />
-    </a>
-    <a
-      aria-disabled="false"
-      class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
-      href="https://www.patreon.com/bePatron?u=29098019"
-      tabindex="0"
-      target="_blank"
-    >
-      <span
-        class="MuiButton-label"
-      >
-        <div
-          class="MuiBox-root MuiBox-root-40"
-        >
-          <div
-            class="MuiBox-root MuiBox-root-41"
-          >
-            <img
-              alt="Patreon"
-              src="patreon.svg"
-              style="object-fit: contain; width: 100%; height: 100%;"
-            />
-          </div>
-          <div
-            class="MuiBox-root MuiBox-root-42"
-          >
-            Support this site!
-          </div>
-          <div
-            class="MuiBox-root MuiBox-root-43"
-          />
-        </div>
-      </span>
-      <span
-        class="MuiTouchRipple-root"
-      />
-    </a>
-    <a
-      aria-disabled="false"
-      class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
-      href="/faq"
-      role="button"
-      tabindex="0"
-    >
-      <span
-        class="MuiButton-label"
-      >
-        <div
-          class="MuiBox-root MuiBox-root-44"
-        >
-          <div
-            class="MuiBox-root MuiBox-root-45"
-          >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root"
-              focusable="false"
-              style="color: black; width: 100%; height: 100%;"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"
-              />
-            </svg>
-          </div>
-          <div
-            class="MuiBox-root MuiBox-root-46"
-          >
-            FAQ
-          </div>
-          <div
-            class="MuiBox-root MuiBox-root-47"
-          />
-        </div>
-      </span>
-      <span
-        class="MuiTouchRipple-root"
-      />
-    </a>
-    <a
-      aria-disabled="false"
-      class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
-      href="/changelog"
-      role="button"
-      tabindex="0"
-    >
-      <span
-        class="MuiButton-label"
-      >
-        <div
-          class="MuiBox-root MuiBox-root-48"
-        >
-          <div
-            class="MuiBox-root MuiBox-root-49"
-          >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root"
-              focusable="false"
-              style="color: black; width: 100%; height: 100%;"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M4 10.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0-6c-.83 0-1.5.67-1.5 1.5S3.17 7.5 4 7.5 5.5 6.83 5.5 6 4.83 4.5 4 4.5zm0 12c-.83 0-1.5.68-1.5 1.5s.68 1.5 1.5 1.5 1.5-.68 1.5-1.5-.67-1.5-1.5-1.5zM7 19h14v-2H7v2zm0-6h14v-2H7v2zm0-8v2h14V5H7z"
-              />
-            </svg>
-          </div>
-          <div
-            class="MuiBox-root MuiBox-root-50"
-          >
-            Change Log
-          </div>
-          <div
-            class="MuiBox-root MuiBox-root-51"
-          />
-        </div>
-      </span>
-      <span
-        class="MuiTouchRipple-root"
-      />
-    </a>
-    <button
-      class="MuiButtonBase-root MuiIconButton-root"
-      tabindex="0"
-      type="button"
-    >
-      <span
-        class="MuiIconButton-label"
-      >
-        <img
-          alt="Profile"
-          src="avatar.png"
-          style="width: 40px; border-radius: 50px;"
-        />
-      </span>
-      <span
-        class="MuiTouchRipple-root"
-      />
-    </button>
-  </div>
-</header>
-`;
-
-exports[`Storyshots App/Pages Unauthorized Page 1`] = `
-<header
-  class="MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorSecondary MuiPaper-elevation4"
->
-  <div
-    class="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
-  >
-    <a
-      class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorInherit"
-      href="/"
-    >
-      <div
-        class="MuiBox-root MuiBox-root-82"
-      >
-        <div
-          class="MuiBox-root MuiBox-root-83"
-        >
-          <img
-            alt="Fap Instructor"
-            src="logo.svg"
-            style="object-fit: contain; width: 100%; height: 100%;"
-          />
-        </div>
-        <div
-          class="MuiBox-root MuiBox-root-84"
-        >
-          <h4
-            class="MuiTypography-root makeStyles-title-85 MuiTypography-h4"
-          >
-            Fap Instructor
-          </h4>
-        </div>
-        <div
-          class="MuiBox-root MuiBox-root-86"
-        >
-          <h4
-            class="MuiTypography-root makeStyles-title-85 MuiTypography-h4"
-          >
-            FI
-          </h4>
-        </div>
-      </div>
-    </a>
-    <span
-      style="flex-grow: 1;"
-    />
-    <a
-      aria-disabled="false"
-      class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
-      href="/games/search"
-      role="button"
-      tabindex="0"
-    >
-      <span
-        class="MuiButton-label"
-      >
-        <div
-          class="MuiBox-root MuiBox-root-87"
-        >
-          <div
-            class="MuiBox-root MuiBox-root-88"
-          >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root"
-              focusable="false"
-              style="color: black; width: 100%; height: 100%;"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
-              />
-            </svg>
-          </div>
-          <div
-            class="MuiBox-root MuiBox-root-89"
-          >
-            Games
-          </div>
-          <div
-            class="MuiBox-root MuiBox-root-90"
-          />
-        </div>
-      </span>
-      <span
-        class="MuiTouchRipple-root"
-      />
-    </a>
-    <a
-      aria-disabled="false"
-      class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
-      href="https://discord.gg/2CJPr9M"
-      tabindex="0"
-      target="_blank"
-    >
-      <span
-        class="MuiButton-label"
-      >
-        <div
-          class="MuiBox-root MuiBox-root-91"
-        >
-          <div
-            class="MuiBox-root MuiBox-root-92"
-          >
-            <img
-              alt="Discord"
-              src="discord.svg"
-              style="object-fit: contain; width: 100%; height: 100%;"
-            />
-          </div>
-          <div
-            class="MuiBox-root MuiBox-root-93"
-          >
-            Join us on Discord
-          </div>
-          <div
-            class="MuiBox-root MuiBox-root-94"
-          />
-        </div>
-      </span>
-      <span
-        class="MuiTouchRipple-root"
-      />
-    </a>
-    <a
-      aria-disabled="false"
-      class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
-      href="https://www.patreon.com/bePatron?u=29098019"
-      tabindex="0"
-      target="_blank"
-    >
-      <span
-        class="MuiButton-label"
-      >
-        <div
-          class="MuiBox-root MuiBox-root-95"
-        >
-          <div
-            class="MuiBox-root MuiBox-root-96"
-          >
-            <img
-              alt="Patreon"
-              src="patreon.svg"
-              style="object-fit: contain; width: 100%; height: 100%;"
-            />
-          </div>
-          <div
-            class="MuiBox-root MuiBox-root-97"
-          >
-            Support this site!
-          </div>
-          <div
-            class="MuiBox-root MuiBox-root-98"
-          />
-        </div>
-      </span>
-      <span
-        class="MuiTouchRipple-root"
-      />
-    </a>
-    <a
-      aria-disabled="false"
-      class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
-      href="/faq"
-      role="button"
-      tabindex="0"
-    >
-      <span
-        class="MuiButton-label"
-      >
-        <div
-          class="MuiBox-root MuiBox-root-99"
-        >
-          <div
-            class="MuiBox-root MuiBox-root-100"
-          >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root"
-              focusable="false"
-              style="color: black; width: 100%; height: 100%;"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"
-              />
-            </svg>
-          </div>
-          <div
-            class="MuiBox-root MuiBox-root-101"
-          >
-            FAQ
-          </div>
-          <div
-            class="MuiBox-root MuiBox-root-102"
-          />
-        </div>
-      </span>
-      <span
-        class="MuiTouchRipple-root"
-      />
-    </a>
-    <a
-      aria-disabled="false"
-      class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
-      href="/changelog"
-      role="button"
-      tabindex="0"
-    >
-      <span
-        class="MuiButton-label"
-      >
-        <div
-          class="MuiBox-root MuiBox-root-103"
-        >
-          <div
-            class="MuiBox-root MuiBox-root-104"
-          >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root"
-              focusable="false"
-              style="color: black; width: 100%; height: 100%;"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M4 10.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0-6c-.83 0-1.5.67-1.5 1.5S3.17 7.5 4 7.5 5.5 6.83 5.5 6 4.83 4.5 4 4.5zm0 12c-.83 0-1.5.68-1.5 1.5s.68 1.5 1.5 1.5 1.5-.68 1.5-1.5-.67-1.5-1.5-1.5zM7 19h14v-2H7v2zm0-6h14v-2H7v2zm0-8v2h14V5H7z"
-              />
-            </svg>
-          </div>
-          <div
-            class="MuiBox-root MuiBox-root-105"
-          >
-            Change Log
-          </div>
-          <div
-            class="MuiBox-root MuiBox-root-106"
           />
         </div>
       </span>

@@ -1,6 +1,6 @@
 import store from "store";
-import { GripStrengthEnum } from "game/enums/GripStrength";
 import { StrokeStyle } from "game/enums/StrokeStyle";
+import { GripStrength } from "game/xstate/machines/strokeMachine";
 
 export type GameConfig = {
   isDefaultConfig: boolean;
@@ -113,7 +113,7 @@ const defaultConfig: GameConfig = {
   ruinCooldown: 20, // sec
   slowestStrokeSpeed: 0.25, // sec
   fastestStrokeSpeed: 5, // sec
-  initialGripStrength: GripStrengthEnum.Normal,
+  initialGripStrength: GripStrength.Normal,
   defaultStrokeStyle: "dominant",
   actionFrequency: 20, // sec
   tasks: {
@@ -160,7 +160,7 @@ const defaultConfig: GameConfig = {
   },
 };
 
-export default () => {
+export default function configureStore() {
   store.config = defaultConfig;
   return store;
-};
+}

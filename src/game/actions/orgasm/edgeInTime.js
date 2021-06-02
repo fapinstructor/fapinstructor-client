@@ -1,5 +1,5 @@
 import store from "store";
-import play from "engine/audio";
+import { playCommand } from "engine/audio";
 import audioLibrary from "audio";
 import createNotification, {
   dismissNotification,
@@ -29,9 +29,7 @@ import { ActionService } from "game/xstate/services";
 export const getToTheEdgeAdvanced = async (
   message = getRandomEdgeAdvancedMessage()
 ) => {
-  if (store.enableVoice) {
-    play(audioLibrary.Edge);
-  }
+  playCommand(audioLibrary.Edge);
   return createNotification({ message, duration: -1, delay: true });
 };
 

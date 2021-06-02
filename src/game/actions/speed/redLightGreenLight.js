@@ -3,14 +3,13 @@ import createNotification from "engine/createNotification";
 import { getAverageStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
 import delay from "utils/delay";
 import { getRandomArbitrary, getRandomInclusiveInteger } from "utils/math";
-import play from "engine/audio";
+import { playCommand } from "engine/audio";
 import audioLibrary from "audio";
 import { StrokeService } from "game/xstate/services";
 
 const redLightGreenLight = async () => {
   const {
     config: { fastestStrokeSpeed },
-    enableVoice,
   } = store;
   const previousStrokeSpeed = StrokeService.strokeSpeed;
 
@@ -22,9 +21,7 @@ const redLightGreenLight = async () => {
     delay: true,
   });
 
-  if (enableVoice) {
-    play(audioLibrary.Obey);
-  }
+  playCommand(audioLibrary.Obey);
 
   while (timeLeft > 0) {
     if (isGreen) {

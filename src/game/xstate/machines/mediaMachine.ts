@@ -70,7 +70,7 @@ export type MediaMachineEvent =
   | { type: "PREVIOUS_LINK" }
   | { type: "PRELOAD_LINK" };
 
-function createMediaMachine(config: GameConfig) {
+export function createMediaMachine(config: GameConfig) {
   const subreddits = parseRedditIds(config.redditId);
   const mediaTypes = getEnabledMediaTypes(config);
   const estimatedRequiredLinkCount = getEstimatedRequiredLinkCount(
@@ -191,5 +191,3 @@ function createMediaMachine(config: GameConfig) {
 
   return mediaMachine;
 }
-
-export { createMediaMachine };

@@ -4,7 +4,7 @@ import createNotification, {
 } from "engine/createNotification";
 import { getRandomStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
 import delay from "utils/delay";
-import play from "engine/audio";
+import { playCommand } from "engine/audio";
 import audioLibrary, { getRandomAudioVariation } from "audio";
 import {
   strokerRemoteControl,
@@ -57,9 +57,7 @@ export const ruinedOrgasm = async () => {
 
   store.game.ruins++;
 
-  if (store.enableVoice) {
-    play(getRandomAudioVariation("Ruined"));
-  }
+  playCommand(getRandomAudioVariation("Ruined"));
 
   const {
     config: { ruinCooldown },
@@ -75,9 +73,7 @@ export const ruinedOrgasm = async () => {
   strokerRemoteControl.play();
   createNotification({ message: "Start stroking again" });
 
-  if (store.enableVoice) {
-    play(audioLibrary.StartStrokingAgain);
-  }
+  playCommand(audioLibrary.StartStrokingAgain);
 
   await delay(3000);
 };
@@ -88,9 +84,7 @@ const ruinOrgasm = async () => {
   } = store;
   const notificationId = createNotification({ message: "Ruin it" });
 
-  if (store.enableVoice) {
-    play(audioLibrary.RuinItForMe);
-  }
+  playCommand(audioLibrary.RuinItForMe);
 
   setStrokeSpeed(fastestStrokeSpeed);
 

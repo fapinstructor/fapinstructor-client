@@ -3,12 +3,14 @@ import { AudioContext /*,isSupported*/ } from "standardized-audio-context";
 import memoize from "fast-memoize";
 import store from "common/store";
 import { createNotification, Severity } from "common/store/notifications";
+import { selectEnableVoice } from "common/store/settings";
+import { getRandomAudioVariation } from "audio";
 
 let context;
 let oscillator;
 let gainNode;
 
-const createAudioContext = async () => {
+export const createAudioContext = async () => {
   // Only create the audio context once
   if (context === undefined) {
     try {
@@ -34,7 +36,7 @@ const createAudioContext = async () => {
   }
 };
 
-const fetchAudioFile = memoize(async (url) => {
+export const fetchAudioFile = memoize(async (url) => {
   let buffer;
 
   if (context && context.decodeAudioData) {
@@ -58,7 +60,7 @@ const fetchAudioFile = memoize(async (url) => {
 
 let tickCount = 0;
 let previousRhythm = 0;
-const playTick = (rhythm) => {
+export function playTick(rhythm) {
   if (!context || !oscillator || !gainNode) {
     return false;
   }
@@ -92,9 +94,22 @@ const playTick = (rhythm) => {
   gainNode.gain.linearRampToValueAtTime(0.0, context.currentTime + 0.11);
 
   return true;
-};
+}
 
-const play = async (url) => {
+export function playVoice(variationName) {
+  playCommand(getRandomAudioVariation(variationName));
+}
+
+export function playCommand(url) {
+  if (!selectEnableVoice(store.getState())) {
+    // Cancel voice command
+    return;
+  }
+
+  return play(url);
+}
+
+export default async function play(url) {
   const buffer = await fetchAudioFile(url);
 
   if (context) {
@@ -116,7 +131,4 @@ const play = async (url) => {
       });
     }
   }
-};
-
-export { fetchAudioFile, createAudioContext, playTick };
-export default play;
+}

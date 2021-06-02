@@ -4,7 +4,7 @@ import {
   dismissNotification,
   dismissAllNotifications,
 } from "common/store/notifications";
-import playVoice from "game/utils/playVoice";
+import { playVoice } from "engine/audio";
 import {
   getRandomStrokeSpeed,
   getAverageStrokeSpeed,
@@ -50,7 +50,7 @@ const createInstruction = (
 
   const instruction = mapDispatchToFunc(dispatchFuncs, regularFuncs)(func);
 
-  //@ts-expect-error
+  //@ts-expect-error Need to convert mapDispatchToFunc to typescript
   instruction.label = options.label;
 
   return instruction;

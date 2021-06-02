@@ -23,5 +23,11 @@ module.exports = {
   rules: {
     // Won't run for storyshots, this rule hardcodes the .snap ext
     "jest/no-large-snapshots": ["warn", { maxSize: 50, inlineMaxSize: 6 }],
+    "import/no-anonymous-default-export": [
+      "error",
+      {
+        allowObject: true,
+      },
+    ],
   },
 };

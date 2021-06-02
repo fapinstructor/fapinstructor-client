@@ -16,13 +16,9 @@ declare global {
 }
 
 const store: Store = {
-  /**
-   * The game isn't initalized, at this point,
-   * but we assume it is when this object is actually used.
-   */
-  // @ts-expect-error
+  // @ts-expect-error This value starts off as undefined, assume that it will exist when it's used
   game: undefined,
-  // @ts-expect-error
+  // @ts-expect-error This value starts off as undefined, assume that it will exist when it's used
   config: undefined,
 };
 

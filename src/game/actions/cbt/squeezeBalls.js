@@ -1,8 +1,7 @@
-import store from "store";
 import createNotification from "engine/createNotification";
 import { getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
-import play from "engine/audio";
+import { playCommand } from "engine/audio";
 import audioLibrary from "audio";
 
 const squeezeBalls = async () => {
@@ -15,9 +14,7 @@ const squeezeBalls = async () => {
     delay: true,
   });
 
-  if (store.enableVoice) {
-    play(audioLibrary.SqueezeBalls);
-  }
+  playCommand(audioLibrary.SqueezeBalls);
 
   await delay(time * 1000);
 };

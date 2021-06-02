@@ -10,7 +10,6 @@ export type Game = {
   actualGameTime?: number;
   // TODO: Refactor into separte bookmark type
   bookmarks: BookmarkProps[];
-  gripStrength: number;
   rubberBands: number;
   clothespins: number;
   cockAndBallsBound: boolean;
@@ -45,7 +44,6 @@ export default function initializeGame() {
         store.config.maximumGameTime
       ),
     bookmarks: [],
-    gripStrength: store.config?.initialGripStrength,
     rubberBands: 0,
     clothespins: 0,
     cockAndBallsBound: false,

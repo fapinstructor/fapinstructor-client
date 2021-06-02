@@ -16,7 +16,7 @@ if (typeof document.hidden !== "undefined") {
   visibilityChange = "webkitvisibilitychange";
 }
 
-export default (cb) =>
+const visibility = (cb) =>
   document.addEventListener(
     visibilityChange,
     () => {
@@ -24,3 +24,5 @@ export default (cb) =>
     },
     false
   );
+
+export default visibility;

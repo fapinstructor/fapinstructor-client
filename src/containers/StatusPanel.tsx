@@ -9,7 +9,6 @@ import {
 import DownIcon from "@material-ui/icons/ArrowDropDown";
 import UpIcon from "@material-ui/icons/ArrowDropUp";
 import elapsedGameTime from "game/utils/elapsedGameTime";
-import { GripStrengthString } from "game/enums/GripStrength";
 import { StrokeStyles } from "game/enums/StrokeStyle";
 import logo from "images/logo.svg";
 import { ProxyStoreConsumer } from "containers/StoreProvider";
@@ -26,6 +25,8 @@ import {
   toggleVideoAudio,
   toggleVoice,
 } from "common/store/settings";
+import { useStrokeService } from "game/xstate/services";
+import { GripStrengthString } from "game/xstate/machines/strokeMachine";
 
 const useStyles = makeStyles({
   root: {
@@ -96,6 +97,12 @@ export default function StatusPanel() {
   const enableBeatMeter = useSelector(selectEnableBeatMeter);
   const enableVideoAudio = useSelector(selectEnableVideoAudio);
 
+  const [
+    {
+      context: { gripStrength },
+    },
+  ] = useStrokeService();
+
   return (
     <div className={classes.root}>
       <div className={classes.header}>
@@ -119,7 +126,6 @@ export default function StatusPanel() {
             }
 
             const {
-              gripStrength,
               strokeStyle,
               buttPlugInserted,
               rubberBands,

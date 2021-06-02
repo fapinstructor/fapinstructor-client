@@ -6,10 +6,8 @@ import {
   MediaMachine,
 } from "game/xstate/machines/mediaMachine";
 
-type MediaService = InterpreterFrom<MediaMachine>;
-
 let machine: MediaMachine;
-let service: MediaService;
+let service: InterpreterFrom<MediaMachine>;
 
 export function getMediaService() {
   if (!service) {

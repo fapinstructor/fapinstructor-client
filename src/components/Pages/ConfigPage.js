@@ -26,7 +26,10 @@ import { withRouter } from "react-router-dom";
 import { getRandomBoolean } from "utils/math";
 import Group from "components/molecules/Group";
 import TaskList from "containers/TaskList";
-import { GripStrengthEnum, GripStrengthString } from "game/enums/GripStrength";
+import {
+  GripStrength,
+  GripStrengthString,
+} from "game/xstate/machines/strokeMachine";
 import config from "config";
 import ShareGame from "components/organisms/ShareGame";
 import { validSubreddit } from "utils/regex";
@@ -1058,11 +1061,27 @@ class ConfigPage extends React.Component {
                         Number
                       )}
                     >
-                      {Object.keys(GripStrengthEnum).map((key) => (
-                        <MenuItem key={key} value={GripStrengthEnum[key]}>
-                          {GripStrengthString[GripStrengthEnum[key]]}
-                        </MenuItem>
-                      ))}
+                      <MenuItem value={GripStrength.BarelyTouching}>
+                        {GripStrengthString[GripStrength.BarelyTouching]}
+                      </MenuItem>
+                      <MenuItem value={GripStrength.VeryLight}>
+                        {GripStrengthString[GripStrength.VeryLight]}
+                      </MenuItem>
+                      <MenuItem value={GripStrength.Light}>
+                        {GripStrengthString[GripStrength.Light]}
+                      </MenuItem>
+                      <MenuItem value={GripStrength.Normal}>
+                        {GripStrengthString[GripStrength.Normal]}
+                      </MenuItem>
+                      <MenuItem value={GripStrength.Tight}>
+                        {GripStrengthString[GripStrength.Tight]}
+                      </MenuItem>
+                      <MenuItem value={GripStrength.VeryTight}>
+                        {GripStrengthString[GripStrength.VeryTight]}
+                      </MenuItem>
+                      <MenuItem value={GripStrength.DeathGrip}>
+                        {GripStrengthString[GripStrength.DeathGrip]}
+                      </MenuItem>
                     </Select>
                   </FormControl>
                 </Grid>

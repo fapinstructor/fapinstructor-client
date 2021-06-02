@@ -1,9 +1,8 @@
-import store from "store";
 import createNotification, {
   dismissNotification,
 } from "engine/createNotification";
 import { strokerRemoteControl } from "game/loops/strokeEmitter";
-import play from "engine/audio";
+import { playCommand } from "engine/audio";
 import { getRandomAudioVariation } from "audio";
 
 const eatPrecum = async () => {
@@ -14,9 +13,7 @@ const eatPrecum = async () => {
     delay: true,
   });
 
-  if (store.enableVoice) {
-    play(getRandomAudioVariation("CEI"));
-  }
+  playCommand(getRandomAudioVariation("CEI"));
 
   const done = async () => {
     strokerRemoteControl.play();

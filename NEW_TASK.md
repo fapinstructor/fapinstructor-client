@@ -58,7 +58,6 @@ const initializeActions = taskConfigs =>
 
 ```js
 import store from "store";
-import { GripStrengthEnum } from "game/enums/GripStrength";
 
 const defaultConfig = {
   ...

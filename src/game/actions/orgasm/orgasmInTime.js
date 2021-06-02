@@ -5,7 +5,7 @@ import createNotification, {
 } from "engine/createNotification";
 import { setStrokeSpeed } from "game/utils/strokeSpeed";
 import delay from "utils/delay";
-import play from "engine/audio";
+import { playCommand } from "engine/audio";
 import { getRandomAudioVariation } from "audio";
 import { getRandomInclusiveInteger } from "utils/math";
 import {
@@ -40,12 +40,9 @@ import { ActionService } from "game/xstate/services";
 export const getToTheOrgasm = (message = getRandomEdgeInTimeMessage()) => {
   const {
     config: { fastestStrokeSpeed },
-    enableVoice,
   } = store;
 
-  if (enableVoice) {
-    play(getRandomAudioVariation("Orgasm"));
-  }
+  playCommand(getRandomAudioVariation("Orgasm"));
 
   setStrokeSpeed(fastestStrokeSpeed);
   setDefaultGrip();
@@ -64,9 +61,7 @@ export const getToTheOrgasm = (message = getRandomEdgeInTimeMessage()) => {
 export const getToTheOrgasmAdvanced = (
   message = getRandomOrgasmAdvancedMessage()
 ) => {
-  if (store.enableVoice) {
-    play(getRandomAudioVariation("Orgasm"));
-  }
+  playCommand(getRandomAudioVariation("Orgasm"));
   return createNotification({ message, duration: -1 });
 };
 
@@ -228,9 +223,7 @@ export const doOrgasmCountdown = async () => {
     showProgress: true,
     duration: cumTime * 1000,
   });
-  if (store.enableVoice) {
-    play(getRandomAudioVariation("Orgasm"));
-  }
+  playCommand(getRandomAudioVariation("Orgasm"));
 
   await delay(cumTime * 1000);
   dismissAllNotifications();

@@ -25,7 +25,7 @@ export type ActionMachineEvent =
   | ExecuteActionEvent
   | SetTiggersActionEvent;
 
-function createActionMachine() {
+export function createActionMachine() {
   const actionMachine = createMachine<ActionMachineContext, ActionMachineEvent>(
     {
       id: "action",
@@ -70,5 +70,3 @@ function createActionMachine() {
 
   return actionMachine;
 }
-
-export { createActionMachine };

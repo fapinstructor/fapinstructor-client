@@ -1,9 +1,8 @@
-import store from "store";
 import createNotification from "engine/createNotification";
 import { getRandomStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
 import { getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
-import play from "engine/audio";
+import { playCommand } from "engine/audio";
 import audioLibrary from "audio";
 import { StrokeService } from "game/xstate/services";
 
@@ -22,9 +21,7 @@ const ballslaps = async () => {
     delay: true,
   });
 
-  if (store.enableVoice) {
-    play(audioLibrary.SlapBalls);
-  }
+  playCommand(audioLibrary.SlapBalls);
 
   setStrokeSpeed(0);
   await delay(delayTime * 1000);

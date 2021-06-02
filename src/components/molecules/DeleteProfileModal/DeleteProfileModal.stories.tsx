@@ -1,12 +1,12 @@
 import React from "react";
-import { Story } from "@storybook/react";
+import { Story, Meta } from "@storybook/react";
 
 import DeleteProfileModal from "./DeleteProfileModal";
 
 export default {
   title: "molecules/DeleteProfileModal",
   component: DeleteProfileModal,
-};
+} as Meta;
 
 type Args = React.ComponentProps<typeof DeleteProfileModal>;
 

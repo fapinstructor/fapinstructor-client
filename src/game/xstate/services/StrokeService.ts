@@ -3,13 +3,12 @@ import { useService } from "@xstate/react";
 import { GameConfig } from "configureStore";
 import {
   createStrokeMachine,
+  GripStrength,
   StrokeMachine,
 } from "game/xstate/machines/strokeMachine";
 
-type StrokeService = InterpreterFrom<StrokeMachine>;
-
 let machine: StrokeMachine;
-let service: StrokeService;
+let service: InterpreterFrom<StrokeMachine>;
 
 export function getStrokeService() {
   if (!service) {
@@ -56,6 +55,21 @@ const StrokeService = {
   },
   get strokeSpeedBaseline() {
     return getStrokeServiceContext().strokeSpeedBaseline;
+  },
+  setGripStrength(strength: GripStrength) {
+    getStrokeService().send("SET_GRIP_STRENGTH", { strength });
+  },
+  resetGripStrength() {
+    getStrokeService().send("RESET_GRIP_STRENGTH");
+  },
+  loosenGripStrength() {
+    getStrokeService().send("LOOSEN_GRIP_STRENGTH");
+  },
+  tightenGripStrength() {
+    getStrokeService().send("TIGHTEN_GRIP_STRENGTH");
+  },
+  get gripStrength() {
+    return getStrokeServiceContext().gripStrength;
   },
 };
 

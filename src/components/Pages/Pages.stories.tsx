@@ -1,15 +1,15 @@
 // TODO: Commented out pages that need to be refactored to work properly with testing
 import React from "react";
-import type { Story } from "@storybook/react/types-6-0";
+import type { Meta, Story } from "@storybook/react/types-6-0";
 import Auth0TestProvider, { Auth } from "AuthProvider/Auth0TestProvider";
 import { user } from "test/mocks/user_mock_objects";
 
 import Pages from "./Pages";
 
-const config = {
+export default {
   title: "App/Pages",
   component: Pages,
-};
+} as Meta;
 
 type Args = {
   route: string;
@@ -40,11 +40,11 @@ const defaultArgs = {
 //   route: "/games",
 // };
 
-export const ChangeLogPage = Template.bind({});
-ChangeLogPage.args = {
-  ...defaultArgs,
-  route: "/changelog",
-};
+// export const ChangeLogPage = Template.bind({});
+// ChangeLogPage.args = {
+//   ...defaultArgs,
+//   route: "/changelog",
+// };
 
 // export const EndGamePage = Template.bind({});
 // EndGamePage.args = {
@@ -76,5 +76,3 @@ UnauthorizedPage.args = {
   },
   route: "/profile",
 };
-
-export default config;

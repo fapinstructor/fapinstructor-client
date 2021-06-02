@@ -14,7 +14,7 @@ import StarredGamesTable from "components/organisms/GamesTable/StarredGamesTable
 export default function SearchPage() {
   const [activeTab, setActiveTab] = useState(0);
 
-  const handleTabChange = (event: React.ChangeEvent<{}>, tab: number) => {
+  const handleTabChange = (event: React.ChangeEvent<unknown>, tab: number) => {
     setActiveTab(tab);
   };
 

@@ -13,6 +13,7 @@ const store = configureStore({
 
 if (process.env.NODE_ENV === "development" && module.hot) {
   module.hot.accept("./rootReducer", () => {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const newRootReducer = require("./rootReducer").default;
     store.replaceReducer(newRootReducer);
   });

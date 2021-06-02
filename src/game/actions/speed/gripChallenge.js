@@ -7,7 +7,7 @@ import { setDeathGrip, setBarelyTouching, setGrip } from "../grip";
 import { StrokeService } from "game/xstate/services";
 
 const gripChallenge = async () => {
-  const previousGripStrength = store.game.gripStrength;
+  const previousGripStrength = StrokeService.gripStrength;
   const previousStrokeSpeed = StrokeService.strokeSpeed;
   createNotification({
     message: "Get ready for a grip challenge!",

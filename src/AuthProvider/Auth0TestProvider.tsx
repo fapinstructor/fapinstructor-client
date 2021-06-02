@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import React from "react";
 import { Auth0Context } from "@auth0/auth0-react";
 import { User } from "./Auth0Provider";
@@ -19,13 +18,11 @@ export default function Auth0TestProvider({
 }: AuthProviderProps) {
   return (
     <Auth0Context.Provider
+      // @ts-expect-error Don't warn about unimplemented funcs as this is a test provider
       value={{
-        // getAccessTokenSilently: noop,
-        // getAccessTokenWithPopup: noop,
-        // getIdTokenClaims: noop,
-        // loginWithPopup: noop,
-        // @ts-expect-error
-        loginWithRedirect: () => {},
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        loginWithRedirect: async () => {},
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
         logout: () => {},
         user,
         isAuthenticated:

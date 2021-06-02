@@ -1,14 +1,13 @@
 import store from "store";
 import { setStrokeSpeed } from "game/utils/strokeSpeed";
 import delay from "utils/delay";
-import play from "engine/audio";
+import { playCommand } from "engine/audio";
 import audioLibrary from "audio";
 import { StrokeService } from "game/xstate/services";
 
 const acceleration = async () => {
   const {
     config: { slowestStrokeSpeed, fastestStrokeSpeed },
-    enableVoice,
   } = store;
   const previousStrokeSpeed = StrokeService.strokeSpeed;
 
@@ -21,9 +20,7 @@ const acceleration = async () => {
     await delay(1000);
 
     if (!audioPlayed && StrokeService.strokeSpeed > fastestStrokeSpeed / 3) {
-      if (enableVoice) {
-        play(audioLibrary.LongMoan);
-      }
+      playCommand(audioLibrary.LongMoan);
       audioPlayed = true;
     }
   }

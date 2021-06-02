@@ -8,10 +8,8 @@ import { useService } from "@xstate/react";
 import interrupt from "engine/interrupt";
 import { TIME_DELAY } from "components/organisms/BeatMeter/settings";
 
-type ActionService = InterpreterFrom<ActionMachine>;
-
 let machine: ActionMachine;
-let service: ActionService;
+let service: InterpreterFrom<ActionMachine>;
 
 export function getActionService() {
   if (!service) {
@@ -41,6 +39,7 @@ const ActionService = {
     // Automatically start the service after it's created
     service.start();
   },
+
   /**
    * Executes the specified action
    *

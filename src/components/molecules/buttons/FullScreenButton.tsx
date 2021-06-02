@@ -3,17 +3,31 @@ import IconButton from "@material-ui/core/IconButton";
 import FullscreenIcon from "@material-ui/icons/Fullscreen";
 import FullscreenExitIcon from "@material-ui/icons/FullscreenExit";
 
+// Add full-screen definitions across vendors
+declare global {
+  interface HTMLElement {
+    mozRequestFullScreen: boolean;
+    webkitRequestFullScreen: boolean;
+    msRequestFullscreen: boolean;
+  }
+  interface Document {
+    mozCancelFullScreen: Promise<void>;
+    webkitExitFullscreen: Promise<void>;
+    msExitFullscreen: Promise<void>;
+    mozFullScreenElement: boolean;
+    webkitFullscreenElement: boolean;
+    msFullscreenElement: boolean;
+  }
+}
+
 function isFullScreenSupported() {
   const doc = window.document;
   const docEl = doc.documentElement;
 
   const requestFullScreen =
     docEl.requestFullscreen ||
-    // @ts-expect-error
     docEl.mozRequestFullScreen ||
-    // @ts-expect-error
     docEl.webkitRequestFullScreen ||
-    // @ts-expect-error
     docEl.msRequestFullscreen;
 
   return Boolean(requestFullScreen);
@@ -25,29 +39,20 @@ function toggleFullScreen() {
 
   const requestFullScreen =
     docEl.requestFullscreen ||
-    // @ts-expect-error
     docEl.mozRequestFullScreen ||
-    // @ts-expect-error
     docEl.webkitRequestFullScreen ||
-    // @ts-expect-error
     docEl.msRequestFullscreen;
 
   const cancelFullScreen =
     doc.exitFullscreen ||
-    // @ts-expect-error
     doc.mozCancelFullScreen ||
-    // @ts-expect-error
     doc.webkitExitFullscreen ||
-    // @ts-expect-error
     doc.msExitFullscreen;
 
   if (
     !doc.fullscreenElement &&
-    // @ts-expect-error
     !doc.mozFullScreenElement &&
-    // @ts-expect-error
     !doc.webkitFullscreenElement &&
-    // @ts-expect-error
     !doc.msFullscreenElement
   ) {
     requestFullScreen.call(docEl);
@@ -61,11 +66,8 @@ function isFullScreen() {
 
   if (
     !doc.fullscreenElement &&
-    // @ts-expect-error
     !doc.mozFullScreenElement &&
-    // @ts-expect-error
     !doc.webkitFullscreenElement &&
-    // @ts-expect-error
     !doc.msFullscreenElement
   ) {
     return false;
