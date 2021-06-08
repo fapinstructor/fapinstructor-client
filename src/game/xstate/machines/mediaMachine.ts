@@ -113,6 +113,9 @@ export function createMediaMachine(config: GameConfig) {
               },
             },
           },
+          on: {
+            PAUSE: "paused",
+          },
         },
         paused: {
           on: {

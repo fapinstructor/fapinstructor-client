@@ -1,6 +1,5 @@
 // TODO: Once config/env types are proper, remove this
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-import React, { PropsWithChildren, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import {
   Auth0Provider,
@@ -16,9 +15,10 @@ export type User = {
   picture?: string;
 };
 
-type Auth0ProviderProps = PropsWithChildren<{
+type Auth0ProviderProps = {
+  children: JSX.Element;
   fetchProfile: (userId: string) => void;
-}>;
+};
 
 // Expose the auth client so it can be used outside of React
 const authClient: { current?: Auth0ContextInterface; error?: Error } = {
@@ -34,22 +34,18 @@ export default function AppAuth0Provider({
 }: Auth0ProviderProps) {
   const history = useHistory();
 
+  const auth0 = useAuth0();
+  authClient.current = auth0;
+
+  useEffect(() => {
+    if (auth0.user && auth0.isAuthenticated) {
+      fetchProfile(auth0.user.sub);
+    }
+  }, [auth0.user, auth0.isAuthenticated, fetchProfile]);
+
   const onRedirectCallback = (appState: AppState) => {
     history.push(appState.returnTo || window.location.pathname);
   };
-
-  function ApplyAuth() {
-    const auth0 = useAuth0();
-    authClient.current = auth0;
-
-    useEffect(() => {
-      if (auth0.user && auth0.isAuthenticated) {
-        fetchProfile(auth0.user.sub);
-      }
-    }, [auth0.user, auth0.isAuthenticated]);
-
-    return <>{children}</>;
-  }
 
   /**
    * Auth requires sessionStorage and will fail if it doesn't exist.
@@ -61,7 +57,7 @@ export default function AppAuth0Provider({
     window.sessionStorage;
   } catch (error) {
     authClient.error = error;
-    return <>{children}</>;
+    return children;
   }
 
   return (
@@ -73,7 +69,7 @@ export default function AppAuth0Provider({
       redirectUri={window.location.origin}
       onRedirectCallback={onRedirectCallback}
     >
-      <ApplyAuth />
+      {children}
     </Auth0Provider>
   );
 }

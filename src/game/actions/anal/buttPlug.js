@@ -2,11 +2,11 @@ import store from "store";
 import createNotification, {
   dismissNotification,
 } from "engine/createNotification";
-import { strokerRemoteControl } from "game/loops/strokeEmitter";
+import { StrokeService } from "game/xstate/services";
 
 export const insertButtPlug = async () => {
   if (!store.game.buttPlugInserted) {
-    strokerRemoteControl.pause();
+    StrokeService.pause();
 
     const notificationId = createNotification({
       message: "Slowly insert a butt plug",
@@ -15,7 +15,7 @@ export const insertButtPlug = async () => {
     });
 
     const done = async () => {
-      strokerRemoteControl.play();
+      StrokeService.play();
       store.game.buttPlugInserted = true;
       dismissNotification(notificationId);
     };
@@ -28,7 +28,7 @@ insertButtPlug.label = "Insert Buttplug";
 
 export const removeButtPlug = async () => {
   if (store.game.buttPlugInserted) {
-    strokerRemoteControl.pause();
+    StrokeService.pause();
 
     const notificationId = createNotification({
       message: "Slowly remove the butt plug",
@@ -37,7 +37,8 @@ export const removeButtPlug = async () => {
     });
 
     const done = async () => {
-      strokerRemoteControl.play();
+      StrokeService.play();
+
       store.game.buttPlugInserted = false;
       dismissNotification(notificationId);
     };

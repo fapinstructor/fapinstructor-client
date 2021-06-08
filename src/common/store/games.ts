@@ -70,13 +70,8 @@ export const selectGameById = (state: State, gameId: string) => {
   return state.games.games.find((game) => gameId === game.id);
 };
 
-export const {
-  setError,
-  setLoading,
-  setGames,
-  setPagination,
-  updateGame,
-} = gamesSlice.actions;
+export const { setError, setLoading, setGames, setPagination, updateGame } =
+  gamesSlice.actions;
 
 export default gamesSlice.reducer;
 
@@ -85,77 +80,78 @@ export default gamesSlice.reducer;
  * and the currentGame since they are stored as separate entities.
  * TODO: Normalize it so games are stored in one location for both.
  */
-export const toggleStar = (gameId: string): AppThunk => async (
-  dispatch,
-  getState
-) => {
-  const profile = selectProfile(getState());
-  if (!profile) {
-    throw new Error("User profile doesn't exist");
-  }
-
-  const currentGame = selectGame(getState());
-  const game = selectGameById(getState(), gameId);
-
-  if (!currentGame && !game) {
-    throw new Error("Game doesn't exist");
-  }
-
-  let stars = currentGame?.stars || game?.stars || 0;
-  const starred = currentGame?.starred || game?.starred;
-
-  if (starred) {
-    await api.delete(`/v1/users/${profile.id}/games/star/${gameId}`);
-    stars -= 1;
-  } else {
-    await api.post(`/v1/users/${profile.id}/games/star/${gameId}`);
-    stars += 1;
-  }
-
-  if (currentGame) {
-    dispatch(setGame({ ...currentGame, starred: !currentGame.starred, stars }));
-  }
-  if (game) {
-    dispatch(updateGame({ ...game, starred: !game.starred, stars }));
-  }
-};
-
-export const searchGames = (request: SearchGamesRequest): AppThunk => async (
-  dispatch
-) => {
-  try {
-    dispatch(setLoading(true));
-
-    let url;
-    const queryString = qs.stringify(request, {
-      arrayFormat: "comma",
-    });
-
-    if (request.playedBy) {
-      url = `/v1/users/${request.playedBy}/games/history?${queryString}`;
-    } else if (request.starredBy) {
-      url = `/v1/users/${request.starredBy}/games/starred?${queryString}`;
-    } else {
-      url = `/v1/games?${queryString}`;
+export const toggleStar =
+  (gameId: string): AppThunk =>
+  async (dispatch, getState) => {
+    const profile = selectProfile(getState());
+    if (!profile) {
+      throw new Error("User profile doesn't exist");
     }
 
-    const { data: games } = await api.get<SearchGamesResponse>(url);
+    const currentGame = selectGame(getState());
+    const game = selectGameById(getState(), gameId);
 
-    dispatch(setPagination(games.pagination));
-    dispatch(setGames(games.data));
-  } catch (err) {
-    const message = `Error searching games: ${err.message}`;
+    if (!currentGame && !game) {
+      throw new Error("Game doesn't exist");
+    }
 
-    dispatch(
-      createNotification({
-        message,
-        duration: -1,
-        severity: Severity.ERROR,
-      })
-    );
+    let stars = currentGame?.stars || game?.stars || 0;
+    const starred = currentGame?.starred || game?.starred;
 
-    dispatch(setError(message));
-  } finally {
-    dispatch(setLoading(false));
-  }
-};
+    if (starred) {
+      await api.delete(`/v1/users/${profile.id}/games/star/${gameId}`);
+      stars -= 1;
+    } else {
+      await api.post(`/v1/users/${profile.id}/games/star/${gameId}`);
+      stars += 1;
+    }
+
+    if (currentGame) {
+      dispatch(
+        setGame({ ...currentGame, starred: !currentGame.starred, stars })
+      );
+    }
+    if (game) {
+      dispatch(updateGame({ ...game, starred: !game.starred, stars }));
+    }
+  };
+
+export const searchGames =
+  (request: SearchGamesRequest): AppThunk =>
+  async (dispatch) => {
+    try {
+      dispatch(setLoading(true));
+
+      let url;
+      const queryString = qs.stringify(request, {
+        arrayFormat: "comma",
+      });
+
+      if (request.playedBy) {
+        url = `/v1/users/${request.playedBy}/games/history?${queryString}`;
+      } else if (request.starredBy) {
+        url = `/v1/users/${request.starredBy}/games/starred?${queryString}`;
+      } else {
+        url = `/v1/games?${queryString}`;
+      }
+
+      const { data: games } = await api.get<SearchGamesResponse>(url);
+
+      dispatch(setPagination(games.pagination));
+      dispatch(setGames(games.data));
+    } catch (err) {
+      const message = `Error searching games: ${err.message}`;
+
+      dispatch(
+        createNotification({
+          message,
+          duration: -1,
+          severity: Severity.ERROR,
+        })
+      );
+
+      dispatch(setError(message));
+    } finally {
+      dispatch(setLoading(false));
+    }
+  };

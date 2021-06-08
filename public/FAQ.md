@@ -36,7 +36,10 @@ Multiple endings will just continue after the first ending (like an orgasm) and 
 I want to avoid hosting uploaded images due to copyright concerns and other regulations. For now you can create your own subreddit and make posts to it with the images you like.
 
 **Where can I find subreddits?**  
-A good spot to start is http://redditlist.com/nsfw
+A good spot to start is http://redditlist.com/nsfw or the #subreddits channel in our [discord](https://discord.gg/2CJPr9M).
+
+**I can't add a subreddit?**
+Make sure you're typing it without 'r/' and each subreddit is separated by a comma.
 
 ## Tasks
 

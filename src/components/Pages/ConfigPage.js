@@ -29,7 +29,7 @@ import TaskList from "containers/TaskList";
 import {
   GripStrength,
   GripStrengthString,
-} from "game/xstate/machines/strokeMachine";
+} from "game/xstate/machines/gripMachine";
 import config from "config";
 import ShareGame from "components/organisms/ShareGame";
 import { validSubreddit } from "utils/regex";
@@ -397,15 +397,17 @@ class ConfigPage extends React.Component {
     this.setState({ errors: this.validateConfig() });
   };
 
-  handleTaskRandomize = (except = []) => (event) => {
-    event.stopPropagation();
+  handleTaskRandomize =
+    (except = []) =>
+    (event) => {
+      event.stopPropagation();
 
-    Object.keys(store.config.tasks).forEach((task) => {
-      if (!except.includes(task)) {
-        store.config.tasks[task] = getRandomBoolean();
-      }
-    });
-  };
+      Object.keys(store.config.tasks).forEach((task) => {
+        if (!except.includes(task)) {
+          store.config.tasks[task] = getRandomBoolean();
+        }
+      });
+    };
 
   render() {
     const { classes } = this.props;

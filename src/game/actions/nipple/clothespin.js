@@ -2,11 +2,11 @@ import store from "store";
 import createNotification, {
   dismissNotification,
 } from "engine/createNotification";
-import { strokerRemoteControl } from "game/loops/strokeEmitter";
+import { StrokeService } from "game/xstate/services";
 
 export const addClothespin = async () => {
   if (store.game.clothespins < 2) {
-    strokerRemoteControl.pause();
+    StrokeService.pause();
     const clothespins = store.game.clothespins + 1;
     const notificationId = createNotification({
       message: "Attach a clothespin to a free nipple",
@@ -15,7 +15,7 @@ export const addClothespin = async () => {
     });
 
     const done = async () => {
-      strokerRemoteControl.play();
+      StrokeService.play();
       store.game.clothespins = clothespins;
       dismissNotification(notificationId);
     };
@@ -28,7 +28,7 @@ addClothespin.label = "Add Clothespin";
 
 export const removeClothespin = async () => {
   if (store.game.clothespins > 0) {
-    strokerRemoteControl.pause();
+    StrokeService.pause();
     const clothespins = store.game.clothespins - 1;
     const notificationId = createNotification({
       message: "Remove a clothespin",
@@ -37,7 +37,7 @@ export const removeClothespin = async () => {
     });
 
     const done = async () => {
-      strokerRemoteControl.play();
+      StrokeService.play();
       store.game.clothespins = clothespins;
       dismissNotification(notificationId);
     };

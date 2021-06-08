@@ -34,23 +34,23 @@ export const { setLoading } = createGameSlice.actions;
 
 export default createGameSlice.reducer;
 
-export const createGame = (
-  values: CreateGameRequest
-): AppThunk<Promise<CreateGameResponse>> => async (dispatch) => {
-  try {
-    dispatch(setLoading(true));
-    const { data } = await api.post<CreateGameResponse>("/v1/games", values);
-    return data;
-  } catch (err) {
-    dispatch(
-      createNotification({
-        message: `Error creating game: ${err.message}`,
-        duration: -1,
-        severity: Severity.ERROR,
-      })
-    );
-    dispatch(setLoading(false));
+export const createGame =
+  (values: CreateGameRequest): AppThunk<Promise<CreateGameResponse>> =>
+  async (dispatch) => {
+    try {
+      dispatch(setLoading(true));
+      const { data } = await api.post<CreateGameResponse>("/v1/games", values);
+      return data;
+    } catch (err) {
+      dispatch(
+        createNotification({
+          message: `Error creating game: ${err.message}`,
+          duration: -1,
+          severity: Severity.ERROR,
+        })
+      );
+      dispatch(setLoading(false));
 
-    throw err;
-  }
-};
+      throw err;
+    }
+  };

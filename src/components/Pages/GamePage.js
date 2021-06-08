@@ -1,8 +1,7 @@
 import React from "react";
 import * as Sentry from "@sentry/react";
-import { Redirect } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
-import { withRouter } from "react-router-dom";
 import { startGame, stopGame } from "game";
 import store from "store";
 import { Paper } from "@material-ui/core";
@@ -106,13 +105,8 @@ class GamePage extends React.Component {
   };
 
   render() {
-    const {
-      media,
-      gameStarted,
-      isSharedGame,
-      gameConfigId,
-      error,
-    } = this.state;
+    const { media, gameStarted, isSharedGame, gameConfigId, error } =
+      this.state;
     const { classes } = this.props;
 
     const activeLink = media && media.links[media.linkIndex];

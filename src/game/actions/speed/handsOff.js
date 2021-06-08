@@ -3,7 +3,7 @@ import { getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
 import { setStrokeStyle, setStrokeStyleHandsOff } from "game/enums/StrokeStyle";
 import { getRandomHandsOffMessage } from "game/texts/messages";
-import { strokerRemoteControl } from "game/loops/strokeEmitter";
+import { StrokeService } from "game/xstate/services";
 
 const HANDS_OFF_DURATION_MIN = 10; // Seconds
 const HANDS_OFF_DURATION_MAX = 25; // Seconds
@@ -36,13 +36,13 @@ const handsOff = async (
     delay: true,
   });
 
-  strokerRemoteControl.pause();
+  StrokeService.pause();
 
   await setStrokeStyleHandsOff();
 
   await delay(duration * 1000);
 
-  strokerRemoteControl.play();
+  StrokeService.play();
   await setStrokeStyle();
   createNotification({ message: "Start stroking again" });
 };

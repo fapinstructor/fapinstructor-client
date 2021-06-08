@@ -1,10 +1,10 @@
 import createNotification, {
   dismissNotification,
 } from "engine/createNotification";
-import { strokerRemoteControl } from "game/loops/strokeEmitter";
+import { StrokeService } from "game/xstate/services";
 
 const applyIcyHot = async () => {
-  strokerRemoteControl.pause();
+  StrokeService.pause();
   const notificationId = createNotification({
     message: "Apply a dime sized spot of icyhot to your cock",
     duration: -1,
@@ -12,7 +12,7 @@ const applyIcyHot = async () => {
   });
 
   const done = async () => {
-    strokerRemoteControl.play();
+    StrokeService.play();
     dismissNotification(notificationId);
   };
   done.label = "Applied";

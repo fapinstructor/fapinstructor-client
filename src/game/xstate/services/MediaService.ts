@@ -42,6 +42,9 @@ const MediaService = {
   play() {
     getMediaService().send("PLAY");
   },
+  get paused() {
+    return getMediaService().state.value === "paused";
+  },
 };
 
 export function useMediaService() {

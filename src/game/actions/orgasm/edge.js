@@ -3,19 +3,16 @@ import { playCommand } from "engine/audio";
 import audioLibrary from "audio";
 import elapsedGameTime from "game/utils/elapsedGameTime";
 import { getRandomStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
-import { setDefaultGrip } from "game/actions/grip";
 import { setDefaultStrokeStyle } from "game/enums/StrokeStyle";
 import createNotification, {
   dismissNotification,
 } from "engine/createNotification";
 import { getRandomBoolean, getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
-import { strokerRemoteControl } from "game/loops/strokeEmitter";
 import handsOff from "game/actions/speed/handsOff";
 import { getRandomEdgeMessage } from "game/texts/messages";
 import punishment from "../punishment";
 import { getRandomEdge } from "./edgeInTime";
-import { clearStrokeEmissions } from "game/loops/strokeEmitter";
 import { StrokeService } from "game/xstate/services";
 
 /**
@@ -58,10 +55,9 @@ export const shouldEdge = () => {
  *   How long to ride the edge
  */
 export const rideTheEdge = async (time = getRandomInclusiveInteger(5, 30)) => {
-  clearStrokeEmissions();
-
   const previousStrokeSpeed = StrokeService.strokeSpeed;
-  setStrokeSpeed(0);
+  setStrokeSpeed(store.config.fastestStrokeSpeed);
+
   const notificationId = createNotification({
     message: "Ride the edge",
     duration: -1,
@@ -97,7 +93,7 @@ export const stopEdging = async () => {
   let edgeCooldown = parseInt(store.config.edgeCooldown, 10);
   if (store.game.orgasm && !store.game.edgingLadder) {
   } else {
-    strokerRemoteControl.pause();
+    StrokeService.pause();
     //Just to make it a little bit random. So one does not get exactly XY seconds cooldown every time.
     let approx = getRandomInclusiveInteger(
       Math.floor(edgeCooldown / 2),
@@ -107,7 +103,7 @@ export const stopEdging = async () => {
 
     setStrokeSpeed(getRandomStrokeSpeed());
 
-    strokerRemoteControl.play();
+    StrokeService.play();
 
     playCommand(audioLibrary.StartStrokingAgain);
     await delay(2000);
@@ -130,7 +126,7 @@ export const getToTheEdge = async (message = getRandomEdgeMessage()) => {
 
   setStrokeSpeed(fastestStrokeSpeed);
 
-  setDefaultGrip();
+  StrokeService.resetGripStrength();
   setDefaultStrokeStyle();
 
   return createNotification({ message, duration: -1 });

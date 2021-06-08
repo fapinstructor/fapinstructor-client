@@ -29,7 +29,6 @@ import {
   setStrokeStyle,
 } from "game/enums/StrokeStyle";
 import { getRandomStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
-import { clearStrokeEmissions } from "game/loops/strokeEmitter";
 import { ActionService } from "game/xstate/services";
 
 const SECONDS_IN_MILLI_SECONDS = 1000; // Factor
@@ -57,7 +56,6 @@ const getRandomPunishment = () => {
 const punishment = async () => {
   const punish = getRandomPunishment();
   const message = getRandomPunishmentMessage();
-  clearStrokeEmissions();
   createNotification({ message });
 
   store.game.orgasm = false; // A (May be Any) Task was not fulfilled properly -> no orgasm this round

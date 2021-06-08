@@ -1,10 +1,10 @@
-// isSupported is returning false for the lastest version of FireFox.
-import { AudioContext /*,isSupported*/ } from "standardized-audio-context";
 import memoize from "fast-memoize";
+// isSupported is returning false for the lastest version of FireFox.
+import { AudioContext } from "standardized-audio-context";
+import audioLibrary, { getRandomAudioVariation } from "audio";
 import store from "common/store";
-import { createNotification, Severity } from "common/store/notifications";
+import { Severity, createNotification } from "common/store/notifications";
 import { selectEnableVoice } from "common/store/settings";
-import { getRandomAudioVariation } from "audio";
 
 let context;
 let oscillator;
@@ -62,7 +62,7 @@ let tickCount = 0;
 let previousRhythm = 0;
 export function playTick(rhythm) {
   if (!context || !oscillator || !gainNode) {
-    return false;
+    play(audioLibrary.Tick);
   }
 
   let frequency;

@@ -57,16 +57,14 @@ const FormikAutocomplete = (props) => {
   };
 
   return (
-    <>
-      {canBeRendered && (
-        <Autocomplete
-          value={field.value}
-          onChange={handleOnChange}
-          renderInput={renderInput}
-          {...autoCompleteProps}
-        />
-      )}
-    </>
+    canBeRendered && (
+      <Autocomplete
+        value={field.value}
+        onChange={handleOnChange}
+        renderInput={renderInput}
+        {...autoCompleteProps}
+      />
+    )
   );
 };
 

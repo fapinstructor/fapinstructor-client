@@ -7,9 +7,8 @@ initStoryshots({
   snapshotSerializers: [styleSheetSerializer],
   test: ({ story, context, stories2snapsConverter, done }) => {
     // Use .snap for storyshot tests so eslint snapshot rules are applied
-    const snapshotFileName = stories2snapsConverter.getSnapshotFileName(
-      context
-    );
+    const snapshotFileName =
+      stories2snapsConverter.getSnapshotFileName(context);
     const storyElement = story.render();
 
     // Mount component
@@ -17,7 +16,7 @@ initStoryshots({
 
     waitForSuspense().then(() => {
       expect(container.firstChild).toMatchSpecificSnapshot(snapshotFileName);
-      done();
+      done && done();
     });
   },
 });

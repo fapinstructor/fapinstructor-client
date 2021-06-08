@@ -1,119 +1,65 @@
-// TODO: Clean this file up
-import React from "react";
-import type {
-  StrokeEmitterObservable,
-  StrokeEvent,
-} from "game/loops/strokeEmitter";
+import React, { useEffect, useState } from "react";
 import { TIME_DELAY } from "components/organisms/BeatMeter/settings";
 import { CircleFlash, Circle, AnimatedDot, HR, Bar } from "./styled-components";
+import { strokeServiceObserver } from "game/xstate/services";
+import { StrokeMachineEvent } from "game/xstate/machines/strokeMachine";
 
-export type BeatMeterProps = {
-  strokeEmitterObservable: StrokeEmitterObservable;
-};
+function Dots() {
+  const [dots, setDots] = useState<number[]>([]);
+  const [observerId, setObserverId] = useState<number>();
 
-// Using a class here because we want to clear timeouts when unmounting
-export default class BeatMeter extends React.Component<BeatMeterProps> {
-  sub = 0;
-  timeouts: number[] = [];
+  const handleEvent = (event: StrokeMachineEvent) => {
+    switch (event.type) {
+      case "QUEUE_STROKE": {
+        // Remove dot
+        const handle = setTimeout(() => {
+          setDots((dots) => dots.slice(1));
+        }, TIME_DELAY);
 
-  state = {
-    dots: [],
+        // Add dot
+        setDots((dots) => [...dots, handle]);
+        break;
+      }
+      case "CLEAR_STROKE_QUEUE": {
+        setDots((dots) => {
+          dots.forEach(clearTimeout);
+          return [];
+        });
+        break;
+      }
+    }
   };
 
-  constructor(props: BeatMeterProps) {
-    super(props);
-    this.handleStrokeEvent = this.handleStrokeEvent.bind(this);
-  }
+  useEffect(() => {
+    setObserverId(strokeServiceObserver.subscribe(handleEvent));
 
-  componentDidMount() {
-    this.sub = this.props.strokeEmitterObservable.subscribe(
-      this.handleStrokeEvent
-    );
-  }
+    return () => {
+      if (observerId) {
+        dots.forEach(clearTimeout);
+        strokeServiceObserver.unsubscribe(observerId);
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  componentWillUnmount() {
-    this.props.strokeEmitterObservable.unsubscribe(this.sub);
-
-    this.timeouts.forEach((timeout) => {
-      clearTimeout(timeout);
-    });
-  }
-
-  handleStrokeEvent(event: StrokeEvent) {
-    switch (event.type) {
-      case "clear":
-        this.setState({ dots: [] });
-        break;
-      case "emit":
-        if (event.strokeTime) {
-          // add dot
-          this.setState({ dots: [...this.state.dots, event.strokeTime] });
-
-          // remove dot
-          const timeout = setTimeout(() => {
-            this.setState({ dots: this.state.dots.slice(1) });
-          }, TIME_DELAY);
-          this.timeouts.push(timeout);
-        }
-        break;
-    }
-  }
-
-  render() {
-    return (
-      <Bar>
-        <HR />
-        <Circle />
-        {this.state.dots.map((timestamp) => (
-          <React.Fragment key={timestamp}>
-            <CircleFlash />
-            <AnimatedDot />
-          </React.Fragment>
-        ))}
-      </Bar>
-    );
-  }
+  return (
+    <>
+      {dots.map((timestamp) => (
+        <React.Fragment key={timestamp}>
+          <CircleFlash />
+          <AnimatedDot />
+        </React.Fragment>
+      ))}
+    </>
+  );
 }
 
-// export default function BeatMeter({ strokeEmitterObservable }: BeatMeterProps) {
-//   const [dots, setDots] = useState<number[]>([]);
-
-//   // add dots
-//   useEffect(() => {
-//     const subscriptionId = strokeEmitterObservable.subscribe((event) => {
-//       switch (event.type) {
-//         case "clear":
-//           setDots([]);
-//           break;
-//         case "emit":
-//           if (event.strokeTime) {
-//             // add dot
-//             setDots((d) => [...d, event.strokeTime]);
-
-//             // remove dot
-//             setTimeout(() => {
-//               setDots((d) => d.slice(1));
-//             }, TIME_DELAY);
-//           }
-//           break;
-//       }
-//     });
-
-//     return () => {
-//       strokeEmitterObservable.unsubscribe(subscriptionId);
-//     };
-//   }, [strokeEmitterObservable]);
-
-//   return (
-//     <Bar>
-//       <HR />
-//       <Circle />
-//       {dots.map((timestamp) => (
-//         <React.Fragment key={timestamp}>
-//           <CircleFlash />
-//           <AnimatedDot />
-//         </React.Fragment>
-//       ))}
-//     </Bar>
-//   );
-// }
+export default function BeatMeter() {
+  return (
+    <Bar>
+      <HR />
+      <Circle />
+      <Dots />
+    </Bar>
+  );
+}

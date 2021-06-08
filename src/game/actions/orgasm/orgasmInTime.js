@@ -22,11 +22,10 @@ import {
   getRandomOrgasmAdvancedMessage,
   getRandomOrgasmInTimeMessage,
 } from "game/texts/messages";
-import { setDefaultGrip } from "game/actions/grip";
 import { setDefaultStrokeStyle } from "game/enums/StrokeStyle";
 import { applyProbability } from "game/actions/generateAction";
 import createProbability from "game/utils/createProbability";
-import { ActionService } from "game/xstate/services";
+import { ActionService, StrokeService } from "game/xstate/services";
 
 /**
  * Plays a orgasm sound and creates a random orgasm notification.
@@ -45,7 +44,7 @@ export const getToTheOrgasm = (message = getRandomEdgeInTimeMessage()) => {
   playCommand(getRandomAudioVariation("Orgasm"));
 
   setStrokeSpeed(fastestStrokeSpeed);
-  setDefaultGrip();
+  StrokeService.resetGripStrength();
   setDefaultStrokeStyle();
 
   return createNotification({ message, duration: -1 });

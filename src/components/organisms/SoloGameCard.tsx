@@ -9,13 +9,11 @@ export type SoloGameCardProps = {
 
 export default function SoloGameCard({ onStart }: SoloGameCardProps) {
   return (
-    <>
-      <NodeRow>
-        <Button onClick={onStart} variant="contained" color="secondary">
-          start game
-        </Button>
-        <BackToConfigButton />
-      </NodeRow>
-    </>
+    <NodeRow>
+      <Button onClick={onStart} variant="contained" color="secondary">
+        start game
+      </Button>
+      <BackToConfigButton />
+    </NodeRow>
   );
 }

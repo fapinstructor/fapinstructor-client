@@ -1,0 +1,71 @@
+import { interpret, InterpreterFrom } from "xstate";
+import { useService } from "@xstate/react";
+import { GameConfig } from "configureStore";
+import {
+  createGripMachine,
+  GripStrength,
+  GripMachine,
+} from "game/xstate/machines/gripMachine";
+
+let machine: GripMachine;
+let service: InterpreterFrom<GripMachine>;
+
+export function getGripService() {
+  if (!service) {
+    throw new Error("You must first initialize the grip service");
+  }
+  return service;
+}
+
+function getGripServiceContext() {
+  return getGripService().state.context;
+}
+
+const GripService = {
+  initialize(gameConfig: GameConfig) {
+    if (service) {
+      service.stop();
+    }
+
+    machine = createGripMachine(gameConfig);
+    service = interpret(machine, { devTools: true }).onTransition((state) => {
+      if (state.value !== state.history?.value) {
+        console.log(`[GripService] Transition: ${state.value}`);
+      }
+      console.log("[GripService] Event:", state.event);
+    });
+
+    // Automatically start the service after it's created
+    service.start();
+  },
+  pause() {
+    getGripService().send("PAUSE");
+  },
+  play() {
+    getGripService().send("PLAY");
+  },
+  get paused() {
+    return getGripService().state.value === "paused";
+  },
+  setGripStrength(strength: GripStrength) {
+    getGripService().send("SET_GRIP_STRENGTH", { strength });
+  },
+  resetGripStrength() {
+    getGripService().send("RESET_GRIP_STRENGTH");
+  },
+  loosenGripStrength() {
+    getGripService().send("LOOSEN_GRIP_STRENGTH");
+  },
+  tightenGripStrength() {
+    getGripService().send("TIGHTEN_GRIP_STRENGTH");
+  },
+  get gripStrength() {
+    return getGripServiceContext().gripStrength;
+  },
+};
+
+export function useGripService() {
+  return useService(getGripService());
+}
+
+export default GripService;

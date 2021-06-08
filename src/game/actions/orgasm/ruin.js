@@ -6,14 +6,9 @@ import { getRandomStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
 import delay from "utils/delay";
 import { playCommand } from "engine/audio";
 import audioLibrary, { getRandomAudioVariation } from "audio";
-import {
-  strokerRemoteControl,
-  clearStrokeEmissions,
-} from "game/loops/strokeEmitter";
 import elapsedGameTime from "game/utils/elapsedGameTime";
 import { setRandomStrokeStyle } from "game/enums/StrokeStyle";
-import { MediaService } from "game/xstate/services";
-import { StrokeService } from "game/xstate/services";
+import { MediaService, StrokeService } from "game/xstate/services";
 
 export const shouldRuin = () => {
   const {
@@ -51,7 +46,7 @@ export const shouldRuin = () => {
 };
 
 export const ruinedOrgasm = async () => {
-  if (MediaService.instance.state.matches("paused")) {
+  if (MediaService.paused) {
     MediaService.play();
   }
 
@@ -63,14 +58,13 @@ export const ruinedOrgasm = async () => {
     config: { ruinCooldown },
   } = store;
 
-  clearStrokeEmissions();
-  strokerRemoteControl.pause();
+  StrokeService.pause();
 
   await delay(ruinCooldown * 1000);
 
   setStrokeSpeed(getRandomStrokeSpeed());
   await setRandomStrokeStyle();
-  strokerRemoteControl.play();
+  StrokeService.play();
   createNotification({ message: "Start stroking again" });
 
   playCommand(audioLibrary.StartStrokingAgain);

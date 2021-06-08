@@ -12,7 +12,7 @@ module.exports = {
       extends: [
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended",
-        "eslint-config-prettier/@typescript-eslint",
+        "prettier",
       ],
       rules: {
         "@typescript-eslint/explicit-function-return-type": "off",
@@ -28,6 +28,21 @@ module.exports = {
       {
         allowObject: true,
       },
+    ],
+    "no-duplicate-imports": "warn",
+    "react/jsx-no-useless-fragment": "error",
+    "no-restricted-imports": [
+      "warn",
+      {
+        name: "styled-components",
+        message: 'Use "styled-components/macro" instead',
+      },
+      // {
+      //   name: "history",
+      //   importNames: ["Location", "History"],
+      //   message:
+      //     "Import useLocation or useHistory from helpers/routingHooksWithState instead",
+      // },
     ],
   },
 };

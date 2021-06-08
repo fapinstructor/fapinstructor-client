@@ -1,11 +1,13 @@
 import { interpret, InterpreterFrom } from "xstate";
 import { useService } from "@xstate/react";
 import { GameConfig } from "configureStore";
+import { createObservable } from "utils/observable";
 import {
   createStrokeMachine,
-  GripStrength,
   StrokeMachine,
+  StrokeMachineEvent,
 } from "game/xstate/machines/strokeMachine";
+import GripService from "./GripService";
 
 let machine: StrokeMachine;
 let service: InterpreterFrom<StrokeMachine>;
@@ -21,28 +23,41 @@ function getStrokeServiceContext() {
   return getStrokeService().state.context;
 }
 
+export const strokeServiceObserver = createObservable<StrokeMachineEvent>();
+
 const StrokeService = {
   initialize(gameConfig: GameConfig) {
     if (service) {
       service.stop();
     }
-
     machine = createStrokeMachine(gameConfig);
-    service = interpret(machine, { devTools: true }).onTransition((state) => {
-      if (state.value !== state.history?.value) {
-        console.log(`[StrokeService] Transition: ${state.value}`);
-      }
-      console.log("[StrokeService] Event:", state.event);
-    });
+    service = interpret(machine, { devTools: true })
+      .onTransition((state) => {
+        if (state.value !== state.history?.value) {
+          console.log(`[StrokeService] Transition: ${state.value}`);
+        }
+      })
+      .onEvent((event) => {
+        // console.log("[StrokeService] Event:", event);
+        strokeServiceObserver.notify(event as StrokeMachineEvent);
+      });
 
     // Automatically start the service after it's created
     service.start();
   },
+  get instance() {
+    return getStrokeService();
+  },
   pause() {
     getStrokeService().send("PAUSE");
+    GripService.pause();
   },
   play() {
     getStrokeService().send("PLAY");
+    GripService.play();
+  },
+  get paused() {
+    return getStrokeService().state.value === "paused";
   },
   setStrokeSpeed(speed: number) {
     getStrokeService().send("SET_STROKE_SPEED", { speed });
@@ -56,25 +71,23 @@ const StrokeService = {
   get strokeSpeedBaseline() {
     return getStrokeServiceContext().strokeSpeedBaseline;
   },
-  setGripStrength(strength: GripStrength) {
-    getStrokeService().send("SET_GRIP_STRENGTH", { strength });
-  },
-  resetGripStrength() {
-    getStrokeService().send("RESET_GRIP_STRENGTH");
-  },
-  loosenGripStrength() {
-    getStrokeService().send("LOOSEN_GRIP_STRENGTH");
-  },
-  tightenGripStrength() {
-    getStrokeService().send("TIGHTEN_GRIP_STRENGTH");
-  },
-  get gripStrength() {
-    return getStrokeServiceContext().gripStrength;
+  clearStrokeQueue() {
+    getStrokeService().send("CLEAR_STROKE_QUEUE");
   },
 };
 
 export function useStrokeService() {
   return useService(getStrokeService());
 }
+
+// export function useObserver(cb: (event: StrokeMachineEvent) => void) {
+//     if (!observerId) {
+//       console.log("HI");
+//       setObserverId(observer.subscribe(cb));
+//     }
+//   }, [observerId, setObserverId, cb]);
+
+//   return [observer]
+// }
 
 export default StrokeService;

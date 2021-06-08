@@ -10,7 +10,6 @@ import SkipButton from "components/molecules/buttons/SkipButton";
 import HomeButton from "components/atoms/HomeButton";
 import { Notify } from "common/store/notifications";
 import BeatMeter from "components/organisms/BeatMeter";
-import { strokeEmitterObservable } from "game/loops/strokeEmitter";
 import { useSelector } from "react-redux";
 import { selectGame } from "common/store/currentGame";
 import StarButton from "components/molecules/buttons/StarButton";
@@ -105,9 +104,7 @@ export default function HUD({ createNotification }: HUDProps) {
         </div>
         <div>
           <TriggerPanel />
-          {enableBeatMeter && (
-            <BeatMeter strokeEmitterObservable={strokeEmitterObservable} />
-          )}
+          {enableBeatMeter && <BeatMeter />}
         </div>
       </div>
     </div>

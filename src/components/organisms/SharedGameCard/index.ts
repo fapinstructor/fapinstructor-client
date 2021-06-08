@@ -6,8 +6,7 @@ import {
   selectError,
   fetchGame,
 } from "common/store/currentGame";
-import { selectProfile } from "common/store/currentUser";
-import { appendGameHistory } from "common/store/currentUser";
+import { appendGameHistory, selectProfile } from "common/store/currentUser";
 import SharedGameCard from "./SharedGameCard";
 
 const mapStateToProps = (state: State) => ({

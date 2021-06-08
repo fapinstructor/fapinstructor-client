@@ -1,4 +1,5 @@
 import createInstruction from "game/actions/createInstruction";
+import { StrokeService } from "game/xstate/services";
 
 const warmup = async ({
   createNotification,
@@ -11,6 +12,7 @@ const warmup = async ({
   const strokeSpeed = getRandomStrokeSpeed({ fast: getRandomStrokeSpeed() });
 
   const warmup = async () => {
+    StrokeService.play();
     const segment1 = 30 * 1000;
     const segment2 = 60 * 1000;
 
@@ -34,6 +36,7 @@ const warmup = async ({
   warmup.label = "Warm up";
 
   const ready = async () => {
+    StrokeService.play();
     await delay(1000);
     setStrokeSpeed(strokeSpeed);
   };

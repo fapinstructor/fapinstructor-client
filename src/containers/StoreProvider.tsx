@@ -3,9 +3,8 @@ import { subscribe, unsubscribe, Store } from "store";
 
 export type ProxyStoreContextProps = Store | null;
 
-export const ProxyStoreContext = React.createContext<ProxyStoreContextProps | null>(
-  null
-);
+export const ProxyStoreContext =
+  React.createContext<ProxyStoreContextProps | null>(null);
 
 type ProxyStoreProviderProps = {
   store: Store;

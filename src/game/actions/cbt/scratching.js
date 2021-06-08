@@ -1,10 +1,10 @@
 import createNotification, {
   dismissNotification,
 } from "engine/createNotification";
-import { strokerRemoteControl } from "game/loops/strokeEmitter";
+import { StrokeService } from "game/xstate/services";
 
 export const scratchChest = async () => {
-  strokerRemoteControl.pause();
+  StrokeService.pause();
 
   const notificationId = createNotification({
     message: "Scratch your chest with your fingernails",
@@ -13,7 +13,7 @@ export const scratchChest = async () => {
   });
 
   const done = async () => {
-    strokerRemoteControl.play();
+    StrokeService.play();
     dismissNotification(notificationId);
   };
   done.label = "Scratched";
@@ -23,7 +23,7 @@ export const scratchChest = async () => {
 scratchChest.label = "Scratch Chest";
 
 export const scratchThighs = async () => {
-  strokerRemoteControl.pause();
+  StrokeService.pause();
 
   const notificationId = createNotification({
     message: "Scratch your thighs with your fingernails",
@@ -32,7 +32,7 @@ export const scratchThighs = async () => {
   });
 
   const done = async () => {
-    strokerRemoteControl.play();
+    StrokeService.play();
     dismissNotification(notificationId);
   };
   done.label = "Scratched";
@@ -42,7 +42,7 @@ export const scratchThighs = async () => {
 scratchThighs.label = "Scratch Thighs";
 
 export const scratchShoulders = async () => {
-  strokerRemoteControl.pause();
+  StrokeService.pause();
 
   const notificationId = createNotification({
     message: "Scratch your shoulders with your fingernails",
@@ -51,7 +51,7 @@ export const scratchShoulders = async () => {
   });
 
   const done = async () => {
-    strokerRemoteControl.play();
+    StrokeService.play();
     dismissNotification(notificationId);
   };
   done.label = "Scratched";

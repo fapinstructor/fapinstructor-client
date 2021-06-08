@@ -45,16 +45,18 @@ class TaskList extends React.Component {
    * @returns {Function}
    *   it actually returns a piece of HTML5
    */
-  handleToggleAll = (except = []) => (event, checked) => {
-    this.setState({
-      [event.target.value]: checked,
-    });
-    Object.keys(this.props.tasks).forEach((task) => {
-      if (!except.includes(task)) {
-        store.config.tasks[task] = checked;
-      }
-    });
-  };
+  handleToggleAll =
+    (except = []) =>
+    (event, checked) => {
+      this.setState({
+        [event.target.value]: checked,
+      });
+      Object.keys(this.props.tasks).forEach((task) => {
+        if (!except.includes(task)) {
+          store.config.tasks[task] = checked;
+        }
+      });
+    };
 
   handleTaskCheck = (name) => (event, checked) => {
     store.config.tasks[name] = checked;

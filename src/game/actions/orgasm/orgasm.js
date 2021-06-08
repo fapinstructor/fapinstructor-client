@@ -6,10 +6,6 @@ import { getRandomStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
 import delay from "utils/delay";
 import { playCommand } from "engine/audio";
 import audioLibrary, { getRandomAudioVariation } from "audio";
-import {
-  strokerRemoteControl,
-  clearStrokeEmissions,
-} from "game/loops/strokeEmitter";
 import determineEdge from "./edge";
 import { chance, getRandomInclusiveInteger } from "utils/math";
 import elapsedGameTime from "game/utils/elapsedGameTime";
@@ -23,6 +19,7 @@ import {
 import createProbability from "game/utils/createProbability";
 import { applyProbability } from "game/actions/generateAction";
 import { getRandomYouDidGoodMessage } from "game/texts/teasing_messages";
+import { StrokeService } from "game/xstate/services";
 
 const SIXTY_SECONDS = 60; // That's what makes one minute
 const FINAL_EDGE_MIN = 15; // Seconds
@@ -239,13 +236,12 @@ skip.label = "Skip & Add Time";
 export const end = async () => {
   const { maximumOrgasms } = store.config;
 
-  clearStrokeEmissions();
-  strokerRemoteControl.pause();
+  StrokeService.pause();
 
   // should continue?
   if (parseInt(store.game.orgasms, 10) + 1 < parseInt(maximumOrgasms, 10)) {
     setStrokeSpeed(getRandomStrokeSpeed());
-    strokerRemoteControl.play();
+    StrokeService.play();
     createNotification({ message: "Start stroking again" });
     playCommand(audioLibrary.StartStrokingAgain);
     await delay(3 * SECONDS_IN_MILLI_SECONDS);

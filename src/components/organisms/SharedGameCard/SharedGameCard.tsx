@@ -62,7 +62,7 @@ export default function SharedGameCard({
     return <ErrorCard error={error} />;
   }
 
-  let content;
+  let content = null;
   if (game) {
     content = (
       <>
@@ -82,5 +82,5 @@ export default function SharedGameCard({
       </>
     );
   }
-  return <>{content}</>;
+  return content;
 }

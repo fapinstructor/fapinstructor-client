@@ -2,19 +2,13 @@ import store from "store";
 import createNotification, {
   dismissNotification,
 } from "engine/createNotification";
-import {
-  strokerRemoteControl,
-  clearStrokeEmissions,
-} from "game/loops/strokeEmitter";
 import videoLibrary from "video";
 import { getRandomInclusiveInteger } from "utils/math";
-
-import { MediaService } from "game/xstate/services";
+import { MediaService, StrokeService } from "game/xstate/services";
 
 const bindCockAndBalls = async () => {
   if (!store.game.cockAndBallsBound) {
-    clearStrokeEmissions();
-    strokerRemoteControl.pause();
+    StrokeService.pause();
     MediaService.pause();
     // pause images
     const nid = createNotification({
@@ -36,7 +30,7 @@ const bindCockAndBalls = async () => {
 
     const done = async () => {
       dismissNotification(nid);
-      strokerRemoteControl.play();
+      StrokeService.play();
       MediaService.play();
       store.game.cockAndBallsBound = true;
     };

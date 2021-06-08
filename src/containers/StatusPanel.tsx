@@ -25,8 +25,8 @@ import {
   toggleVideoAudio,
   toggleVoice,
 } from "common/store/settings";
-import { useStrokeService } from "game/xstate/services";
-import { GripStrengthString } from "game/xstate/machines/strokeMachine";
+import { useGripService } from "game/xstate/services";
+import { GripStrengthString } from "game/xstate/machines/gripMachine";
 
 const useStyles = makeStyles({
   root: {
@@ -101,7 +101,7 @@ export default function StatusPanel() {
     {
       context: { gripStrength },
     },
-  ] = useStrokeService();
+  ] = useGripService();
 
   return (
     <div className={classes.root}>

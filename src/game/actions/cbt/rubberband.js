@@ -3,13 +3,12 @@ import createNotification, {
   dismissNotification,
 } from "engine/createNotification";
 import { getRandomBoolean, getRandomInclusiveInteger } from "utils/math";
-import { strokerRemoteControl } from "game/loops/strokeEmitter";
 import { getRandomStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
 import delay from "utils/delay";
 import { StrokeService } from "game/xstate/services";
 
 export const addRubberBand = async () => {
-  strokerRemoteControl.pause();
+  StrokeService.pause();
   const newRubberBands = store.game.rubberBands + 1;
 
   let location = "Put a rubberband ";
@@ -37,7 +36,7 @@ export const addRubberBand = async () => {
   });
 
   const done = async () => {
-    strokerRemoteControl.play();
+    StrokeService.play();
     store.game.rubberBands = newRubberBands;
     dismissNotification(notificationId);
   };
@@ -51,7 +50,7 @@ export const removeRubberBand = async () => {
   const currentRubberBands = store.game.rubberBands;
 
   if (currentRubberBands !== 0) {
-    strokerRemoteControl.pause();
+    StrokeService.pause();
     const newRubberBands = store.game.rubberBands - 1;
     const notificationId = createNotification({
       message: "Remove a rubberband",
@@ -60,7 +59,7 @@ export const removeRubberBand = async () => {
     });
 
     const done = async () => {
-      strokerRemoteControl.play();
+      StrokeService.play();
       store.game.rubberBands = newRubberBands;
       dismissNotification(notificationId);
     };

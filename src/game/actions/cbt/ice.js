@@ -1,9 +1,9 @@
 import createNotification, {
   dismissNotification,
 } from "engine/createNotification";
-import { strokerRemoteControl } from "game/loops/strokeEmitter";
 import { getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
+import { StrokeService } from "game/xstate/services";
 
 export const rubIceOnBalls = async () => {
   const time = getRandomInclusiveInteger(10, 50);
@@ -15,7 +15,7 @@ export const rubIceOnBalls = async () => {
     delay: true,
   });
 
-  strokerRemoteControl.pause();
+  StrokeService.pause();
 
   const done = async () => {
     dismissNotification(nid);
@@ -27,7 +27,7 @@ export const rubIceOnBalls = async () => {
     });
     await delay(time * 1000);
 
-    strokerRemoteControl.play();
+    StrokeService.play();
     createNotification({ message: "Back to stroking" });
 
     await delay(3 * 1000);

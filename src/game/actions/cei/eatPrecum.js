@@ -1,12 +1,12 @@
 import createNotification, {
   dismissNotification,
 } from "engine/createNotification";
-import { strokerRemoteControl } from "game/loops/strokeEmitter";
+import { StrokeService } from "game/xstate/services";
 import { playCommand } from "engine/audio";
 import { getRandomAudioVariation } from "audio";
 
 const eatPrecum = async () => {
-  strokerRemoteControl.pause();
+  StrokeService.pause();
   const notificationId = createNotification({
     message: "Squeeze your cock and eat up all of your precum",
     duration: -1,
@@ -16,7 +16,7 @@ const eatPrecum = async () => {
   playCommand(getRandomAudioVariation("CEI"));
 
   const done = async () => {
-    strokerRemoteControl.play();
+    StrokeService.play();
     dismissNotification(notificationId);
   };
   done.label = "Swallowed";

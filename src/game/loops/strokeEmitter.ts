@@ -1,9 +1,6 @@
-import remoteControl from "./remoteControl";
 import { createObservable } from "utils/observable";
 import type { GameLoopArgs } from "engine/loop";
 import { StrokeService } from "game/xstate/services";
-
-export const strokerRemoteControl = Object.create(remoteControl);
 
 type EmissionEvent = {
   type: "emit";
@@ -50,7 +47,7 @@ let measureIndex = 0;
 let noteDuration = 0;
 
 const strokeEmitter = ({ timestamp, progress }: GameLoopArgs) => {
-  if (!strokerRemoteControl.paused) {
+  if (!StrokeService.paused) {
     lastRender += progress;
 
     const tempo = 60 * StrokeService.strokeSpeed;

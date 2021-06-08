@@ -2,8 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { triggerHotkeys } from "engine/hotkeys";
-import { useActionService } from "game/xstate/services";
-import { ActionService } from "game/xstate/services";
+import { useActionService, ActionService } from "game/xstate/services";
 
 const useStyles = makeStyles((theme) => ({
   root: {

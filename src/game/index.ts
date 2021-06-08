@@ -6,9 +6,7 @@ import interrupt from "engine/interrupt";
 import { createAudioContext } from "engine/audio";
 import configureStore from "./configureStore";
 import actionLoop from "./loops/actionLoop";
-import strokerLoop from "./loops/strokeEmitter";
 import moanLoop from "./loops/moanLoop";
-import ticker from "./loops/ticker";
 import {
   strokeSpeedBaseLineAdjustmentLoop,
   strokeSpeedAdjustmentLoop,
@@ -19,13 +17,13 @@ import {
   MediaService,
   StrokeService,
   ActionService,
+  GripService,
 } from "game/xstate/services";
+import handy from "api/handy";
 
 const loops = [
   actionLoop,
-  strokerLoop,
   moanLoop,
-  ticker,
   strokeSpeedAdjustmentLoop,
   strokeSpeedBaseLineAdjustmentLoop,
   gripAdjustmentLoop,
@@ -39,6 +37,7 @@ const startGame = async () => {
 
   // Start services
   MediaService.initialize(store.config);
+  GripService.initialize(store.config);
   StrokeService.initialize(store.config);
   ActionService.initialize();
 
@@ -54,6 +53,7 @@ const startGame = async () => {
 
 const stopGame = () => {
   interrupt();
+  handy.setMode(0);
 
   observers.forEach((id) => {
     gameLoopObservable.unsubscribe(id);
