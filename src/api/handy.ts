@@ -30,12 +30,23 @@ function lerp(value1: number, value2: number, amount: number) {
 }
 
 class HandyAPI {
+  mode = 0;
+  speed = 0;
+  stroke = 100;
+
   constructor() {
-    this.setStroke(0);
-    this.setStroke(100);
+    this.reset();
+  }
+
+  reset() {
+    this.setMode(this.mode);
+    this.setSpeed(this.speed);
+    this.setStroke(this.stroke);
   }
 
   setMode(mode: Mode) {
+    this.mode = mode;
+
     fetch(`${api}/${connectionKey}/setMode?mode=${mode}`);
   }
 
@@ -43,7 +54,17 @@ class HandyAPI {
     const strokeLength = 100 / 100;
     const speed = Math.round(beatsPerSecond * lerp(10, 45, strokeLength));
 
-    fetch(`${api}/${connectionKey}/setSpeed?type=%25&speed=${speed}`);
+    if (this.speed !== speed) {
+      this.speed = speed;
+
+      if (speed === 0 && this.mode !== 0) {
+        this.setMode(0);
+      } else if (speed > 0 && this.mode !== 1) {
+        this.setMode(1);
+      }
+
+      fetch(`${api}/${connectionKey}/setSpeed?type=%25&speed=${speed}`);
+    }
   }
 
   setStroke(stroke: number) {

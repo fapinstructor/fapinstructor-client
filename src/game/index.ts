@@ -53,7 +53,7 @@ const startGame = async () => {
 
 const stopGame = () => {
   interrupt();
-  handy.setMode(0);
+  handy.reset();
 
   observers.forEach((id) => {
     gameLoopObservable.unsubscribe(id);

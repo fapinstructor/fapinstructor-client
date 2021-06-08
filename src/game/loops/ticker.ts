@@ -5,7 +5,6 @@ import { playTick } from "engine/audio";
 import { StrokeService } from "game/xstate/services";
 import { selectEnableTicks } from "common/store/settings";
 import store from "common/store";
-import handy from "api/handy";
 
 const strokeQueue: number[] = [];
 strokeEmitterObservable.subscribe((event) => {
@@ -33,8 +32,6 @@ const ticker = ({ timestamp }: GameLoopArgs) => {
 
     // Only make api call when stroke speed changes
     if (StrokeService.strokeSpeed !== lastStrokeSpeed) {
-      handy.setMode(1);
-      handy.setSpeed(StrokeService.strokeSpeed);
       lastStrokeSpeed = StrokeService.strokeSpeed;
     }
 

@@ -105,6 +105,7 @@ export function createMediaMachine(config: GameConfig) {
             onError: {
               target: "paused",
               actions: (context, event) => {
+                console.log("ERROR");
                 createNotification({
                   message: `Error fetching media: ${event.data}.message}`,
                   duration: -1,

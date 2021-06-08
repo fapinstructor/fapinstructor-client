@@ -1,4 +1,5 @@
 // TODO: Once config/env types are proper, remove this
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import {
@@ -34,18 +35,22 @@ export default function AppAuth0Provider({
 }: Auth0ProviderProps) {
   const history = useHistory();
 
-  const auth0 = useAuth0();
-  authClient.current = auth0;
-
-  useEffect(() => {
-    if (auth0.user && auth0.isAuthenticated) {
-      fetchProfile(auth0.user.sub);
-    }
-  }, [auth0.user, auth0.isAuthenticated, fetchProfile]);
-
   const onRedirectCallback = (appState: AppState) => {
     history.push(appState.returnTo || window.location.pathname);
   };
+
+  function ApplyAuth(): JSX.Element {
+    const auth0 = useAuth0();
+    authClient.current = auth0;
+
+    useEffect(() => {
+      if (auth0.user && auth0.isAuthenticated) {
+        fetchProfile(auth0.user.sub);
+      }
+    }, [auth0.user, auth0.isAuthenticated]);
+
+    return children;
+  }
 
   /**
    * Auth requires sessionStorage and will fail if it doesn't exist.
@@ -69,7 +74,7 @@ export default function AppAuth0Provider({
       redirectUri={window.location.origin}
       onRedirectCallback={onRedirectCallback}
     >
-      {children}
+      <ApplyAuth />
     </Auth0Provider>
   );
 }

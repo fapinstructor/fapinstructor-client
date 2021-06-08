@@ -102,7 +102,6 @@ export const stopEdging = async () => {
     await handsOff(approx);
 
     setStrokeSpeed(getRandomStrokeSpeed());
-
     StrokeService.play();
 
     playCommand(audioLibrary.StartStrokingAgain);
