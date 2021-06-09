@@ -2,9 +2,9 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import { ruinedOrgasm } from "game/actions/orgasm/ruin";
-import punishment from "../game/actions/punishment";
 import { ProxyStoreConsumer } from "containers/StoreProvider";
 import { ActionService } from "game/xstate/services";
+import { edged } from "game/actions/orgasm/edge";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,15 +33,7 @@ export default function PersistentTriggerPanel() {
             style={{ opacity: 0.8, margin: 10 }}
             disabled={store?.game.ruining}
             onClick={() => {
-              if (!store) {
-                return;
-              }
-              store.game.ruining = true;
-              ActionService.execute(ruinedOrgasm, true).then((interrupted) => {
-                if (!interrupted) {
-                  store.game.ruining = false;
-                }
-              });
+              ActionService.execute(ruinedOrgasm, true);
             }}
           >
             Ruin
@@ -59,11 +51,7 @@ export default function PersistentTriggerPanel() {
               }
               store.game.edging = true;
               store.game.edges++;
-              ActionService.execute(punishment, true).then((interrupted) => {
-                if (!interrupted) {
-                  store.game.edging = false;
-                }
-              });
+              ActionService.execute(edged, true);
             }}
           >
             Edge

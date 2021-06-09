@@ -86,7 +86,7 @@ function Toggle({ id, label, checked, onChange }: ToggleProps) {
   );
 }
 
-export default function StatusPanel() {
+export default React.memo(function StatusPanel() {
   const classes = useStyles();
   const [open, setOpen] = useState(true);
 
@@ -205,4 +205,4 @@ export default function StatusPanel() {
       )}
     </div>
   );
-}
+});

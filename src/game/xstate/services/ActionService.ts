@@ -5,8 +5,7 @@ import {
   Action,
 } from "game/xstate/machines/actionMachine";
 import { useService } from "@xstate/react";
-import interrupt from "engine/interrupt";
-import { TIME_DELAY } from "components/organisms/BeatMeter/settings";
+import { GameConfig } from "configureStore";
 
 let machine: ActionMachine;
 let service: InterpreterFrom<ActionMachine>;
@@ -23,12 +22,12 @@ function getActionServiceContext() {
 }
 
 const ActionService = {
-  initialize() {
+  initialize(gameConfig: GameConfig) {
     if (service) {
       service.stop();
     }
 
-    machine = createActionMachine();
+    machine = createActionMachine(gameConfig);
     service = interpret(machine, { devTools: true }).onTransition((state) => {
       if (state.value !== state.history?.value) {
         console.log(`[ActionService] Transition: ${state.value}`);
@@ -55,40 +54,15 @@ const ActionService = {
    * @param {A function that returns null or a promise} action
    * @param {If an action is already executing, should it be interrupted} shouldInterrupt
    */
-  execute(action: Action, shouldInterrupt = false) {
-    if (shouldInterrupt) {
-      interrupt();
-    }
-
-    getActionService().send("EXECUTE");
-
-    return action()
-      .then((trigger) => {
-        if (trigger) {
-          setTimeout(() => {
-            const actionTriggers = Array.isArray(trigger) ? trigger : [trigger];
-            ActionService.setTriggers(actionTriggers);
-          }, TIME_DELAY / 2);
-        }
-        ActionService.done();
-
-        // was interrupted?
-        return false;
-      })
-      .catch((e) => {
-        if (!e || e.reason !== "interrupt") {
-          console.error(e);
-        }
-        // was interrupted?
-        return true;
-      });
+  execute(action: Action, shouldInterrupt?: boolean) {
+    getActionService().send({ type: "EXECUTE", action, shouldInterrupt });
   },
   setTriggers(triggers: Action[]) {
     getActionService().send("SET_TRIGGERS", { triggers });
   },
-  done() {
-    getActionService().send("DONE");
-  },
+  // done() {
+  //   getActionService().send("DONE");
+  // },
   get triggers() {
     return getActionServiceContext().triggers;
   },

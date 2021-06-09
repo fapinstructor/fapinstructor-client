@@ -1,4 +1,13 @@
-import { assign, createMachine } from "xstate";
+import { GameConfig } from "configureStore";
+import { assign, createMachine, send } from "xstate";
+import { TIME_DELAY } from "components/organisms/BeatMeter/settings";
+import warmup from "game/actions/warmup";
+import { playCommand } from "engine/audio";
+import audioLibrary from "audio";
+import interrupt from "engine/interrupt";
+import createIntervalMachine from "./intervalMachine";
+import generateAction from "game/actions/generateAction";
+import delay from "utils/delay";
 
 export type ActionMachine = ReturnType<typeof createActionMachine>;
 
@@ -8,11 +17,17 @@ export type Action = {
 };
 
 export type ActionMachineContext = {
-  triggers: Action[] | null;
+  triggers: Action[];
+};
+
+type GenerateActionEvent = {
+  type: "GENERATE_ACTION";
 };
 
 export type ExecuteActionEvent = {
   type: "EXECUTE";
+  action: Action;
+  shouldInterrupt?: boolean;
 };
 
 export type SetTiggersActionEvent = {
@@ -21,17 +36,19 @@ export type SetTiggersActionEvent = {
 };
 
 export type ActionMachineEvent =
-  | { type: "DONE" }
   | ExecuteActionEvent
-  | SetTiggersActionEvent;
+  | SetTiggersActionEvent
+  | GenerateActionEvent;
 
-export function createActionMachine() {
+export function createActionMachine(config: GameConfig) {
+  const actionFrequency = config.actionFrequency;
+
   const actionMachine = createMachine<ActionMachineContext, ActionMachineEvent>(
     {
       id: "action",
-      initial: "idle",
+      initial: "warmup",
       context: {
-        triggers: null,
+        triggers: [],
       },
       on: {
         SET_TRIGGERS: {
@@ -39,17 +56,65 @@ export function createActionMachine() {
         },
       },
       states: {
+        warmup: {
+          always: {
+            target: "idle",
+            actions: [
+              send({ type: "EXECUTE", action: warmup }),
+              () => {
+                playCommand(audioLibrary.StartGame);
+                playCommand(audioLibrary.CardShuffle);
+              },
+            ],
+          },
+        },
         idle: {
+          invoke: {
+            id: "generateActionInterval",
+            src: createIntervalMachine({ callback: "GENERATE_ACTION" }),
+            data: {
+              interval: actionFrequency * 1000,
+            },
+          },
           on: {
+            GENERATE_ACTION: {
+              cond: "canGenerateAction",
+              actions: "generateAction",
+            },
             EXECUTE: {
               target: "executing",
-              actions: "clearTriggers",
             },
           },
         },
         executing: {
-          on: {
-            DONE: {
+          entry: "clearTriggers",
+          invoke: {
+            id: "executeAction",
+            src: (context, event) => async (callback) => {
+              try {
+                const { action, shouldInterrupt = false } =
+                  event as ExecuteActionEvent;
+
+                if (shouldInterrupt) {
+                  interrupt();
+                }
+
+                const trigger = await action();
+
+                if (trigger) {
+                  const triggers = Array.isArray(trigger) ? trigger : [trigger];
+
+                  await delay(TIME_DELAY / 2);
+
+                  callback({ type: "SET_TRIGGERS", triggers });
+                }
+              } catch (error) {
+                if (error.reason !== "interrupt") {
+                  console.error(error);
+                }
+              }
+            },
+            onDone: {
               target: "idle",
             },
           },
@@ -62,8 +127,20 @@ export function createActionMachine() {
           triggers: (event as SetTiggersActionEvent).triggers,
         })),
         clearTriggers: assign((context, event) => ({
-          triggers: null,
+          triggers: [],
         })),
+        generateAction: send(() => {
+          const action = generateAction.next();
+
+          console.log("Action: ", action);
+          // if (action && action.value && !action.done) {
+          // ActionService.execute(action.value);
+          return { type: "EXECUTE", action: action.value };
+          // }
+        }),
+      },
+      guards: {
+        canGenerateAction: (context) => context.triggers.length === 0,
       },
     }
   );

@@ -1,7 +1,7 @@
 import store from "store";
 import { ruinedOrgasm } from "game/actions/orgasm/ruin";
-import punishment from "../game/actions/punishment";
 import { ActionService } from "game/xstate/services";
+import { edged } from "game/actions/orgasm/edge";
 
 export const triggerHotkeys = [
   "z",
@@ -26,12 +26,7 @@ window.addEventListener("keydown", function (event) {
 
   // Ruin
   if (event.key === "r" && !game.ruining) {
-    game.ruining = true;
-    ActionService.execute(ruinedOrgasm, true).then((interrupted) => {
-      if (!interrupted) {
-        game.ruining = false;
-      }
-    });
+    ActionService.execute(ruinedOrgasm, true);
     return;
   }
 
@@ -39,11 +34,7 @@ window.addEventListener("keydown", function (event) {
   if (event.key === "e" && !game.edging) {
     game.edging = true;
     game.edges++;
-    ActionService.execute(punishment, true).then((interrupted) => {
-      if (!interrupted) {
-        game.edging = false;
-      }
-    });
+    ActionService.execute(edged, true);
     return;
   }
 

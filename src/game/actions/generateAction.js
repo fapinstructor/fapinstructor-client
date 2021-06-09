@@ -18,7 +18,7 @@ import { edgingLadder } from "game/actions/orgasm/edgeInTime";
  *   the length of the set
  * @returns {any | Array}
  */
-export const getRandomActions = (count = 0) => {
+const getRandomActions = (count = 0) => {
   //Take only actions from src/configureStore.js and initialize them with probabilities from actions/index.js
   const actions = initializeActions(store.config.tasks);
 

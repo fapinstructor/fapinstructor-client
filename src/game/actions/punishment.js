@@ -66,7 +66,7 @@ const punishment = async () => {
 
   await delay(6 * SECONDS_IN_MILLI_SECONDS);
 
-  await ActionService.execute(punish);
+  ActionService.execute(punish);
 
   await setStrokeStyle(strokeStyle, true);
 

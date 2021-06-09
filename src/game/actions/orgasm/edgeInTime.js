@@ -6,7 +6,7 @@ import createNotification, {
 } from "engine/createNotification";
 import { getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
-import { edging, getToTheEdge, stopEdging } from "game/actions/orgasm/edge";
+import { edging, getToTheEdge, edged } from "game/actions/orgasm/edge";
 import punishment from "game/actions/punishment";
 import {
   getRandomEdgeAdvancedMessage,
@@ -46,7 +46,7 @@ export const edgeAdvanced = async (
   const trigger_edge = async () => {
     dismissNotification(notificationId);
     await edging(time);
-    await stopEdging();
+    await edged();
   };
   trigger_edge.label = "Edging";
 
@@ -147,7 +147,7 @@ export const edgeInTime = async (
     dismissNotification(notificationId);
     dismissNotification(timerId);
     await edging(holdTime);
-    await stopEdging();
+    await edged();
   };
   trigger_edging.label = "Edging";
 

@@ -5,7 +5,6 @@ import { gameLoopObservable } from "engine/loop";
 import interrupt from "engine/interrupt";
 import { createAudioContext } from "engine/audio";
 import configureStore from "./configureStore";
-import actionLoop from "./loops/actionLoop";
 import moanLoop from "./loops/moanLoop";
 import {
   strokeSpeedBaseLineAdjustmentLoop,
@@ -22,7 +21,6 @@ import {
 import handy from "api/handy";
 
 const loops = [
-  actionLoop,
   moanLoop,
   strokeSpeedAdjustmentLoop,
   strokeSpeedBaseLineAdjustmentLoop,
@@ -39,7 +37,7 @@ const startGame = async () => {
   MediaService.initialize(store.config);
   GripService.initialize(store.config);
   StrokeService.initialize(store.config);
-  ActionService.initialize();
+  ActionService.initialize(store.config);
 
   loops.forEach((loop) => {
     loop.reset();

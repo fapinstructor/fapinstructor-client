@@ -89,7 +89,7 @@ export const edging = async (time) => {
 /**
  * The whole cooldown stuff after edging and setting up the stroking task again.
  */
-export const stopEdging = async () => {
+export const edged = async () => {
   let edgeCooldown = parseInt(store.config.edgeCooldown, 10);
   if (store.game.orgasm && !store.game.edgingLadder) {
   } else {
@@ -107,6 +107,8 @@ export const stopEdging = async () => {
     playCommand(audioLibrary.StartStrokingAgain);
     await delay(2000);
   }
+
+  store.game.edging = false;
 };
 
 /**
@@ -142,7 +144,7 @@ export const edge = async (time, message = getRandomEdgeMessage()) => {
   const trigger = async () => {
     dismissNotification(notificationId);
     await edging(time);
-    await stopEdging();
+    await edged();
   };
   trigger.label = "Edging";
 

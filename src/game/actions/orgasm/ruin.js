@@ -51,6 +51,7 @@ export const ruinedOrgasm = async () => {
   }
 
   store.game.ruins++;
+  store.game.ruining = true;
 
   playCommand(getRandomAudioVariation("Ruined"));
 
@@ -59,6 +60,7 @@ export const ruinedOrgasm = async () => {
   } = store;
 
   StrokeService.pause();
+  store.game.ruining = false;
 
   await delay(ruinCooldown * 1000);
 
