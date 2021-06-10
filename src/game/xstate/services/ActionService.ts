@@ -60,9 +60,6 @@ const ActionService = {
   setTriggers(triggers: Action[]) {
     getActionService().send("SET_TRIGGERS", { triggers });
   },
-  // done() {
-  //   getActionService().send("DONE");
-  // },
   get triggers() {
     return getActionServiceContext().triggers;
   },

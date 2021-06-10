@@ -6,7 +6,7 @@ import videoLibrary from "video";
 import { getRandomInclusiveInteger } from "utils/math";
 import { MediaService, StrokeService } from "game/xstate/services";
 
-const bindCockAndBalls = async () => {
+export const bindCockAndBalls = async () => {
   if (!store.game.cockAndBallsBound) {
     StrokeService.pause();
     MediaService.pause();
@@ -40,5 +40,3 @@ const bindCockAndBalls = async () => {
   }
 };
 bindCockAndBalls.label = "Bind Cock & Balls";
-
-export default bindCockAndBalls;

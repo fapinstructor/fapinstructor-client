@@ -4,7 +4,7 @@ import { getRandomArbitrary, getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
 import { StrokeService } from "game/xstate/services";
 
-const randomBeat = async () => {
+export const randomBeat = async () => {
   const previousStrokeSpeed = StrokeService.strokeSpeed;
 
   // set count
@@ -41,5 +41,3 @@ const randomBeat = async () => {
   setStrokeSpeed(previousStrokeSpeed);
 };
 randomBeat.label = "Random Beat";
-
-export default randomBeat;

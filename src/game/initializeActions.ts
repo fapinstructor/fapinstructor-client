@@ -1,51 +1,49 @@
-import createProbability from "../utils/createProbability";
-import doubleStrokes from "./speed/doubleStrokes";
-import halvedStrokes from "./speed/halvedStrokes";
-import teasingStrokes from "./speed/teasingStrokes";
-import randomStrokeSpeed from "./speed/randomStrokeSpeed";
-import randomBeat from "./speed/randomBeat";
-import redLightGreenLight from "./speed/redLightGreenLight";
-import clusterStrokes from "./speed/clusterStrokes";
+import { TaskConfig } from "configureStore";
+import createProbability from "./utils/createProbability";
 import {
+  doubleStrokes,
+  halvedStrokes,
+  teasingStrokes,
+  randomStrokeSpeed,
+  randomBeat,
+  redLightGreenLight,
+  clusterStrokes,
+  acceleration,
+  handsOff,
+  gripChallenge,
   addRubberBand,
   removeRubberBand,
   snapRubberBand,
-} from "./cbt/rubberband";
-import { addClothespin, removeClothespin } from "./nipple/clothespin";
-import applyIcyHot from "./cbt/icyhot";
-import applyToothpaste from "./cbt/toothpaste";
-import ballslaps from "./cbt/ballslaps";
-import squeezeBalls from "./cbt/squeezeBalls";
-import headPalming from "./cbt/headPalming";
-import bindCockAndBalls from "./cbt/bindCockAndBalls";
-import holdBreath from "./cbt/holdBreath";
-import {
+  applyIcyHot,
+  applyToothpaste,
+  ballslaps,
+  squeezeBalls,
+  headPalming,
+  bindCockAndBalls,
+  holdBreath,
   scratchChest,
   scratchShoulders,
   scratchThighs,
-} from "./cbt/scratching";
-import { flickCockHead, flickNipples } from "./cbt/flicking";
-import { rubIceOnBalls } from "./cbt/ice";
-import {
+  flickCockHead,
+  rubIceOnBalls,
+  addClothespin,
+  removeClothespin,
+  rubNipples,
+  nipplesAndStroke,
+  flickNipples,
   setStrokeStyleBothHands,
   setStrokeStyleDominant,
   setStrokeStyleHeadOnly,
   setStrokeStyleNondominant,
   setStrokeStyleOverhandGrip,
   setStrokeStyleShaftOnly,
-} from "game/enums/StrokeStyle";
-import eatPrecum from "./cei/eatPrecum";
-import { insertButtPlug, removeButtPlug } from "./anal/buttPlug";
-import acceleration from "./speed/acceleration";
-import rubNipples from "./nipple/rubNipples.js";
-import nipplesAndStroke from "./nipple/nipplesAndStroke";
-import handsOff from "game/actions/speed/handsOff";
-import gripChallenge from "game/actions/speed/gripChallenge";
+  eatPrecum,
+  insertButtPlug,
+  removeButtPlug,
+} from "./actions";
 
-const initializeActions = (taskConfigs) =>
-  // We use a task configuration to determine if the task is active. We will get to this in the next step.
-  // createProbability takes your action and the probability percentage the action will be invoked
-  [
+export function initializeActions(taskConfigs: TaskConfig) {
+  const enabledActions = [
     // speed
     taskConfigs.halvedStrokes && createProbability(halvedStrokes, 5),
     taskConfigs.doubleStrokes && createProbability(doubleStrokes, 15),
@@ -92,6 +90,21 @@ const initializeActions = (taskConfigs) =>
     taskConfigs.clothespins && createProbability(removeClothespin, 1),
     taskConfigs.rubNipples && createProbability(rubNipples, 5),
     taskConfigs.nipplesAndStroke && createProbability(nipplesAndStroke, 10),
-  ].filter((action) => !!action);
+  ].filter((action) => Boolean(action));
 
-export default initializeActions;
+  // If an action has a probablity > 1, we duplicate it to give
+  // const actionsWithProbabilitiesApplied = []
+
+  // enabledActions.forEach(action => {
+  //  action.probability
+  // });
+
+  // return actionsWithProbabilitiesApplied
+
+  return enabledActions;
+}
+
+// [a, b, c, d]
+// [1, 2, 1, 3]
+// [a, b, b, c, d, d, d]
+// rand 0 - 7

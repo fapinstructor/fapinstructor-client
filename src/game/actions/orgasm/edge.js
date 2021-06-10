@@ -9,7 +9,7 @@ import createNotification, {
 } from "engine/createNotification";
 import { getRandomBoolean, getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
-import handsOff from "game/actions/speed/handsOff";
+import { handsOff } from "game/actions";
 import { getRandomEdgeMessage } from "game/texts/messages";
 import punishment from "../punishment";
 import { getRandomEdge } from "./edgeInTime";

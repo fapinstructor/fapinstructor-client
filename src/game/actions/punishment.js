@@ -1,33 +1,32 @@
 import store from "store";
 import createProbability from "game/utils/createProbability";
-import { addRubberBand, snapRubberBand } from "game/actions/cbt/rubberband";
-import { addClothespin } from "game/actions/nipple/clothespin";
-import applyIcyHot from "game/actions/cbt/icyhot";
-import applyToothpaste from "game/actions/cbt/toothpaste";
-import ballslaps from "game/actions/cbt/ballslaps";
-import squeezeBalls from "game/actions/cbt/squeezeBalls";
-import headPalming from "game/actions/cbt/headPalming";
-import bindCockAndBalls from "game/actions/cbt/bindCockAndBalls";
-import holdBreath from "game/actions/cbt/holdBreath";
 import {
+  addRubberBand,
+  snapRubberBand,
+  addClothespin,
+  applyIcyHot,
+  applyToothpaste,
+  ballslaps,
+  squeezeBalls,
+  headPalming,
+  bindCockAndBalls,
+  holdBreath,
   scratchChest,
   scratchShoulders,
   scratchThighs,
-} from "./cbt/scratching";
-import { flickCockHead, flickNipples } from "game/actions/cbt/flicking";
-import { rubIceOnBalls } from "game/actions/cbt/ice";
-import eatPrecum from "game/actions/cei/eatPrecum";
-import { insertButtPlug } from "game/actions/anal/buttPlug";
-import handsOff from "game/actions/speed/handsOff";
+  flickCockHead,
+  flickNipples,
+  rubIceOnBalls,
+  eatPrecum,
+  insertButtPlug,
+  handsOff,
+  setStrokeStyleHandsOff,
+} from "game/actions";
 import { applyProbability } from "game/actions/generateAction";
 import createNotification from "engine/createNotification";
 import { getRandomPunishmentMessage } from "game/texts/teasing_messages";
 import delay from "utils/delay";
-import {
-  getCurrentStrokeStyle,
-  setStrokeStyleHandsOff,
-  setStrokeStyle,
-} from "game/enums/StrokeStyle";
+import { getCurrentStrokeStyle, setStrokeStyle } from "game/enums/StrokeStyle";
 import { getRandomStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
 import { ActionService } from "game/xstate/services";
 

@@ -6,7 +6,7 @@ import { playCommand } from "engine/audio";
 import audioLibrary from "audio";
 import { StrokeService } from "game/xstate/services";
 
-const ballslaps = async () => {
+export const ballslaps = async () => {
   const previousStrokeSpeed = StrokeService.strokeSpeed;
   const ballSlapCount = getRandomInclusiveInteger(3, 10);
   const delayTime = 2;
@@ -40,5 +40,3 @@ const ballslaps = async () => {
   setStrokeSpeed(previousStrokeSpeed);
 };
 ballslaps.label = "Ball slaps";
-
-export default ballslaps;

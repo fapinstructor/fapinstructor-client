@@ -4,7 +4,7 @@ import { getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
 import { StrokeService } from "game/xstate/services";
 
-const clusterStrokes = async () => {
+export const clusterStrokes = async () => {
   const {
     config: { fastestStrokeSpeed },
   } = store;
@@ -40,5 +40,3 @@ const clusterStrokes = async () => {
   setStrokeSpeed(previousStrokeSpeed);
 };
 clusterStrokes.label = "Cluster Strokes";
-
-export default clusterStrokes;

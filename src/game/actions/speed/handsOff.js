@@ -1,9 +1,10 @@
 import createNotification from "engine/createNotification";
 import { getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
-import { setStrokeStyle, setStrokeStyleHandsOff } from "game/enums/StrokeStyle";
+import { setStrokeStyle } from "game/enums/StrokeStyle";
 import { getRandomHandsOffMessage } from "game/texts/messages";
 import { StrokeService } from "game/xstate/services";
+import { setStrokeStyleHandsOff } from "game/actions";
 
 const HANDS_OFF_DURATION_MIN = 10; // Seconds
 const HANDS_OFF_DURATION_MAX = 25; // Seconds
@@ -23,7 +24,7 @@ const HANDS_OFF_DURATION_MAX = 25; // Seconds
  * @alias       handsOff
  * @memberof    actions
  */
-const handsOff = async (
+export const handsOff = async (
   duration = getRandomInclusiveInteger(
     HANDS_OFF_DURATION_MIN,
     HANDS_OFF_DURATION_MAX
@@ -47,5 +48,3 @@ const handsOff = async (
   createNotification({ message: "Start stroking again" });
 };
 handsOff.label = "Hands Off";
-
-export default handsOff;

@@ -7,7 +7,7 @@ import { playCommand } from "engine/audio";
 import audioLibrary from "audio";
 import { StrokeService } from "game/xstate/services";
 
-const redLightGreenLight = async () => {
+export const redLightGreenLight = async () => {
   const {
     config: { fastestStrokeSpeed },
   } = store;
@@ -45,5 +45,3 @@ const redLightGreenLight = async () => {
   setStrokeSpeed(previousStrokeSpeed);
 };
 redLightGreenLight.label = "Red Light/Green Light";
-
-export default redLightGreenLight;

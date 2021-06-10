@@ -2,6 +2,49 @@ import store from "store";
 import { StrokeStyle } from "game/enums/StrokeStyle";
 import { GripStrength } from "game/xstate/machines/gripMachine";
 
+export type TaskConfig = {
+  //Stroke Speed
+  doubleStrokes: boolean;
+  halvedStrokes: boolean;
+  teasingStrokes: boolean;
+  accelerationCycles: boolean;
+  randomBeat: boolean;
+  randomStrokeSpeed: boolean;
+  redLightGreenLight: boolean;
+  clusterStrokes: boolean;
+  gripChallenge: boolean;
+  //Stroke Style
+  dominant: boolean;
+  nondominant: boolean;
+  headOnly: boolean;
+  shaftOnly: boolean;
+  overhandGrip: boolean;
+  bothHands: boolean;
+  handsOff: boolean;
+  //Grip Strength
+  gripAdjustments: boolean;
+  //CBT
+  bindCockBalls: boolean;
+  rubberBands: boolean;
+  ballSlaps: boolean;
+  squeezeBalls: boolean;
+  headPalming: boolean;
+  icyHot: boolean;
+  toothpaste: boolean;
+  breathPlay: boolean;
+  scratching: boolean;
+  flicking: boolean;
+  cbtIce: boolean;
+  //CEI
+  precum: boolean;
+  //Anal
+  buttplug: boolean;
+  //Nipples
+  rubNipples: boolean;
+  clothespins: boolean;
+  nipplesAndStroke: boolean;
+};
+
 export type GameConfig = {
   isDefaultConfig: boolean;
   redditId: string;
@@ -35,48 +78,7 @@ export type GameConfig = {
   initialGripStrength: number;
   defaultStrokeStyle: StrokeStyle;
   actionFrequency: number; // sec
-  tasks: {
-    //Stroke Speed
-    doubleStrokes: boolean;
-    halvedStrokes: boolean;
-    teasingStrokes: boolean;
-    accelerationCycles: boolean;
-    randomBeat: boolean;
-    randomStrokeSpeed: boolean;
-    redLightGreenLight: boolean;
-    clusterStrokes: boolean;
-    gripChallenge: boolean;
-    //Stroke Style
-    dominant: boolean;
-    nondominant: boolean;
-    headOnly: boolean;
-    shaftOnly: boolean;
-    overhandGrip: boolean;
-    bothHands: boolean;
-    handsOff: boolean;
-    //Grip Strength
-    gripAdjustments: boolean;
-    //CBT
-    bindCockBalls: boolean;
-    rubberBands: boolean;
-    ballSlaps: boolean;
-    squeezeBalls: boolean;
-    headPalming: boolean;
-    icyHot: boolean;
-    toothpaste: boolean;
-    breathPlay: boolean;
-    scratching: boolean;
-    flicking: boolean;
-    cbtIce: boolean;
-    //CEI
-    precum: boolean;
-    //Anal
-    buttplug: boolean;
-    //Nipples
-    rubNipples: boolean;
-    clothespins: boolean;
-    nipplesAndStroke: boolean;
-  };
+  tasks: TaskConfig;
 };
 
 /**
@@ -115,7 +117,7 @@ const defaultConfig: GameConfig = {
   fastestStrokeSpeed: 5, // sec
   initialGripStrength: GripStrength.Normal,
   defaultStrokeStyle: "dominant",
-  actionFrequency: 20, // sec
+  actionFrequency: 30, // sec
   tasks: {
     //Stroke Speed
     doubleStrokes: true,

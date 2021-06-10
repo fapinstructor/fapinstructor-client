@@ -2,7 +2,7 @@ import createNotification from "engine/createNotification";
 import { getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
 
-const holdBreath = async () => {
+export const holdBreath = async () => {
   const holdTime = getRandomInclusiveInteger(10, 60);
 
   createNotification({ message: "Take a deep breath" });

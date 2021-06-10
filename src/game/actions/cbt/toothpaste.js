@@ -3,7 +3,7 @@ import createNotification, {
 } from "engine/createNotification";
 import { StrokeService } from "game/xstate/services";
 
-const applyToothpaste = async () => {
+export const applyToothpaste = async () => {
   StrokeService.pause();
   const notificationId = createNotification({
     message: "Apply a dime sized spot of toothpaste to the head of your cock",
@@ -20,5 +20,3 @@ const applyToothpaste = async () => {
   return [done];
 };
 applyToothpaste.label = "Apply Toothpaste";
-
-export default applyToothpaste;

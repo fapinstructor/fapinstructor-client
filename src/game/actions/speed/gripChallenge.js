@@ -6,7 +6,7 @@ import delay from "utils/delay";
 import { StrokeService, GripService } from "game/xstate/services";
 import { GripStrength } from "game/xstate/machines/gripMachine";
 
-const gripChallenge = async () => {
+export const gripChallenge = async () => {
   const previousGripStrength = GripService.gripStrength;
   const previousStrokeSpeed = StrokeService.strokeSpeed;
   createNotification({
@@ -35,5 +35,3 @@ const gripChallenge = async () => {
   setStrokeSpeed(previousStrokeSpeed);
 };
 gripChallenge.label = "Grip Challenge";
-
-export default gripChallenge;

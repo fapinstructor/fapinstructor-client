@@ -4,11 +4,8 @@ import { setStrokeSpeed } from "game/utils/strokeSpeed";
 import { getRandomRubStrength } from "game/enums/RubStrength";
 import { getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
-import {
-  getCurrentStrokeStyle,
-  setStrokeStyle,
-  setStrokeStyleHandsOff,
-} from "game/enums/StrokeStyle";
+import { getCurrentStrokeStyle, setStrokeStyle } from "game/enums/StrokeStyle";
+import { setStrokeStyleHandsOff } from "game/actions/strokeStyle";
 import { StrokeService } from "game/xstate/services";
 
 /**
@@ -20,7 +17,7 @@ import { StrokeService } from "game/xstate/services";
  * @alias       rubNipples
  * @memberof    actions
  */
-const rubNipples = async () => {
+export const rubNipples = async () => {
   const previousStrokeSpeed = StrokeService.strokeSpeed;
   const style = getCurrentStrokeStyle();
   const strength = getRandomRubStrength();
@@ -50,5 +47,3 @@ const rubNipples = async () => {
   await setStrokeStyle(style);
 };
 rubNipples.label = "Rub Nipples";
-
-export default rubNipples;

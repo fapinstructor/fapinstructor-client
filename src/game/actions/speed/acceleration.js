@@ -5,7 +5,7 @@ import { playCommand } from "engine/audio";
 import audioLibrary from "audio";
 import { StrokeService } from "game/xstate/services";
 
-const acceleration = async () => {
+export const acceleration = async () => {
   const {
     config: { slowestStrokeSpeed, fastestStrokeSpeed },
   } = store;
@@ -28,5 +28,3 @@ const acceleration = async () => {
   setStrokeSpeed(previousStrokeSpeed);
 };
 acceleration.label = "Acceleration Strokes";
-
-export default acceleration;

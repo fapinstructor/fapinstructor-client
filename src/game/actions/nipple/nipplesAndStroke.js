@@ -21,7 +21,7 @@ import { StrokeService } from "game/xstate/services";
  * @alias      nipplesAndStroke
  * @memberof   actions
  */
-const nipplesAndStroke = async () => {
+export const nipplesAndStroke = async () => {
   const previousStrokeSpeed = StrokeService.strokeSpeed;
   const style = getCurrentStrokeStyle();
   // get Random strength
@@ -52,5 +52,3 @@ const nipplesAndStroke = async () => {
   await setStrokeStyle(style);
 };
 nipplesAndStroke.label = "Nipple and Stroke";
-
-export default nipplesAndStroke;

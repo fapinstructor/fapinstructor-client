@@ -5,7 +5,7 @@ import { StrokeService } from "game/xstate/services";
 import { playCommand } from "engine/audio";
 import { getRandomAudioVariation } from "audio";
 
-const eatPrecum = async () => {
+export const eatPrecum = async () => {
   StrokeService.pause();
   const notificationId = createNotification({
     message: "Squeeze your cock and eat up all of your precum",
@@ -24,5 +24,3 @@ const eatPrecum = async () => {
   return [done];
 };
 eatPrecum.label = "Eat Precum";
-
-export default eatPrecum;

@@ -5,7 +5,7 @@ import { getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
 import { StrokeService } from "game/xstate/services";
 
-const teasingStrokes = async () => {
+export const teasingStrokes = async () => {
   const previousStrokeSpeed = StrokeService.strokeSpeed;
   const totalTime = getRandomInclusiveInteger(15, 40);
 
@@ -23,5 +23,3 @@ const teasingStrokes = async () => {
   setStrokeSpeed(previousStrokeSpeed);
 };
 teasingStrokes.label = "Teasing Strokes";
-
-export default teasingStrokes;

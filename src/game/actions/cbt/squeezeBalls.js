@@ -4,7 +4,7 @@ import delay from "utils/delay";
 import { playCommand } from "engine/audio";
 import audioLibrary from "audio";
 
-const squeezeBalls = async () => {
+export const squeezeBalls = async () => {
   const time = getRandomInclusiveInteger(15, 40);
 
   createNotification({
@@ -19,5 +19,3 @@ const squeezeBalls = async () => {
   await delay(time * 1000);
 };
 squeezeBalls.label = "Squeeze Balls";
-
-export default squeezeBalls;

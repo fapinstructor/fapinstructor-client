@@ -1,13 +1,10 @@
-import createInstruction from "game/actions/createInstruction";
+import { playVoice } from "engine/audio";
+import delay from "utils/delay";
 import { StrokeService } from "game/xstate/services";
+import { setStrokeSpeed, getRandomStrokeSpeed } from "game/utils/strokeSpeed";
+import getRandomDuration from "game/utils/getRandomDuration";
 
-const doubleStrokes = async ({
-  playVoice,
-  delay,
-  setStrokeSpeed,
-  getRandomStrokeSpeed,
-  getRandomDuration,
-}) => {
+export const doubleStrokes = async () => {
   const duration = getRandomDuration(5, 20);
 
   setStrokeSpeed(StrokeService.strokeSpeed * 2);
@@ -17,7 +14,4 @@ const doubleStrokes = async ({
   await delay(duration);
   setStrokeSpeed(getRandomStrokeSpeed());
 };
-
-export default createInstruction(doubleStrokes, {
-  label: "Double Strokes",
-});
+doubleStrokes.label = "Double Strokes";

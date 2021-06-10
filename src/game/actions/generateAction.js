@@ -1,7 +1,7 @@
 import store from "store";
 import actionIterator from "engine/actionIterator";
 import { chance, getRandomInclusiveInteger } from "utils/math";
-import initializeActions from "game/actions/index";
+import { initializeActions } from "game/initializeActions";
 import determineEdge, { shouldEdge } from "./orgasm/edge";
 import ruin, { shouldRuin } from "game/actions/orgasm/ruin";
 import finalEdgeAndHold, {
@@ -95,6 +95,10 @@ const generateAction = () => {
     // get one of the chosen actions
     action =
       chosenActions[getRandomInclusiveInteger(0, chosenActions.length - 1)];
+
+    if (!action) {
+      debugger;
+    }
   }
 
   return action;

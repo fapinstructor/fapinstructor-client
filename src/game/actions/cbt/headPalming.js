@@ -5,7 +5,7 @@ import { getRandomArbitrary, getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
 import { StrokeService } from "game/xstate/services";
 
-const headPalming = async () => {
+export const headPalming = async () => {
   const previousStrokeSpeed = StrokeService.strokeSpeed;
   const palmCircleCount = getRandomInclusiveInteger(5, 20);
   const delayTime = 2;

@@ -2,10 +2,8 @@ import createNotification from "engine/createNotification";
 import { getRandomStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
 import { getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
-import { StrokeService } from "game/xstate/services";
 
-export const flickCockHead = async () => {
-  const previousStrokeSpeed = StrokeService.strokeSpeed;
+export const flickNipples = async () => {
   const flickCount = getRandomInclusiveInteger(3, 6);
   const delayTime = 2;
   const flickSpeed = getRandomStrokeSpeed({ fast: 2 });
@@ -13,9 +11,10 @@ export const flickCockHead = async () => {
   const totalTime = flickTime + delayTime;
 
   createNotification({
-    message: `Flick the head of your cock ${flickCount} times`,
+    message: `Flick your nipples ${flickCount} times`,
     duration: totalTime * 1000,
     showProgress: true,
+    delay: true,
   });
 
   setStrokeSpeed(0);
@@ -27,8 +26,8 @@ export const flickCockHead = async () => {
   setStrokeSpeed(0);
   await delay(delayTime * 1000);
 
-  createNotification({ message: `Back to stroking` });
+  createNotification({ message: "Back to stroking" });
 
-  setStrokeSpeed(previousStrokeSpeed);
+  setStrokeSpeed(getRandomStrokeSpeed());
 };
-flickCockHead.label = "Flick Cock Head";
+flickNipples.label = "Flick Nipples";

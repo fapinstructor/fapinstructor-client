@@ -17,7 +17,7 @@ import {
 import { edge } from "./edge";
 import createProbability from "game/utils/createProbability";
 import { applyProbability } from "game/actions/generateAction";
-import handsOff from "game/actions/speed/handsOff";
+import { handsOff } from "game/actions";
 import { ActionService } from "game/xstate/services";
 
 /**
