@@ -132,11 +132,7 @@ export function createActionMachine(config: GameConfig) {
         generateAction: send(() => {
           const action = generateAction.next();
 
-          console.log("Action: ", action);
-          // if (action && action.value && !action.done) {
-          // ActionService.execute(action.value);
           return { type: "EXECUTE", action: action.value };
-          // }
         }),
       },
       guards: {

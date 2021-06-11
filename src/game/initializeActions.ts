@@ -1,5 +1,4 @@
-import { TaskConfig } from "configureStore";
-import createProbability from "./utils/createProbability";
+import type { TaskConfig } from "configureStore";
 import {
   doubleStrokes,
   halvedStrokes,
@@ -41,70 +40,71 @@ import {
   insertButtPlug,
   removeButtPlug,
 } from "./actions";
+import { Action } from "./xstate/machines/actionMachine";
 
 export function initializeActions(taskConfigs: TaskConfig) {
-  const enabledActions = [
-    // speed
-    taskConfigs.halvedStrokes && createProbability(halvedStrokes, 5),
-    taskConfigs.doubleStrokes && createProbability(doubleStrokes, 15),
-    taskConfigs.teasingStrokes && createProbability(teasingStrokes, 5),
-    taskConfigs.randomBeat && createProbability(randomBeat, 5),
-    taskConfigs.randomStrokeSpeed && createProbability(randomStrokeSpeed, 20),
-    taskConfigs.accelerationCycles && createProbability(acceleration, 7),
-    taskConfigs.redLightGreenLight && createProbability(redLightGreenLight, 7),
-    taskConfigs.clusterStrokes && createProbability(clusterStrokes, 7),
-    taskConfigs.handsOff && createProbability(handsOff, 5),
-    taskConfigs.gripChallenge && createProbability(gripChallenge, 7),
-    // cbt
-    taskConfigs.rubberBands && createProbability(addRubberBand, 2),
-    taskConfigs.rubberBands && createProbability(removeRubberBand, 1),
-    taskConfigs.icyHot && createProbability(applyIcyHot, 1),
-    taskConfigs.toothpaste && createProbability(applyToothpaste, 1),
-    taskConfigs.ballSlaps && createProbability(ballslaps, 4),
-    taskConfigs.squeezeBalls && createProbability(squeezeBalls, 4),
-    taskConfigs.headPalming && createProbability(headPalming, 1),
-    taskConfigs.bindCockBalls && createProbability(bindCockAndBalls, 1),
-    taskConfigs.rubberBands && createProbability(snapRubberBand, 1),
-    taskConfigs.breathPlay && createProbability(holdBreath, 1),
-    taskConfigs.scratching && createProbability(scratchChest, 1),
-    taskConfigs.scratching && createProbability(scratchThighs, 1),
-    taskConfigs.scratching && createProbability(scratchShoulders, 1),
-    taskConfigs.flicking && createProbability(flickCockHead, 1),
-    taskConfigs.flicking && createProbability(flickNipples, 1),
-    taskConfigs.cbtIce && createProbability(rubIceOnBalls, 1),
-    // stroke style
-    taskConfigs.dominant && createProbability(setStrokeStyleDominant, 15),
-    taskConfigs.nondominant && createProbability(setStrokeStyleNondominant, 5),
-    taskConfigs.headOnly && createProbability(setStrokeStyleHeadOnly, 1),
-    taskConfigs.shaftOnly && createProbability(setStrokeStyleShaftOnly, 2),
-    taskConfigs.overhandGrip &&
-      createProbability(setStrokeStyleOverhandGrip, 1),
-    taskConfigs.bothHands && createProbability(setStrokeStyleBothHands, 5),
-    // anal
-    taskConfigs.buttplug && createProbability(insertButtPlug, 2),
-    taskConfigs.buttplug && createProbability(removeButtPlug, 1),
-    // cei
-    taskConfigs.precum && createProbability(eatPrecum, 3),
-    // nipples
-    taskConfigs.clothespins && createProbability(addClothespin, 3),
-    taskConfigs.clothespins && createProbability(removeClothespin, 1),
-    taskConfigs.rubNipples && createProbability(rubNipples, 5),
-    taskConfigs.nipplesAndStroke && createProbability(nipplesAndStroke, 10),
-  ].filter((action) => Boolean(action));
+  const enabledActions: [Action, number][] = [
+    [halvedStrokes, taskConfigs.halvedStrokes ? 5 : 0],
+    [doubleStrokes, taskConfigs.doubleStrokes ? 15 : 0],
+    [teasingStrokes, taskConfigs.teasingStrokes ? 5 : 0],
+    [randomBeat, taskConfigs.randomBeat ? 5 : 0],
+    [randomStrokeSpeed, taskConfigs.randomStrokeSpeed ? 20 : 0],
+    [acceleration, taskConfigs.accelerationCycles ? 7 : 0],
+    [redLightGreenLight, taskConfigs.redLightGreenLight ? 7 : 0],
+    [clusterStrokes, taskConfigs.clusterStrokes ? 7 : 0],
+    [handsOff, taskConfigs.handsOff ? 5 : 0],
+    [gripChallenge, taskConfigs.gripChallenge ? 7 : 0],
+    [addRubberBand, taskConfigs.rubberBands ? 2 : 0],
+    [removeRubberBand, taskConfigs.rubberBands ? 1 : 0],
+    [applyIcyHot, taskConfigs.icyHot ? 1 : 0],
+    [applyToothpaste, taskConfigs.toothpaste ? 1 : 0],
+    [ballslaps, taskConfigs.ballSlaps ? 4 : 0],
+    [squeezeBalls, taskConfigs.squeezeBalls ? 4 : 0],
+    [headPalming, taskConfigs.headPalming ? 1 : 0],
+    [bindCockAndBalls, taskConfigs.bindCockBalls ? 1 : 0],
+    [snapRubberBand, taskConfigs.rubberBands ? 1 : 0],
+    [holdBreath, taskConfigs.breathPlay ? 1 : 0],
+    [scratchChest, taskConfigs.scratching ? 1 : 0],
+    [scratchThighs, taskConfigs.scratching ? 1 : 0],
+    [scratchShoulders, taskConfigs.scratching ? 1 : 0],
+    [flickCockHead, taskConfigs.flicking ? 1 : 0],
+    [flickNipples, taskConfigs.flicking ? 1 : 0],
+    [rubIceOnBalls, taskConfigs.cbtIce ? 1 : 0],
+    [setStrokeStyleDominant, taskConfigs.dominant ? 15 : 0],
+    [setStrokeStyleNondominant, taskConfigs.nondominant ? 5 : 0],
+    [setStrokeStyleHeadOnly, taskConfigs.headOnly ? 1 : 0],
+    [setStrokeStyleShaftOnly, taskConfigs.shaftOnly ? 2 : 0],
+    [setStrokeStyleOverhandGrip, taskConfigs.overhandGrip ? 1 : 0],
+    [setStrokeStyleBothHands, taskConfigs.bothHands ? 5 : 0],
+    [insertButtPlug, taskConfigs.buttplug ? 2 : 0],
+    [removeButtPlug, taskConfigs.buttplug ? 1 : 0],
+    [eatPrecum, taskConfigs.precum ? 3 : 0],
+    [addClothespin, taskConfigs.clothespins ? 3 : 0],
+    [removeClothespin, taskConfigs.clothespins ? 1 : 0],
+    [rubNipples, taskConfigs.rubNipples ? 5 : 0],
+    [nipplesAndStroke, taskConfigs.nipplesAndStroke ? 10 : 0],
+  ];
 
-  // If an action has a probablity > 1, we duplicate it to give
-  // const actionsWithProbabilitiesApplied = []
+  const actionsWithProbabilitiesApplied = applyProbabilities(enabledActions);
 
-  // enabledActions.forEach(action => {
-  //  action.probability
-  // });
-
-  // return actionsWithProbabilitiesApplied
-
-  return enabledActions;
+  return actionsWithProbabilitiesApplied;
 }
 
-// [a, b, c, d]
-// [1, 2, 1, 3]
-// [a, b, b, c, d, d, d]
-// rand 0 - 7
+/**
+ * If an action has a probablity > 1, we duplicate it to give it the appropriate proability
+ * Example
+ * [a, b, c, d]
+ * [1, 2, 1, 3]
+ * [a, b, b, c, d, d, d]
+ */
+function applyProbabilities<T>(probabilities: [T, number][]) {
+  const appliedProbabilities: T[] = [];
+
+  probabilities.forEach(([t, probability]) => {
+    for (let i = 0; i < probability; i++) {
+      appliedProbabilities.push(t);
+    }
+  });
+
+  return appliedProbabilities;
+}

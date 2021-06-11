@@ -1,5 +1,4 @@
 import store from "store";
-import actionIterator from "engine/actionIterator";
 import { chance, getRandomInclusiveInteger } from "utils/math";
 import { initializeActions } from "game/initializeActions";
 import determineEdge, { shouldEdge } from "./orgasm/edge";
@@ -10,20 +9,6 @@ import finalEdgeAndHold, {
 } from "game/actions/orgasm/orgasm";
 import shuffle from "lodash.shuffle";
 import { edgingLadder } from "game/actions/orgasm/edgeInTime";
-
-/**
- * retrieves a set of random actions
- *
- * @param count
- *   the length of the set
- * @returns {any | Array}
- */
-const getRandomActions = (count = 0) => {
-  //Take only actions from src/configureStore.js and initialize them with probabilities from actions/index.js
-  const actions = initializeActions(store.config.tasks);
-
-  return applyProbability(actions, count);
-};
 
 /**
  * Applies the probability specified in index.js to each action.
@@ -72,39 +57,43 @@ export const applyProbability = (actions, count = 0) => {
  *
  * @returns {*} action - the next action that will be executed and displayed
  */
-const generateAction = () => {
-  let action = null;
+function nextAction() {
   if (store.game.edgingLadder) {
-    action = edgingLadder;
-  } else if (store.game.orgasm) {
-    action = getRandomGameEnd;
-  } else if (shouldOrgasm()) {
+    return edgingLadder;
+  }
+
+  if (store.game.orgasm) {
+    return getRandomGameEnd;
+  }
+
+  if (shouldOrgasm()) {
     store.game.orgasm = true;
     if (chance(75) && store.config.advancedOrgasm) {
-      action = finalEdgeAndHold;
+      return finalEdgeAndHold;
     } else {
-      action = getRandomGameEnd;
-    }
-  } else if (shouldEdge()) {
-    action = determineEdge;
-  } else if (shouldRuin()) {
-    action = ruin;
-  } else {
-    const chosenActions = getRandomActions();
-
-    // get one of the chosen actions
-    action =
-      chosenActions[getRandomInclusiveInteger(0, chosenActions.length - 1)];
-
-    if (!action) {
-      debugger;
+      return getRandomGameEnd;
     }
   }
 
-  return action;
-};
+  if (shouldEdge()) {
+    return determineEdge;
+  }
 
-/**
- * Create an ActionIterator using a action generator
- */
-export default actionIterator(generateAction);
+  if (shouldRuin()) {
+    return ruin;
+  }
+
+  const actions = initializeActions(store.config.tasks);
+  const randomizedAction =
+    actions[getRandomInclusiveInteger(0, actions.length - 1)];
+
+  return randomizedAction;
+}
+
+function* generateAction() {
+  while (true) {
+    yield nextAction();
+  }
+}
+
+export default generateAction();
