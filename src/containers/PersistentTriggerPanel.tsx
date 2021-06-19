@@ -31,7 +31,6 @@ export default function PersistentTriggerPanel() {
             color="primary"
             size="medium"
             style={{ opacity: 0.8, margin: 10 }}
-            disabled={store?.game.ruining}
             onClick={() => {
               ActionService.execute(ruinedOrgasm, true);
             }}
@@ -44,13 +43,7 @@ export default function PersistentTriggerPanel() {
             color="inherit"
             size="medium"
             style={{ opacity: 0.8, margin: 10 }}
-            disabled={store?.game.edging}
             onClick={() => {
-              if (!store) {
-                return;
-              }
-              store.game.edging = true;
-              store.game.edges++;
               ActionService.execute(edged, true);
             }}
           >

@@ -134,13 +134,13 @@ class ConfigPage extends React.Component {
         case "maximumGameTime": {
           delete errors["minimumGameTime"];
           delete errors["maximumGameTime"];
-          if (!value || store.config.minimumGameTime < 3) {
+          if (!value || store.config.minimumGameTime < 1) {
             errors["minimumGameTime"] =
-              "Minimum Game Time must be at least 3 minutes";
+              "Minimum Game Time must be at least 1 minutes";
           }
-          if (!value || value < 5) {
+          if (!value || value < 2) {
             errors["maximumGameTime"] =
-              "Maximum Game Time must be at least 5 minutes";
+              "Maximum Game Time must be at least 2 minutes";
           }
           if (
             parseInt(store.config.maximumGameTime, 10) <
@@ -529,7 +529,7 @@ class ConfigPage extends React.Component {
                       required
                       onChange={this.handleChange("minimumGameTime", Number)}
                       type="number"
-                      inputProps={{ step: "1", min: "3" }}
+                      inputProps={{ step: "1", min: "1" }}
                       endAdornment={
                         <InputAdornment position="end">minutes</InputAdornment>
                       }
@@ -550,7 +550,7 @@ class ConfigPage extends React.Component {
                       required
                       onChange={this.handleChange("maximumGameTime", Number)}
                       type="number"
-                      inputProps={{ step: "1", min: "5" }}
+                      inputProps={{ step: "1", min: "2" }}
                       endAdornment={
                         <InputAdornment position="end">minutes</InputAdornment>
                       }
@@ -759,54 +759,6 @@ class ConfigPage extends React.Component {
               <Grid container spacing={10}>
                 <Grid item xs={12} md={4}>
                   <FormControlLabel
-                    title={
-                      "Makes the game ending more challenging by: \n" +
-                      "   - enabling more advanced orgasm tasks, like a time limit to orgasm in or \n" +
-                      "     a specific stroke style and speed that may not be changed to orgasm. \n" +
-                      "   - invoking a chance to be denied in the end if failing on 'Advanced Edge' tasks"
-                    }
-                    control={
-                      <Switch
-                        checked={store.config.advancedOrgasm}
-                        onChange={this.handleCheckChange("advancedOrgasm")}
-                        value="advancedOrgasm"
-                      />
-                    }
-                    label="Advanced Orgasm"
-                  />
-                </Grid>
-                <Grid item xs={12} md={4}>
-                  <FormControl
-                    title={
-                      'Allowed, Denied and Ruined all count as "Game End" at this point'
-                    }
-                    className={classes.control}
-                    required
-                    error={!!errors.maximumOrgasms}
-                  >
-                    <InputLabel>Number of Game Ends</InputLabel>
-                    <Input
-                      id="maximumOrgasms"
-                      value={store.config.maximumOrgasms}
-                      onChange={this.handleChange("maximumOrgasms", Number)}
-                      fullWidth
-                      type="number"
-                      inputProps={{ step: "1", min: "1" }}
-                    />
-                    {errors.maximumOrgasms ? (
-                      <FormHelperText>{errors.maximumOrgasms}</FormHelperText>
-                    ) : (
-                      <FormHelperText>
-                        The number of Game Ends that will occur at max during
-                        one game
-                      </FormHelperText>
-                    )}
-                  </FormControl>
-                </Grid>
-              </Grid>
-              <Grid container spacing={10}>
-                <Grid item xs={12} md={4}>
-                  <FormControlLabel
                     control={
                       <Switch
                         checked={store.config.postOrgasmTorture}
@@ -943,23 +895,6 @@ class ConfigPage extends React.Component {
             </Group>
             <Group title="Edging">
               <Grid container spacing={10}>
-                <Grid item xs={12} md={3}>
-                  <FormControlLabel
-                    title={
-                      "Makes edging more interesting. If this is active, there is a chance for harder " +
-                      "edging tasks. This does not affect the other edging options like frequency, minimum edges " +
-                      "and cooldown."
-                    }
-                    control={
-                      <Switch
-                        checked={store.config.advancedEdging}
-                        onChange={this.handleCheckChange("advancedEdging")}
-                        value="advancedEdging"
-                      />
-                    }
-                    label="Advanced Edging"
-                  />
-                </Grid>
                 <Grid item xs={12} md={3}>
                   <FormControl
                     className={classes.control}

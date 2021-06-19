@@ -61,6 +61,10 @@ export type MediaMachineContext = {
   linkIndex: number;
 };
 
+export type StopEvent = {
+  type: "STOP";
+};
+
 export type MediaMachineEvent =
   | { type: "FETCH" }
   | { type: "LOAD_MORE_LINKS" }
@@ -68,7 +72,8 @@ export type MediaMachineEvent =
   | { type: "PAUSE" }
   | { type: "NEXT_LINK" }
   | { type: "PREVIOUS_LINK" }
-  | { type: "PRELOAD_LINK" };
+  | { type: "PRELOAD_LINK" }
+  | StopEvent;
 
 export function createMediaMachine(config: GameConfig) {
   const subreddits = parseRedditIds(config.redditId);
@@ -86,7 +91,15 @@ export function createMediaMachine(config: GameConfig) {
         links: [],
         linkIndex: 0,
       },
+      on: {
+        STOP: {
+          target: "stopped",
+        },
+      },
       states: {
+        stopped: {
+          type: "final",
+        },
         fetching: {
           invoke: {
             id: "fetchMedia",

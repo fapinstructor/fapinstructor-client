@@ -8,7 +8,7 @@ import { StrokeService } from "../services";
 import { TIME_DELAY } from "components/organisms/BeatMeter/settings";
 
 import createIntervalMachine, { TickEvent } from "./intervalMachine";
-// import handy from "api/handy";
+import handy from "api/handy";
 
 export type StrokeMachine = ReturnType<typeof createStrokeMachine>;
 
@@ -46,6 +46,10 @@ export type StrokeEvent = {
   timestamp: number;
 };
 
+export type StopEvent = {
+  type: "STOP";
+};
+
 export type StrokeMachineEvent =
   | { type: "PAUSE" }
   | { type: "PLAY" }
@@ -54,7 +58,8 @@ export type StrokeMachineEvent =
   | TickEvent
   | QueueStrokeEvent
   | ClearStrokeQueue
-  | StrokeEvent;
+  | StrokeEvent
+  | StopEvent;
 
 export function createStrokeMachine(config: GameConfig) {
   const initialStrokeSpeed = getRandomStrokeSpeed({ fast: 2 });
@@ -68,7 +73,15 @@ export function createStrokeMachine(config: GameConfig) {
         strokeSpeedBaseline: 0,
         strokeQueue: [],
       },
+      on: {
+        STOP: {
+          target: "stopped",
+        },
+      },
       states: {
+        stopped: {
+          type: "final",
+        },
         paused: {
           on: {
             PLAY: "playing",
@@ -145,7 +158,7 @@ export function createStrokeMachine(config: GameConfig) {
             playTick(StrokeService.strokeSpeed);
           }
 
-          // handy.setSpeed(context.strokeSpeed);
+          handy.setSpeed(context.strokeSpeed);
 
           return {
             strokeQueue: context.strokeQueue.slice(1),

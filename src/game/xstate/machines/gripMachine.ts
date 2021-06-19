@@ -35,6 +35,10 @@ type SetGripStrengthEvent = {
   strength: GripStrength;
 };
 
+export type StopEvent = {
+  type: "STOP";
+};
+
 export type GripMachineEvent =
   | { type: "PAUSE" }
   | { type: "PLAY" }
@@ -43,7 +47,8 @@ export type GripMachineEvent =
   | { type: "LOOSEN_GRIP_STRENGTH" }
   | { type: "TIGHTEN_GRIP_STRENGTH" }
   | { type: "SET_LOOSEST_GRIP_STRENGTH" }
-  | { type: "SET_TIGHTEST_GRIP_STRENGTH" };
+  | { type: "SET_TIGHTEST_GRIP_STRENGTH" }
+  | StopEvent;
 
 export function createGripMachine(config: GameConfig) {
   const gripMachine = createMachine<GripMachineContext, GripMachineEvent>(
@@ -53,7 +58,15 @@ export function createGripMachine(config: GameConfig) {
       context: {
         gripStrength: config.initialGripStrength,
       },
+      on: {
+        STOP: {
+          target: "stopped",
+        },
+      },
       states: {
+        stopped: {
+          type: "final",
+        },
         paused: {
           on: {
             PLAY: "playing",

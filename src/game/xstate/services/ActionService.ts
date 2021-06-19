@@ -38,7 +38,12 @@ const ActionService = {
     // Automatically start the service after it's created
     service.start();
   },
-
+  stop() {
+    getActionService().send("STOP");
+  },
+  get stopped() {
+    return !service || service.state.matches("stopped");
+  },
   /**
    * Executes the specified action
    *

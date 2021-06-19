@@ -2,7 +2,7 @@
 
 exports[`Storyshots atoms/Bookmark Gif Bookmark 1`] = `
 <a
-  href="https://fapinstructor.com"
+  href="https://media1.giphy.com/media/3o7abAHdYvZdBNnGZq/giphy.gif"
   rel="noopener noreferrer"
   target="_blank"
 >
@@ -16,7 +16,7 @@ exports[`Storyshots atoms/Bookmark Gif Bookmark 1`] = `
 
 exports[`Storyshots atoms/Bookmark Image Bookmark 1`] = `
 <a
-  href="https://fapinstructor.com"
+  href="https://fapinstructor.com/images/default-image.jpg"
   rel="noopener noreferrer"
   target="_blank"
 >
@@ -30,7 +30,7 @@ exports[`Storyshots atoms/Bookmark Image Bookmark 1`] = `
 
 exports[`Storyshots atoms/Bookmark Video Bookmark 1`] = `
 <a
-  href="https://fapinstructor.com"
+  href="https://i.imgur.com/IalPrWs.mp4"
   rel="noopener noreferrer"
   target="_blank"
 >

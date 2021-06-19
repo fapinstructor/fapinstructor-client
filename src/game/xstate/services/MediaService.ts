@@ -33,6 +33,12 @@ const MediaService = {
     // Automatically start the service after it's created
     service.start();
   },
+  stop() {
+    getMediaService().send("STOP");
+  },
+  get stopped() {
+    return getMediaService().state.matches("stopped");
+  },
   nextLink() {
     getMediaService().send("NEXT_LINK");
   },

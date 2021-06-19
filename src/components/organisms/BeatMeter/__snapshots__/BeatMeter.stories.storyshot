@@ -1,53 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots organisms/BeatMeter Random Beats 1`] = `
-.c1 {
-  border-width: 1px 0;
-  border-color: #3fbfa1;
-  width: 100%;
-  position: absolute;
-  z-index: 1;
-  box-shadow: 0px 0px 24px 3px #3fbfa1;
-}
-
-.c2 {
-  position: absolute;
-  height: 50px;
-  width: 50px;
-  border: 1px solid #3fbfa1;
-  border-radius: 50%;
-  left: calc(50% - 25px);
-  z-index: 3;
-  box-shadow: 0px 0px 9px 2px #3fbfa1;
-}
-
-.c0 {
-  height: 60px;
-  background-color: black;
-  color: white;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  width: 100%;
-}
-
-<div
-  class="c0"
->
-  <hr
-    class="c1"
-  />
-  <div
-    class="c2"
-  />
-</div>
-`;
-
 exports[`Storyshots organisms/BeatMeter Standard Bar 1`] = `
 .c0 {
   height: 60px;

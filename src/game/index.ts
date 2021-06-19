@@ -53,6 +53,12 @@ const stopGame = () => {
   interrupt();
   handy.reset();
 
+  // Stop services
+  MediaService.stop();
+  GripService.stop();
+  StrokeService.stop();
+  ActionService.stop();
+
   observers.forEach((id) => {
     gameLoopObservable.unsubscribe(id);
   });

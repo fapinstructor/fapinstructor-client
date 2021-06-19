@@ -6,44 +6,8 @@ import { getRandomStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
 import delay from "utils/delay";
 import { playCommand } from "engine/audio";
 import audioLibrary, { getRandomAudioVariation } from "audio";
-import elapsedGameTime from "game/utils/elapsedGameTime";
 import { setRandomStrokeStyle } from "game/enums/StrokeStyle";
 import { MediaService, StrokeService } from "game/xstate/services";
-
-export const shouldRuin = () => {
-  const {
-    game: { ruins },
-    config: {
-      maximumRuinedOrgasms,
-      minimumGameTime,
-      maximumGameTime,
-      actionFrequency,
-      fastestStrokeSpeed,
-    },
-  } = store;
-
-  let result = false;
-  const isAllowedChance =
-    ruins < maximumRuinedOrgasms &&
-    elapsedGameTime("minutes") >= minimumGameTime * 1.3 &&
-    StrokeService.strokeSpeed >= fastestStrokeSpeed / 1.7;
-
-  if (isAllowedChance) {
-    const rand = Math.random();
-    const gameCompletionPercent =
-      elapsedGameTime("seconds") / (maximumGameTime * 60);
-
-    if (elapsedGameTime("minutes") >= maximumGameTime) {
-      // If the game time has gone over return true
-      result = true;
-    } else {
-      // Probability Graph: https://www.desmos.com/calculator/xhyaj1gxuc
-      result = gameCompletionPercent ** 4 / actionFrequency > rand;
-    }
-  }
-
-  return result;
-};
 
 export const ruinedOrgasm = async () => {
   if (MediaService.paused) {
@@ -51,7 +15,6 @@ export const ruinedOrgasm = async () => {
   }
 
   store.game.ruins++;
-  store.game.ruining = true;
 
   playCommand(getRandomAudioVariation("Ruined"));
 
@@ -60,7 +23,6 @@ export const ruinedOrgasm = async () => {
   } = store;
 
   StrokeService.pause();
-  store.game.ruining = false;
 
   await delay(ruinCooldown * 1000);
 

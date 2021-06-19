@@ -38,6 +38,12 @@ const GripService = {
     // Automatically start the service after it's created
     service.start();
   },
+  stop() {
+    getGripService().send("STOP");
+  },
+  get stopped() {
+    return getGripService().state.matches("stopped");
+  },
   pause() {
     getGripService().send("PAUSE");
   },

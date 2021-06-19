@@ -68,8 +68,6 @@ export type GameConfig = {
   postOrgasmTorture: boolean;
   postOrgasmTortureMinimumTime: number;
   postOrgasmTortureMaximumTime: number;
-  advancedEdging: boolean;
-  advancedOrgasm: boolean;
   edgeCooldown: number; // sec
   edgeFrequency: number; // percent
   ruinCooldown: number; // sec
@@ -108,8 +106,6 @@ const defaultConfig: GameConfig = {
   postOrgasmTorture: false,
   postOrgasmTortureMinimumTime: 10,
   postOrgasmTortureMaximumTime: 90,
-  advancedEdging: true,
-  advancedOrgasm: true,
   edgeCooldown: 10, // sec
   edgeFrequency: 0, // percent
   ruinCooldown: 20, // sec
@@ -123,20 +119,20 @@ const defaultConfig: GameConfig = {
     doubleStrokes: true,
     halvedStrokes: true,
     teasingStrokes: true,
-    accelerationCycles: true,
-    randomBeat: true,
-    randomStrokeSpeed: true,
-    redLightGreenLight: true,
-    clusterStrokes: true,
-    gripChallenge: true,
+    accelerationCycles: false,
+    randomBeat: false,
+    randomStrokeSpeed: false,
+    redLightGreenLight: false,
+    clusterStrokes: false,
+    gripChallenge: false,
     //Stroke Style
     dominant: true,
-    nondominant: true,
+    nondominant: false,
     headOnly: false,
     shaftOnly: false,
     overhandGrip: false,
-    bothHands: true,
-    handsOff: true,
+    bothHands: false,
+    handsOff: false,
     //Grip Strength
     gripAdjustments: true,
     //CBT

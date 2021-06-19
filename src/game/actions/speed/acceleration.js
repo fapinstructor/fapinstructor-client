@@ -1,4 +1,5 @@
 import store from "store";
+import createNotification from "engine/createNotification";
 import { setStrokeSpeed } from "game/utils/strokeSpeed";
 import delay from "utils/delay";
 import { playCommand } from "engine/audio";
@@ -10,6 +11,11 @@ export const acceleration = async () => {
     config: { slowestStrokeSpeed, fastestStrokeSpeed },
   } = store;
   const previousStrokeSpeed = StrokeService.strokeSpeed;
+
+  createNotification({
+    message: "Accelerated stroking",
+    delay: true,
+  });
 
   setStrokeSpeed(slowestStrokeSpeed);
 

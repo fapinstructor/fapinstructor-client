@@ -45,6 +45,12 @@ const StrokeService = {
     // Automatically start the service after it's created
     service.start();
   },
+  stop() {
+    getStrokeService().send("STOP");
+  },
+  get stopped() {
+    return getStrokeService().state.matches("stopped");
+  },
   get instance() {
     return getStrokeService();
   },
@@ -79,15 +85,5 @@ const StrokeService = {
 export function useStrokeService() {
   return useService(getStrokeService());
 }
-
-// export function useObserver(cb: (event: StrokeMachineEvent) => void) {
-//     if (!observerId) {
-//       console.log("HI");
-//       setObserverId(observer.subscribe(cb));
-//     }
-//   }, [observerId, setObserverId, cb]);
-
-//   return [observer]
-// }
 
 export default StrokeService;

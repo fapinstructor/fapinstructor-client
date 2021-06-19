@@ -1,17 +1,26 @@
+import createNotification from "engine/createNotification";
 import { playVoice } from "engine/audio";
 import delay from "utils/delay";
 import { StrokeService } from "game/xstate/services";
-import { setStrokeSpeed, getRandomStrokeSpeed } from "game/utils/strokeSpeed";
+import { setStrokeSpeed } from "game/utils/strokeSpeed";
 import getRandomDuration from "game/utils/getRandomDuration";
 
 export const doubleStrokes = async () => {
-  const duration = getRandomDuration(5, 20);
+  const previousStrokeSpeed = StrokeService.strokeSpeed;
 
-  setStrokeSpeed(StrokeService.strokeSpeed * 2);
+  const duration = getRandomDuration(5, 30);
+
+  createNotification({
+    message: "Double your stroke speed!",
+    duration: duration,
+    showProgress: true,
+    delay: true,
+  });
 
   playVoice("Faster");
+  setStrokeSpeed(StrokeService.strokeSpeed * 2);
 
   await delay(duration);
-  setStrokeSpeed(getRandomStrokeSpeed());
+  setStrokeSpeed(previousStrokeSpeed);
 };
 doubleStrokes.label = "Double Strokes";

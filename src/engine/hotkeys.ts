@@ -16,7 +16,7 @@ export const triggerHotkeys = [
   "/",
 ];
 
-window.addEventListener("keydown", function (event) {
+window.addEventListener("keydown", (event) => {
   const { game } = store;
 
   // Only enable hotkeys while playing a game
@@ -25,26 +25,23 @@ window.addEventListener("keydown", function (event) {
   }
 
   // Ruin
-  if (event.key === "r" && !game.ruining) {
+  if (event.key === "r") {
     ActionService.execute(ruinedOrgasm, true);
     return;
   }
 
   // Edge
-  if (event.key === "e" && !game.edging) {
-    game.edging = true;
-    game.edges++;
+  if (event.key === "e") {
     ActionService.execute(edged, true);
     return;
   }
 
   // Action triggers
-  if (ActionService.triggers) {
+  if (!ActionService.stopped && ActionService.triggers) {
     if (ActionService.triggers.length === 1) {
       // When only one hotkey, map to space
       if (event.key === " ") {
         ActionService.execute(ActionService.triggers[0]);
-        return;
       }
     } else {
       // When multiple hotkeys, map to triggerHotkeys array
@@ -52,8 +49,11 @@ window.addEventListener("keydown", function (event) {
 
       if (hotkeyIndex > -1) {
         const trigger = ActionService.triggers[hotkeyIndex];
-        ActionService.execute(trigger);
-        return;
+
+        // Might be undefined if the current key isn't mapped to a trigger
+        if (trigger) {
+          ActionService.execute(trigger);
+        }
       } else {
         // Too many triggers, ran out of hotkeys
       }

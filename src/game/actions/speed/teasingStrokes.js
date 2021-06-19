@@ -11,7 +11,7 @@ export const teasingStrokes = async () => {
 
   createNotification({
     message: "Now go slow",
-    duration: totalTime,
+    duration: totalTime * 1000,
     showProgress: true,
     delay: true,
   });

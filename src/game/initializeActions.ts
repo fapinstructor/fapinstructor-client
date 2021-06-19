@@ -40,7 +40,7 @@ import {
   insertButtPlug,
   removeButtPlug,
 } from "./actions";
-import { Action } from "./xstate/machines/actionMachine";
+import type { Action } from "./xstate/machines/actionMachine";
 
 export function initializeActions(taskConfigs: TaskConfig) {
   const enabledActions: [Action, number][] = [

@@ -36,7 +36,6 @@ const warmup = async () => {
 
   const ready = async () => {
     StrokeService.play();
-    await delay(1000);
     StrokeService.setStrokeSpeed(strokeSpeed);
   };
   ready.label = "I'm Ready!";

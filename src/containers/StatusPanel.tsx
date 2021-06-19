@@ -25,7 +25,7 @@ import {
   toggleVideoAudio,
   toggleVoice,
 } from "common/store/settings";
-import { useGripService } from "game/xstate/services";
+import { useGripService, useStrokeService } from "game/xstate/services";
 import { GripStrengthString } from "game/xstate/machines/gripMachine";
 
 const useStyles = makeStyles({
@@ -102,6 +102,11 @@ export default React.memo(function StatusPanel() {
       context: { gripStrength },
     },
   ] = useGripService();
+  const [
+    {
+      context: { strokeSpeed },
+    },
+  ] = useStrokeService();
 
   return (
     <div className={classes.root}>
@@ -140,19 +145,21 @@ export default React.memo(function StatusPanel() {
               <div>
                 <div className={classes.labels}>
                   <div style={{ marginRight: 10 }}>
-                    <Label value="Elapsed Time (min)" />
-                    <Label value="Stroke Grip" />
-                    <Label value="Stroke Style" />
-                    {buttPlugInserted && <Label value="Butt Plug" />}
-                    {rubberBands > 0 && <Label value="Rubberbands" />}
-                    {clothespins > 0 && <Label value="Clothepins" />}
-                    {cockAndBallsBound && <Label value="Cock & Balls" />}
-                    {edges > 0 && <Label value="Edges" />}
-                    {ruins > 0 && <Label value="Ruins" />}
-                    {orgasms > 0 && <Label value="Orgasms" />}
+                    <Label value="Elapsed Time (min):" />
+                    <Label value="Stroke Speed (sec):" />
+                    <Label value="Stroke Grip:" />
+                    <Label value="Stroke Style:" />
+                    {buttPlugInserted && <Label value="Butt Plug:" />}
+                    {rubberBands > 0 && <Label value="Rubberbands:" />}
+                    {clothespins > 0 && <Label value="Clothepins:" />}
+                    {cockAndBallsBound && <Label value="Cock & Balls:" />}
+                    {edges > 0 && <Label value="Edges:" />}
+                    {ruins > 0 && <Label value="Ruins:" />}
+                    {orgasms > 0 && <Label value="Orgasms:" />}
                   </div>
                   <div>
-                    <Label value={elapsedGameTime("minutes").toString()} />
+                    <Label value={String(elapsedGameTime("minutes"))} />
+                    <Label value={String(strokeSpeed.toFixed(2))} />
                     <Label value={GripStrengthString[gripStrength]} />
                     <Label value={StrokeStyles[strokeStyle].label} />
                     {buttPlugInserted && <Label value="Inserted" />}

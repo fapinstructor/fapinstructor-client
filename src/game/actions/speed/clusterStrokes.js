@@ -1,4 +1,5 @@
 import store from "store";
+import createNotification from "engine/createNotification";
 import { getAverageStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
 import { getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
@@ -9,6 +10,11 @@ export const clusterStrokes = async () => {
     config: { fastestStrokeSpeed },
   } = store;
   const previousStrokeSpeed = StrokeService.strokeSpeed;
+
+  createNotification({
+    message: "Cluster Strokes",
+    delay: true,
+  });
 
   const sets = getRandomInclusiveInteger(3, 6);
   const reps = getRandomInclusiveInteger(3, 15);
