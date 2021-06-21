@@ -26,13 +26,13 @@ window.addEventListener("keydown", (event) => {
 
   // Ruin
   if (event.key === "r") {
-    ActionService.execute(ruinedOrgasm, true);
+    ActionService.execute(ruinedOrgasm);
     return;
   }
 
   // Edge
   if (event.key === "e") {
-    ActionService.execute(edged, true);
+    ActionService.execute(edged);
     return;
   }
 

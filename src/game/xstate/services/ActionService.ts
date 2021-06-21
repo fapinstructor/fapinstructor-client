@@ -56,11 +56,13 @@ const ActionService = {
    * | -execution completes overtime    |
    * | -actions can be interrupted      |
    * +----------------------------------+
-   * @param {A function that returns null or a promise} action
-   * @param {If an action is already executing, should it be interrupted} shouldInterrupt
+   * @param {
+   *   A function that returns null or a promise.
+   *   If an action is already executing,  it will be interrupted
+   * } action
    */
-  execute(action: Action, shouldInterrupt?: boolean) {
-    getActionService().send({ type: "EXECUTE", action, shouldInterrupt });
+  execute(action: Action) {
+    getActionService().send({ type: "EXECUTE", action });
   },
   setTriggers(triggers: Action[]) {
     getActionService().send("SET_TRIGGERS", { triggers });

@@ -35,7 +35,6 @@ type GenerateActionEvent = {
 export type ExecuteActionEvent = {
   type: "EXECUTE";
   action: Action;
-  shouldInterrupt?: boolean;
   executeImmediately?: boolean;
 };
 
@@ -116,19 +115,13 @@ export function createActionMachine(config: GameConfig) {
           ]),
         },
         executing: {
+          entry: "interrupt",
           invoke: {
             id: "executeAction",
             src: (context, event) => async (callback) => {
               try {
-                const {
-                  action,
-                  shouldInterrupt = false,
-                  executeImmediately = false,
-                } = event as ExecuteActionEvent;
-
-                if (shouldInterrupt) {
-                  interrupt();
-                }
+                const { action, executeImmediately = false } =
+                  event as ExecuteActionEvent;
 
                 const trigger = await action();
 
@@ -176,6 +169,15 @@ export function createActionMachine(config: GameConfig) {
     },
     {
       actions: {
+        interrupt: () => {
+          try {
+            interrupt();
+          } catch (error) {
+            if (error.reason !== "interrupt") {
+              console.error(error);
+            }
+          }
+        },
         setTriggers: assign((context, event) => ({
           triggers: (event as SetTiggersActionEvent).triggers,
         })),

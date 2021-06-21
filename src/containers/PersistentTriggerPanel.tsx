@@ -32,7 +32,7 @@ export default function PersistentTriggerPanel() {
             size="medium"
             style={{ opacity: 0.8, margin: 10 }}
             onClick={() => {
-              ActionService.execute(ruinedOrgasm, true);
+              ActionService.execute(ruinedOrgasm);
             }}
           >
             Ruin
@@ -44,7 +44,7 @@ export default function PersistentTriggerPanel() {
             size="medium"
             style={{ opacity: 0.8, margin: 10 }}
             onClick={() => {
-              ActionService.execute(edged, true);
+              ActionService.execute(edged);
             }}
           >
             Edge
