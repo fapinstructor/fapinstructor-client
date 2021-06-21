@@ -10,7 +10,7 @@ import { getRandomBoolean, getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
 import { handsOff } from "game/actions";
 import { getRandomEdgeMessage } from "game/texts/messages";
-import { StrokeService } from "game/xstate/services";
+import { GripService, StrokeService } from "game/xstate/services";
 
 export const rideTheEdge = async (time = getRandomInclusiveInteger(5, 30)) => {
   const previousStrokeSpeed = StrokeService.strokeSpeed;
@@ -58,18 +58,18 @@ export const getToTheEdge = async (message = getRandomEdgeMessage()) => {
 
   setStrokeSpeed(fastestStrokeSpeed);
 
-  StrokeService.resetGripStrength();
+  GripService.resetGripStrength();
   setDefaultStrokeStyle();
 
   return createNotification({ message, duration: -1 });
 };
 
-export const edge = async (time, message = getRandomEdgeMessage()) => {
+export const edge = async (message = getRandomEdgeMessage()) => {
   const notificationId = await getToTheEdge(message);
 
   const trigger = async () => {
     dismissNotification(notificationId);
-    await edging(time);
+    await edging();
     await edged();
   };
   trigger.label = "Edging";

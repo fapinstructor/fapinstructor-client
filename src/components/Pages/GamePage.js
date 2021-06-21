@@ -1,7 +1,7 @@
 import React from "react";
 import * as Sentry from "@sentry/react";
 import { withRouter, Redirect } from "react-router-dom";
-import { withStyles } from "@material-ui/core/styles";
+import { withStyles, makeStyles } from "@material-ui/core/styles";
 import { startGame, stopGame } from "game";
 import store from "store";
 import { Paper } from "@material-ui/core";
@@ -52,6 +52,27 @@ const styles = () => ({
 
 function handleSlideChange() {
   MediaService.nextLink();
+}
+
+const useYouTubeStyles = makeStyles(() => ({
+  youtube: {
+    width: "99%",
+    height: "90%",
+  },
+}));
+
+function YouTubeVideo({ src }) {
+  const classes = useYouTubeStyles();
+
+  return (
+    <iframe
+      src={src}
+      title="youtube"
+      className={classes.youtube}
+      frameBorder="0"
+      allowFullScreen
+    />
+  );
 }
 
 class GamePage extends React.Component {
@@ -138,7 +159,7 @@ class GamePage extends React.Component {
     return (
       <ProxyStoreConsumer>
         {({
-          game: { orgasms },
+          game: { orgasms, youtube },
           config: { maximumOrgasms, slideDuration },
           videoMuted,
         }) => (
@@ -149,20 +170,21 @@ class GamePage extends React.Component {
               <>
                 <ExitGamePrompt />
                 <HUD />
-                {(activeLink && (
-                  <MediaPlayer
-                    link={activeLink}
-                    duration={slideDuration}
-                    muted={videoMuted}
-                    onEnded={handleSlideChange}
-                  />
-                )) || (
-                  <img
-                    className={classes.image}
-                    src={DEFAULT_BACKGROUND_IMAGE}
-                    alt=""
-                  />
-                )}
+                {(youtube && <YouTubeVideo src={youtube} />) ||
+                  (activeLink && (
+                    <MediaPlayer
+                      link={activeLink}
+                      duration={slideDuration}
+                      muted={videoMuted}
+                      onEnded={handleSlideChange}
+                    />
+                  )) || (
+                    <img
+                      className={classes.image}
+                      src={DEFAULT_BACKGROUND_IMAGE}
+                      alt=""
+                    />
+                  )}
               </>
             )}
           </div>

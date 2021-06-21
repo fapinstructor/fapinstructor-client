@@ -13,6 +13,13 @@ export const getRandomInclusiveInteger = (min: number, max: number) => {
 };
 
 /**
+ * Returns a random item from an array
+ */
+export const getRandomItem = <T>(items: Array<T>) => {
+  return items[Math.floor(Math.random() * items.length)];
+};
+
+/**
  * Returns true only at a percent percentage chance.
  *
  * @param percent

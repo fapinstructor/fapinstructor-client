@@ -73,6 +73,7 @@ export function createActionMachine(config: GameConfig) {
         },
         EXECUTE: {
           target: "executing",
+          actions: "interrupt",
         },
       },
       states: {
@@ -115,7 +116,6 @@ export function createActionMachine(config: GameConfig) {
           ]),
         },
         executing: {
-          entry: "interrupt",
           invoke: {
             id: "executeAction",
             src: (context, event) => async (callback) => {

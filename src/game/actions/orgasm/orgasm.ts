@@ -124,7 +124,7 @@ export const end = async () => {
   StrokeService.pause();
 
   // should continue?
-  if (parseInt(store.game.orgasms, 10) + 1 < parseInt(maximumOrgasms, 10)) {
+  if (store.game.orgasms + 1 < maximumOrgasms) {
     setStrokeSpeed(getRandomStrokeSpeed());
     StrokeService.play();
     createNotification({ message: "Start stroking again" });

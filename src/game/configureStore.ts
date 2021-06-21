@@ -16,6 +16,8 @@ export type Game = {
   strokeStyle: StrokeStyle;
   buttPlugInserted: boolean;
   orgasm: false;
+  // Used as a way to override the media player
+  youtube: string | null;
 };
 
 export default function initializeGame() {
@@ -31,5 +33,6 @@ export default function initializeGame() {
     strokeStyle: store.config?.defaultStrokeStyle,
     buttPlugInserted: false,
     orgasm: false,
+    youtube: null,
   };
 }

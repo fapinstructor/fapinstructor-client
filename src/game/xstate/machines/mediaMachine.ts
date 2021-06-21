@@ -199,7 +199,7 @@ export function createMediaMachine(config: GameConfig) {
         hasNextLink: ({ links, linkIndex }) => {
           return Boolean(links[linkIndex + 1]);
         },
-        hasPreviousLink: ({ links, linkIndex }) => {
+        hasPreviousLink: ({ linkIndex }) => {
           return linkIndex > 0;
         },
       },

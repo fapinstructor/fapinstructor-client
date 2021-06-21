@@ -3,8 +3,10 @@ import createNotification, {
   dismissNotification,
 } from "engine/createNotification";
 import videoLibrary from "video";
-import { getRandomInclusiveInteger } from "utils/math";
+import { getRandomItem } from "utils/math";
 import { MediaService, StrokeService } from "game/xstate/services";
+
+const videos = Object.values(videoLibrary);
 
 export const bindCockAndBalls = async () => {
   if (!store.game.cockAndBallsBound) {
@@ -17,22 +19,14 @@ export const bindCockAndBalls = async () => {
       delay: true,
     });
 
-    const videos = [
-      videoLibrary.CockBallsTie,
-      videoLibrary.BallSeperation,
-      videoLibrary.CockBallWrapping,
-      videoLibrary.BallWrapping,
-    ];
-
-    store.game.activeLink = {
-      directLink: videos[getRandomInclusiveInteger(0, videos.length - 1)],
-    };
+    store.game.youtube = getRandomItem(videos);
 
     const done = async () => {
       dismissNotification(nid);
       StrokeService.play();
       MediaService.play();
       store.game.cockAndBallsBound = true;
+      store.game.youtube = null;
     };
     done.label = "Bound";
 
