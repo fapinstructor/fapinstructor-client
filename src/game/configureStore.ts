@@ -18,6 +18,8 @@ export type Game = {
   orgasm: false;
   // Used as a way to override the media player
   youtube: string | null;
+  // A hack used to disable the edge/ruin buttons until the xstate machine is updated
+  cooldown: boolean;
 };
 
 export default function initializeGame() {
@@ -34,5 +36,6 @@ export default function initializeGame() {
     buttPlugInserted: false,
     orgasm: false,
     youtube: null,
+    cooldown: false,
   };
 }

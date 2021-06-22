@@ -1,7 +1,7 @@
 import store from "store";
 import { playCommand } from "engine/audio";
 import audioLibrary from "audio";
-import { getRandomStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
+import { setStrokeSpeed } from "game/utils/strokeSpeed";
 import { setDefaultStrokeStyle } from "game/enums/StrokeStyle";
 import createNotification, {
   dismissNotification,
@@ -29,8 +29,6 @@ export const rideTheEdge = async (time = getRandomInclusiveInteger(5, 30)) => {
 };
 
 export const edging = async () => {
-  store.game.edges++;
-
   const rideEdge = getRandomBoolean();
 
   if (rideEdge) {
@@ -39,15 +37,11 @@ export const edging = async () => {
 };
 
 export const edged = async () => {
-  StrokeService.pause();
+  store.game.edges++;
 
+  store.game.cooldown = true;
   await handsOff(store.config.edgeCooldown);
-
-  setStrokeSpeed(getRandomStrokeSpeed());
-  StrokeService.play();
-
-  playCommand(audioLibrary.StartStrokingAgain);
-  await delay(2000);
+  store.game.cooldown = false;
 };
 
 export const getToTheEdge = async (message = getRandomEdgeMessage()) => {

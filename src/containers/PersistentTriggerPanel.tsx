@@ -31,6 +31,7 @@ export default function PersistentTriggerPanel() {
             color="primary"
             size="medium"
             style={{ opacity: 0.8, margin: 10 }}
+            disabled={store?.game.cooldown}
             onClick={() => {
               ActionService.execute(ruinedOrgasm);
             }}
@@ -43,6 +44,7 @@ export default function PersistentTriggerPanel() {
             color="inherit"
             size="medium"
             style={{ opacity: 0.8, margin: 10 }}
+            disabled={store?.game.cooldown}
             onClick={() => {
               ActionService.execute(edged);
             }}

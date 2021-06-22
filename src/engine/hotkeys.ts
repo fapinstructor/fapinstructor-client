@@ -24,16 +24,18 @@ window.addEventListener("keydown", (event) => {
     return;
   }
 
-  // Ruin
-  if (event.key === "r") {
-    ActionService.execute(ruinedOrgasm);
-    return;
-  }
+  if (!game.cooldown) {
+    // Ruin
+    if (event.key === "r") {
+      ActionService.execute(ruinedOrgasm);
+      return;
+    }
 
-  // Edge
-  if (event.key === "e") {
-    ActionService.execute(edged);
-    return;
+    // Edge
+    if (event.key === "e") {
+      ActionService.execute(edged);
+      return;
+    }
   }
 
   // Action triggers

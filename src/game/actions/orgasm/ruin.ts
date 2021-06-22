@@ -2,38 +2,18 @@ import store from "store";
 import createNotification, {
   dismissNotification,
 } from "engine/createNotification";
-import { getRandomStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
-import delay from "utils/delay";
+import { setStrokeSpeed } from "game/utils/strokeSpeed";
 import { playCommand } from "engine/audio";
 import audioLibrary, { getRandomAudioVariation } from "audio";
-import { setRandomStrokeStyle } from "game/enums/StrokeStyle";
-import { MediaService, StrokeService } from "game/xstate/services";
+import { handsOff } from "game/actions";
 
 export const ruinedOrgasm = async () => {
-  if (MediaService.paused) {
-    MediaService.play();
-  }
-
+  playCommand(getRandomAudioVariation("Ruined"));
   store.game.ruins++;
 
-  playCommand(getRandomAudioVariation("Ruined"));
-
-  const {
-    config: { ruinCooldown },
-  } = store;
-
-  StrokeService.pause();
-
-  await delay(ruinCooldown * 1000);
-
-  setStrokeSpeed(getRandomStrokeSpeed());
-  await setRandomStrokeStyle();
-  StrokeService.play();
-  createNotification({ message: "Start stroking again" });
-
-  playCommand(audioLibrary.StartStrokingAgain);
-
-  await delay(3000);
+  store.game.cooldown = true;
+  await handsOff(store.config.ruinCooldown);
+  store.game.cooldown = false;
 };
 
 const ruinOrgasm = async () => {
