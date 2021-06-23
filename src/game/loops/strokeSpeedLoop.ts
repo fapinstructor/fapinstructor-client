@@ -43,7 +43,7 @@ let lastStrokeSpeedAdjustment = 0;
 export function strokeSpeedAdjustmentLoop({ progress }: GameLoopArgs) {
   // Don't do stroke speed adjustments if a task is being executed
 
-  if (!ActionService.executing && !ActionService.triggers) {
+  if (!ActionService.executing && ActionService.triggers.length === 0) {
     if (lastStrokeSpeedAdjustment >= STROKE_SPEED_ADJUSTMENT_FREQ_SEC * 1000) {
       const probabilityAdjustment =
         (StrokeService.strokeSpeedBaseline - StrokeService.strokeSpeed) /
@@ -71,7 +71,7 @@ const GRIP_ADJUSTMENT_FREQ_SEC = 30;
 let lastGripAdjustment = 0;
 export function gripAdjustmentLoop({ progress }: GameLoopArgs) {
   if (store.config.tasks.gripAdjustments) {
-    if (!ActionService.executing && !ActionService.triggers) {
+    if (!ActionService.executing && ActionService.triggers.length === 0) {
       if (lastGripAdjustment > GRIP_ADJUSTMENT_FREQ_SEC * 1000) {
         randomGripAdjustment();
         lastGripAdjustment = 0;

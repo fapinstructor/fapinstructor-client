@@ -27,7 +27,7 @@ export const ballslaps = async () => {
     dismissNotification(nid);
     StrokeService.play();
   };
-  done.label = "Done";
+  done.label = "Finished Slapping";
 
   return [done];
 };

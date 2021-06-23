@@ -39,7 +39,7 @@ window.addEventListener("keydown", (event) => {
   }
 
   // Action triggers
-  if (!ActionService.stopped && ActionService.triggers) {
+  if (!ActionService.stopped && ActionService.triggers.length > 0) {
     if (ActionService.triggers.length === 1) {
       // When only one hotkey, map to space
       if (event.key === " ") {

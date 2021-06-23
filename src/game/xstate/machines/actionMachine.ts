@@ -58,6 +58,7 @@ export function createActionMachine(config: GameConfig) {
   const actions = initializeActions(config.tasks);
 
   const getRandomAction = () =>
+    actions.length > 0 &&
     actions[getRandomInclusiveInteger(0, actions.length - 1)];
 
   const actionMachine = createMachine<ActionMachineContext, ActionMachineEvent>(
@@ -123,6 +124,10 @@ export function createActionMachine(config: GameConfig) {
                 const { action, executeImmediately = false } =
                   event as ExecuteActionEvent;
 
+                if (!action) {
+                  return;
+                }
+
                 const trigger = await action();
 
                 if (trigger) {
@@ -151,6 +156,9 @@ export function createActionMachine(config: GameConfig) {
           },
         },
         executed: {
+          // we probably want to wait within the idle.
+          // The waiting for triggers should be a separate state.
+          // Picking the next action should be a separate state
           after: {
             [actionFrequency * 1000]: {
               cond: "isFinishedExecuting",
@@ -158,12 +166,6 @@ export function createActionMachine(config: GameConfig) {
             },
           },
           exit: "clearTriggers",
-          // on: {
-          //   EXECUTE: {
-          //     target: "executing",
-          //     actions: "clearTriggers",
-          //   },
-          // },
         },
       },
     },

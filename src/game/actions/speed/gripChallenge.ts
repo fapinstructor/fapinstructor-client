@@ -17,7 +17,7 @@ export const gripChallenge = async () => {
   const time = reps / speed;
 
   createNotification({
-    message: "Get ready for a grip challenge!",
+    message: "Time for a grip challenge!",
     duration: time * 2 * sets * 1000, // * 2 is for the two delays in the loop
     showProgress: true,
     delay: true,

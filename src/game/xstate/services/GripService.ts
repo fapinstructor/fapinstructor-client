@@ -29,10 +29,10 @@ const GripService = {
 
     machine = createGripMachine(gameConfig);
     service = interpret(machine, { devTools: true }).onTransition((state) => {
+      console.log("[GripService] Event:", state.event);
       if (state.value !== state.history?.value) {
         console.log(`[GripService] Transition: ${state.value}`);
       }
-      console.log("[GripService] Event:", state.event);
     });
 
     // Automatically start the service after it's created

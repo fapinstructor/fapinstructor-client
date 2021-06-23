@@ -162,10 +162,6 @@ export function createGripMachine(config: GameConfig) {
       },
       guards: {
         isNotSameGripStrength: ({ gripStrength }, event) => {
-          console.log("isNotSameGripStrength", {
-            gripStrength,
-            eventStrength: (event as SetGripStrengthEvent).strength,
-          });
           return gripStrength !== (event as SetGripStrengthEvent).strength;
         },
         canTightenGripStrength: ({ gripStrength }) => {

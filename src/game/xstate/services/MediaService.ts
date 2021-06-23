@@ -24,10 +24,10 @@ const MediaService = {
 
     machine = createMediaMachine(gameConfig);
     service = interpret(machine, { devTools: true }).onTransition((state) => {
+      console.log("[MediaService] Event:", state.event);
       if (state.value !== state.history?.value) {
         console.log(`[MediaService] Transition: ${state.value}`);
       }
-      console.log("[MediaService] Event:", state.event);
     });
 
     // Automatically start the service after it's created
