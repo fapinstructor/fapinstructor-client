@@ -6,7 +6,8 @@ import TriggerPanel from "containers/TriggerPanel";
 import PersistentTriggerPanel from "containers/PersistentTriggerPanel";
 import FullScreenButton from "components/molecules/buttons/FullScreenButton";
 import BookmarkButton from "components/molecules/buttons/BookmarkButton";
-import SkipButton from "components/molecules/buttons/SkipButton";
+import SkipPreviousButton from "components/molecules/buttons/SkipPreviousButton";
+import SkipNextButton from "components/molecules/buttons/SkipNextButton";
 import HomeButton from "components/atoms/HomeButton";
 import { Notify } from "common/store/notifications";
 import BeatMeter from "components/organisms/BeatMeter";
@@ -88,7 +89,10 @@ export default function HUD({ createNotification }: HUDProps) {
               >
                 <FullScreenButton />
                 <HomeButton />
-                <SkipButton onClick={() => sendMediaEvent("NEXT_LINK")} />
+                <SkipNextButton onClick={() => sendMediaEvent("NEXT_LINK")} />
+                <SkipPreviousButton
+                  onClick={() => sendMediaEvent("PREVIOUS_LINK")}
+                />
                 <BookmarkButton onClick={bookmark} />
                 {currentGame ? (
                   <StarButton

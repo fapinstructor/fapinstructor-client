@@ -1,6 +1,6 @@
 import store from "store";
 import { ruinedOrgasm } from "game/actions/orgasm/ruin";
-import { ActionService } from "game/xstate/services";
+import { ActionService, MediaService } from "game/xstate/services";
 import { edged } from "game/actions/orgasm/edge";
 
 export const triggerHotkeys = [
@@ -24,6 +24,19 @@ window.addEventListener("keydown", (event) => {
     return;
   }
 
+  // Media Controls
+  switch (event.key) {
+    case "ArrowLeft": {
+      MediaService.previousLink();
+      break;
+    }
+    case "ArrowRight": {
+      MediaService.nextLink();
+      break;
+    }
+  }
+
+  // Persistant action panel
   if (!game.cooldown) {
     // Ruin
     if (event.key === "r") {

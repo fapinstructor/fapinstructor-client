@@ -4,6 +4,13 @@ All notable changes to this project will be documented here.
 
 The overall project roadmap and progress can be viewed on our [Trello Board](https://trello.com/b/JAIcnXRf/fap-instructor)
 
+## 2021-06-23
+
+- Added button to view previous image
+- Added hotkeys to the previous and next image buttons
+- A ton of performance optimizations
+- A variety of bug fixes
+
 ## 2021-05-05
 
 - Added hotkeys to allow triggering actions via keyboard

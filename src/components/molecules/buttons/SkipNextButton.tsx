@@ -6,9 +6,9 @@ export type SkipButtonProps = {
   onClick: () => void;
 };
 
-export default function SkipButton({ onClick }: SkipButtonProps) {
+export default function SkipNextButton({ onClick }: SkipButtonProps) {
   return (
-    <Tooltip title="Skip" placement="bottom">
+    <Tooltip title="Next Image [Right Arrow]" placement="bottom">
       <IconButton color="inherit" onClick={onClick}>
         <SkipNextIcon />
       </IconButton>

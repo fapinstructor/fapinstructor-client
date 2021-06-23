@@ -39,6 +39,9 @@ const MediaService = {
   get stopped() {
     return getMediaService().state.matches("stopped");
   },
+  previousLink() {
+    getMediaService().send("PREVIOUS_LINK");
+  },
   nextLink() {
     getMediaService().send("NEXT_LINK");
   },
