@@ -1,5 +1,5 @@
 const api = "https://www.handyfeeling.com/api/v1";
-const connectionKey = "DKFdkjKC";
+const connectionKey = "";
 
 enum Mode {
   Off,
@@ -14,6 +14,8 @@ type HandySettings = {
   speed: number;
   stroke: number;
 };
+
+const enableHandy = false;
 
 // mm/s
 // const minSpeed = 32;
@@ -45,12 +47,20 @@ class HandyAPI {
   }
 
   setMode(mode: Mode) {
+    if (!enableHandy) {
+      return;
+    }
+
     this.mode = mode;
 
     fetch(`${api}/${connectionKey}/setMode?mode=${mode}`);
   }
 
   setSpeed(beatsPerSecond: number) {
+    if (!enableHandy) {
+      return;
+    }
+
     const strokeLength = 100 / 100;
     const speed = Math.round(beatsPerSecond * lerp(10, 45, strokeLength));
 
@@ -68,10 +78,18 @@ class HandyAPI {
   }
 
   setStroke(stroke: number) {
+    if (!enableHandy) {
+      return;
+    }
+
     fetch(`${api}/${connectionKey}/setStroke?type=%&stroke=${stroke}`);
   }
 
   getSettings() {
+    if (!enableHandy) {
+      return;
+    }
+
     return fetch(`${api}/${connectionKey}/getSettings`).then<HandySettings>(
       (res) => res.json()
     );
