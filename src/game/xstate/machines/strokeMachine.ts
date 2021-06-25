@@ -5,7 +5,7 @@ import { GameConfig } from "configureStore";
 import { playTick } from "engine/audio";
 import { getRandomStrokeSpeed } from "game/utils/strokeSpeed";
 import { StrokeService } from "../services";
-import { TIME_DELAY } from "components/organisms/BeatMeter/settings";
+import { TIME_TO_TICK } from "components/organisms/BeatMeter/settings";
 
 import createIntervalMachine, { TickEvent } from "./intervalMachine";
 import handy from "api/handy";
@@ -62,7 +62,7 @@ export type StrokeMachineEvent =
   | StopEvent;
 
 export function createStrokeMachine(config: GameConfig) {
-  const initialStrokeSpeed = getRandomStrokeSpeed({ fast: 2 });
+  const initialStrokeSpeed = getRandomStrokeSpeed({ slow: 0 });
 
   const strokeMachine = createMachine<StrokeMachineContext, StrokeMachineEvent>(
     {
@@ -175,7 +175,7 @@ export function createStrokeMachine(config: GameConfig) {
             return false;
           }
 
-          return timestamp - TIME_DELAY / 2 >= nextStrokeTimeStamp;
+          return timestamp - TIME_TO_TICK >= nextStrokeTimeStamp;
         },
       },
     }

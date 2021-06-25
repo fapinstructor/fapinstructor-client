@@ -1,6 +1,6 @@
 import { strokeEmitterObservable } from "./strokeEmitter";
 import type { GameLoopArgs } from "engine/loop";
-import { TIME_DELAY } from "components/organisms/BeatMeter/settings";
+import { TIME_TO_TICK } from "components/organisms/BeatMeter/settings";
 import { playTick } from "engine/audio";
 import { StrokeService } from "game/xstate/services";
 import { selectEnableTicks } from "common/store/settings";
@@ -27,7 +27,7 @@ const ticker = ({ timestamp }: GameLoopArgs) => {
     nextStrokeTime = strokeQueue.shift() || 0;
   }
 
-  if (nextStrokeTime > 0 && timestamp - TIME_DELAY / 2 >= nextStrokeTime) {
+  if (nextStrokeTime > 0 && timestamp - TIME_TO_TICK >= nextStrokeTime) {
     nextStrokeTime = 0;
 
     // Only make api call when stroke speed changes

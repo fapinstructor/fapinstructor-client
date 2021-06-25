@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { State } from "common/store/rootReducer";
 import { v4 as uuidv4 } from "uuid";
-import { TIME_DELAY } from "components/organisms/BeatMeter/settings";
+import { TIME_TO_TICK } from "components/organisms/BeatMeter/settings";
 
 /**
  * @field duration Defaults to 5s.  If set to a falsy value it will show until manually dismissed
@@ -57,7 +57,7 @@ export const notificationsSlice = createSlice({
       prepare({ delay, ...notify }: Notify) {
         const notification = {
           id: uuidv4(),
-          delay: delay ? TIME_DELAY / 2 : 0,
+          delay: delay ? TIME_TO_TICK : 0,
           ...defaultNotification,
           ...notify,
         };

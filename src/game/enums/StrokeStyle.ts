@@ -29,10 +29,6 @@ export const StrokeStyleString: { [key: number]: StrokeStyle } = {
   6: "handsOff",
 };
 
-export const setDefaultStrokeStyle = async () => {
-  await setStrokeStyle(store.config.defaultStrokeStyle);
-};
-
 export async function setStrokeStyle(
   strokeStyle: StrokeStyle = "dominant",
   quiet = false

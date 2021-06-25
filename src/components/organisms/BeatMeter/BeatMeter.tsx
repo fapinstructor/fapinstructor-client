@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { TIME_DELAY } from "components/organisms/BeatMeter/settings";
+import { TICK_ANIMATION_DURATION } from "components/organisms/BeatMeter/settings";
 import { CircleFlash, Circle, AnimatedDot, HR, Bar } from "./styled-components";
 import { strokeServiceObserver } from "game/xstate/services";
 import { StrokeMachineEvent } from "game/xstate/machines/strokeMachine";
@@ -14,7 +14,7 @@ function Dots() {
         // Remove dot
         const handle = setTimeout(() => {
           setDots((dots) => dots.slice(1));
-        }, TIME_DELAY);
+        }, TICK_ANIMATION_DURATION);
 
         // Add dot
         setDots((dots) => [...dots, handle]);

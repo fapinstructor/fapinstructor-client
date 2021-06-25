@@ -7,6 +7,7 @@ import { StrokeService } from "game/xstate/services";
 import { setStrokeStyleHandsOff } from "game/actions";
 import audioLibrary from "audio";
 import { playCommand } from "engine/audio";
+import { getRandomStrokeSpeed } from "game/utils/strokeSpeed";
 
 const HANDS_OFF_DURATION_MIN = 10; // Seconds
 const HANDS_OFF_DURATION_MAX = 25; // Seconds
@@ -24,6 +25,7 @@ export const handsOff = async (
   });
 
   StrokeService.pause();
+  StrokeService.setStrokeSpeed(getRandomStrokeSpeed());
 
   await setStrokeStyleHandsOff();
 

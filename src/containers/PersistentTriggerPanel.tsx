@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
-import { ruinedOrgasm } from "game/actions/orgasm/ruin";
-import { ProxyStoreConsumer } from "containers/StoreProvider";
+import store from "store";
+import useWindowEvent from "hooks/useWindowEvent";
 import { ActionService } from "game/xstate/services";
+import { ProxyStoreConsumer } from "containers/StoreProvider";
 import { edged } from "game/actions/orgasm/edge";
+import { ruinedOrgasm } from "game/actions/orgasm/ruin";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,8 +21,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PersistentTriggerPanel() {
+export default React.memo(function PersistentTriggerPanel() {
   const classes = useStyles();
+
+  const handleKeydown = useCallback((event: KeyboardEvent) => {
+    if (store.game.cooldown) {
+      return;
+    }
+
+    switch (event.key) {
+      case "r": {
+        ActionService.execute(ruinedOrgasm);
+        break;
+      }
+      case "e": {
+        ActionService.execute(edged);
+        break;
+      }
+    }
+  }, []);
+  useWindowEvent("keydown", handleKeydown);
 
   return (
     <ProxyStoreConsumer>
@@ -56,4 +76,4 @@ export default function PersistentTriggerPanel() {
       )}
     </ProxyStoreConsumer>
   );
-}
+});

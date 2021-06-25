@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useCallback } from "react";
 import IconButton from "@material-ui/core/IconButton";
 import FullscreenIcon from "@material-ui/icons/Fullscreen";
 import FullscreenExitIcon from "@material-ui/icons/FullscreenExit";
+import useWindowEvent from "hooks/useWindowEvent";
 
 // Add full-screen definitions across vendors
 declare global {
@@ -77,6 +78,13 @@ function isFullScreen() {
 
 export default function FullScreenButton() {
   const fullscreen = isFullScreen();
+
+  const handleKeydown = useCallback((event: KeyboardEvent) => {
+    if (event.key === "f") {
+      toggleFullScreen();
+    }
+  }, []);
+  useWindowEvent("keydown", handleKeydown);
 
   return isFullScreenSupported() ? (
     <span>

@@ -1,8 +1,7 @@
 import store from "store";
 import { playCommand } from "engine/audio";
 import audioLibrary from "audio";
-import { setStrokeSpeed } from "game/utils/strokeSpeed";
-import { setDefaultStrokeStyle } from "game/enums/StrokeStyle";
+import { getRandomStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
 import createNotification, {
   dismissNotification,
 } from "engine/createNotification";
@@ -10,10 +9,10 @@ import { getRandomBoolean, getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
 import { handsOff } from "game/actions";
 import { getRandomEdgeMessage } from "game/texts/messages";
-import { GripService, StrokeService } from "game/xstate/services";
+import { GripService } from "game/xstate/services";
+import { ruinOrgasm } from "./ruin";
 
 export const rideTheEdge = async (time = getRandomInclusiveInteger(5, 30)) => {
-  const previousStrokeSpeed = StrokeService.strokeSpeed;
   setStrokeSpeed(store.config.fastestStrokeSpeed);
 
   const notificationId = createNotification({
@@ -25,13 +24,11 @@ export const rideTheEdge = async (time = getRandomInclusiveInteger(5, 30)) => {
 
   await delay(time * 1000);
   dismissNotification(notificationId);
-  setStrokeSpeed(previousStrokeSpeed);
+  setStrokeSpeed(getRandomStrokeSpeed());
 };
 
 export const edging = async () => {
-  const rideEdge = getRandomBoolean();
-
-  if (rideEdge) {
+  if (getRandomBoolean()) {
     await rideTheEdge();
   }
 };
@@ -48,30 +45,36 @@ export const getToTheEdge = async (message = getRandomEdgeMessage()) => {
   const {
     config: { fastestStrokeSpeed },
   } = store;
-  playCommand(audioLibrary.Edge);
-
   setStrokeSpeed(fastestStrokeSpeed);
+  await delay();
 
+  playCommand(audioLibrary.Edge);
   GripService.resetGripStrength();
-  setDefaultStrokeStyle();
 
   return createNotification({ message, duration: -1 });
 };
 
-export const edge = async (message = getRandomEdgeMessage()) => {
-  const notificationId = await getToTheEdge(message);
+export const edge = async ({ ruin = false } = {}) => {
+  const notificationId = await getToTheEdge(getRandomEdgeMessage());
 
-  const trigger = async () => {
+  const edgingTrigger = async () => {
     dismissNotification(notificationId);
     await edging();
-    await edged();
-  };
-  trigger.label = "Edging";
 
-  const trigger_fail = async () => {
+    if (ruin) {
+      await delay();
+      return await ruinOrgasm();
+    } else {
+      await edged();
+    }
+  };
+  edgingTrigger.label = "Edging";
+
+  const couldntEdgeTrigger = async () => {
     dismissNotification(notificationId);
+    await handsOff(store.config.edgeCooldown);
   };
-  trigger_fail.label = "I can't";
+  couldntEdgeTrigger.label = "I can't";
 
-  return [trigger, trigger_fail];
+  return [edgingTrigger, couldntEdgeTrigger];
 };

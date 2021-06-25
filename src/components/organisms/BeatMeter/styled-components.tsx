@@ -1,9 +1,9 @@
 import styled, { keyframes } from "styled-components/macro";
 import {
   calculateTickTime,
-  TIME_DELAY,
   ANIMATION_OFFSET_PIXELS,
   FLASH_ANIMATION_DURATION,
+  TICK_ANIMATION_DURATION,
 } from "components/organisms/BeatMeter/settings";
 
 const BaseAnimation = styled.div<Keyframe>`
@@ -70,7 +70,7 @@ export const Dot = styled(BaseAnimation)`
 export const AnimatedDot = styled(Dot)`
   animation-name: ${SlideLeftAnimation};
   animation-timing-function: linear;
-  animation-duration: ${TIME_DELAY / 1000}s;
+  animation-duration: ${TICK_ANIMATION_DURATION / 1000}s;
 `;
 
 export const Circle = styled.div`

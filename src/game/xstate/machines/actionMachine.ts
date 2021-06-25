@@ -1,17 +1,17 @@
 import { GameConfig } from "configureStore";
 import { assign, createMachine, send, actions } from "xstate";
 import store from "store";
-import { TIME_DELAY } from "components/organisms/BeatMeter/settings";
+import { TIME_TO_TICK } from "components/organisms/BeatMeter/settings";
 import warmup from "game/actions/warmup";
 import { playCommand } from "engine/audio";
 import audioLibrary from "audio";
 import interrupt from "engine/interrupt";
 import delay from "utils/delay";
-import elapsedGameTime from "game/utils/elapsedGameTime";
+import elapsedGameTime, {
+  gameCompletionPercent,
+} from "game/utils/elapsedGameTime";
 import { edge } from "game/actions/orgasm/edge";
-import ruin from "game/actions/orgasm/ruin";
 import { doOrgasm } from "game/actions/orgasm/orgasm";
-import { StrokeService } from "../services";
 import { getRandomInclusiveInteger } from "utils/math";
 import { initializeActions } from "game/initializeActions";
 
@@ -102,7 +102,10 @@ export function createActionMachine(config: GameConfig) {
             },
             {
               cond: "shouldRuin",
-              actions: send({ type: "EXECUTE", action: ruin }),
+              actions: send({
+                type: "EXECUTE",
+                action: () => edge({ ruin: true }),
+              }),
             },
             {
               cond: "shouldEdge",
@@ -134,7 +137,7 @@ export function createActionMachine(config: GameConfig) {
                   const triggers = Array.isArray(trigger) ? trigger : [trigger];
 
                   if (!executeImmediately) {
-                    await delay(TIME_DELAY / 2);
+                    await delay(TIME_TO_TICK);
                   }
 
                   callback({ type: "SET_TRIGGERS", triggers });
@@ -192,13 +195,7 @@ export function createActionMachine(config: GameConfig) {
         shouldOrgasm: () => {
           const {
             game: { ruins, edges },
-            config: {
-              minimumRuinedOrgasms,
-              minimumEdges,
-              minimumGameTime,
-              maximumGameTime,
-              actionFrequency,
-            },
+            config: { minimumRuinedOrgasms, minimumEdges, minimumGameTime },
           } = store;
 
           const allowedChangeOfOrgasm =
@@ -210,67 +207,40 @@ export function createActionMachine(config: GameConfig) {
             return false;
           }
 
-          const gameCompletionPercent =
-            elapsedGameTime("seconds") / (maximumGameTime * 60);
-
           // Probability Graph: https://www.desmos.com/calculator/xhyaj1gxuc
           // y = a^4
-          return gameCompletionPercent ** 4 / actionFrequency > Math.random();
+          return gameCompletionPercent() ** 4 > Math.random();
         },
         shouldRuin: (context) => {
           const {
             game: { ruins },
-            config: {
-              maximumRuinedOrgasms,
-              minimumGameTime,
-              maximumGameTime,
-              actionFrequency,
-              fastestStrokeSpeed,
-            },
+            config: { maximumRuinedOrgasms, minimumGameTime },
           } = store;
 
           const isAllowedChance =
             ruins < maximumRuinedOrgasms &&
-            elapsedGameTime("minutes") >= minimumGameTime * 1.3 &&
-            StrokeService.strokeSpeed >= fastestStrokeSpeed / 1.7;
+            elapsedGameTime("minutes") >= minimumGameTime * 1.3;
 
           if (!isAllowedChance) {
             return false;
           }
-
-          const gameCompletionPercent =
-            elapsedGameTime("seconds") / (maximumGameTime * 60);
 
           // Probability Graph: https://www.desmos.com/calculator/xhyaj1gxuc
           // y = a^4
-          return gameCompletionPercent ** 4 / actionFrequency > Math.random();
+          return gameCompletionPercent() ** 4 > Math.random();
         },
         shouldEdge: () => {
           const {
-            config: {
-              minimumGameTime,
-              maximumGameTime,
-              actionFrequency,
-              edgeFrequency,
-            },
+            config: { edgeFrequency },
           } = store;
 
-          const isAllowedChance =
-            elapsedGameTime("minutes") >= minimumGameTime * 1.2;
-          if (!isAllowedChance) {
+          if (gameCompletionPercent() < 0.2) {
             return false;
           }
 
-          const gameCompletionPercent =
-            elapsedGameTime("seconds") / (maximumGameTime * 60);
-
           // Probability Graph: https://www.desmos.com/calculator/atc32p8kof
           // y = a
-          return (
-            (gameCompletionPercent / actionFrequency) *
-              (1 + edgeFrequency / 100) >
-            Math.random()
-          );
+          return gameCompletionPercent() + edgeFrequency / 100 > Math.random();
         },
       },
     }

@@ -1,8 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import { triggerHotkeys } from "engine/hotkeys";
-import { useActionService, ActionService } from "game/xstate/services";
+import { useActionService } from "game/xstate/services";
+import TriggerButton from "./TriggerButton";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -11,15 +10,19 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     width: "100vw",
     pointerEvents: "auto",
-  },
-  hotkey: {
-    paddingLeft: "0.25rem",
-    [theme.breakpoints.down("sm")]: {
-      display: "none",
-      paddingLeft: 0,
-    },
+    gap: "1rem",
   },
 }));
+
+enum TriggerHotKeys {
+  "z",
+  "x",
+  "c",
+  "v",
+  "b",
+  "n",
+  "m",
+}
 
 export default function TriggerPanel() {
   const classes = useStyles();
@@ -31,25 +34,17 @@ export default function TriggerPanel() {
 
   return (
     <div className={classes.root}>
-      {triggers &&
+      {triggers.length === 1 ? (
+        <TriggerButton action={triggers[0]} hotkey=" " />
+      ) : (
         triggers.map((trigger, index) => (
-          <Button
-            variant="contained"
-            color="secondary"
-            size="large"
-            style={{ margin: 10 }}
+          <TriggerButton
             key={index}
-            onClick={() => ActionService.execute(trigger)}
-          >
-            {trigger.label}
-
-            {triggers.length === 1 ? (
-              <span className={classes.hotkey}>[spacebar]</span>
-            ) : (
-              <span className={classes.hotkey}>[{triggerHotkeys[index]}]</span>
-            )}
-          </Button>
-        ))}
+            action={trigger}
+            hotkey={TriggerHotKeys[index]}
+          />
+        ))
+      )}
     </div>
   );
 }

@@ -42,8 +42,9 @@ export const doOrgasm = async () => {
   const {
     config: { fastestStrokeSpeed, postOrgasmTorture },
   } = store;
-
   setStrokeSpeed(fastestStrokeSpeed);
+  await delay();
+
   playCommand(getRandomAudioVariation("Orgasm"));
 
   const nid = createNotification({
@@ -94,7 +95,8 @@ export const doPostOrgasmTorture = async () => {
   createNotification({
     message: "I guess you've had enough.  You may stop.",
   });
-  setStrokeSpeed(0);
+
+  StrokeService.pause();
   await delay(3 * 1000);
 };
 

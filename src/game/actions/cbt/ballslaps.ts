@@ -8,6 +8,8 @@ import { StrokeService } from "game/xstate/services";
 import { pluralize } from "utils/pluralize";
 
 export const ballslaps = async () => {
+  StrokeService.pause();
+
   const ballSlapCount = getRandomInclusiveInteger(3, 10);
 
   const nid = createNotification({
@@ -16,12 +18,8 @@ export const ballslaps = async () => {
       ballSlapCount
     )}`,
     duration: -1,
-    dismissible: false,
-    delay: true,
   });
-
   playCommand(audioLibrary.SlapBalls);
-  StrokeService.pause();
 
   const done = async () => {
     dismissNotification(nid);

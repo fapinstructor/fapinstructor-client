@@ -25,7 +25,7 @@ import {
   toggleVideoAudio,
   toggleVoice,
 } from "common/store/settings";
-import { useGripService, useStrokeService } from "game/xstate/services";
+import { useGripService } from "game/xstate/services";
 import { GripStrengthString } from "game/xstate/machines/gripMachine";
 
 const useStyles = makeStyles({
@@ -102,11 +102,13 @@ export default React.memo(function StatusPanel() {
       context: { gripStrength },
     },
   ] = useGripService();
-  const [
-    {
-      context: { strokeSpeed },
-    },
-  ] = useStrokeService();
+
+  // TODO: Disabling because every TICK event will cause a render
+  // const [
+  //   {
+  //     context: { strokeSpeed },
+  //   },
+  // ] = useStrokeService();
 
   return (
     <div className={classes.root}>
@@ -146,7 +148,7 @@ export default React.memo(function StatusPanel() {
                 <div className={classes.labels}>
                   <div style={{ marginRight: 10 }}>
                     <Label value="Elapsed Time (min):" />
-                    <Label value="Stroke Speed (sec):" />
+                    {/* <Label value="Stroke Speed (sec):" /> */}
                     <Label value="Stroke Grip:" />
                     <Label value="Stroke Style:" />
                     {buttPlugInserted && <Label value="Butt Plug:" />}
@@ -159,7 +161,7 @@ export default React.memo(function StatusPanel() {
                   </div>
                   <div>
                     <Label value={String(elapsedGameTime("minutes"))} />
-                    <Label value={String(strokeSpeed.toFixed(2))} />
+                    {/* <Label value={String(strokeSpeed.toFixed(2))} /> */}
                     <Label value={GripStrengthString[gripStrength]} />
                     <Label value={StrokeStyles[strokeStyle].label} />
                     {buttPlugInserted && <Label value="Inserted" />}
