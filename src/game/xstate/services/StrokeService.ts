@@ -31,7 +31,7 @@ const StrokeService = {
       service.stop();
     }
     machine = createStrokeMachine(gameConfig);
-    service = interpret(machine, { devTools: true })
+    service = interpret(machine)
       .onEvent((event) => {
         // console.log("[StrokeService] Event:", event);
         strokeServiceObserver.notify(event as StrokeMachineEvent);

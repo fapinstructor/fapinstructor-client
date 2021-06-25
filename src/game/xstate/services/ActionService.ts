@@ -28,12 +28,13 @@ const ActionService = {
     }
 
     machine = createActionMachine(gameConfig);
-    service = interpret(machine, { devTools: true }).onTransition((state) => {
+    service =
+      interpret(machine); /**, { devTools: true }).onTransition((state) => {
       console.log("[ActionService] Event:", state.event);
       if (state.value !== state.history?.value) {
         console.log(`[ActionService] Transition: ${state.value}`);
       }
-    });
+    });*/
 
     // Automatically start the service after it's created
     service.start();
