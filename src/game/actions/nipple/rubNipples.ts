@@ -8,15 +8,6 @@ import { getCurrentStrokeStyle, setStrokeStyle } from "game/enums/StrokeStyle";
 import { setStrokeStyleHandsOff } from "game/actions/strokeStyle";
 import { StrokeService } from "game/xstate/services";
 
-/**
- * Task to rub ones nipples while not touching ones cock.
- *
- * @since       14.07.2018
- * @author      the1nstructor
- *
- * @alias       rubNipples
- * @memberof    actions
- */
 export const rubNipples = async () => {
   const previousStrokeSpeed = StrokeService.strokeSpeed;
   const style = getCurrentStrokeStyle();

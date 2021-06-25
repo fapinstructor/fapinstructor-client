@@ -121,11 +121,6 @@ const getRandomStrokeStyle = (exclude: StrokeStyle[] = []) => {
   return randomStyle;
 };
 
-export const setRandomStrokeStyle = async (quiet = false) => {
-  const strokeStyle = getRandomStrokeStyle();
-  setStrokeStyle(strokeStyle, quiet);
-};
-
 export const setRandomOneHandedStrokeStyle = async () => {
   const strokeStyle = getRandomStrokeStyle(["bothHands", "handsOff"]);
   setStrokeStyle(strokeStyle);

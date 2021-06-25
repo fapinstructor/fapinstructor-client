@@ -12,15 +12,6 @@ import {
 } from "game/enums/StrokeStyle";
 import { StrokeService } from "game/xstate/services";
 
-/**
- * Task to play with ones nipples while stroking ones cock.
- *
- * @since      15.07.2018
- * @author     the1nstructor
- *
- * @alias      nipplesAndStroke
- * @memberof   actions
- */
 export const nipplesAndStroke = async () => {
   const previousStrokeSpeed = StrokeService.strokeSpeed;
   const style = getCurrentStrokeStyle();
