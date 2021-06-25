@@ -13,9 +13,11 @@ import store from "common/store";
 import NotificationManager from "components/organisms/NotificationManager";
 import { inspect } from "@xstate/inspect";
 
-inspect({
-  iframe: false,
-});
+if (process.env.NODE_ENV === "development") {
+  inspect({
+    iframe: false,
+  });
+}
 
 const engineStore = configureStore();
 

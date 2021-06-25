@@ -147,8 +147,8 @@ export default React.memo(function StatusPanel() {
               <div>
                 <div className={classes.labels}>
                   <div style={{ marginRight: 10 }}>
-                    <Label value="Elapsed Time (min):" />
-                    {/* <Label value="Stroke Speed (sec):" /> */}
+                    <Label value="Elapsed Time:" />
+                    {/* <Label value="Stroke Speed:" /> */}
                     <Label value="Stroke Grip:" />
                     <Label value="Stroke Style:" />
                     {buttPlugInserted && <Label value="Butt Plug:" />}
@@ -160,8 +160,8 @@ export default React.memo(function StatusPanel() {
                     {orgasms > 0 && <Label value="Orgasms:" />}
                   </div>
                   <div>
-                    <Label value={String(elapsedGameTime("minutes"))} />
-                    {/* <Label value={String(strokeSpeed.toFixed(2))} /> */}
+                    <Label value={`${elapsedGameTime("minutes")} min`} />
+                    {/* <Label value={`${strokeSpeed.toFixed(2)} per sec`} /> */}
                     <Label value={GripStrengthString[gripStrength]} />
                     <Label value={StrokeStyles[strokeStyle].label} />
                     {buttPlugInserted && <Label value="Inserted" />}
