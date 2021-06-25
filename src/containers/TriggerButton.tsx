@@ -25,7 +25,6 @@ export default function TriggerButton({ action, hotkey }: TriggerButtonProps) {
 
   const handleKeydown = useCallback(
     (event: KeyboardEvent) => {
-      console.log("Registering event", hotkey);
       if (event.key === hotkey) {
         ActionService.execute(action);
       }

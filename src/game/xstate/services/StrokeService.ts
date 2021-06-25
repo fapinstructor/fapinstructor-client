@@ -31,16 +31,9 @@ const StrokeService = {
       service.stop();
     }
     machine = createStrokeMachine(gameConfig);
-    service = interpret(machine)
-      .onEvent((event) => {
-        // console.log("[StrokeService] Event:", event);
-        strokeServiceObserver.notify(event as StrokeMachineEvent);
-      })
-      .onTransition((state) => {
-        if (state.value !== state.history?.value) {
-          console.log(`[StrokeService] Transition: ${state.value}`);
-        }
-      });
+    service = interpret(machine).onEvent((event) => {
+      strokeServiceObserver.notify(event as StrokeMachineEvent);
+    });
 
     // Automatically start the service after it's created
     service.start();

@@ -11,7 +11,6 @@ strokeEmitterObservable.subscribe((event) => {
   switch (event.type) {
     case "clear":
       strokeQueue.splice(0, strokeQueue.length);
-      console.log("CLEAR queue");
       break;
     case "emit":
       strokeQueue.push(event.strokeTime);
