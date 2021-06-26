@@ -10,12 +10,6 @@ import {
 } from "@auth0/auth0-react";
 import config from "config";
 
-export type User = {
-  nickname: string;
-  sub: string;
-  picture?: string;
-};
-
 type Auth0ProviderProps = {
   children: JSX.Element;
   fetchProfile: (userId: string) => void;
@@ -44,7 +38,7 @@ export default function AppAuth0Provider({
     authClient.current = auth0;
 
     useEffect(() => {
-      if (auth0.user && auth0.isAuthenticated) {
+      if (auth0.user?.sub && auth0.isAuthenticated) {
         fetchProfile(auth0.user.sub);
       }
     }, [auth0.user, auth0.isAuthenticated]);

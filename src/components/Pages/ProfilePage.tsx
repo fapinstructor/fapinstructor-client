@@ -14,9 +14,7 @@ export default function ProfilePage() {
 
   return (
     <Page>
-      <Box mb={2}>
-        <ProfileCard user={user} />
-      </Box>
+      <Box mb={2}>{user && <ProfileCard user={user} />}</Box>
       <DeleteProfileModal
         open={deleteModalOpen}
         onCancel={() => setDeleteModalOpen(false)}

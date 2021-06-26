@@ -81,7 +81,7 @@ export default function Notification({
     let timeout: number;
 
     if (!isOpen) {
-      timeout = setTimeout(() => {
+      timeout = window.setTimeout(() => {
         setOpen(true);
       }, delay);
     }

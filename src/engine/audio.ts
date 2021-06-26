@@ -1,14 +1,21 @@
 import memoize from "fast-memoize";
 // isSupported is returning false for the lastest version of FireFox.
-import { AudioContext } from "standardized-audio-context";
+import {
+  AudioContext,
+  OscillatorNode,
+  GainNode,
+  IAudioContext,
+  IGainNode,
+  IOscillatorNode,
+} from "standardized-audio-context";
 import audioLibrary, { getRandomAudioVariation } from "audio";
 import store from "common/store";
 import { Severity, createNotification } from "common/store/notifications";
 import { selectEnableVoice } from "common/store/settings";
 
-let context;
-let oscillator;
-let gainNode;
+let context: IAudioContext;
+let oscillator: IOscillatorNode<IAudioContext>;
+let gainNode: IGainNode<IAudioContext>;
 
 export const createAudioContext = async () => {
   // Only create the audio context once
@@ -16,15 +23,16 @@ export const createAudioContext = async () => {
     try {
       context = new AudioContext();
 
-      gainNode = context.createGain();
+      gainNode = new GainNode(context);
       gainNode.gain.value = 0;
 
-      oscillator = context.createOscillator();
+      oscillator = new OscillatorNode(context);
       oscillator.connect(gainNode);
+
       gainNode.connect(context.destination);
-      oscillator.start(0);
+
+      oscillator.start();
     } catch {
-      context = null;
       store.dispatch(
         createNotification({
           message:
@@ -37,30 +45,24 @@ export const createAudioContext = async () => {
 };
 
 export const fetchAudioFile = memoize(async (url) => {
-  let buffer;
-
-  if (context && context.decodeAudioData) {
-    buffer = await new Promise((resolve, reject) => {
-      const request = new XMLHttpRequest();
-      request.open("GET", url, true);
-      request.responseType = "arraybuffer";
-      request.onerror = reject;
-      request.onload = () => {
-        resolve(context.decodeAudioData(request.response));
-      };
-      request.send();
-    });
-  } else {
-    // ie11 fallback
-    buffer = new Audio(url);
-  }
+  const buffer = await new Promise<AudioBuffer>((resolve, reject) => {
+    const request = new XMLHttpRequest();
+    request.open("GET", url, true);
+    request.responseType = "arraybuffer";
+    request.onerror = reject;
+    request.onload = () => {
+      const audioData = context.decodeAudioData(request.response);
+      resolve(audioData);
+    };
+    request.send();
+  });
 
   return buffer;
 });
 
 let tickCount = 0;
 let previousRhythm = 0;
-export function playTick(rhythm) {
+export function playTick(rhythm: number) {
   if (!context || !oscillator || !gainNode) {
     play(audioLibrary.Tick);
   }
@@ -80,7 +82,7 @@ export function playTick(rhythm) {
   }
   previousRhythm = rhythm;
 
-  var now = context.currentTime;
+  const now = context.currentTime;
 
   oscillator.frequency.setValueAtTime(frequency, now);
 
@@ -92,43 +94,23 @@ export function playTick(rhythm) {
   gainNode.gain.setValueAtTime(gainNode.gain.value, now);
   gainNode.gain.linearRampToValueAtTime(0.3, context.currentTime + 0.001);
   gainNode.gain.linearRampToValueAtTime(0.0, context.currentTime + 0.11);
-
-  return true;
 }
 
-export function playVoice(variationName) {
+export function playVoice(variationName: string) {
   playCommand(getRandomAudioVariation(variationName));
 }
 
-export function playCommand(url) {
-  if (!selectEnableVoice(store.getState())) {
-    // Cancel voice command
-    return;
+export function playCommand(url: string) {
+  if (selectEnableVoice(store.getState())) {
+    return play(url);
   }
-
-  return play(url);
 }
 
-export default async function play(url) {
+export default async function play(url: string) {
   const buffer = await fetchAudioFile(url);
 
-  if (context) {
-    const source = context.createBufferSource();
-    source.buffer = buffer;
-    source.connect(context.destination);
-
-    if (!source.start) source.start = source.noteOn;
-    source.start(0);
-  } else {
-    const promise = buffer.play();
-    if (promise) {
-      promise.catch((error) => {
-        createNotification({
-          message: "Failed to play audio",
-          severity: Severity.ERROR,
-        });
-        console.error("Failed to play audio fallback", error);
-      });
-    }
-  }
+  const source = context.createBufferSource();
+  source.buffer = buffer;
+  source.connect(context.destination);
+  source.start();
 }

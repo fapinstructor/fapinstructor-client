@@ -4,11 +4,7 @@ import SkipNextIcon from "@material-ui/icons/SkipNext";
 import useWindowEvent from "hooks/useWindowEvent";
 import { MediaService } from "game/xstate/services";
 
-export type SkipButtonProps = {
-  onClick: () => void;
-};
-
-export default function SkipNextButton({ onClick }: SkipButtonProps) {
+export default function SkipNextButton() {
   const handleKeydown = useCallback((event: KeyboardEvent) => {
     if (event.key === "ArrowRight") {
       MediaService.nextLink();
@@ -18,7 +14,12 @@ export default function SkipNextButton({ onClick }: SkipButtonProps) {
 
   return (
     <Tooltip title="Next Image [Right Arrow]" placement="bottom">
-      <IconButton color="inherit" onClick={onClick}>
+      <IconButton
+        color="inherit"
+        onClick={() => {
+          MediaService.nextLink();
+        }}
+      >
         <SkipNextIcon />
       </IconButton>
     </Tooltip>

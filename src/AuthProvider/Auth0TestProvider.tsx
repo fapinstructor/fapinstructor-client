@@ -1,6 +1,5 @@
 import React from "react";
-import { Auth0Context } from "@auth0/auth0-react";
-import { User } from "./Auth0Provider";
+import { Auth0Context, User } from "@auth0/auth0-react";
 
 export type Auth = {
   user?: User;

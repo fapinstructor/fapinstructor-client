@@ -17,7 +17,7 @@ export default function ChangeLog() {
 
   return (
     <Page className="markdown-body">
-      <ReactMarkdown source={changeLogMD} />
+      <ReactMarkdown>{changeLogMD}</ReactMarkdown>
     </Page>
   );
 }

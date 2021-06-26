@@ -1,7 +1,7 @@
 import React from "react";
 import { Paper, Box, Typography } from "@material-ui/core";
 import ProfileIcon from "components/molecules/icons/ProfileIcon";
-import { User } from "AuthProvider";
+import { User } from "@auth0/auth0-react";
 
 export type ProfileCardProps = {
   user: User;

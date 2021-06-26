@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import IconButton from "@material-ui/core/IconButton";
+import { Tooltip, IconButton } from "@material-ui/core";
 import FullscreenIcon from "@material-ui/icons/Fullscreen";
 import FullscreenExitIcon from "@material-ui/icons/FullscreenExit";
 import useWindowEvent from "hooks/useWindowEvent";
@@ -87,17 +87,19 @@ export default function FullScreenButton() {
   useWindowEvent("keydown", handleKeydown);
 
   return isFullScreenSupported() ? (
-    <span>
-      {fullscreen && (
-        <IconButton color="inherit" onClick={toggleFullScreen}>
-          <FullscreenExitIcon />
-        </IconButton>
-      )}
-      {!fullscreen && (
-        <IconButton color="inherit" onClick={toggleFullScreen}>
-          <FullscreenIcon />
-        </IconButton>
-      )}
-    </span>
+    <Tooltip title="Toggle fullscreen [f]" placement="bottom">
+      <span>
+        {fullscreen && (
+          <IconButton color="inherit" onClick={toggleFullScreen}>
+            <FullscreenExitIcon />
+          </IconButton>
+        )}
+        {!fullscreen && (
+          <IconButton color="inherit" onClick={toggleFullScreen}>
+            <FullscreenIcon />
+          </IconButton>
+        )}
+      </span>
+    </Tooltip>
   ) : null;
 }

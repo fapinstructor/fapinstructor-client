@@ -1,12 +1,17 @@
 import { dismissAllNotifications } from "engine/createNotification";
 
-let interruptibles = [];
-
-const interruptible = (id, reject) => {
-  interruptibles.push({ id, reject });
+type Interruptible = {
+  id: number;
+  reject: (props: { reason: string }) => void;
 };
 
-const interrupt = () => {
+let interruptibles: Interruptible[] = [];
+
+export const interruptible = (params: Interruptible) => {
+  interruptibles.push(params);
+};
+
+export default function interrupt() {
   interruptibles.forEach(({ id, reject }) => {
     // works for both timeout and intervals
     clearTimeout(id);
@@ -14,7 +19,4 @@ const interrupt = () => {
   });
   dismissAllNotifications();
   interruptibles = [];
-};
-
-export { interruptible };
-export default interrupt;
+}

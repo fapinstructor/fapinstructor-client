@@ -12,7 +12,7 @@ function Dots() {
     switch (event.type) {
       case "QUEUE_STROKE": {
         // Remove dot
-        const handle = setTimeout(() => {
+        const handle = window.setTimeout(() => {
           setDots((dots) => dots.slice(1));
         }, TICK_ANIMATION_DURATION);
 

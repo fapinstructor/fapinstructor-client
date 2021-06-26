@@ -44,7 +44,7 @@ export default function MediaPlayer({
       link.mediaType === MediaType.Gif
     ) {
       if (timeout === 0) {
-        timeout = setTimeout(onEnded, duration * 1000);
+        timeout = window.setTimeout(onEnded, duration * 1000);
       }
     }
 

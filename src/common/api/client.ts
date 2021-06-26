@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 import config from "config";
-import captureError from "utils/capture-error";
+import captureError from "utils/captureError";
 import { authClient } from "AuthProvider/Auth0Provider";
 
 const instance = axios.create({

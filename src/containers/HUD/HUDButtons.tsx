@@ -8,7 +8,6 @@ import SkipNextButton from "components/molecules/buttons/SkipNextButton";
 import SkipPreviousButton from "components/molecules/buttons/SkipPreviousButton";
 import StarButton from "components/molecules/buttons/StarButton";
 import { selectGame } from "common/store/currentGame";
-import { MediaService } from "game/xstate/services";
 
 const HUDButtons = React.memo(function HUDButtons() {
   const currentGame = useSelector(selectGame);
@@ -26,8 +25,8 @@ const HUDButtons = React.memo(function HUDButtons() {
     >
       <FullScreenButton />
       <HomeButton />
-      <SkipNextButton onClick={() => MediaService.nextLink()} />
-      <SkipPreviousButton onClick={() => MediaService.previousLink} />
+      <SkipNextButton />
+      <SkipPreviousButton />
       <BookmarkButton />
       {currentGame && (
         <StarButton
