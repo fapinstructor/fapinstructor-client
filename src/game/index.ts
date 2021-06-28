@@ -29,7 +29,7 @@ const loops = [
 
 const observers: number[] = [];
 
-const startGame = async () => {
+export async function startGame() {
   await createAudioContext();
   configureStore();
 
@@ -45,11 +45,9 @@ const startGame = async () => {
     const id = gameLoopObservable.subscribe(loop);
     observers.push(id);
   });
+}
 
-  return true;
-};
-
-const stopGame = () => {
+export function stopGame() {
   interrupt();
   handy.reset();
 
@@ -62,6 +60,4 @@ const stopGame = () => {
   observers.forEach((id) => {
     gameLoopObservable.unsubscribe(id);
   });
-};
-
-export { startGame, stopGame };
+}

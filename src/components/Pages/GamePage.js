@@ -112,19 +112,16 @@ class GamePage extends React.Component {
   }
 
   componentWillUnmount() {
-    if (this.state.startGame) {
-      stopGame();
-    }
+    stopGame();
   }
 
-  handleStartGame = () => {
-    startGame().then((gameStarted) => {
-      this.setState({ gameStarted });
+  handleStartGame = async () => {
+    await startGame();
+    this.setState({ gameStarted: true });
 
-      getMediaService().onTransition((media) =>
-        this.setState({ media: media.context })
-      );
-    });
+    getMediaService().onTransition((media) =>
+      this.setState({ media: media.context })
+    );
   };
 
   render() {
