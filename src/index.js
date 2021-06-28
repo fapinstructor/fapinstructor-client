@@ -1,9 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./polyfills/endsWith";
-import "./polyfills/performance";
-import "./polyfills/includes";
-import "./polyfills/entries";
 import "./utils/visibility";
 import "./index.css";
 import "./setupSentry";
