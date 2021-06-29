@@ -39,6 +39,7 @@
     "@material-ui/lab": "4.0.0-alpha.58",
     "@reduxjs/toolkit": "^1.6.0",
     "@sentry/react": "^6.7.2",
+    "@sentry/tracing": "^6.8.0",
     "@xstate/inspect": "^0.4.1",
     "@xstate/react": "^1.4.0",
     "@xstate/test": "^0.4.2",
