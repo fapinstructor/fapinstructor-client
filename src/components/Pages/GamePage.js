@@ -112,7 +112,9 @@ class GamePage extends React.Component {
   }
 
   componentWillUnmount() {
-    stopGame();
+    if (this.state.gameStarted) {
+      stopGame();
+    }
   }
 
   handleStartGame = async () => {
