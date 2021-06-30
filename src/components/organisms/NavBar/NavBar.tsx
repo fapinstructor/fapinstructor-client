@@ -9,6 +9,7 @@ import ChangeLogMenuButton from "components/molecules/buttons/ChangeLogMenuButto
 import FaqMenuButton from "components/molecules/buttons/FaqMenuButton";
 import SearchGameMenuButton from "components/molecules/buttons/SearchGameMenuButton";
 import Grow from "components/atoms/Grow";
+import ConnectHandy from "components/molecules/ConnectHandy";
 
 export default function NavBar() {
   return (
@@ -16,6 +17,7 @@ export default function NavBar() {
       <Toolbar>
         <FapInstructorMenuButton />
         <Grow />
+        <ConnectHandy />
         <SearchGameMenuButton />
         <DiscordMenuButton />
         <PatreonMenuButton />

@@ -283,11 +283,11 @@ class ConfigPage extends React.Component {
         }
         case "slowestStrokeSpeed": {
           delete errors[name];
-          if (isNaN(value) || value < 0.25) {
-            errors[name] = "Cannot be less than 0.25";
+          if (isNaN(value) || value < 0.1) {
+            errors[name] = "Cannot be less than 0.1";
           }
-          if (value > 6) {
-            errors[name] = "Cannot be greater than 6";
+          if (value > 8) {
+            errors[name] = "Cannot be greater than 8";
           }
           break;
         }
@@ -296,8 +296,8 @@ class ConfigPage extends React.Component {
           if (isNaN(value) || value < store.config.slowestStrokeSpeed) {
             errors[name] = "Cannot be less than the slowest stroke speed";
           }
-          if (value > 6) {
-            errors[name] = "Cannot be greater than 6";
+          if (value > 8) {
+            errors[name] = "Cannot be greater than 8";
           }
           break;
         }
@@ -1034,7 +1034,7 @@ class ConfigPage extends React.Component {
                       onChange={this.handleChange("slowestStrokeSpeed", Number)}
                       fullWidth
                       type="number"
-                      inputProps={{ step: "0.25", min: "0.25", max: "6" }}
+                      inputProps={{ step: "0.50", min: "0.1", max: "8" }}
                       endAdornment={
                         <InputAdornment position="end">seconds</InputAdornment>
                       }
@@ -1054,7 +1054,7 @@ class ConfigPage extends React.Component {
                       onChange={this.handleChange("fastestStrokeSpeed", Number)}
                       fullWidth
                       type="number"
-                      inputProps={{ step: "0.25", min: "0.25", max: "6" }}
+                      inputProps={{ step: "0.50", min: "0.1", max: "8" }}
                       endAdornment={
                         <InputAdornment position="end">seconds</InputAdornment>
                       }

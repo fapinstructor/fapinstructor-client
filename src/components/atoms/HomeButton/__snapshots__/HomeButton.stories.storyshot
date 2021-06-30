@@ -4,6 +4,7 @@ exports[`Storyshots atoms/HomeButton Standard 1`] = `
 <button
   class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
   tabindex="0"
+  title="Home"
   type="button"
 >
   <span

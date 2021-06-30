@@ -3,12 +3,13 @@ import store from "common/store";
 import { selectEnableTicks } from "common/store/settings";
 import { GameConfig } from "configureStore";
 import { playTick } from "engine/audio";
-import { getRandomStrokeSpeed } from "game/utils/strokeSpeed";
 import { StrokeService } from "../services";
 import { TIME_TO_TICK } from "components/organisms/BeatMeter/settings";
 
 import createIntervalMachine, { TickEvent } from "./intervalMachine";
 import handy from "api/handy";
+import { getAverageStrokeSpeed } from "game/utils/strokeSpeed";
+import { getRandomArbitrary } from "utils/math";
 
 export type StrokeMachine = ReturnType<typeof createStrokeMachine>;
 
@@ -62,13 +63,17 @@ export type StrokeMachineEvent =
   | StopEvent;
 
 export function createStrokeMachine(config: GameConfig) {
-  const initialStrokeSpeed = getRandomStrokeSpeed({ slow: 0 });
+  const initialStrokeSpeed = getRandomArbitrary(
+    config.slowestStrokeSpeed,
+    getAverageStrokeSpeed()
+  );
 
   const strokeMachine = createMachine<StrokeMachineContext, StrokeMachineEvent>(
     {
       id: "stroke",
       initial: "paused",
       context: {
+        // beats per second
         strokeSpeed: initialStrokeSpeed,
         strokeSpeedBaseline: 0,
         strokeQueue: [],
@@ -80,9 +85,19 @@ export function createStrokeMachine(config: GameConfig) {
       },
       states: {
         stopped: {
+          entry: () => {
+            if (handy.connected) {
+              handy.setBeatsPerSecond(0);
+            }
+          },
           type: "final",
         },
         paused: {
+          entry: () => {
+            if (handy.connected) {
+              handy.setBeatsPerSecond(0);
+            }
+          },
           on: {
             PLAY: "playing",
           },
@@ -158,7 +173,9 @@ export function createStrokeMachine(config: GameConfig) {
             playTick(StrokeService.strokeSpeed);
           }
 
-          handy.setSpeed(context.strokeSpeed);
+          if (handy.connected) {
+            handy.setBeatsPerSecond(context.strokeSpeed);
+          }
 
           return {
             strokeQueue: context.strokeQueue.slice(1),

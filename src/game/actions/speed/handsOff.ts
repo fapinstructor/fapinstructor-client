@@ -25,13 +25,14 @@ export const handsOff = async (
   });
 
   StrokeService.pause();
-  StrokeService.setStrokeSpeed(getRandomStrokeSpeed());
 
   await setStrokeStyleHandsOff();
 
   await delay(duration * 1000);
 
+  StrokeService.setStrokeSpeed(getRandomStrokeSpeed());
   StrokeService.play();
+
   await setStrokeStyle();
   createNotification({ message: "Start stroking again" });
   playCommand(audioLibrary.StartStrokingAgain);

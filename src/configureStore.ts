@@ -110,7 +110,7 @@ const defaultConfig: GameConfig = {
   edgeFrequency: 0, // percent
   ruinCooldown: 20, // sec
   slowestStrokeSpeed: 0.25, // sec
-  fastestStrokeSpeed: 5, // sec
+  fastestStrokeSpeed: 4, // sec
   initialGripStrength: GripStrength.Normal,
   defaultStrokeStyle: "dominant",
   actionFrequency: 30, // sec

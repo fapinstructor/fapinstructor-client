@@ -12,10 +12,10 @@ exports[`Storyshots App/Pages Loading Page 1`] = `
       href="/"
     >
       <div
-        class="MuiBox-root MuiBox-root-30"
+        class="MuiBox-root MuiBox-root-33"
       >
         <div
-          class="MuiBox-root MuiBox-root-31"
+          class="MuiBox-root MuiBox-root-34"
         >
           <img
             alt="Fap Instructor"
@@ -24,19 +24,19 @@ exports[`Storyshots App/Pages Loading Page 1`] = `
           />
         </div>
         <div
-          class="MuiBox-root MuiBox-root-32"
+          class="MuiBox-root MuiBox-root-35"
         >
           <h4
-            class="MuiTypography-root makeStyles-title-33 MuiTypography-h4"
+            class="MuiTypography-root makeStyles-title-36 MuiTypography-h4"
           >
             Fap Instructor
           </h4>
         </div>
         <div
-          class="MuiBox-root MuiBox-root-34"
+          class="MuiBox-root MuiBox-root-37"
         >
           <h4
-            class="MuiTypography-root makeStyles-title-33 MuiTypography-h4"
+            class="MuiTypography-root makeStyles-title-36 MuiTypography-h4"
           >
             FI
           </h4>
@@ -46,6 +46,43 @@ exports[`Storyshots App/Pages Loading Page 1`] = `
     <span
       style="flex-grow: 1;"
     />
+    <button
+      class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
+      tabindex="0"
+      title="Handy is not connected"
+      type="button"
+    >
+      <span
+        class="MuiButton-label"
+      >
+        <div
+          class="MuiBox-root MuiBox-root-38"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root"
+            focusable="false"
+            style="color: rgb(255, 255, 255);"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM8.46 14.45l-1.36-.62c.28-.61.41-1.24.4-1.86-.01-.63-.14-1.24-.4-1.8l1.36-.63c.35.75.53 1.56.54 2.4.01.86-.17 1.7-.54 2.51zm3.07 1.56l-1.3-.74c.52-.92.78-1.98.78-3.15 0-1.19-.27-2.33-.8-3.4l1.34-.67c.64 1.28.96 2.65.96 4.07 0 1.43-.33 2.74-.98 3.89zm3.14 1.32l-1.35-.66c.78-1.6 1.18-3.18 1.18-4.69 0-1.51-.4-3.07-1.18-4.64l1.34-.67c.9 1.78 1.34 3.56 1.34 5.31 0 1.74-.44 3.54-1.33 5.35z"
+            />
+          </svg>
+          <div
+            class="MuiBox-root MuiBox-root-39"
+          >
+            Connect Handy
+          </div>
+          <div
+            class="MuiBox-root MuiBox-root-40"
+          />
+        </div>
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </button>
     <a
       aria-disabled="false"
       class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
@@ -57,10 +94,10 @@ exports[`Storyshots App/Pages Loading Page 1`] = `
         class="MuiButton-label"
       >
         <div
-          class="MuiBox-root MuiBox-root-35"
+          class="MuiBox-root MuiBox-root-41"
         >
           <div
-            class="MuiBox-root MuiBox-root-36"
+            class="MuiBox-root MuiBox-root-42"
           >
             <svg
               aria-hidden="true"
@@ -75,12 +112,12 @@ exports[`Storyshots App/Pages Loading Page 1`] = `
             </svg>
           </div>
           <div
-            class="MuiBox-root MuiBox-root-37"
+            class="MuiBox-root MuiBox-root-43"
           >
             Games
           </div>
           <div
-            class="MuiBox-root MuiBox-root-38"
+            class="MuiBox-root MuiBox-root-44"
           />
         </div>
       </span>
@@ -99,10 +136,10 @@ exports[`Storyshots App/Pages Loading Page 1`] = `
         class="MuiButton-label"
       >
         <div
-          class="MuiBox-root MuiBox-root-39"
+          class="MuiBox-root MuiBox-root-45"
         >
           <div
-            class="MuiBox-root MuiBox-root-40"
+            class="MuiBox-root MuiBox-root-46"
           >
             <img
               alt="Discord"
@@ -111,12 +148,12 @@ exports[`Storyshots App/Pages Loading Page 1`] = `
             />
           </div>
           <div
-            class="MuiBox-root MuiBox-root-41"
+            class="MuiBox-root MuiBox-root-47"
           >
             Join us on Discord
           </div>
           <div
-            class="MuiBox-root MuiBox-root-42"
+            class="MuiBox-root MuiBox-root-48"
           />
         </div>
       </span>
@@ -135,10 +172,10 @@ exports[`Storyshots App/Pages Loading Page 1`] = `
         class="MuiButton-label"
       >
         <div
-          class="MuiBox-root MuiBox-root-43"
+          class="MuiBox-root MuiBox-root-49"
         >
           <div
-            class="MuiBox-root MuiBox-root-44"
+            class="MuiBox-root MuiBox-root-50"
           >
             <img
               alt="Patreon"
@@ -147,12 +184,12 @@ exports[`Storyshots App/Pages Loading Page 1`] = `
             />
           </div>
           <div
-            class="MuiBox-root MuiBox-root-45"
+            class="MuiBox-root MuiBox-root-51"
           >
             Support this site!
           </div>
           <div
-            class="MuiBox-root MuiBox-root-46"
+            class="MuiBox-root MuiBox-root-52"
           />
         </div>
       </span>
@@ -171,10 +208,10 @@ exports[`Storyshots App/Pages Loading Page 1`] = `
         class="MuiButton-label"
       >
         <div
-          class="MuiBox-root MuiBox-root-47"
+          class="MuiBox-root MuiBox-root-53"
         >
           <div
-            class="MuiBox-root MuiBox-root-48"
+            class="MuiBox-root MuiBox-root-54"
           >
             <svg
               aria-hidden="true"
@@ -189,12 +226,12 @@ exports[`Storyshots App/Pages Loading Page 1`] = `
             </svg>
           </div>
           <div
-            class="MuiBox-root MuiBox-root-49"
+            class="MuiBox-root MuiBox-root-55"
           >
             FAQ
           </div>
           <div
-            class="MuiBox-root MuiBox-root-50"
+            class="MuiBox-root MuiBox-root-56"
           />
         </div>
       </span>
@@ -213,10 +250,10 @@ exports[`Storyshots App/Pages Loading Page 1`] = `
         class="MuiButton-label"
       >
         <div
-          class="MuiBox-root MuiBox-root-51"
+          class="MuiBox-root MuiBox-root-57"
         >
           <div
-            class="MuiBox-root MuiBox-root-52"
+            class="MuiBox-root MuiBox-root-58"
           >
             <svg
               aria-hidden="true"
@@ -231,12 +268,12 @@ exports[`Storyshots App/Pages Loading Page 1`] = `
             </svg>
           </div>
           <div
-            class="MuiBox-root MuiBox-root-53"
+            class="MuiBox-root MuiBox-root-59"
           >
             Change Log
           </div>
           <div
-            class="MuiBox-root MuiBox-root-54"
+            class="MuiBox-root MuiBox-root-60"
           />
         </div>
       </span>
@@ -312,6 +349,43 @@ exports[`Storyshots App/Pages Profile 1`] = `
     <span
       style="flex-grow: 1;"
     />
+    <button
+      class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
+      tabindex="0"
+      title="Handy is not connected"
+      type="button"
+    >
+      <span
+        class="MuiButton-label"
+      >
+        <div
+          class="MuiBox-root MuiBox-root-6"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root"
+            focusable="false"
+            style="color: rgb(255, 255, 255);"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM8.46 14.45l-1.36-.62c.28-.61.41-1.24.4-1.86-.01-.63-.14-1.24-.4-1.8l1.36-.63c.35.75.53 1.56.54 2.4.01.86-.17 1.7-.54 2.51zm3.07 1.56l-1.3-.74c.52-.92.78-1.98.78-3.15 0-1.19-.27-2.33-.8-3.4l1.34-.67c.64 1.28.96 2.65.96 4.07 0 1.43-.33 2.74-.98 3.89zm3.14 1.32l-1.35-.66c.78-1.6 1.18-3.18 1.18-4.69 0-1.51-.4-3.07-1.18-4.64l1.34-.67c.9 1.78 1.34 3.56 1.34 5.31 0 1.74-.44 3.54-1.33 5.35z"
+            />
+          </svg>
+          <div
+            class="MuiBox-root MuiBox-root-7"
+          >
+            Connect Handy
+          </div>
+          <div
+            class="MuiBox-root MuiBox-root-8"
+          />
+        </div>
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </button>
     <a
       aria-disabled="false"
       class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
@@ -323,10 +397,10 @@ exports[`Storyshots App/Pages Profile 1`] = `
         class="MuiButton-label"
       >
         <div
-          class="MuiBox-root MuiBox-root-6"
+          class="MuiBox-root MuiBox-root-9"
         >
           <div
-            class="MuiBox-root MuiBox-root-7"
+            class="MuiBox-root MuiBox-root-10"
           >
             <svg
               aria-hidden="true"
@@ -341,12 +415,12 @@ exports[`Storyshots App/Pages Profile 1`] = `
             </svg>
           </div>
           <div
-            class="MuiBox-root MuiBox-root-8"
+            class="MuiBox-root MuiBox-root-11"
           >
             Games
           </div>
           <div
-            class="MuiBox-root MuiBox-root-9"
+            class="MuiBox-root MuiBox-root-12"
           />
         </div>
       </span>
@@ -365,10 +439,10 @@ exports[`Storyshots App/Pages Profile 1`] = `
         class="MuiButton-label"
       >
         <div
-          class="MuiBox-root MuiBox-root-10"
+          class="MuiBox-root MuiBox-root-13"
         >
           <div
-            class="MuiBox-root MuiBox-root-11"
+            class="MuiBox-root MuiBox-root-14"
           >
             <img
               alt="Discord"
@@ -377,12 +451,12 @@ exports[`Storyshots App/Pages Profile 1`] = `
             />
           </div>
           <div
-            class="MuiBox-root MuiBox-root-12"
+            class="MuiBox-root MuiBox-root-15"
           >
             Join us on Discord
           </div>
           <div
-            class="MuiBox-root MuiBox-root-13"
+            class="MuiBox-root MuiBox-root-16"
           />
         </div>
       </span>
@@ -401,10 +475,10 @@ exports[`Storyshots App/Pages Profile 1`] = `
         class="MuiButton-label"
       >
         <div
-          class="MuiBox-root MuiBox-root-14"
+          class="MuiBox-root MuiBox-root-17"
         >
           <div
-            class="MuiBox-root MuiBox-root-15"
+            class="MuiBox-root MuiBox-root-18"
           >
             <img
               alt="Patreon"
@@ -413,12 +487,12 @@ exports[`Storyshots App/Pages Profile 1`] = `
             />
           </div>
           <div
-            class="MuiBox-root MuiBox-root-16"
+            class="MuiBox-root MuiBox-root-19"
           >
             Support this site!
           </div>
           <div
-            class="MuiBox-root MuiBox-root-17"
+            class="MuiBox-root MuiBox-root-20"
           />
         </div>
       </span>
@@ -437,10 +511,10 @@ exports[`Storyshots App/Pages Profile 1`] = `
         class="MuiButton-label"
       >
         <div
-          class="MuiBox-root MuiBox-root-18"
+          class="MuiBox-root MuiBox-root-21"
         >
           <div
-            class="MuiBox-root MuiBox-root-19"
+            class="MuiBox-root MuiBox-root-22"
           >
             <svg
               aria-hidden="true"
@@ -455,12 +529,12 @@ exports[`Storyshots App/Pages Profile 1`] = `
             </svg>
           </div>
           <div
-            class="MuiBox-root MuiBox-root-20"
+            class="MuiBox-root MuiBox-root-23"
           >
             FAQ
           </div>
           <div
-            class="MuiBox-root MuiBox-root-21"
+            class="MuiBox-root MuiBox-root-24"
           />
         </div>
       </span>
@@ -479,10 +553,10 @@ exports[`Storyshots App/Pages Profile 1`] = `
         class="MuiButton-label"
       >
         <div
-          class="MuiBox-root MuiBox-root-22"
+          class="MuiBox-root MuiBox-root-25"
         >
           <div
-            class="MuiBox-root MuiBox-root-23"
+            class="MuiBox-root MuiBox-root-26"
           >
             <svg
               aria-hidden="true"
@@ -497,12 +571,12 @@ exports[`Storyshots App/Pages Profile 1`] = `
             </svg>
           </div>
           <div
-            class="MuiBox-root MuiBox-root-24"
+            class="MuiBox-root MuiBox-root-27"
           >
             Change Log
           </div>
           <div
-            class="MuiBox-root MuiBox-root-25"
+            class="MuiBox-root MuiBox-root-28"
           />
         </div>
       </span>
@@ -544,10 +618,10 @@ exports[`Storyshots App/Pages Unauthorized Page 1`] = `
       href="/"
     >
       <div
-        class="MuiBox-root MuiBox-root-56"
+        class="MuiBox-root MuiBox-root-62"
       >
         <div
-          class="MuiBox-root MuiBox-root-57"
+          class="MuiBox-root MuiBox-root-63"
         >
           <img
             alt="Fap Instructor"
@@ -556,19 +630,19 @@ exports[`Storyshots App/Pages Unauthorized Page 1`] = `
           />
         </div>
         <div
-          class="MuiBox-root MuiBox-root-58"
+          class="MuiBox-root MuiBox-root-64"
         >
           <h4
-            class="MuiTypography-root makeStyles-title-59 MuiTypography-h4"
+            class="MuiTypography-root makeStyles-title-65 MuiTypography-h4"
           >
             Fap Instructor
           </h4>
         </div>
         <div
-          class="MuiBox-root MuiBox-root-60"
+          class="MuiBox-root MuiBox-root-66"
         >
           <h4
-            class="MuiTypography-root makeStyles-title-59 MuiTypography-h4"
+            class="MuiTypography-root makeStyles-title-65 MuiTypography-h4"
           >
             FI
           </h4>
@@ -578,6 +652,43 @@ exports[`Storyshots App/Pages Unauthorized Page 1`] = `
     <span
       style="flex-grow: 1;"
     />
+    <button
+      class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
+      tabindex="0"
+      title="Handy is not connected"
+      type="button"
+    >
+      <span
+        class="MuiButton-label"
+      >
+        <div
+          class="MuiBox-root MuiBox-root-67"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root"
+            focusable="false"
+            style="color: rgb(255, 255, 255);"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM8.46 14.45l-1.36-.62c.28-.61.41-1.24.4-1.86-.01-.63-.14-1.24-.4-1.8l1.36-.63c.35.75.53 1.56.54 2.4.01.86-.17 1.7-.54 2.51zm3.07 1.56l-1.3-.74c.52-.92.78-1.98.78-3.15 0-1.19-.27-2.33-.8-3.4l1.34-.67c.64 1.28.96 2.65.96 4.07 0 1.43-.33 2.74-.98 3.89zm3.14 1.32l-1.35-.66c.78-1.6 1.18-3.18 1.18-4.69 0-1.51-.4-3.07-1.18-4.64l1.34-.67c.9 1.78 1.34 3.56 1.34 5.31 0 1.74-.44 3.54-1.33 5.35z"
+            />
+          </svg>
+          <div
+            class="MuiBox-root MuiBox-root-68"
+          >
+            Connect Handy
+          </div>
+          <div
+            class="MuiBox-root MuiBox-root-69"
+          />
+        </div>
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </button>
     <a
       aria-disabled="false"
       class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
@@ -589,10 +700,10 @@ exports[`Storyshots App/Pages Unauthorized Page 1`] = `
         class="MuiButton-label"
       >
         <div
-          class="MuiBox-root MuiBox-root-61"
+          class="MuiBox-root MuiBox-root-70"
         >
           <div
-            class="MuiBox-root MuiBox-root-62"
+            class="MuiBox-root MuiBox-root-71"
           >
             <svg
               aria-hidden="true"
@@ -607,12 +718,12 @@ exports[`Storyshots App/Pages Unauthorized Page 1`] = `
             </svg>
           </div>
           <div
-            class="MuiBox-root MuiBox-root-63"
+            class="MuiBox-root MuiBox-root-72"
           >
             Games
           </div>
           <div
-            class="MuiBox-root MuiBox-root-64"
+            class="MuiBox-root MuiBox-root-73"
           />
         </div>
       </span>
@@ -631,10 +742,10 @@ exports[`Storyshots App/Pages Unauthorized Page 1`] = `
         class="MuiButton-label"
       >
         <div
-          class="MuiBox-root MuiBox-root-65"
+          class="MuiBox-root MuiBox-root-74"
         >
           <div
-            class="MuiBox-root MuiBox-root-66"
+            class="MuiBox-root MuiBox-root-75"
           >
             <img
               alt="Discord"
@@ -643,12 +754,12 @@ exports[`Storyshots App/Pages Unauthorized Page 1`] = `
             />
           </div>
           <div
-            class="MuiBox-root MuiBox-root-67"
+            class="MuiBox-root MuiBox-root-76"
           >
             Join us on Discord
           </div>
           <div
-            class="MuiBox-root MuiBox-root-68"
+            class="MuiBox-root MuiBox-root-77"
           />
         </div>
       </span>
@@ -667,10 +778,10 @@ exports[`Storyshots App/Pages Unauthorized Page 1`] = `
         class="MuiButton-label"
       >
         <div
-          class="MuiBox-root MuiBox-root-69"
+          class="MuiBox-root MuiBox-root-78"
         >
           <div
-            class="MuiBox-root MuiBox-root-70"
+            class="MuiBox-root MuiBox-root-79"
           >
             <img
               alt="Patreon"
@@ -679,12 +790,12 @@ exports[`Storyshots App/Pages Unauthorized Page 1`] = `
             />
           </div>
           <div
-            class="MuiBox-root MuiBox-root-71"
+            class="MuiBox-root MuiBox-root-80"
           >
             Support this site!
           </div>
           <div
-            class="MuiBox-root MuiBox-root-72"
+            class="MuiBox-root MuiBox-root-81"
           />
         </div>
       </span>
@@ -703,10 +814,10 @@ exports[`Storyshots App/Pages Unauthorized Page 1`] = `
         class="MuiButton-label"
       >
         <div
-          class="MuiBox-root MuiBox-root-73"
+          class="MuiBox-root MuiBox-root-82"
         >
           <div
-            class="MuiBox-root MuiBox-root-74"
+            class="MuiBox-root MuiBox-root-83"
           >
             <svg
               aria-hidden="true"
@@ -721,12 +832,12 @@ exports[`Storyshots App/Pages Unauthorized Page 1`] = `
             </svg>
           </div>
           <div
-            class="MuiBox-root MuiBox-root-75"
+            class="MuiBox-root MuiBox-root-84"
           >
             FAQ
           </div>
           <div
-            class="MuiBox-root MuiBox-root-76"
+            class="MuiBox-root MuiBox-root-85"
           />
         </div>
       </span>
@@ -745,10 +856,10 @@ exports[`Storyshots App/Pages Unauthorized Page 1`] = `
         class="MuiButton-label"
       >
         <div
-          class="MuiBox-root MuiBox-root-77"
+          class="MuiBox-root MuiBox-root-86"
         >
           <div
-            class="MuiBox-root MuiBox-root-78"
+            class="MuiBox-root MuiBox-root-87"
           >
             <svg
               aria-hidden="true"
@@ -763,12 +874,12 @@ exports[`Storyshots App/Pages Unauthorized Page 1`] = `
             </svg>
           </div>
           <div
-            class="MuiBox-root MuiBox-root-79"
+            class="MuiBox-root MuiBox-root-88"
           >
             Change Log
           </div>
           <div
-            class="MuiBox-root MuiBox-root-80"
+            class="MuiBox-root MuiBox-root-89"
           />
         </div>
       </span>

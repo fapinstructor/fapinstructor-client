@@ -30,6 +30,10 @@ const loops = [
 const observers: number[] = [];
 
 export async function startGame() {
+  if (handy.connected) {
+    handy.reset();
+  }
+
   await createAudioContext();
   configureStore();
 
@@ -49,7 +53,10 @@ export async function startGame() {
 
 export function stopGame() {
   interrupt();
-  handy.reset();
+
+  if (handy.connected) {
+    handy.reset();
+  }
 
   // Stop services
   MediaService.stop();

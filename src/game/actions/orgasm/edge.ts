@@ -13,7 +13,8 @@ import { GripService } from "game/xstate/services";
 import { ruinOrgasm } from "./ruin";
 
 export const rideTheEdge = async (time = getRandomInclusiveInteger(5, 30)) => {
-  setStrokeSpeed(store.config.fastestStrokeSpeed);
+  // Once on the edge, slow down speed by 20%
+  setStrokeSpeed(store.config.fastestStrokeSpeed * 0.8);
 
   const notificationId = createNotification({
     message: "Ride the edge",

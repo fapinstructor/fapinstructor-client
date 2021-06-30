@@ -18,7 +18,8 @@
     "check-format": "yarn prettier --list-different",
     "check-types": "tsc --noEmit",
     "validate": "CI=true npm-run-all --parallel check-types test check-format lint",
-    "chromatic": "chromatic --exit-zero-on-changes"
+    "chromatic": "chromatic --exit-zero-on-changes",
+    "bundle-analyzer": "cra-bundle-analyzer"
   },
   "browserslist": {
     "production": [
@@ -99,6 +100,7 @@
     "babel-plugin-polyfill-corejs2": "^0.2.2",
     "babel-plugin-polyfill-regenerator": "^0.2.2",
     "chromatic": "^5.9.2",
+    "cra-bundle-analyzer": "^0.1.0",
     "eslint": "^7.29.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-jest": "^24.3.6",
