@@ -7,6 +7,7 @@ The overall project roadmap and progress can be viewed on our [Trello Board](htt
 ## 2021-07-14
 
 - Added Handy hardware support!
+- Added new partner banner
 
 ## 2021-06-23
 

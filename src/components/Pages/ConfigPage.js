@@ -19,6 +19,7 @@ import {
   FormGroup,
   FormHelperText,
   FormLabel,
+  Typography,
 } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -33,6 +34,7 @@ import {
 import config from "config";
 import ShareGame from "components/organisms/ShareGame";
 import { validSubreddit } from "utils/regex";
+import EuroFightBanner from "images/eurofights-banner-tf.png";
 
 const ONE_HUNDRED_PERCENT = 100; // Maximum Percentage that Can be achieved
 
@@ -1199,6 +1201,26 @@ class ConfigPage extends React.Component {
                 <Alert severity="error">{exception.message}</Alert>
               </div>
             )}
+            <div
+              style={{
+                paddingTop: "3rem",
+              }}
+            >
+              <Typography variant="h6" as="h2">
+                Other amazing games
+              </Typography>
+              <a
+                href="https://www.erofights.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  src={EuroFightBanner}
+                  alt="Euro Fights Banner"
+                  style={{ width: "50vw", maxWidth: "900px" }}
+                />
+              </a>
+            </div>
           </Paper>
         </div>
       </div>
