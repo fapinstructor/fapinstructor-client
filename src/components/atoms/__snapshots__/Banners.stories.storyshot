@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots atoms/Banners Large Ero Fights Banner 1`] = `
+.c0 {
+  width: 50vw;
+  max-width: 900px;
+}
+
+@media only screen and (max-width:600px) {
+  .c0 {
+    width: 100%;
+  }
+}
+
+<img
+  alt="Opens Euro Fights partner site in a new tab"
+  class="c0"
+  src="eurofights-banner-tf.png"
+/>
+`;

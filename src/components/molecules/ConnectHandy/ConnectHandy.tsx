@@ -151,7 +151,7 @@ export default function ConnectHandy({
         <Formik
           validationSchema={CONNECT_HANDY_SCHEMA}
           initialValues={{
-            connectionKey: handy.connectionKey,
+            connectionKey: handyConnectionKey,
           }}
           onSubmit={async (
             { connectionKey }: ConnectHandyRequest,
@@ -179,7 +179,7 @@ export default function ConnectHandy({
             isSubmitting,
             errors,
             values,
-            resetForm,
+            setFieldValue,
           }) => (
             <Form onSubmit={handleSubmit}>
               <DialogContent>
@@ -205,11 +205,11 @@ export default function ConnectHandy({
                 </Button>
                 <Button
                   onClick={() => {
-                    resetForm();
-                    handy.disconnect();
                     setHandyConnectionKey("");
+                    handy.disconnect();
+                    setFieldValue("connectionKey", "");
                   }}
-                  disabled={!handy.connected}
+                  disabled={!handyConnectionKey}
                 >
                   Disconnect
                 </Button>

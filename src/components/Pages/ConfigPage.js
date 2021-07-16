@@ -33,8 +33,8 @@ import {
 } from "game/xstate/machines/gripMachine";
 import config from "config";
 import ShareGame from "components/organisms/ShareGame";
+import EroFightsBanner from "components/atoms/EroFightsBanner";
 import { validSubreddit } from "utils/regex";
-import EuroFightBanner from "images/eurofights-banner-tf.png";
 
 const ONE_HUNDRED_PERCENT = 100; // Maximum Percentage that Can be achieved
 
@@ -1214,11 +1214,7 @@ class ConfigPage extends React.Component {
                 target="_blank"
                 rel="noreferrer"
               >
-                <img
-                  src={EuroFightBanner}
-                  alt="Euro Fights Banner"
-                  style={{ width: "50vw", maxWidth: "900px" }}
-                />
+                <EroFightsBanner />
               </a>
             </div>
           </Paper>
