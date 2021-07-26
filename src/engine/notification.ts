@@ -9,16 +9,13 @@ import {
   dismissAllNotifications as dismissAllNotifications2,
 } from "common/store/notifications";
 
-export const createNotification = (...args) => {
-  const notification = store.dispatch(createNotification2(...args));
+export const createNotification = (
+  ...args: Parameters<typeof createNotification2>
+) => store.dispatch(createNotification2(...args)).payload.id;
 
-  return notification.payload.id;
-};
-
-export const dismissNotification = (id) =>
-  store.dispatch(dismissNotification2(id));
+export const dismissNotification = (
+  ...args: Parameters<typeof dismissNotification2>
+) => store.dispatch(dismissNotification2(...args));
 
 export const dismissAllNotifications = () =>
   store.dispatch(dismissAllNotifications2());
-
-export default createNotification;

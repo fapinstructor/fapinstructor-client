@@ -1,5 +1,6 @@
 import { GameConfig } from "configureStore";
 import { assign, createMachine, send, actions } from "xstate";
+import history from "browserHistory";
 import store from "store";
 import { TIME_TO_TICK } from "components/organisms/BeatMeter/settings";
 import warmup from "game/actions/warmup";
@@ -7,17 +8,26 @@ import { playCommand } from "engine/audio";
 import audioLibrary from "audio";
 import interrupt from "engine/interrupt";
 import delay from "utils/delay";
-import elapsedGameTime, {
-  gameCompletionPercent,
-} from "game/utils/elapsedGameTime";
-import { edge } from "game/actions/orgasm/edge";
-import { doOrgasm } from "game/actions/orgasm/orgasm";
-import { getRandomInclusiveInteger } from "utils/math";
+import { gameCompletionPercent } from "game/utils/elapsedGameTime";
+import { getRandomItem } from "utils/math";
 import { initializeActions } from "game/initializeActions";
+import { stopServices } from "game";
+
+import { edge } from "game/actions/orgasm/edge";
+import { ruin, finalRuin } from "game/actions/orgasm/ruin";
+import { orgasm, finalOrgasm } from "game/actions/orgasm/orgasm";
+import { deny } from "game/actions/orgasm/deny";
+import { startStrokingAgain } from "game/actions";
+import applyProbabilities from "utils/applyProbabilities";
 
 const { choose } = actions;
 
 export type ActionMachine = ReturnType<typeof createActionMachine>;
+
+function completed() {
+  stopServices();
+  history.push("/endgame");
+}
 
 export type Action = {
   (): Promise<Action | Action[] | void>;
@@ -38,7 +48,7 @@ export type ExecuteActionEvent = {
   executeImmediately?: boolean;
 };
 
-export type SetTiggersActionEvent = {
+export type SetTriggersActionEvent = {
   type: "SET_TRIGGERS";
   triggers: Action[];
 };
@@ -49,7 +59,7 @@ export type StopEvent = {
 
 export type ActionMachineEvent =
   | ExecuteActionEvent
-  | SetTiggersActionEvent
+  | SetTriggersActionEvent
   | GenerateActionEvent
   | StopEvent;
 
@@ -57,9 +67,7 @@ export function createActionMachine(config: GameConfig) {
   const actionFrequency = config.actionFrequency;
   const actions = initializeActions(config.tasks);
 
-  const getRandomAction = () =>
-    actions.length > 0 &&
-    actions[getRandomInclusiveInteger(0, actions.length - 1)];
+  const getRandomAction = () => actions.length > 0 && getRandomItem(actions);
 
   const actionMachine = createMachine<ActionMachineContext, ActionMachineEvent>(
     {
@@ -97,14 +105,42 @@ export function createActionMachine(config: GameConfig) {
         idle: {
           entry: choose([
             {
+              cond: "shouldEndGame",
+              actions: send({
+                type: "EXECUTE",
+                action: () => {
+                  const {
+                    config: {
+                      allowedProbability,
+                      deniedProbability,
+                      ruinedProbability,
+                    },
+                  } = store;
+
+                  const outcomes = applyProbabilities([
+                    [finalOrgasm, allowedProbability],
+                    [finalRuin, ruinedProbability],
+                    [deny, deniedProbability],
+                  ]);
+
+                  const outcome = getRandomItem(outcomes);
+
+                  return outcome(completed);
+                },
+              }),
+            },
+            {
               cond: "shouldOrgasm",
-              actions: send({ type: "EXECUTE", action: doOrgasm }),
+              actions: send({
+                type: "EXECUTE",
+                action: orgasm,
+              }),
             },
             {
               cond: "shouldRuin",
               actions: send({
                 type: "EXECUTE",
-                action: () => edge({ ruin: true }),
+                action: () => ruin(startStrokingAgain),
               }),
             },
             {
@@ -184,7 +220,7 @@ export function createActionMachine(config: GameConfig) {
           }
         },
         setTriggers: assign((context, event) => ({
-          triggers: (event as SetTiggersActionEvent).triggers,
+          triggers: (event as SetTriggersActionEvent).triggers,
         })),
         clearTriggers: assign((context, event) => ({
           triggers: [],
@@ -192,54 +228,72 @@ export function createActionMachine(config: GameConfig) {
       },
       guards: {
         isFinishedExecuting: (context) => context.triggers.length === 0,
-        shouldOrgasm: () => {
+        shouldEndGame: () => {
           const {
-            game: { ruins, edges },
-            config: { minimumRuinedOrgasms, minimumEdges, minimumGameTime },
+            game: { ruins, edges, orgasms },
+            config: { minimumRuinedOrgasms, minimumEdges, minimumOrgasms },
           } = store;
 
-          const allowedChangeOfOrgasm =
-            minimumRuinedOrgasms <= ruins &&
-            minimumEdges <= edges &&
-            elapsedGameTime("minutes") >= minimumGameTime;
-
-          if (!allowedChangeOfOrgasm) {
+          // Game shouldn't end until minimums are met.
+          if (
+            ruins < minimumRuinedOrgasms ||
+            edges < minimumEdges ||
+            // The end game can cause an orgasm, so subtract to flow through to that logic.
+            orgasms < minimumOrgasms - 1
+          ) {
             return false;
           }
 
-          // Probability Graph: https://www.desmos.com/calculator/xhyaj1gxuc
-          // y = a^4
+          // Once minimums are met and if we are over the max time then end the game.
+          if (gameCompletionPercent() >= 1) {
+            return true;
+          }
+
+          // Use the time complexity of n^4 to calculate probability.
           return gameCompletionPercent() ** 4 > Math.random();
         },
-        shouldRuin: (context) => {
+        /**
+         * This function is only used when multiple orgasms have been configured.
+         */
+        shouldOrgasm: () => {
           const {
-            game: { ruins },
-            config: { maximumRuinedOrgasms, minimumGameTime },
+            game: { orgasms },
+            config: { maximumOrgasms },
           } = store;
 
-          const isAllowedChance =
-            ruins < maximumRuinedOrgasms &&
-            elapsedGameTime("minutes") >= minimumGameTime * 1.3;
+          // Leave one orgasm available for when the game ends.
+          const remainingOrgasms = maximumOrgasms - (orgasms + 1);
 
-          if (!isAllowedChance) {
+          if (remainingOrgasms <= 0 || gameCompletionPercent() < 0.5) {
             return false;
           }
 
-          // Probability Graph: https://www.desmos.com/calculator/xhyaj1gxuc
-          // y = a^4
+          // Use the time complexity of n^4 to calculate probability.
           return gameCompletionPercent() ** 4 > Math.random();
+        },
+        shouldRuin: () => {
+          const {
+            game: { ruins },
+            config: { maximumRuinedOrgasms },
+          } = store;
+
+          if (ruins >= maximumRuinedOrgasms || gameCompletionPercent() < 0.5) {
+            return false;
+          }
+
+          // Use the time complexity of n^2 (quadratic) to calculate probability.
+          return gameCompletionPercent() ** 2 > Math.random();
         },
         shouldEdge: () => {
           const {
             config: { edgeFrequency },
           } = store;
 
-          if (gameCompletionPercent() < 0.2) {
+          if (gameCompletionPercent() < 0.4) {
             return false;
           }
 
-          // Probability Graph: https://www.desmos.com/calculator/atc32p8kof
-          // y = a
+          // Use the time complexity of n (linear) to calculate probability.
           return gameCompletionPercent() + edgeFrequency / 100 > Math.random();
         },
       },

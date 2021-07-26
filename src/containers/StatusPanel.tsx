@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Typography,
@@ -27,6 +27,7 @@ import {
 } from "common/store/settings";
 import { useGripService } from "game/xstate/services";
 import { GripStrengthString } from "game/xstate/machines/gripMachine";
+import useForceUpdate from "hooks/useForceUpdate";
 
 const useStyles = makeStyles({
   root: {
@@ -103,12 +104,21 @@ export default React.memo(function StatusPanel() {
     },
   ] = useGripService();
 
+  const forceUpdate = useForceUpdate();
+
   // TODO: Disabling because every TICK event will cause a render
   // const [
   //   {
   //     context: { strokeSpeed },
   //   },
   // ] = useStrokeService();
+
+  // Force update to refresh elapsed time as that value has no event.
+  useEffect(() => {
+    const refreshInterval = window.setInterval(() => forceUpdate(), 10_000);
+
+    return () => clearInterval(refreshInterval);
+  }, [forceUpdate]);
 
   return (
     <div className={classes.root}>

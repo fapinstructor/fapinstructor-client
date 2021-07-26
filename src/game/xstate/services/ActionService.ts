@@ -40,7 +40,9 @@ const ActionService = {
     service.start();
   },
   stop() {
-    getActionService().send("STOP");
+    if (!this.stopped) {
+      getActionService().send("STOP");
+    }
   },
   get stopped() {
     return !service || service.state.matches("stopped");

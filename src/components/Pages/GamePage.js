@@ -1,8 +1,8 @@
 import React from "react";
 import * as Sentry from "@sentry/react";
-import { withRouter, Redirect } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
-import { startGame, stopGame } from "game";
+import { startServices, stopServices } from "game";
 import store from "store";
 import { Paper } from "@material-ui/core";
 import HUD from "containers/HUD";
@@ -113,12 +113,12 @@ class GamePage extends React.Component {
 
   componentWillUnmount() {
     if (this.state.gameStarted) {
-      stopGame();
+      stopServices();
     }
   }
 
   handleStartGame = async () => {
-    await startGame();
+    await startServices();
     this.setState({ gameStarted: true });
 
     getMediaService().onTransition((media) =>
@@ -157,35 +157,25 @@ class GamePage extends React.Component {
 
     return (
       <ProxyStoreConsumer>
-        {({
-          game: { orgasms, youtube },
-          config: { maximumOrgasms, slideDuration },
-          videoMuted,
-        }) => (
+        {({ game: { youtube }, config: { slideDuration }, videoMuted }) => (
           <div className={this.props.classes.container}>
-            {parseInt(maximumOrgasms, 10) === parseInt(orgasms, 10) ? (
-              <Redirect to="/endgame" />
-            ) : (
-              <>
-                <ExitGamePrompt />
-                <HUD />
-                {(youtube && <YouTubeVideo src={youtube} />) ||
-                  (activeLink && (
-                    <MediaPlayer
-                      link={activeLink}
-                      duration={slideDuration}
-                      muted={videoMuted}
-                      onEnded={handleSlideChange}
-                    />
-                  )) || (
-                    <img
-                      className={classes.image}
-                      src={DEFAULT_BACKGROUND_IMAGE}
-                      alt=""
-                    />
-                  )}
-              </>
-            )}
+            <ExitGamePrompt />
+            <HUD />
+            {(youtube && <YouTubeVideo src={youtube} />) ||
+              (activeLink && (
+                <MediaPlayer
+                  link={activeLink}
+                  duration={slideDuration}
+                  muted={videoMuted}
+                  onEnded={handleSlideChange}
+                />
+              )) || (
+                <img
+                  className={classes.image}
+                  src={DEFAULT_BACKGROUND_IMAGE}
+                  alt=""
+                />
+              )}
           </div>
         )}
       </ProxyStoreConsumer>

@@ -1,13 +1,11 @@
-import createNotification, {
-  dismissNotification,
-} from "engine/createNotification";
+import { createNotification, dismissNotification } from "engine/notification";
 import { getRandomInclusiveInteger } from "utils/math";
 import { playCommand } from "engine/audio";
 import audioLibrary from "audio";
 import { StrokeService } from "game/xstate/services";
 import { pluralize } from "utils/pluralize";
 
-export const ballslaps = async () => {
+export const ballSlaps = async () => {
   StrokeService.pause();
 
   const ballSlapCount = getRandomInclusiveInteger(3, 10);
@@ -29,4 +27,4 @@ export const ballslaps = async () => {
 
   return [done];
 };
-ballslaps.label = "Ball slaps";
+ballSlaps.label = "Ball slaps";

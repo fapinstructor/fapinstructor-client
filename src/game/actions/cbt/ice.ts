@@ -1,6 +1,4 @@
-import createNotification, {
-  dismissNotification,
-} from "engine/createNotification";
+import { createNotification, dismissNotification } from "engine/notification";
 import { getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
 import { StrokeService } from "game/xstate/services";

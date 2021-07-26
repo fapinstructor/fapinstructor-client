@@ -1,4 +1,4 @@
-import { dismissAllNotifications } from "engine/createNotification";
+import { dismissAllNotifications } from "engine/notification";
 
 type Interruptible = {
   id: number;

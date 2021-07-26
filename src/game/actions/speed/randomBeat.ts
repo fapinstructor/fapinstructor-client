@@ -1,5 +1,5 @@
 import store from "store";
-import createNotification from "engine/createNotification";
+import { createNotification } from "engine/notification";
 import { getAverageStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
 import { getRandomArbitrary, getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";

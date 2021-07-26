@@ -1,4 +1,3 @@
-import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useActionService } from "game/xstate/services";
 import TriggerButton from "./TriggerButton";

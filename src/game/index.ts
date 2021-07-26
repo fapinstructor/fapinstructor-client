@@ -29,7 +29,7 @@ const loops = [
 
 const observers: number[] = [];
 
-export async function startGame() {
+export async function startServices() {
   if (handy.connected) {
     handy.reset();
   }
@@ -51,7 +51,7 @@ export async function startGame() {
   });
 }
 
-export function stopGame() {
+export function stopServices() {
   interrupt();
 
   if (handy.connected) {

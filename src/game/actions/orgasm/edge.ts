@@ -2,18 +2,64 @@ import store from "store";
 import { playCommand } from "engine/audio";
 import audioLibrary from "audio";
 import { getRandomStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
-import createNotification, {
-  dismissNotification,
-} from "engine/createNotification";
-import { getRandomBoolean, getRandomInclusiveInteger } from "utils/math";
+import { createNotification, dismissNotification } from "engine/notification";
+import { chance, getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
 import { handsOff } from "game/actions";
 import { getRandomEdgeMessage } from "game/texts/messages";
 import { GripService } from "game/xstate/services";
-import { ruinOrgasm } from "./ruin";
+import { startStrokingAgain } from "../speed";
 
-export const rideTheEdge = async (time = getRandomInclusiveInteger(5, 30)) => {
-  // Once on the edge, slow down speed by 20%
+export async function edge() {
+  return getToTheEdge(async () => {
+    // TODO: Remove magic number
+    if (chance(50)) {
+      await rideTheEdge();
+    }
+    await edged();
+  });
+}
+
+export async function getToTheEdge(edging: () => void) {
+  setStrokeSpeed(store.config.fastestStrokeSpeed);
+  await delay();
+
+  playCommand(audioLibrary.Edge);
+  GripService.resetGripStrength();
+  const notificationId = createNotification({
+    message: getRandomEdgeMessage(),
+    duration: -1,
+  });
+
+  function cleanup() {
+    dismissNotification(notificationId);
+  }
+
+  function edgingTrigger() {
+    cleanup();
+    return edging();
+  }
+  edgingTrigger.label = "Edging";
+
+  function failedToEdgeTrigger() {
+    cleanup();
+    setStrokeSpeed(getRandomStrokeSpeed());
+  }
+  failedToEdgeTrigger.label = "I can't";
+
+  return [edgingTrigger, failedToEdgeTrigger];
+}
+
+const RIDE_EDGE_DURATION_MIN = 5_000;
+const RIDE_EDGE_DURATION_MAX = 30_000;
+
+export async function rideTheEdge(
+  duration = getRandomInclusiveInteger(
+    RIDE_EDGE_DURATION_MIN,
+    RIDE_EDGE_DURATION_MAX
+  )
+) {
+  // Slow stroke speed by 20%.
   setStrokeSpeed(store.config.fastestStrokeSpeed * 0.8);
 
   const notificationId = createNotification({
@@ -23,59 +69,13 @@ export const rideTheEdge = async (time = getRandomInclusiveInteger(5, 30)) => {
 
   playCommand(audioLibrary.KeepStroking);
 
-  await delay(time * 1000);
+  await delay(duration);
   dismissNotification(notificationId);
-  setStrokeSpeed(getRandomStrokeSpeed());
-};
+}
 
-export const edging = async () => {
-  if (getRandomBoolean()) {
-    await rideTheEdge();
-  }
-};
-
-export const edged = async () => {
+export async function edged() {
   store.game.edges++;
 
-  store.game.cooldown = true;
-  await handsOff(store.config.edgeCooldown);
-  store.game.cooldown = false;
-};
-
-export const getToTheEdge = async (message = getRandomEdgeMessage()) => {
-  const {
-    config: { fastestStrokeSpeed },
-  } = store;
-  setStrokeSpeed(fastestStrokeSpeed);
-  await delay();
-
-  playCommand(audioLibrary.Edge);
-  GripService.resetGripStrength();
-
-  return createNotification({ message, duration: -1 });
-};
-
-export const edge = async ({ ruin = false } = {}) => {
-  const notificationId = await getToTheEdge(getRandomEdgeMessage());
-
-  const edgingTrigger = async () => {
-    dismissNotification(notificationId);
-    await edging();
-
-    if (ruin) {
-      await delay();
-      return await ruinOrgasm();
-    } else {
-      await edged();
-    }
-  };
-  edgingTrigger.label = "Edging";
-
-  const couldntEdgeTrigger = async () => {
-    dismissNotification(notificationId);
-    await handsOff(store.config.edgeCooldown);
-  };
-  couldntEdgeTrigger.label = "I can't";
-
-  return [edgingTrigger, couldntEdgeTrigger];
-};
+  await handsOff(store.config.edgeCooldown * 1000);
+  await startStrokingAgain();
+}

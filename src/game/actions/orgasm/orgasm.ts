@@ -1,145 +1,87 @@
 import store from "store";
-import createNotification, {
-  dismissNotification,
-} from "engine/createNotification";
-import { getRandomStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
-import delay from "utils/delay";
 import { playCommand } from "engine/audio";
-import audioLibrary, { getRandomAudioVariation } from "audio";
+import { getRandomAudioVariation } from "audio";
+import { getAverageStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
+import { createNotification, dismissNotification } from "engine/notification";
 import { getRandomInclusiveInteger } from "utils/math";
-import { stopGame } from "game";
-import {
-  getRandomDeniedMessage,
-  getRandomRuinOrgasmMessage,
-} from "game/texts/messages";
-import { StrokeService } from "game/xstate/services";
+import delay from "utils/delay";
+import { getToTheEdge, rideTheEdge } from "./edge";
 
-/**
- * Makes the user ruin their orgasm.
- * Duplicate code is necessary due to game end functionality.
- */
-export const doRuin = async () => {
-  const {
-    config: { fastestStrokeSpeed },
-  } = store;
+export function orgasm(orgasmed: () => void) {
+  return getToTheEdge(async () => {
+    await rideTheEdge();
 
-  setStrokeSpeed(fastestStrokeSpeed);
-  playCommand(audioLibrary.RuinItForMe);
+    setStrokeSpeed(store.config.fastestStrokeSpeed);
+    playCommand(getRandomAudioVariation("Orgasm"));
+    const notificationId = createNotification({
+      message: "You have permission to have a full orgasm",
+    });
 
-  const nid = createNotification(getRandomRuinOrgasmMessage());
-
-  const done = async () => {
-    dismissNotification(nid);
-    store.game.ruins++;
-    await end();
-  };
-  done.label = "Ruined";
-
-  return done;
-};
-
-export const doOrgasm = async () => {
-  const {
-    config: { fastestStrokeSpeed, postOrgasmTorture },
-  } = store;
-  setStrokeSpeed(fastestStrokeSpeed);
-  await delay();
-
-  playCommand(getRandomAudioVariation("Orgasm"));
-
-  const nid = createNotification({
-    message: "You have permission to have a full orgasm",
-  });
-
-  const done = async () => {
-    dismissNotification(nid);
-
-    if (postOrgasmTorture) {
-      await doPostOrgasmTorture();
+    function cleanup() {
+      dismissNotification(notificationId);
     }
-    await end();
-  };
-  done.label = "Orgasmed";
 
-  const skip = async () => {
-    dismissNotification(nid);
+    async function orgasmTrigger() {
+      cleanup();
 
-    setStrokeSpeed(getRandomStrokeSpeed());
+      store.game.orgasms++;
 
-    // extend the game by 20%
-    store.config.maximumGameTime *= 1.2;
-  };
-  skip.label = "Skip";
+      return orgasmed();
+    }
+    orgasmTrigger.label = "I'm Cumming!";
 
-  return [done, skip];
-};
+    return [orgasmTrigger];
+  });
+}
 
-export const doPostOrgasmTorture = async () => {
-  const {
-    config: { postOrgasmTortureMinimumTime, postOrgasmTortureMaximumTime },
-  } = store;
+async function postOrgasmTorture() {
+  setStrokeSpeed(store.config.fastestStrokeSpeed);
 
-  const nid = createNotification({
+  const notificationId = createNotification({
     message: "Time for a little post-orgasm torture, don't you dare stop!",
   });
 
   await delay(
     getRandomInclusiveInteger(
-      postOrgasmTortureMinimumTime,
-      postOrgasmTortureMaximumTime
+      store.config.postOrgasmTortureMinimumTime,
+      store.config.postOrgasmTortureMaximumTime
     ) * 1000
   );
 
-  dismissNotification(nid);
+  dismissNotification(notificationId);
 
   createNotification({
     message: "I guess you've had enough.  You may stop.",
   });
+}
 
-  StrokeService.pause();
-  await delay(3 * 1000);
-};
+export function finalOrgasm(completed: () => void) {
+  return orgasm(async () => {
+    if (store.config.postOrgasmTorture) {
+      await postOrgasmTorture();
+    } else {
+      // While cumming, slow down stroke speed
+      setStrokeSpeed(getAverageStrokeSpeed());
+      await delay(5_000);
 
-export const doDenied = async () => {
-  const {
-    config: { fastestStrokeSpeed },
-  } = store;
+      setStrokeSpeed(getAverageStrokeSpeed() / 2);
+      await delay(5_000);
+    }
 
-  setStrokeSpeed(fastestStrokeSpeed);
+    // Continue stroking at the slowest speed until the game is ended.
+    setStrokeSpeed(store.config.slowestStrokeSpeed);
 
-  playCommand(getRandomAudioVariation("Denied"));
-
-  const nid = createNotification({ message: getRandomDeniedMessage() });
-
-  const done = async () => {
-    dismissNotification(nid);
-    await end();
-  };
-  done.label = "Denied";
-
-  return done;
-};
-
-export const end = async () => {
-  const { maximumOrgasms } = store.config;
-
-  StrokeService.pause();
-
-  // should continue?
-  if (store.game.orgasms + 1 < maximumOrgasms) {
-    setStrokeSpeed(getRandomStrokeSpeed());
-    StrokeService.play();
-    createNotification({ message: "Start stroking again" });
-    playCommand(audioLibrary.StartStrokingAgain);
-    await delay(3 * 1000);
-  } else {
-    setStrokeSpeed(0);
     createNotification({
-      message: "Thanks for playing.  I hope you got what you deserved.",
+      message:
+        "I hope you enjoyed your orgasm, next time you might not be so lucky.",
       duration: -1,
     });
-    await delay(15 * 1000);
-    stopGame();
-  }
-  store.game.orgasms++; //has to be done last as the GamePage will turn as soon as this is increased.
-};
+
+    function finishedTrigger() {
+      return completed();
+    }
+    finishedTrigger.label = "End Game";
+
+    return [finishedTrigger];
+  });
+}

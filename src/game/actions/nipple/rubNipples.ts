@@ -1,5 +1,5 @@
 import store from "store";
-import createNotification from "engine/createNotification";
+import { createNotification } from "engine/notification";
 import { setStrokeSpeed } from "game/utils/strokeSpeed";
 import { getRandomRubStrength } from "game/enums/RubStrength";
 import { getRandomInclusiveInteger } from "utils/math";

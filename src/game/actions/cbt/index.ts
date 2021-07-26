@@ -1,4 +1,4 @@
-export * from "./ballslaps";
+export * from "./ballSlaps";
 export * from "./bindCockAndBalls";
 export * from "./flicking";
 export * from "./headPalming";

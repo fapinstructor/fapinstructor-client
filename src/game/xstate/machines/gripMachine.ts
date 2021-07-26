@@ -1,6 +1,6 @@
 import { createMachine, assign, send } from "xstate";
 import { GameConfig } from "configureStore";
-import createNotification from "engine/createNotification";
+import { createNotification } from "engine/notification";
 import audioLibrary from "audio";
 import { playCommand } from "engine/audio";
 

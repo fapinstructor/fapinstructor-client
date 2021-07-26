@@ -1,4 +1,5 @@
-import createNotification from "engine/createNotification";
+import store from "store";
+import { createNotification } from "engine/notification";
 import { getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
 import { setStrokeStyle } from "game/enums/StrokeStyle";
@@ -7,10 +8,10 @@ import { StrokeService } from "game/xstate/services";
 import { setStrokeStyleHandsOff } from "game/actions";
 import audioLibrary from "audio";
 import { playCommand } from "engine/audio";
-import { getRandomStrokeSpeed } from "game/utils/strokeSpeed";
+import { getAverageStrokeSpeed } from "game/utils/strokeSpeed";
 
-const HANDS_OFF_DURATION_MIN = 10; // Seconds
-const HANDS_OFF_DURATION_MAX = 25; // Seconds
+const HANDS_OFF_DURATION_MIN = 10_000;
+const HANDS_OFF_DURATION_MAX = 30_000;
 
 export const handsOff = async (
   duration = getRandomInclusiveInteger(
@@ -18,9 +19,10 @@ export const handsOff = async (
     HANDS_OFF_DURATION_MAX
   )
 ) => {
+  store.game.cooldown = true;
   createNotification({
     message: getRandomHandsOffMessage(),
-    duration: duration * 1000,
+    duration,
     showProgress: true,
   });
 
@@ -28,13 +30,16 @@ export const handsOff = async (
 
   await setStrokeStyleHandsOff();
 
-  await delay(duration * 1000);
+  await delay(duration);
+  store.game.cooldown = false;
+};
+handsOff.label = "Hands Off";
 
-  StrokeService.setStrokeSpeed(getRandomStrokeSpeed());
+export async function startStrokingAgain() {
+  StrokeService.setStrokeSpeed(getAverageStrokeSpeed());
   StrokeService.play();
 
   await setStrokeStyle();
   createNotification({ message: "Start stroking again" });
   playCommand(audioLibrary.StartStrokingAgain);
-};
-handsOff.label = "Hands Off";
+}

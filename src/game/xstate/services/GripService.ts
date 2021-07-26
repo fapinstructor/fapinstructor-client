@@ -34,7 +34,9 @@ const GripService = {
     service.start();
   },
   stop() {
-    getGripService().send("STOP");
+    if (!this.stopped) {
+      getGripService().send("STOP");
+    }
   },
   get stopped() {
     return getGripService().state.matches("stopped");

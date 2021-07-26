@@ -4,6 +4,11 @@ All notable changes to this project will be documented here.
 
 The overall project roadmap and progress can be viewed on our [Trello Board](https://trello.com/b/JAIcnXRf/fap-instructor)
 
+## 2021-07-24
+
+- Added redgifs and reddit gallery support
+- Fixed and rewrote the final game logic (orgasm, denial, ruined)
+
 ## 2021-07-14
 
 - Added Handy hardware support!
@@ -57,7 +62,7 @@ The overall project roadmap and progress can be viewed on our [Trello Board](htt
 
 ## 2020-12-12
 
-- Fixed issue where gifs wern't loading properly
+- Fixed issue where gifs weren't loading properly
 
 ## 2020-12-04
 
@@ -131,7 +136,7 @@ The overall project roadmap and progress can be viewed on our [Trello Board](htt
 
 ## 2020-02-13
 
-- Made Navbar resonsive for mobile devices
+- Made Navbar responsive for mobile devices
 
 ## 2020-02-10
 

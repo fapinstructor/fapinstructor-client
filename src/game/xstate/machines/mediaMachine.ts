@@ -1,5 +1,5 @@
 import { createMachine, assign, send } from "xstate";
-import createNotification from "engine/createNotification";
+import { createNotification } from "engine/notification";
 import { Severity } from "common/store/notifications";
 import MediaLink, { MediaType } from "common/types/Media";
 import { GameConfig } from "configureStore";

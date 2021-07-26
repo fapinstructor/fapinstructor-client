@@ -29,7 +29,9 @@ const MediaService = {
     service.start();
   },
   stop() {
-    getMediaService().send("STOP");
+    if (!this.stopped) {
+      getMediaService().send("STOP");
+    }
   },
   get stopped() {
     return getMediaService().state.matches("stopped");

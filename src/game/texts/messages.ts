@@ -13,21 +13,17 @@ export const getRandomEdgeMessage = () => {
 
 const edgeMessages = [
   "Edge! I know you can do it.",
-  "Get to the edge for me",
-  "Edge! Show me how much you love working that cock for me",
-  "Edge.",
-  "Edge...",
+  "Get to the edge for me.",
+  "Edge! Show me how much you love working that cock for me.",
   "Edge!",
-  "Get on the edge.",
+  "Get to the edge.",
   "Edge for me.",
   "I want you to Edge.",
   "Edge for me!",
   "Give me that Edge!",
   "I want to see you Edge!",
-  "Edge, baby.",
   "Edge, baby!",
   "Time to Edge!",
-  "Time to Edge.",
   "Edge! Give it to me!",
 ];
 
@@ -70,8 +66,7 @@ const handsOffMessages = [
   "Hands off!",
   "Hands off your cock.",
   "Take your hands away of your cock!",
-  "Don't you dare touching your cock!",
-  "Hands off now, baby.",
-  "Relax. You may rest just a bit.",
-  "Let go. A few moments to rest for you ...",
+  "Don't you dare touch your cock!",
+  "Relax. You may rest for a bit.",
+  "Let go. A few moments for you to rest.",
 ];

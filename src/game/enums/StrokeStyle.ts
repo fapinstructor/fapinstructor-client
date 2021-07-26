@@ -1,5 +1,5 @@
 import store from "store";
-import createNotification from "engine/createNotification";
+import { createNotification } from "engine/notification";
 import { getRandomInclusiveInteger } from "utils/math";
 
 export const StrokeStyles = {
@@ -17,7 +17,7 @@ export const StrokeStyles = {
 export type StrokeStyle = keyof typeof StrokeStyles;
 
 /**
- * @deprecated Only used for backwards compatability since we store int on backend
+ * @deprecated Only used for backwards compatibility since we store int on backend
  */
 export const StrokeStyleString: { [key: number]: StrokeStyle } = {
   0: "dominant",

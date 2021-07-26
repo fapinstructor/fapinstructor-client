@@ -6,7 +6,7 @@ import useWindowEvent from "hooks/useWindowEvent";
 import { ActionService } from "game/xstate/services";
 import { ProxyStoreConsumer } from "containers/StoreProvider";
 import { edged } from "game/actions/orgasm/edge";
-import { ruinedOrgasm } from "game/actions/orgasm/ruin";
+import { accidentallyRuined } from "game/actions/orgasm/ruin";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,7 +31,7 @@ export default React.memo(function PersistentTriggerPanel() {
 
     switch (event.key) {
       case "r": {
-        ActionService.execute(ruinedOrgasm);
+        ActionService.execute(accidentallyRuined);
         break;
       }
       case "e": {
@@ -53,7 +53,7 @@ export default React.memo(function PersistentTriggerPanel() {
             style={{ opacity: 0.8, margin: 10 }}
             disabled={store?.game.cooldown}
             onClick={() => {
-              ActionService.execute(ruinedOrgasm);
+              ActionService.execute(accidentallyRuined);
             }}
           >
             Ruin

@@ -1,4 +1,4 @@
-import play from "engine/audio";
+import { play } from "engine/audio";
 import { getRandomAudioVariation } from "audio";
 import { getRandomInclusiveInteger } from "utils/math";
 import type { GameLoopArgs } from "engine/loop";

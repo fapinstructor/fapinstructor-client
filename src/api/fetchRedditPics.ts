@@ -1,4 +1,4 @@
-import createNotification from "engine/createNotification";
+import { createNotification } from "engine/notification";
 import { Severity } from "common/store/notifications";
 import qs from "query-string";
 import { MediaRequest, MediaResponse } from "common/types/Media";
@@ -8,7 +8,7 @@ import api from "common/api/client";
 const failedSubreddits: string[] = [];
 
 export default async function fetchRedditPics(request: MediaRequest) {
-  // filter out any previously failed subreddits
+  // Filter out any previously failed subreddits.
   const filteredSubreddits = request.subreddits.filter(
     (subreddit) => !failedSubreddits.includes(subreddit)
   );
@@ -20,7 +20,7 @@ export default async function fetchRedditPics(request: MediaRequest) {
 
   const res = await api.get<MediaResponse>(url);
 
-  // Append failed subreddits to the filter array
+  // Append failed subreddits to the filter array.
   failedSubreddits.push(...res.data.failedSubreddits);
 
   // Notify user of failed subreddits

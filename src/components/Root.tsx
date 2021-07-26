@@ -1,5 +1,6 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { Router } from "react-router-dom";
+import history from "browserHistory";
 import ErrorBoundary from "components/organisms/ErrorBoundary";
 import { ProxyStoreProvider } from "containers/StoreProvider";
 import Auth0Provider from "AuthProvider";
@@ -13,7 +14,7 @@ type RootProps = {
 export default function Root({ store }: RootProps) {
   return (
     <ErrorBoundary>
-      <Router>
+      <Router history={history}>
         <Auth0Provider>
           <ProxyStoreProvider store={store}>
             <div

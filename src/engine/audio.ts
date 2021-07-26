@@ -1,5 +1,5 @@
 import memoize from "fast-memoize";
-// isSupported is returning false for the lastest version of FireFox.
+// isSupported is returning false for the latest version of FireFox.
 import {
   AudioContext,
   OscillatorNode,
@@ -106,7 +106,7 @@ export function playCommand(url: string) {
   }
 }
 
-export default async function play(url: string) {
+export async function play(url: string) {
   const buffer = await fetchAudioFile(url);
 
   const source = context.createBufferSource();

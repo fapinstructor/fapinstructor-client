@@ -1,4 +1,4 @@
-import createNotification from "engine/createNotification";
+import { createNotification } from "engine/notification";
 import {
   getRandomStrokeSpeed as randomStrokeSpeedUtil,
   setStrokeSpeed,

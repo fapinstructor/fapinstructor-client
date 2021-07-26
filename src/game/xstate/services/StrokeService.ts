@@ -39,7 +39,9 @@ const StrokeService = {
     service.start();
   },
   stop() {
-    getStrokeService().send("STOP");
+    if (!this.stopped) {
+      getStrokeService().send("STOP");
+    }
   },
   get stopped() {
     return getStrokeService().state.matches("stopped");

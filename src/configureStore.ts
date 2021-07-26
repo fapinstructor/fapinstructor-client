@@ -61,6 +61,7 @@ export type GameConfig = {
   finalOrgasmRandom: boolean;
   minimumGameTime: number; // min
   maximumGameTime: number; // min
+  minimumOrgasms: number;
   minimumEdges: number;
   minimumRuinedOrgasms: number;
   maximumRuinedOrgasms: number;
@@ -99,6 +100,7 @@ const defaultConfig: GameConfig = {
   finalOrgasmRandom: false,
   minimumGameTime: 5, // min
   maximumGameTime: 20, // min
+  minimumOrgasms: 1,
   minimumEdges: 0,
   minimumRuinedOrgasms: 0,
   maximumRuinedOrgasms: 0,

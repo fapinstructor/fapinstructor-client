@@ -1,4 +1,5 @@
 import type { TaskConfig } from "configureStore";
+import applyProbabilities from "utils/applyProbabilities";
 import {
   doubleStrokes,
   halvedStrokes,
@@ -15,7 +16,7 @@ import {
   snapRubberBand,
   applyIcyHot,
   applyToothpaste,
-  ballslaps,
+  ballSlaps,
   squeezeBalls,
   headPalming,
   bindCockAndBalls,
@@ -58,7 +59,7 @@ export function initializeActions(taskConfigs: TaskConfig) {
     [removeRubberBand, taskConfigs.rubberBands ? 1 : 0],
     [applyIcyHot, taskConfigs.icyHot ? 1 : 0],
     [applyToothpaste, taskConfigs.toothpaste ? 1 : 0],
-    [ballslaps, taskConfigs.ballSlaps ? 4 : 0],
+    [ballSlaps, taskConfigs.ballSlaps ? 4 : 0],
     [squeezeBalls, taskConfigs.squeezeBalls ? 4 : 0],
     [headPalming, taskConfigs.headPalming ? 1 : 0],
     [bindCockAndBalls, taskConfigs.bindCockBalls ? 1 : 0],
@@ -85,26 +86,5 @@ export function initializeActions(taskConfigs: TaskConfig) {
     [nipplesAndStroke, taskConfigs.nipplesAndStroke ? 10 : 0],
   ];
 
-  const actionsWithProbabilitiesApplied = applyProbabilities(enabledActions);
-
-  return actionsWithProbabilitiesApplied;
-}
-
-/**
- * If an action has a probablity > 1, we duplicate it to give it the appropriate proability
- * Example
- * [a, b, c, d]
- * [1, 2, 1, 3]
- * [a, b, b, c, d, d, d]
- */
-function applyProbabilities<T>(probabilities: [T, number][]) {
-  const appliedProbabilities: T[] = [];
-
-  probabilities.forEach(([t, probability]) => {
-    for (let i = 0; i < probability; i++) {
-      appliedProbabilities.push(t);
-    }
-  });
-
-  return appliedProbabilities;
+  return applyProbabilities(enabledActions);
 }

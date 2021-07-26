@@ -1,4 +1,4 @@
-import createNotification from "engine/createNotification";
+import { createNotification } from "engine/notification";
 import { getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
 
