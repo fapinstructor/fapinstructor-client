@@ -5,7 +5,7 @@ import { BookmarkProps } from "components/atoms/Bookmark";
 
 export type Game = {
   startTime: Moment;
-  // TODO: Refactor into separte bookmark type
+  // TODO: Refactor into separate bookmark type
   bookmarks: BookmarkProps[];
   rubberBands: number;
   clothespins: number;

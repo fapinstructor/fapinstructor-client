@@ -16,14 +16,14 @@ exports[`Storyshots atoms/Bookmark Gif Bookmark 1`] = `
 
 exports[`Storyshots atoms/Bookmark Image Bookmark 1`] = `
 <a
-  href="https://fapinstructor.com/images/default-image.jpg"
+  href="default-image.jpg"
   rel="noopener noreferrer"
   target="_blank"
 >
   <h6
     class="MuiTypography-root MuiTypography-subtitle1"
   >
-    https://fapinstructor.com/images/default-image.jpg
+    default-image.jpg
   </h6>
 </a>
 `;

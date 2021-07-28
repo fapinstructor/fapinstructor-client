@@ -1,5 +1,7 @@
 // TODO: Implement better mocking strategy
 import { Story, Meta } from "@storybook/react";
+import BackgroundImage from "images/background.jpg";
+import DefaultImage from "images/default-image.jpg";
 
 import BookmarkList, { BookmarkListProps } from "./BookmarkList";
 
@@ -15,27 +17,27 @@ Standard.args = {
   bookmarks: [
     {
       href: "https://fapinstructor.com",
-      src: "https://fapinstructor.com/images/default-image.jpg",
+      src: DefaultImage,
     },
     {
       href: "https://fapinstructor.com",
-      src: "https://fapinstructor.com/images/background.jpg",
+      src: BackgroundImage,
     },
     {
       href: "https://fapinstructor.com",
-      src: "https://fapinstructor.com/images/default-image.jpg",
+      src: DefaultImage,
     },
     {
       href: "https://fapinstructor.com",
-      src: "https://fapinstructor.com/images/background.jpg",
+      src: BackgroundImage,
     },
     {
       href: "https://fapinstructor.com",
-      src: "https://fapinstructor.com/images/default-image.jpg",
+      src: DefaultImage,
     },
     {
       href: "https://fapinstructor.com",
-      src: "https://fapinstructor.com/images/background.jpg",
+      src: BackgroundImage,
     },
   ],
 };

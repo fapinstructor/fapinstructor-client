@@ -31,10 +31,10 @@ import {
   GripStrength,
   GripStrengthString,
 } from "game/xstate/machines/gripMachine";
-import config from "config";
 import ShareGame from "components/organisms/ShareGame";
 import EroFightsBanner from "components/atoms/EroFightsBanner";
 import { validSubreddit } from "utils/regex";
+import BackgroundImage from "images/background.jpg";
 
 const ONE_HUNDRED_PERCENT = 100; // Maximum Percentage that Can be achieved
 
@@ -46,7 +46,7 @@ const styles = (theme) => ({
     marginRight: theme.spacing(),
   },
   background: {
-    background: `url(${config.imageUrl}/background.jpg)`,
+    background: `url(${BackgroundImage})`,
     backgroundSize: "cover",
     backgroundAttachment: "fixed",
   },

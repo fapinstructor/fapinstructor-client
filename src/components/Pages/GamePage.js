@@ -9,15 +9,14 @@ import HUD from "containers/HUD";
 import MediaPlayer from "components/organisms/MediaPlayer";
 import NavBar from "components/organisms/NavBar";
 import isUUID from "utils/is-uuid";
-import config from "config";
 import ErrorCard from "components/molecules/ErrorCard";
 import SharedGameCard from "components/organisms/SharedGameCard";
 import SoloGameCard from "components/organisms/SoloGameCard";
 import { ProxyStoreConsumer } from "containers/StoreProvider";
 import ExitGamePrompt from "components/organisms/ExitGamePrompt";
 import { MediaService, getMediaService } from "game/xstate/services";
-
-const DEFAULT_BACKGROUND_IMAGE = `${config.imageUrl}/default-image.jpg`;
+import BackgroundImage from "images/background.jpg";
+import DefaultImage from "images/default-image.jpg";
 
 const styles = () => ({
   progress: {
@@ -39,7 +38,7 @@ const styles = () => ({
     justifyContent: "center",
     alignItems: "center",
     height: "100vh",
-    background: `url(${config.imageUrl}/background.jpg)`,
+    background: `url(${BackgroundImage})`,
     backgroundSize: "cover",
     backgroundAttachment: "fixed",
   },
@@ -157,7 +156,7 @@ class GamePage extends React.Component {
 
     return (
       <ProxyStoreConsumer>
-        {({ game: { youtube }, config: { slideDuration }, videoMuted }) => (
+        {({ game: { youtube }, config: { slideDuration } }) => (
           <div className={this.props.classes.container}>
             <ExitGamePrompt />
             <HUD />
@@ -166,16 +165,9 @@ class GamePage extends React.Component {
                 <MediaPlayer
                   link={activeLink}
                   duration={slideDuration}
-                  muted={videoMuted}
                   onEnded={handleSlideChange}
                 />
-              )) || (
-                <img
-                  className={classes.image}
-                  src={DEFAULT_BACKGROUND_IMAGE}
-                  alt=""
-                />
-              )}
+              )) || <img className={classes.image} src={DefaultImage} alt="" />}
           </div>
         )}
       </ProxyStoreConsumer>

@@ -1,4 +1,5 @@
 import { Story, Meta } from "@storybook/react";
+import DefaultImage from "images/default-image.jpg";
 
 import Bookmark, { BookmarkProps } from "./Bookmark";
 
@@ -16,7 +17,7 @@ const defaultArgs = {
 export const ImageBookmark = Template.bind({});
 ImageBookmark.args = {
   ...defaultArgs,
-  src: "https://fapinstructor.com/images/default-image.jpg",
+  src: DefaultImage,
 };
 
 export const GifBookmark = Template.bind({});

@@ -82,7 +82,7 @@ export default function GamesTable({
     });
   };
 
-  const handleChangeRowsPerPage = (
+  const handleRowsPerPageChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const perPage = Number(event.target.value);
@@ -224,7 +224,7 @@ export default function GamesTable({
             rowsPerPage={paginate.perPage}
             page={paginate.currentPage - 1}
             onPageChange={handlePageChange}
-            onChangeRowsPerPage={handleChangeRowsPerPage}
+            onRowsPerPageChange={handleRowsPerPageChange}
             rowsPerPageOptions={[5, 10, 25]}
           />
         </TableRow>

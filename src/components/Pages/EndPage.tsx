@@ -3,7 +3,7 @@ import store from "store";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import BookmarkList from "components/molecules/BookmarkList";
-import config from "config";
+import BackgroundImage from "images/background.jpg";
 
 const useStyles = makeStyles({
   root: {
@@ -12,7 +12,7 @@ const useStyles = makeStyles({
     justifyContent: "center",
     alignItems: "center",
     height: "100vh",
-    background: `url(${config.imageUrl}/background.jpg)`,
+    background: `url(${BackgroundImage})`,
     backgroundSize: "cover",
     backgroundAttachment: "fixed",
   },

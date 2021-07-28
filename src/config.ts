@@ -19,8 +19,6 @@ const config = {
   auth0ClientId: process.env.REACT_APP_AUTH0_CLIENT_ID,
   auth0Audience: process.env.REACT_APP_AUTH0_AUDIENCE,
   publicUrl,
-  imageUrl: `${publicUrl}/images`,
-  audioUrl: `${publicUrl}/audio`,
 };
 
 export default config;
