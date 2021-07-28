@@ -1,13 +1,15 @@
+import { lazy } from "react";
 import { Switch } from "react-router-dom";
 import Route from "components/molecules/Route";
-import ConfigPage from "components/Pages/ConfigPage";
-import GamePage from "components/Pages/GamePage";
-import EndPage from "components/Pages/EndPage";
-import ChangeLog from "components/Pages/ChangeLog";
-import FaqPage from "components/Pages/FaqPage";
-import SearchPage from "components/Pages/SearchPage";
-import Profile from "components/Pages/ProfilePage";
 import NavBar from "components/organisms/NavBar";
+
+const ConfigPage = lazy(() => import("components/Pages/ConfigPage"));
+const GamePage = lazy(() => import("components/Pages/GamePage"));
+const EndPage = lazy(() => import("components/Pages/EndPage"));
+const ChangeLog = lazy(() => import("components/Pages/ChangeLog"));
+const FaqPage = lazy(() => import("components/Pages/FaqPage"));
+const SearchPage = lazy(() => import("components/Pages/SearchPage"));
+const ProfilePage = lazy(() => import("components/Pages/ProfilePage"));
 
 const BASE_TITLE = "Fap Instructor";
 
@@ -56,7 +58,7 @@ export default function Pages() {
         <Route
           auth
           path="/profile"
-          component={Profile}
+          component={ProfilePage}
           title={getTitle("Profile")}
         />
       </Switch>
