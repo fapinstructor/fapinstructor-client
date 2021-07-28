@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import Box from "@material-ui/core/Box";
 
 export type MenuItemProps = {

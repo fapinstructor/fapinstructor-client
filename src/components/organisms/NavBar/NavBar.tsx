@@ -1,4 +1,3 @@
-import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import ProfileButton from "components/molecules/buttons/ProfileButton";

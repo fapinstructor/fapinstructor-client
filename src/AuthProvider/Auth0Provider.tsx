@@ -1,6 +1,6 @@
 // TODO: Once config/env types are proper, remove this
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import {
   Auth0Provider,

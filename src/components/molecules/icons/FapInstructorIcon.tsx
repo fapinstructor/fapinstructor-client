@@ -1,4 +1,3 @@
-import React from "react";
 import FapInstructorImage from "images/logo.svg";
 import Image from "components/atoms/Image";
 import Icon from "components/atoms/Icon";

@@ -1,4 +1,3 @@
-import React from "react";
 import { useDispatch } from "react-redux";
 
 import { Button, ButtonProps, Tooltip } from "@material-ui/core";

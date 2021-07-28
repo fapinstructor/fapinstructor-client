@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import TableBody from "@material-ui/core/TableBody";
 import LoadingTableRow from "components/molecules/table/LoadingTableRow";
 import ErrorTableRow from "components/molecules/table/ErrorTableRow";

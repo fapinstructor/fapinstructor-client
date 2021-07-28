@@ -1,4 +1,3 @@
-import React from "react";
 import HelpIconMUI from "@material-ui/icons/Help";
 import Icon from "components/atoms/Icon";
 

@@ -1,4 +1,3 @@
-import React from "react";
 import { Button } from "@material-ui/core";
 import NodeRow from "components/templates/NodeRow";
 import BackToConfigButton from "components/molecules/buttons/BackToConfigButton";

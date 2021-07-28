@@ -1,4 +1,3 @@
-import React from "react";
 import { Chip } from "@material-ui/core";
 
 export type TagProps = {

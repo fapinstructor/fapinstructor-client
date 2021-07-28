@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   Table,
   TableHead,
@@ -75,7 +75,7 @@ export default function GamesTable({
     searchGames(req);
   }, [searchGames, filters, sort, createdBy, playedBy, starredBy, paginate]);
 
-  const handleChangePage = (_event: unknown, page: number) => {
+  const handlePageChange = (_event: unknown, page: number) => {
     setPaginate({
       ...paginate,
       currentPage: page + 1,
@@ -223,7 +223,7 @@ export default function GamesTable({
             count={pagination && pagination.total}
             rowsPerPage={paginate.perPage}
             page={paginate.currentPage - 1}
-            onChangePage={handleChangePage}
+            onPageChange={handlePageChange}
             onChangeRowsPerPage={handleChangeRowsPerPage}
             rowsPerPageOptions={[5, 10, 25]}
           />

@@ -1,4 +1,3 @@
-import React from "react";
 import Icon from "components/atoms/Icon";
 import Image from "components/atoms/Image";
 import PatreonImage from "images/patreon.svg";

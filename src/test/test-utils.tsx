@@ -1,4 +1,4 @@
-import React, { Suspense, PropsWithChildren } from "react";
+import { Suspense, PropsWithChildren } from "react";
 import {
   render as rtlRender,
   screen,

@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ["react-app", "plugin:jest/recommended"],
+  extends: ["react-app", "react-app/jest"],
   plugins: ["import", "testing-library", "jest"],
   overrides: [
     {

@@ -1,4 +1,3 @@
-import React from "react";
 import ChangeLogImage from "@material-ui/icons/FormatListBulleted";
 import Icon from "components/atoms/Icon";
 

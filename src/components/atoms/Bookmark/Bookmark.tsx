@@ -1,5 +1,4 @@
 import { Typography } from "@material-ui/core";
-import React from "react";
 
 export type BookmarkProps = {
   href: string;

@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import Typography from "@material-ui/core/Typography";
 
 export type GroupProps = {

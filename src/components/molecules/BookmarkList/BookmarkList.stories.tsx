@@ -1,5 +1,4 @@
 // TODO: Implement better mocking strategy
-import React from "react";
 import { Story, Meta } from "@storybook/react";
 
 import BookmarkList, { BookmarkListProps } from "./BookmarkList";

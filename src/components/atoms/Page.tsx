@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, BoxProps } from "@material-ui/core";
 
 export type PageProps = BoxProps;

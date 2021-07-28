@@ -1,4 +1,3 @@
-import React from "react";
 import { useAuth0 } from "AuthProvider";
 import { Tab, TabProps, Tooltip } from "@material-ui/core";
 

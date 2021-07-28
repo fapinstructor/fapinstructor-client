@@ -1,4 +1,3 @@
-import React from "react";
 import { Story, Meta } from "@storybook/react";
 import CreateIcon from "@material-ui/icons/Create";
 import Auth0TestProvider, { Auth } from "AuthProvider/Auth0TestProvider";

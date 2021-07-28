@@ -1,4 +1,3 @@
-import React from "react";
 import * as Sentry from "@sentry/react";
 import { Typography } from "@material-ui/core";
 import monkey from "images/monkey.gif";

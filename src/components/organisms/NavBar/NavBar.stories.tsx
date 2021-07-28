@@ -1,4 +1,3 @@
-import React from "react";
 import { Story, Meta } from "@storybook/react";
 import Auth0TestProvider, { Auth } from "AuthProvider/Auth0TestProvider";
 import { user } from "test/mocks/user_mock_objects";

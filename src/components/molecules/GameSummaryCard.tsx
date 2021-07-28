@@ -1,4 +1,3 @@
-import React from "react";
 import { Typography } from "@material-ui/core";
 import Group from "components/molecules/Group";
 import Tags from "components/molecules/Tags";

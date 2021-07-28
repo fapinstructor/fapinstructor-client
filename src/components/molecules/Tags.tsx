@@ -1,4 +1,3 @@
-import React from "react";
 import { Box } from "@material-ui/core";
 import Tag from "components/molecules/Tag";
 

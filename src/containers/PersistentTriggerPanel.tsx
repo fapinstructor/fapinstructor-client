@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import * as React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import store from "store";
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 export default React.memo(function PersistentTriggerPanel() {
   const classes = useStyles();
 
-  const handleKeydown = useCallback((event: KeyboardEvent) => {
+  const handleKeydown = React.useCallback((event: KeyboardEvent) => {
     if (store.game.cooldown) {
       return;
     }

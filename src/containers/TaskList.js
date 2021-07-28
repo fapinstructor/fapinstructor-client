@@ -1,4 +1,4 @@
-import React from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import {
   Switch,
@@ -14,7 +14,7 @@ import { ProxyStoreConsumer } from "containers/StoreProvider";
 /**
  * Implements advanced Button-List stuff.
  */
-class TaskList extends React.Component {
+class TaskList extends Component {
   constructor(props) {
     super(props);
 

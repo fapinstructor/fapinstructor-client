@@ -1,4 +1,3 @@
-import React from "react";
 import SearchImage from "@material-ui/icons/Search";
 import Icon from "components/atoms/Icon";
 

@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { IconButton, Tooltip } from "@material-ui/core";
 import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
 import useWindowEvent from "hooks/useWindowEvent";

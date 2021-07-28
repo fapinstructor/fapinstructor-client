@@ -1,4 +1,3 @@
-import React from "react";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
 import { IconButton, Tooltip } from "@material-ui/core";
 import { useDispatch } from "react-redux";

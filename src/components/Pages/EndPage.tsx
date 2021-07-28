@@ -1,4 +1,3 @@
-import React from "react";
 import { useHistory } from "react-router-dom";
 import store from "store";
 import { makeStyles } from "@material-ui/core/styles";

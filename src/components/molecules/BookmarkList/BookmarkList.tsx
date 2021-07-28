@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components/macro";
 import Bookmark, { BookmarkProps } from "components/atoms/Bookmark";
 

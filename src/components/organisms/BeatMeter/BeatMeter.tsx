@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { TICK_ANIMATION_DURATION } from "components/organisms/BeatMeter/settings";
 import { CircleFlash, Circle, AnimatedDot, HR, Bar } from "./styled-components";
 import { strokeServiceObserver } from "game/xstate/services";
@@ -45,10 +45,10 @@ function Dots() {
   return (
     <>
       {dots.map((timestamp) => (
-        <React.Fragment key={timestamp}>
+        <Fragment key={timestamp}>
           <CircleFlash />
           <AnimatedDot />
-        </React.Fragment>
+        </Fragment>
       ))}
     </>
   );

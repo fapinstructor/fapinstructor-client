@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import { MemoryRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "common/store";

@@ -1,4 +1,3 @@
-import React from "react";
 import { TableRow, LinearProgress } from "@material-ui/core";
 import SpanningTableCell from "components/molecules/table/SpanningTableCell";
 

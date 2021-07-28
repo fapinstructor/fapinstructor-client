@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Route, RouteProps } from "react-router-dom";
 import { useAuth0 } from "AuthProvider";
 import UnauthorizedPage from "components/Pages/UnauthorizedPage";

@@ -1,4 +1,3 @@
-import React from "react";
 import { Button, Box, FormHelperText, ButtonProps } from "@material-ui/core";
 
 export type ButtonWithHelperTextProps = ButtonProps & {

@@ -1,5 +1,3 @@
-import React from "react";
-
 import ConnectHandy from "./ConnectHandy";
 
 export default {

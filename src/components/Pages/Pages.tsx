@@ -1,4 +1,3 @@
-import React from "react";
 import { Switch } from "react-router-dom";
 import Route from "components/molecules/Route";
 import ConfigPage from "components/Pages/ConfigPage";

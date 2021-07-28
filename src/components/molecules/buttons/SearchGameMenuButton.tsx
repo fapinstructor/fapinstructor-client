@@ -1,4 +1,3 @@
-import React from "react";
 import SearchIcon from "components/molecules/icons/SearchIcon";
 import RouteButton from "components/atoms/RouteButton";
 import MenuItem from "components/templates/MenuItem";

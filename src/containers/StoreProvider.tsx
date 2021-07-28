@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, ReactNode } from "react";
+import * as React from "react";
 import { subscribe, unsubscribe, Store } from "store";
 
 export type ProxyStoreContextProps = Store | null;
@@ -8,7 +8,7 @@ export const ProxyStoreContext =
 
 type ProxyStoreProviderProps = {
   store: Store;
-  children: ReactNode;
+  children: React.ReactNode;
 };
 
 export function ProxyStoreProvider({
@@ -23,16 +23,16 @@ export function ProxyStoreProvider({
 }
 
 type ProxyStoreConsumerProps = {
-  children: (context: ProxyStoreContextProps) => ReactNode;
+  children: (context: ProxyStoreContextProps) => React.ReactNode;
 };
 
 export function ProxyStoreConsumer({ children }: ProxyStoreConsumerProps) {
   const [, updateState] = React.useState({});
   const forceUpdate = React.useCallback(() => updateState({}), []);
 
-  const context = useContext(ProxyStoreContext);
+  const context = React.useContext(ProxyStoreContext);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const subscriberId = subscribe(forceUpdate);
 
     return () => {

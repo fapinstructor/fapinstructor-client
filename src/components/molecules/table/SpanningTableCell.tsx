@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { TableCell } from "@material-ui/core";
 
 type SpanningTableCellProps = {

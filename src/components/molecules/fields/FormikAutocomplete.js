@@ -1,5 +1,5 @@
 // TODO: Convert this to typescript
-import React from "react";
+import { Fragment } from "react";
 import PropTypes from "prop-types";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
@@ -12,10 +12,10 @@ const formatErrors = (errors) =>
     : errors
         .filter((error) => !!error)
         .map((error, index) => (
-          <React.Fragment key={index}>
+          <Fragment key={index}>
             {error}
             <br />
-          </React.Fragment>
+          </Fragment>
         )));
 
 const FormikAutocomplete = (props) => {

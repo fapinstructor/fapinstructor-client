@@ -1,5 +1,4 @@
 // TODO: Commented out pages that need to be refactored to work properly with testing
-import React from "react";
 import type { Meta, Story } from "@storybook/react/types-6-0";
 import Auth0TestProvider, { Auth } from "AuthProvider/Auth0TestProvider";
 import { user } from "test/mocks/user_mock_objects";

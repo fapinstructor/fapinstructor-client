@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Typography,
@@ -87,7 +87,7 @@ function Toggle({ id, label, checked, onChange }: ToggleProps) {
   );
 }
 
-export default React.memo(function StatusPanel() {
+export default memo(function StatusPanel() {
   const classes = useStyles();
   const [open, setOpen] = useState(true);
 

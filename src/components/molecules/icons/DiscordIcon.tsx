@@ -1,4 +1,3 @@
-import React from "react";
 import DiscordImage from "images/discord.svg";
 import Image from "components/atoms/Image";
 import Icon from "components/atoms/Icon";

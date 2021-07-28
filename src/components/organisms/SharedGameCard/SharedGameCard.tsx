@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Box, Button, CircularProgress } from "@material-ui/core";
 import NodeRow from "components/templates/NodeRow";
 import ErrorCard from "components/molecules/ErrorCard";

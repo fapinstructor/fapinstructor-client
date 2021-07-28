@@ -1,4 +1,3 @@
-import React from "react";
 import { TableCell, TableCellProps } from "@material-ui/core";
 import StarButton, {
   StarButtonProps,
