@@ -1,5 +1,3 @@
-import moment from "moment";
-
 /**
  * Watches an object for changes, if any are detected it will trigger the callback
  */
@@ -10,8 +8,7 @@ const watchObject = (object, onChange) =>
     },
     set(target, key, value) {
       // console.log("[WatchObject]:", { target, key, value });
-      // treat moment as a scalar value
-      if (value && typeof value === "object" && !moment.isMoment(value)) {
+      if (value && typeof value === "object") {
         // watch the object
         target[key] = watchObject(value, onChange);
 

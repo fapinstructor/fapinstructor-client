@@ -1,10 +1,11 @@
+import formatISO from "date-fns/formatISO";
+
 import store from "store";
-import moment, { Moment } from "moment";
 import { StrokeStyle } from "game/enums/StrokeStyle";
 import { BookmarkProps } from "components/atoms/Bookmark";
 
 export type Game = {
-  startTime: Moment;
+  startTime: string;
   // TODO: Refactor into separate bookmark type
   bookmarks: BookmarkProps[];
   rubberBands: number;
@@ -24,7 +25,7 @@ export type Game = {
 
 export default function initializeGame() {
   store.game = {
-    startTime: moment(),
+    startTime: formatISO(new Date()),
     bookmarks: [],
     rubberBands: 0,
     clothespins: 0,

@@ -1,19 +1,14 @@
-import moment from "moment";
+import format from "date-fns/format";
 import { TableCell, TableCellProps, Typography } from "@material-ui/core";
 
 export type DateColumnProps = TableCellProps & {
-  date: Date;
-  format: string;
+  date: string;
 };
 
-export default function DateColumn({
-  date,
-  format,
-  ...props
-}: DateColumnProps) {
+export default function DateColumn({ date, ...props }: DateColumnProps) {
   return (
     <TableCell {...props}>
-      <Typography noWrap>{moment(date).format(format)}</Typography>
+      <Typography noWrap>{format(new Date(date), "PP")}</Typography>
     </TableCell>
   );
 }

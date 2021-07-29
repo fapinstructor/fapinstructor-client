@@ -1,10 +1,10 @@
 import store from "store";
-import moment, { unitOfTime } from "moment";
+import differenceInMinutes from "date-fns/differenceInMinutes";
 
 export function gameCompletionPercent() {
-  return elapsedGameTime("minutes") / store.config.maximumGameTime;
+  return elapsedGameTime() / store.config.maximumGameTime;
 }
 
-export default function elapsedGameTime(unit: unitOfTime.Diff) {
-  return moment().diff(store.game.startTime, unit);
+export default function elapsedGameTime() {
+  return differenceInMinutes(new Date(), new Date(store.game.startTime));
 }

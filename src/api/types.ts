@@ -4,6 +4,6 @@ export interface Game {
   tags: string[];
   stars: number;
   starred: boolean;
-  updatedAt: Date;
+  updatedAt: string;
   averageGameLength: number;
 }

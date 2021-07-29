@@ -115,7 +115,7 @@ export default memo(function StatusPanel() {
 
   // Force update to refresh elapsed time as that value has no event.
   useEffect(() => {
-    const refreshInterval = window.setInterval(() => forceUpdate(), 10_000);
+    const refreshInterval = window.setInterval(() => forceUpdate(), 60_000);
 
     return () => clearInterval(refreshInterval);
   }, [forceUpdate]);
@@ -170,7 +170,7 @@ export default memo(function StatusPanel() {
                     {orgasms > 0 && <Label value="Orgasms:" />}
                   </div>
                   <div>
-                    <Label value={`${elapsedGameTime("minutes")} min`} />
+                    <Label value={`${elapsedGameTime()} min`} />
                     {/* <Label value={`${strokeSpeed.toFixed(2)} per sec`} /> */}
                     <Label value={GripStrengthString[gripStrength]} />
                     <Label value={StrokeStyles[strokeStyle].label} />

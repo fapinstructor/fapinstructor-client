@@ -212,7 +212,7 @@ export default function GamesTable({
                 <Typography>{averageGameLength}</Typography>
               </TableCell>
               <TagsColumn tags={tags} />
-              <DateColumn date={updatedAt} format="LLL" align="right" />
+              <DateColumn date={updatedAt} align="right" />
             </TableRow>
           )
         )}

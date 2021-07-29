@@ -12,7 +12,7 @@ let lastBaselineAdjustment = 0;
 function calculateBaselineStrokeSpeed() {
   let baseline =
     (store.config.fastestStrokeSpeed / store.config.maximumGameTime) *
-    elapsedGameTime("minutes");
+    elapsedGameTime();
 
   // Don't allow the baseline to go over the fastest stroking speed
   baseline = clamp(baseline, 0, store.config.fastestStrokeSpeed);

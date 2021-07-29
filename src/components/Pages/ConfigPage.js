@@ -1207,7 +1207,7 @@ class ConfigPage extends React.Component {
               }}
             >
               <Typography variant="h6" as="h2">
-                Other amazing games
+                Affiliates
               </Typography>
               <a
                 href="https://www.erofights.com/"

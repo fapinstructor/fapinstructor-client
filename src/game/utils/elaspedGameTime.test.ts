@@ -1,10 +1,12 @@
+import formatISO from "date-fns/formatISO";
+import subMinutes from "date-fns/subMinutes";
+
 import elapsedGameTime, { gameCompletionPercent } from "./elapsedGameTime";
 import store from "store";
-import moment from "moment";
 
 describe("Elapsed game time", () => {
   it("game completion should be 0%", () => {
-    store.game.startTime = moment();
+    store.game.startTime = formatISO(new Date());
 
     const completionPercent = gameCompletionPercent();
 
@@ -14,7 +16,7 @@ describe("Elapsed game time", () => {
   it("game completion should be 50%", () => {
     const time = store.config.maximumGameTime / 2;
 
-    store.game.startTime = moment().subtract(time, "minutes");
+    store.game.startTime = formatISO(subMinutes(new Date(), time));
 
     const completionPercent = gameCompletionPercent();
 
@@ -24,7 +26,7 @@ describe("Elapsed game time", () => {
   it("game completion should be 100%", () => {
     const time = store.config.maximumGameTime;
 
-    store.game.startTime = moment().subtract(time, "minutes");
+    store.game.startTime = formatISO(subMinutes(new Date(), time));
 
     const completionPercent = gameCompletionPercent();
 
@@ -34,8 +36,8 @@ describe("Elapsed game time", () => {
   it("elapsed game time should be half the maximum time", () => {
     const time = store.config.maximumGameTime / 2;
 
-    store.game.startTime = moment().subtract(time, "minutes");
+    store.game.startTime = formatISO(subMinutes(new Date(), time));
 
-    expect(elapsedGameTime("minutes")).toBe(time);
+    expect(elapsedGameTime()).toBe(time);
   });
 });
