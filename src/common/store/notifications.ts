@@ -1,11 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { State } from "common/store/rootReducer";
-import { v4 as uuidv4 } from "uuid";
 import { TIME_TO_TICK } from "components/organisms/BeatMeter/settings";
 
 /**
  * @field duration Defaults to 5s.  If set to a falsy value it will show until manually dismissed
- * @field dismissible Only evalulated if a duration is set
+ * @field dismissible Only evaluated if a duration is set
  */
 export interface Notify {
   severity?: Severity;
@@ -17,7 +16,7 @@ export interface Notify {
 }
 
 export interface Notification {
-  id: string;
+  id: number;
   severity: Severity;
   message: string;
   duration?: number;
@@ -46,6 +45,8 @@ const defaultNotification = {
   showProgress: false,
 };
 
+let notificationCount = 0;
+
 export const notificationsSlice = createSlice({
   name: "notifications",
   initialState,
@@ -56,7 +57,7 @@ export const notificationsSlice = createSlice({
       },
       prepare({ delay, ...notify }: Notify) {
         const notification = {
-          id: uuidv4(),
+          id: notificationCount++,
           delay: delay ? TIME_TO_TICK : 0,
           ...defaultNotification,
           ...notify,
@@ -64,7 +65,7 @@ export const notificationsSlice = createSlice({
         return { payload: notification };
       },
     },
-    dismissNotification: (state, action: PayloadAction<string>) => {
+    dismissNotification: (state, action: PayloadAction<number>) => {
       const index = state.notifications.findIndex(
         (notification) => notification.id === action.payload
       );

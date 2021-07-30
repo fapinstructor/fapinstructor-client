@@ -1,5 +1,4 @@
 import { makeStyles } from "@material-ui/core/styles";
-import clsx from "clsx";
 
 type StyleProps = {
   duration?: number;
@@ -38,7 +37,7 @@ export default function ProgressBar({ className, duration }: ProgressBarProps) {
 
   return (
     <div className={classes.root}>
-      <div className={clsx(classes.progress, className)} />
+      <div className={classes.progress} />
     </div>
   );
 }

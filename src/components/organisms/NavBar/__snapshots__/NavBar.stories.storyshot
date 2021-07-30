@@ -129,6 +129,7 @@ exports[`Storyshots organisms/NavBar Signed In 1`] = `
       aria-disabled="false"
       class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
       href="https://discord.gg/2CJPr9M"
+      rel="noreferrer"
       tabindex="0"
       target="_blank"
     >
@@ -165,6 +166,7 @@ exports[`Storyshots organisms/NavBar Signed In 1`] = `
       aria-disabled="false"
       class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
       href="https://www.patreon.com/bePatron?u=29098019"
+      rel="noreferrer"
       tabindex="0"
       target="_blank"
     >
@@ -432,6 +434,7 @@ exports[`Storyshots organisms/NavBar Signed Out 1`] = `
       aria-disabled="false"
       class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
       href="https://discord.gg/2CJPr9M"
+      rel="noreferrer"
       tabindex="0"
       target="_blank"
     >
@@ -468,6 +471,7 @@ exports[`Storyshots organisms/NavBar Signed Out 1`] = `
       aria-disabled="false"
       class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
       href="https://www.patreon.com/bePatron?u=29098019"
+      rel="noreferrer"
       tabindex="0"
       target="_blank"
     >

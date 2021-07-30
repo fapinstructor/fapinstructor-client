@@ -8,7 +8,7 @@ export type BookmarkProps = {
 export default function Bookmark({ href, src }: BookmarkProps) {
   //* TODO: Use media player to show each image
   return (
-    <a href={src} target="_blank" rel="noopener noreferrer">
+    <a href={src} target="_blank" rel="noreferrer">
       <Typography variant="subtitle1">{src}</Typography>
     </a>
   );

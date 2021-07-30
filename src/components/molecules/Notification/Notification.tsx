@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
 
 export type NotificationProps = {
   notification: INotification;
-  dismissNotification: (id: string) => void;
+  dismissNotification: (id: number) => void;
 };
 
 const iconSeverityMap = {
@@ -133,7 +133,9 @@ export default function Notification({
           </IconButton>
         </Box>
         {isProgressShown && (
-          <ProgressBar className={classes.progress} duration={duration} />
+          <div className={classes.progress}>
+            <ProgressBar duration={duration} />
+          </div>
         )}
       </Paper>
     </Slide>

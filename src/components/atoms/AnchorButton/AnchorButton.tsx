@@ -8,7 +8,7 @@ export type AnchorButtonProps = {
 
 export default function AnchorButton({ children, href }: AnchorButtonProps) {
   return (
-    <Button target="_blank" color="inherit" href={href}>
+    <Button target="_blank" color="inherit" href={href} rel="noreferrer">
       {children}
     </Button>
   );

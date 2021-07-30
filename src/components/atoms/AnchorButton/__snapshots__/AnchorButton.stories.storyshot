@@ -5,6 +5,7 @@ exports[`Storyshots atoms/AnchorButton Standard 1`] = `
   aria-disabled="false"
   class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
   href="https://example.com"
+  rel="noreferrer"
   tabindex="0"
   target="_blank"
 >

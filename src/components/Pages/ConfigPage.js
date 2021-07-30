@@ -1213,6 +1213,7 @@ class ConfigPage extends React.Component {
                 href="https://www.erofights.com/"
                 target="_blank"
                 rel="noreferrer"
+                className="--aspect-ratio:16/9"
               >
                 <EroFightsBanner />
               </a>

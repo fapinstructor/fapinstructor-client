@@ -8,7 +8,7 @@ import { Paper } from "@material-ui/core";
 import HUD from "containers/HUD";
 import MediaPlayer from "components/organisms/MediaPlayer";
 import NavBar from "components/organisms/NavBar";
-import isUUID from "utils/is-uuid";
+import isUuid from "utils/isUuid";
 import ErrorCard from "components/molecules/ErrorCard";
 import SharedGameCard from "components/organisms/SharedGameCard";
 import SoloGameCard from "components/organisms/SoloGameCard";
@@ -91,7 +91,7 @@ class GamePage extends React.Component {
         gameConfigId,
       });
 
-      if (!isUUID(gameConfigId)) {
+      if (!isUuid(gameConfigId)) {
         this.setState({
           error: "The game config link is invalid",
         });

@@ -1,4 +1,3 @@
-import memoize from "fast-memoize";
 // isSupported is returning false for the latest version of FireFox.
 import {
   AudioContext,
@@ -12,6 +11,7 @@ import audioLibrary, { getRandomAudioVariation } from "audio";
 import store from "common/store";
 import { Severity, createNotification } from "common/store/notifications";
 import { selectEnableVoice } from "common/store/settings";
+import memoize from "utils/memoize";
 
 let context: IAudioContext;
 let oscillator: IOscillatorNode<IAudioContext>;
