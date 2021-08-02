@@ -11,7 +11,7 @@ exports[`Storyshots molecules/ConnectHandy Standard 1`] = `
     class="MuiButton-label"
   >
     <div
-      class="MuiBox-root MuiBox-root-91"
+      class="MuiBox-root MuiBox-root-95"
     >
       <svg
         aria-hidden="true"
@@ -25,12 +25,12 @@ exports[`Storyshots molecules/ConnectHandy Standard 1`] = `
         />
       </svg>
       <div
-        class="MuiBox-root MuiBox-root-92"
+        class="MuiBox-root MuiBox-root-96"
       >
         Connect Handy
       </div>
       <div
-        class="MuiBox-root MuiBox-root-93"
+        class="MuiBox-root MuiBox-root-97"
       />
     </div>
   </span>

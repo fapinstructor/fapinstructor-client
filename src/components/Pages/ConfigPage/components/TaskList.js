@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 import store from "store";
 import { ProxyStoreConsumer } from "containers/StoreProvider";
+import Task from "./Task";
 
 /**
  * Implements advanced Button-List stuff.
@@ -71,41 +72,36 @@ class TaskList extends Component {
     const { toggleAll } = this.state;
 
     return (
-      <FormControl component="fieldset" error={!!errorMessage}>
-        <FormLabel component="legend">{title}</FormLabel>
-        <FormGroup>
-          <FormHelperText>{errorMessage}</FormHelperText>
-          <FormControlLabel
-            control={
-              <Switch
-                checked={toggleAll}
-                onChange={this.handleToggleAll(except)}
-                value="toggleAll"
+      <ProxyStoreConsumer>
+        {({ config }) => (
+          <FormControl component="fieldset" error={!!errorMessage}>
+            <FormLabel component="legend">{title}</FormLabel>
+            <FormGroup>
+              <FormHelperText>{errorMessage}</FormHelperText>
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={toggleAll}
+                    onChange={this.handleToggleAll(except)}
+                    value="toggleAll"
+                  />
+                }
+                label="Toggle All"
               />
-            }
-            label="Toggle All"
-          />
-          {Object.keys(tasks).map((task) => (
-            <FormControlLabel
-              key={task}
-              disabled={except.includes(task)}
-              control={
-                <ProxyStoreConsumer>
-                  {({ config }) => (
-                    <Switch
-                      checked={config.tasks[task]}
-                      onChange={this.handleTaskCheck(task)}
-                      value={task}
-                    />
-                  )}
-                </ProxyStoreConsumer>
-              }
-              label={tasks[task]}
-            />
-          ))}
-        </FormGroup>
-        <FormHelperText>{errorMessage}</FormHelperText>
-      </FormControl>
+              {Object.entries(tasks).map(([id, label]) => (
+                <Task
+                  id={id}
+                  label={label}
+                  checked={config.tasks[id]}
+                  onTaskToggle={this.handleTaskCheck}
+                  disabled={except.includes(id)}
+                />
+              ))}
+            </FormGroup>
+            <FormHelperText>{errorMessage}</FormHelperText>
+          </FormControl>
+        )}
+      </ProxyStoreConsumer>
     );
   }
 }

@@ -24,9 +24,9 @@ import {
 import Alert from "@material-ui/lab/Alert";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { withRouter } from "react-router-dom";
+
 import { getRandomBoolean } from "utils/math";
 import Group from "components/molecules/Group";
-import TaskList from "containers/TaskList";
 import {
   GripStrength,
   GripStrengthString,
@@ -35,6 +35,7 @@ import ShareGame from "components/organisms/ShareGame";
 import EroFightsBanner from "components/atoms/EroFightsBanner";
 import { validSubreddit } from "utils/regex";
 import BackgroundImage from "images/background.jpg";
+import TaskList from "./components/TaskList";
 
 const ONE_HUNDRED_PERCENT = 100; // Maximum Percentage that Can be achieved
 
