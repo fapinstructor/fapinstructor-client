@@ -80,6 +80,54 @@ export type GameConfig = {
   tasks: TaskConfig;
 };
 
+export const tasks = {
+  speed: {
+    doubleStrokes: true,
+    halvedStrokes: true,
+    teasingStrokes: true,
+    accelerationCycles: false,
+    randomBeat: false,
+    randomStrokeSpeed: false,
+    redLightGreenLight: false,
+    clusterStrokes: false,
+    gripChallenge: false,
+  },
+  strokeStyle: {
+    dominant: true,
+    nondominant: false,
+    headOnly: false,
+    shaftOnly: false,
+    overhandGrip: false,
+    bothHands: false,
+    handsOff: false,
+    gripAdjustments: true,
+  },
+  cbt: {
+    bindCockBalls: false,
+    rubberBands: false,
+    ballSlaps: false,
+    squeezeBalls: false,
+    headPalming: false,
+    icyHot: false,
+    toothpaste: false,
+    breathPlay: false,
+    scratching: false,
+    flicking: false,
+    cbtIce: false,
+    clothespins: false,
+  },
+  cei: {
+    precum: false,
+  },
+  anal: {
+    buttplug: false,
+  },
+  nipples: {
+    rubNipples: false,
+    nipplesAndStroke: false,
+  },
+};
+
 /**
  * A big enum containing all setup information of the game.
  */
@@ -117,46 +165,12 @@ const defaultConfig: GameConfig = {
   defaultStrokeStyle: "dominant",
   actionFrequency: 30, // sec
   tasks: {
-    //Stroke Speed
-    doubleStrokes: true,
-    halvedStrokes: true,
-    teasingStrokes: true,
-    accelerationCycles: false,
-    randomBeat: false,
-    randomStrokeSpeed: false,
-    redLightGreenLight: false,
-    clusterStrokes: false,
-    gripChallenge: false,
-    //Stroke Style
-    dominant: true,
-    nondominant: false,
-    headOnly: false,
-    shaftOnly: false,
-    overhandGrip: false,
-    bothHands: false,
-    handsOff: false,
-    //Grip Strength
-    gripAdjustments: true,
-    //CBT
-    bindCockBalls: false,
-    rubberBands: false,
-    ballSlaps: false,
-    squeezeBalls: false,
-    headPalming: false,
-    icyHot: false,
-    toothpaste: false,
-    breathPlay: false,
-    scratching: false,
-    flicking: false,
-    cbtIce: false,
-    //CEI
-    precum: false,
-    //Anal
-    buttplug: false,
-    //Nipples
-    rubNipples: false,
-    clothespins: false,
-    nipplesAndStroke: false,
+    ...tasks.speed,
+    ...tasks.strokeStyle,
+    ...tasks.cbt,
+    ...tasks.cei,
+    ...tasks.anal,
+    ...tasks.nipples,
   },
 };
 

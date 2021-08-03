@@ -4,16 +4,16 @@ type TaskProps = {
   id: string;
   label: string;
   checked: boolean;
-  onTaskToggle: (id: string) => void;
-  disabled: boolean;
+  onToggleTask: (id: string) => void;
+  disabled?: boolean;
 };
 
 export default function Task({
   id,
   label,
   checked,
-  onTaskToggle,
-  disabled,
+  onToggleTask,
+  disabled = false,
 }: TaskProps) {
   return (
     <FormControlLabel
@@ -22,7 +22,7 @@ export default function Task({
         <Switch
           disabled={disabled}
           checked={checked}
-          onChange={() => onTaskToggle(id)}
+          onChange={() => onToggleTask(id)}
           value={label}
         />
       }

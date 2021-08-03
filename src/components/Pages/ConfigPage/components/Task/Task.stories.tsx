@@ -17,7 +17,7 @@ const defaultArgs = {
   label: "Task #1",
   checked: true,
   disabled: false,
-  onTaskToggle: noop,
+  onToggleTask: noop,
 };
 
 export const Standard = Template.bind({});
