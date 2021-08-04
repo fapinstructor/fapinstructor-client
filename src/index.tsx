@@ -17,6 +17,7 @@ if (process.env.NODE_ENV === "development") {
 const engineStore = configureStore();
 
 function render() {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const Root = require("./components/Root").default;
 
   ReactDOM.render(

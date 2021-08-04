@@ -1,5 +1,5 @@
 /**
- * Sets the visibility of the window to the global window.visibile variable
+ * Sets the visibility of the window to the global window.visible variable
  */
 
 // Set the name of the hidden property and the change event for visibility

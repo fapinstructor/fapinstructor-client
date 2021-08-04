@@ -1,4 +1,4 @@
-const createYouTubeLink = (videoId) =>
+const createYouTubeLink = (videoId: string) =>
   `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&amp;showinfo=0&autoplay=0`;
 
 const videoLibrary = {

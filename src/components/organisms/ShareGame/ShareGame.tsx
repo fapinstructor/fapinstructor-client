@@ -197,7 +197,7 @@ export default function ShareGame({
                 {Boolean(gameId) && (
                   <Tooltip
                     id="generate-link-tooltip"
-                    title={"Copied to Clipboard"}
+                    title="Copied to Clipboard"
                     leaveDelay={3000}
                     open={copyToolTipOpen}
                     onClose={handleToolTipOpen}
