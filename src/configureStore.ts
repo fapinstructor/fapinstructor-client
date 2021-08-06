@@ -2,48 +2,98 @@ import store from "store";
 import { StrokeStyle } from "game/enums/StrokeStyle";
 import { GripStrength } from "game/xstate/machines/gripMachine";
 
-export type TaskConfig = {
-  //Stroke Speed
-  doubleStrokes: boolean;
-  halvedStrokes: boolean;
-  teasingStrokes: boolean;
-  accelerationCycles: boolean;
-  randomBeat: boolean;
-  randomStrokeSpeed: boolean;
-  redLightGreenLight: boolean;
-  clusterStrokes: boolean;
-  gripChallenge: boolean;
-  //Stroke Style
-  dominant: boolean;
-  nondominant: boolean;
-  headOnly: boolean;
-  shaftOnly: boolean;
-  overhandGrip: boolean;
-  bothHands: boolean;
-  handsOff: boolean;
-  //Grip Strength
-  gripAdjustments: boolean;
-  //CBT
-  bindCockBalls: boolean;
-  rubberBands: boolean;
-  ballSlaps: boolean;
-  squeezeBalls: boolean;
-  headPalming: boolean;
-  icyHot: boolean;
-  toothpaste: boolean;
-  breathPlay: boolean;
-  scratching: boolean;
-  flicking: boolean;
-  cbtIce: boolean;
-  //CEI
-  precum: boolean;
-  //Anal
-  buttplug: boolean;
-  //Nipples
-  rubNipples: boolean;
-  clothespins: boolean;
-  nipplesAndStroke: boolean;
+const speedTasksConfig = {
+  doubleStrokes: true,
+  halvedStrokes: true,
+  teasingStrokes: true,
+  accelerationCycles: false,
+  randomBeat: false,
+  randomStrokeSpeed: false,
+  redLightGreenLight: false,
+  clusterStrokes: false,
+  gripChallenge: false,
 };
+export type SpeedTasks = keyof typeof speedTasksConfig;
+export const speedTasks = Object.keys(speedTasksConfig) as SpeedTasks[];
+
+const strokeStyleTasksConfig = {
+  dominant: true,
+  nondominant: false,
+  headOnly: false,
+  shaftOnly: false,
+  overhandGrip: false,
+  bothHands: false,
+  handsOff: false,
+  gripAdjustments: true,
+};
+export type StrokeStyleTasks = keyof typeof strokeStyleTasksConfig;
+export const strokeStyleTasks = Object.keys(
+  strokeStyleTasksConfig
+) as StrokeStyleTasks[];
+
+const cbtTasksConfig = {
+  bindCockBalls: false,
+  rubberBands: false,
+  ballSlaps: false,
+  squeezeBalls: false,
+  headPalming: false,
+  icyHot: false,
+  toothpaste: false,
+  breathPlay: false,
+  scratching: false,
+  flicking: false,
+  cbtIce: false,
+  clothespins: false,
+};
+export type CbtTasks = keyof typeof cbtTasksConfig;
+export const cbtTasks = Object.keys(cbtTasksConfig) as CbtTasks[];
+
+const ceiTasksConfig = {
+  precum: false,
+};
+export type CeiTasks = keyof typeof ceiTasksConfig;
+export const ceiTasks = Object.keys(ceiTasksConfig) as CeiTasks[];
+
+const analTasksConfig = {
+  buttplug: false,
+};
+export type AnalTasks = keyof typeof analTasksConfig;
+export const analTasks = Object.keys(analTasksConfig) as AnalTasks[];
+
+const nippleTasksConfig = {
+  rubNipples: false,
+  nipplesAndStroke: false,
+};
+export type NippleTasks = keyof typeof nippleTasksConfig;
+export const nippleTasks = Object.keys(nippleTasksConfig) as NippleTasks[];
+
+export type Task =
+  | SpeedTasks
+  | StrokeStyleTasks
+  | CbtTasks
+  | CeiTasks
+  | AnalTasks
+  | NippleTasks;
+
+export const tasks: Task[] = [
+  ...speedTasks,
+  ...strokeStyleTasks,
+  ...cbtTasks,
+  ...ceiTasks,
+  ...analTasks,
+  ...nippleTasks,
+];
+
+const tasksConfig = {
+  ...speedTasksConfig,
+  ...strokeStyleTasksConfig,
+  ...cbtTasksConfig,
+  ...ceiTasksConfig,
+  ...analTasksConfig,
+  ...nippleTasksConfig,
+};
+
+export type TaskConfig = typeof tasksConfig;
 
 export type GameConfig = {
   isDefaultConfig: boolean;
@@ -78,54 +128,6 @@ export type GameConfig = {
   defaultStrokeStyle: StrokeStyle;
   actionFrequency: number; // sec
   tasks: TaskConfig;
-};
-
-export const tasks = {
-  speed: {
-    doubleStrokes: true,
-    halvedStrokes: true,
-    teasingStrokes: true,
-    accelerationCycles: false,
-    randomBeat: false,
-    randomStrokeSpeed: false,
-    redLightGreenLight: false,
-    clusterStrokes: false,
-    gripChallenge: false,
-  },
-  strokeStyle: {
-    dominant: true,
-    nondominant: false,
-    headOnly: false,
-    shaftOnly: false,
-    overhandGrip: false,
-    bothHands: false,
-    handsOff: false,
-    gripAdjustments: true,
-  },
-  cbt: {
-    bindCockBalls: false,
-    rubberBands: false,
-    ballSlaps: false,
-    squeezeBalls: false,
-    headPalming: false,
-    icyHot: false,
-    toothpaste: false,
-    breathPlay: false,
-    scratching: false,
-    flicking: false,
-    cbtIce: false,
-    clothespins: false,
-  },
-  cei: {
-    precum: false,
-  },
-  anal: {
-    buttplug: false,
-  },
-  nipples: {
-    rubNipples: false,
-    nipplesAndStroke: false,
-  },
 };
 
 /**
@@ -164,14 +166,7 @@ const defaultConfig: GameConfig = {
   initialGripStrength: GripStrength.Normal,
   defaultStrokeStyle: "dominant",
   actionFrequency: 30, // sec
-  tasks: {
-    ...tasks.speed,
-    ...tasks.strokeStyle,
-    ...tasks.cbt,
-    ...tasks.cei,
-    ...tasks.anal,
-    ...tasks.nipples,
-  },
+  tasks: tasksConfig,
 };
 
 export default function configureStore() {

@@ -5,7 +5,7 @@ import {
   FormGroup,
   FormLabel,
 } from "@material-ui/core";
-import Task from "../Task";
+import TaskToggler from "../TaskToggler";
 import Hash from "common/types/Hash";
 
 type TaskGroupProps = {
@@ -42,7 +42,7 @@ export default function TaskGroup({
           label="Toggle All"
         />
         {Object.entries(tasks).map(([id, label]) => (
-          <Task
+          <TaskToggler
             key={id}
             id={id}
             label={label}

@@ -7,9 +7,6 @@ import {
   Paper,
   Select,
   Switch,
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
   MenuItem,
   Input,
   InputLabel,
@@ -19,24 +16,19 @@ import {
   FormGroup,
   FormHelperText,
   FormLabel,
-  Typography,
 } from "@material-ui/core";
-import Alert from "@material-ui/lab/Alert";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { withRouter } from "react-router-dom";
 
-import { getRandomBoolean } from "utils/math";
 import Group from "components/molecules/Group";
+import Footer from "components/organisms/Footer";
 import {
   GripStrength,
   GripStrengthString,
 } from "game/xstate/machines/gripMachine";
 import ShareGame from "components/organisms/ShareGame";
-import EroFightsBanner from "components/atoms/EroFightsBanner";
 import { validSubreddit } from "utils/regex";
 import BackgroundImage from "images/background.jpg";
-import TaskGroup from "./components/TaskGroup";
-import { tasks } from "configureStore";
+import TaskStep from "./components/Form/TaskStep";
 import { ProxyStoreConsumer } from "containers/StoreProvider";
 
 const ONE_HUNDRED_PERCENT = 100; // Maximum Percentage that Can be achieved
@@ -76,8 +68,6 @@ const styles = (theme) => ({
 class ConfigPage extends React.Component {
   state = {
     errors: {},
-    exception: null,
-    tags: [],
   };
 
   componentDidMount() {
@@ -88,12 +78,6 @@ class ConfigPage extends React.Component {
 
   handleStartGame = () => {
     this.props.history.push("/game");
-  };
-
-  setTags = (tags) => {
-    this.setState({
-      tags,
-    });
   };
 
   validateConfig = () => {
@@ -402,37 +386,9 @@ class ConfigPage extends React.Component {
     this.setState({ errors: this.validateConfig() });
   };
 
-  handleTaskRandomize =
-    (except = []) =>
-    (event) => {
-      event.stopPropagation();
-
-      Object.keys(store.config.tasks).forEach((task) => {
-        if (!except.includes(task)) {
-          store.config.tasks[task] = getRandomBoolean();
-        }
-      });
-    };
-
-  selectedTasks = (availableTasks) => {
-    return Object.keys(availableTasks).filter(
-      (task) => store.config.tasks[task]
-    );
-  };
-
-  handleToggleTask = (toggledTask) => {
-    store.config.tasks[toggledTask] = !store.config.tasks[toggledTask];
-  };
-
-  handleToggleAllTasks = (availableTasks, toggle) => {
-    availableTasks.forEach((task) => {
-      store.config.tasks[task] = toggle;
-    });
-  };
-
   render() {
     const { classes } = this.props;
-    const { errors, exception, tags } = this.state;
+    const { errors } = this.state;
 
     return (
       <ProxyStoreConsumer>
@@ -1139,142 +1095,9 @@ class ConfigPage extends React.Component {
                     </Grid>
                   </Grid>
                 </Group>
-                <Group title="Tasks">
-                  <Accordion elevation={2} defaultExpanded>
-                    <AccordionSummary
-                      expandIcon={<ExpandMoreIcon />}
-                      title={"Chooses from all options below at random."}
-                    >
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        className={classes.button}
-                        onClick={this.handleTaskRandomize()}
-                        // onClick={this.handleTaskRandomize([
-                        //   getStrokeStyleName(store.config.defaultStrokeStyle),
-                        // ])}
-                      >
-                        Randomize
-                      </Button>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                      <Grid container>
-                        <Grid item xs={12} sm={6} md={4}>
-                          <FormControl
-                            className={classes.control}
-                            error={!!errors.speed}
-                          >
-                            <TaskGroup
-                              label="Speed"
-                              selectedTasks={this.selectedTasks(tasks.speed)}
-                              onToggleTask={this.handleToggleTask}
-                              onToggleAllTasks={this.handleToggleAllTasks}
-                              tasks={{
-                                doubleStrokes: "Double Strokes",
-                                halvedStrokes: "Halved Strokes",
-                                teasingStrokes: "Teasing Strokes",
-                                accelerationCycles: "Acceleration Cycles",
-                                randomBeat: "Random Beats",
-                                randomStrokeSpeed: "Random Stroke Speed",
-                                redLightGreenLight: "Red Light Green Light",
-                                clusterStrokes: "Cluster Strokes",
-                                gripChallenge: "Grip Challenge",
-                              }}
-                            />
-                          </FormControl>
-                        </Grid>
-                        <Grid item xs={12} sm={6} md={4}>
-                          <FormControl
-                            className={classes.button}
-                            error={!!errors.style}
-                            title={
-                              "Select the Stroking Styles that shall appear during the game here. \n" +
-                              "At least the default Stroke Style has to be active. \n" +
-                              "You can change the default Stroke Style above. Only active Styles can be chosen."
-                            }
-                          >
-                            <TaskGroup
-                              label="Style"
-                              selectedTasks={this.selectedTasks(
-                                tasks.strokeStyle
-                              )}
-                              onToggleTask={this.handleToggleTask}
-                              onToggleAllTasks={this.handleToggleAllTasks}
-                              tasks={{
-                                dominant: "Dominant",
-                                nondominant: "Nondominant",
-                                headOnly: "Head Only",
-                                shaftOnly: "Shaft Only",
-                                gripAdjustments: "Grip Adjustments",
-                                overhandGrip: "Overhand Grip",
-                                bothHands: "Both Hands",
-                                handsOff: "Hands Off",
-                              }}
-                            />
-                          </FormControl>
-                        </Grid>
-                        <Grid item xs={12} sm={6} md={4}>
-                          <TaskGroup
-                            label="Cock & Ball Torture"
-                            selectedTasks={this.selectedTasks(tasks.cbt)}
-                            onToggleTask={this.handleToggleTask}
-                            onToggleAllTasks={this.handleToggleAllTasks}
-                            tasks={{
-                              bindCockBalls: "Bind Cock and Balls",
-                              rubberBands: "Rubber Bands",
-                              clothespins: "Clothespins",
-                              headPalming: "Head Palming",
-                              icyHot: "Icy Hot",
-                              toothpaste: "Toothpaste",
-                              ballSlaps: "Ball Slaps",
-                              squeezeBalls: "Squeeze Balls",
-                              breathPlay: "Breath Play",
-                              scratching: "Scratching",
-                              flicking: "Flicking",
-                              cbtIce: "Ice cubes",
-                            }}
-                          />
-                        </Grid>
-                        <Grid item xs={12} sm={6} md={4}>
-                          <TaskGroup
-                            label="Cum Eating"
-                            selectedTasks={this.selectedTasks(tasks.cei)}
-                            onToggleTask={this.handleToggleTask}
-                            onToggleAllTasks={this.handleToggleAllTasks}
-                            tasks={{
-                              precum: "Precum",
-                            }}
-                          />
-                        </Grid>
-                        <Grid item xs={12} sm={6} md={4}>
-                          <TaskGroup
-                            label="Anal"
-                            selectedTasks={this.selectedTasks(tasks.anal)}
-                            onToggleTask={this.handleToggleTask}
-                            onToggleAllTasks={this.handleToggleAllTasks}
-                            tasks={{
-                              buttplug: "Butt Plug",
-                            }}
-                          />
-                        </Grid>
-                        <Grid item xs={12} sm={6} md={4}>
-                          <TaskGroup
-                            label="Nipples"
-                            selectedTasks={this.selectedTasks(tasks.nipples)}
-                            onToggleTask={this.handleToggleTask}
-                            onToggleAllTasks={this.handleToggleAllTasks}
-                            tasks={{
-                              rubNipples: "Rub Nipples",
-                              nipplesAndStroke: "Nipples and Stroking",
-                            }}
-                          />
-                        </Grid>
-                      </Grid>
-                    </AccordionDetails>
-                  </Accordion>
-                </Group>
+                <TaskStep />
                 <Button
-                  title={"Starts the game."}
+                  title="Starts the game."
                   variant="contained"
                   color="primary"
                   className={classes.button}
@@ -1283,32 +1106,8 @@ class ConfigPage extends React.Component {
                 >
                   Start
                 </Button>
-                <ShareGame
-                  disabled={Object.keys(errors).length > 0}
-                  tags={tags}
-                />
-                {exception && (
-                  <div style={{ marginTop: 10 }}>
-                    <Alert severity="error">{exception.message}</Alert>
-                  </div>
-                )}
-                <div
-                  style={{
-                    paddingTop: "3rem",
-                  }}
-                >
-                  <Typography variant="h6" as="h2">
-                    Affiliates
-                  </Typography>
-                  <a
-                    href="https://www.erofights.com/"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="--aspect-ratio:16/9"
-                  >
-                    <EroFightsBanner />
-                  </a>
-                </div>
+                <ShareGame disabled={Object.keys(errors).length > 0} />
+                <Footer />
               </Paper>
             </div>
           </div>

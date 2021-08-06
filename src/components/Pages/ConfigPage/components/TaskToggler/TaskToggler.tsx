@@ -8,7 +8,7 @@ type TaskProps = {
   disabled?: boolean;
 };
 
-export default function Task({
+export default function TaskToggler({
   id,
   label,
   checked,

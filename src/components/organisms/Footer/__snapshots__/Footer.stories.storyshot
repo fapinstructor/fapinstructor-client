@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Organisms/Footer Standard 1`] = `
+.c0 {
+  width: 50vw;
+  max-width: 900px;
+}
+
+@media only screen and (max-width:600px) {
+  .c0 {
+    width: 100%;
+  }
+}
+
+<div
+  class="makeStyles-container-12"
+>
+  <h6
+    class="MuiTypography-root MuiTypography-h6"
+  >
+    Affiliates
+  </h6>
+  <a
+    href="https://www.erofights.com/"
+    rel="noreferrer"
+    target="_blank"
+  >
+    <img
+      alt="Opens Euro Fights partner site in a new tab"
+      class="c0"
+      src="eurofights-banner-tf.png"
+    />
+  </a>
+</div>
+`;

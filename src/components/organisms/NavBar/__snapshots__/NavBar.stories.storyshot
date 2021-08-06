@@ -12,10 +12,10 @@ exports[`Storyshots organisms/NavBar Signed In 1`] = `
       href="/"
     >
       <div
-        class="MuiBox-root MuiBox-root-21"
+        class="MuiBox-root MuiBox-root-22"
       >
         <div
-          class="MuiBox-root MuiBox-root-22"
+          class="MuiBox-root MuiBox-root-23"
         >
           <img
             alt="Fap Instructor"
@@ -24,19 +24,19 @@ exports[`Storyshots organisms/NavBar Signed In 1`] = `
           />
         </div>
         <div
-          class="MuiBox-root MuiBox-root-23"
+          class="MuiBox-root MuiBox-root-24"
         >
           <h4
-            class="MuiTypography-root makeStyles-title-24 MuiTypography-h4"
+            class="MuiTypography-root makeStyles-title-25 MuiTypography-h4"
           >
             Fap Instructor
           </h4>
         </div>
         <div
-          class="MuiBox-root MuiBox-root-25"
+          class="MuiBox-root MuiBox-root-26"
         >
           <h4
-            class="MuiTypography-root makeStyles-title-24 MuiTypography-h4"
+            class="MuiTypography-root makeStyles-title-25 MuiTypography-h4"
           >
             FI
           </h4>
@@ -56,7 +56,7 @@ exports[`Storyshots organisms/NavBar Signed In 1`] = `
         class="MuiButton-label"
       >
         <div
-          class="MuiBox-root MuiBox-root-26"
+          class="MuiBox-root MuiBox-root-27"
         >
           <svg
             aria-hidden="true"
@@ -70,12 +70,12 @@ exports[`Storyshots organisms/NavBar Signed In 1`] = `
             />
           </svg>
           <div
-            class="MuiBox-root MuiBox-root-27"
+            class="MuiBox-root MuiBox-root-28"
           >
             Connect Handy
           </div>
           <div
-            class="MuiBox-root MuiBox-root-28"
+            class="MuiBox-root MuiBox-root-29"
           />
         </div>
       </span>
@@ -94,10 +94,10 @@ exports[`Storyshots organisms/NavBar Signed In 1`] = `
         class="MuiButton-label"
       >
         <div
-          class="MuiBox-root MuiBox-root-29"
+          class="MuiBox-root MuiBox-root-30"
         >
           <div
-            class="MuiBox-root MuiBox-root-30"
+            class="MuiBox-root MuiBox-root-31"
           >
             <svg
               aria-hidden="true"
@@ -112,12 +112,12 @@ exports[`Storyshots organisms/NavBar Signed In 1`] = `
             </svg>
           </div>
           <div
-            class="MuiBox-root MuiBox-root-31"
+            class="MuiBox-root MuiBox-root-32"
           >
             Games
           </div>
           <div
-            class="MuiBox-root MuiBox-root-32"
+            class="MuiBox-root MuiBox-root-33"
           />
         </div>
       </span>
@@ -137,10 +137,10 @@ exports[`Storyshots organisms/NavBar Signed In 1`] = `
         class="MuiButton-label"
       >
         <div
-          class="MuiBox-root MuiBox-root-33"
+          class="MuiBox-root MuiBox-root-34"
         >
           <div
-            class="MuiBox-root MuiBox-root-34"
+            class="MuiBox-root MuiBox-root-35"
           >
             <img
               alt="Discord"
@@ -149,12 +149,12 @@ exports[`Storyshots organisms/NavBar Signed In 1`] = `
             />
           </div>
           <div
-            class="MuiBox-root MuiBox-root-35"
+            class="MuiBox-root MuiBox-root-36"
           >
             Join us on Discord
           </div>
           <div
-            class="MuiBox-root MuiBox-root-36"
+            class="MuiBox-root MuiBox-root-37"
           />
         </div>
       </span>
@@ -174,10 +174,10 @@ exports[`Storyshots organisms/NavBar Signed In 1`] = `
         class="MuiButton-label"
       >
         <div
-          class="MuiBox-root MuiBox-root-37"
+          class="MuiBox-root MuiBox-root-38"
         >
           <div
-            class="MuiBox-root MuiBox-root-38"
+            class="MuiBox-root MuiBox-root-39"
           >
             <img
               alt="Patreon"
@@ -186,12 +186,12 @@ exports[`Storyshots organisms/NavBar Signed In 1`] = `
             />
           </div>
           <div
-            class="MuiBox-root MuiBox-root-39"
+            class="MuiBox-root MuiBox-root-40"
           >
             Support this site!
           </div>
           <div
-            class="MuiBox-root MuiBox-root-40"
+            class="MuiBox-root MuiBox-root-41"
           />
         </div>
       </span>
@@ -210,10 +210,10 @@ exports[`Storyshots organisms/NavBar Signed In 1`] = `
         class="MuiButton-label"
       >
         <div
-          class="MuiBox-root MuiBox-root-41"
+          class="MuiBox-root MuiBox-root-42"
         >
           <div
-            class="MuiBox-root MuiBox-root-42"
+            class="MuiBox-root MuiBox-root-43"
           >
             <svg
               aria-hidden="true"
@@ -228,12 +228,12 @@ exports[`Storyshots organisms/NavBar Signed In 1`] = `
             </svg>
           </div>
           <div
-            class="MuiBox-root MuiBox-root-43"
+            class="MuiBox-root MuiBox-root-44"
           >
             FAQ
           </div>
           <div
-            class="MuiBox-root MuiBox-root-44"
+            class="MuiBox-root MuiBox-root-45"
           />
         </div>
       </span>
@@ -252,10 +252,10 @@ exports[`Storyshots organisms/NavBar Signed In 1`] = `
         class="MuiButton-label"
       >
         <div
-          class="MuiBox-root MuiBox-root-45"
+          class="MuiBox-root MuiBox-root-46"
         >
           <div
-            class="MuiBox-root MuiBox-root-46"
+            class="MuiBox-root MuiBox-root-47"
           >
             <svg
               aria-hidden="true"
@@ -270,12 +270,12 @@ exports[`Storyshots organisms/NavBar Signed In 1`] = `
             </svg>
           </div>
           <div
-            class="MuiBox-root MuiBox-root-47"
+            class="MuiBox-root MuiBox-root-48"
           >
             Change Log
           </div>
           <div
-            class="MuiBox-root MuiBox-root-48"
+            class="MuiBox-root MuiBox-root-49"
           />
         </div>
       </span>
@@ -317,10 +317,10 @@ exports[`Storyshots organisms/NavBar Signed Out 1`] = `
       href="/"
     >
       <div
-        class="MuiBox-root MuiBox-root-49"
+        class="MuiBox-root MuiBox-root-50"
       >
         <div
-          class="MuiBox-root MuiBox-root-50"
+          class="MuiBox-root MuiBox-root-51"
         >
           <img
             alt="Fap Instructor"
@@ -329,19 +329,19 @@ exports[`Storyshots organisms/NavBar Signed Out 1`] = `
           />
         </div>
         <div
-          class="MuiBox-root MuiBox-root-51"
+          class="MuiBox-root MuiBox-root-52"
         >
           <h4
-            class="MuiTypography-root makeStyles-title-52 MuiTypography-h4"
+            class="MuiTypography-root makeStyles-title-53 MuiTypography-h4"
           >
             Fap Instructor
           </h4>
         </div>
         <div
-          class="MuiBox-root MuiBox-root-53"
+          class="MuiBox-root MuiBox-root-54"
         >
           <h4
-            class="MuiTypography-root makeStyles-title-52 MuiTypography-h4"
+            class="MuiTypography-root makeStyles-title-53 MuiTypography-h4"
           >
             FI
           </h4>
@@ -361,7 +361,7 @@ exports[`Storyshots organisms/NavBar Signed Out 1`] = `
         class="MuiButton-label"
       >
         <div
-          class="MuiBox-root MuiBox-root-54"
+          class="MuiBox-root MuiBox-root-55"
         >
           <svg
             aria-hidden="true"
@@ -375,12 +375,12 @@ exports[`Storyshots organisms/NavBar Signed Out 1`] = `
             />
           </svg>
           <div
-            class="MuiBox-root MuiBox-root-55"
+            class="MuiBox-root MuiBox-root-56"
           >
             Connect Handy
           </div>
           <div
-            class="MuiBox-root MuiBox-root-56"
+            class="MuiBox-root MuiBox-root-57"
           />
         </div>
       </span>
@@ -399,10 +399,10 @@ exports[`Storyshots organisms/NavBar Signed Out 1`] = `
         class="MuiButton-label"
       >
         <div
-          class="MuiBox-root MuiBox-root-57"
+          class="MuiBox-root MuiBox-root-58"
         >
           <div
-            class="MuiBox-root MuiBox-root-58"
+            class="MuiBox-root MuiBox-root-59"
           >
             <svg
               aria-hidden="true"
@@ -417,12 +417,12 @@ exports[`Storyshots organisms/NavBar Signed Out 1`] = `
             </svg>
           </div>
           <div
-            class="MuiBox-root MuiBox-root-59"
+            class="MuiBox-root MuiBox-root-60"
           >
             Games
           </div>
           <div
-            class="MuiBox-root MuiBox-root-60"
+            class="MuiBox-root MuiBox-root-61"
           />
         </div>
       </span>
@@ -442,10 +442,10 @@ exports[`Storyshots organisms/NavBar Signed Out 1`] = `
         class="MuiButton-label"
       >
         <div
-          class="MuiBox-root MuiBox-root-61"
+          class="MuiBox-root MuiBox-root-62"
         >
           <div
-            class="MuiBox-root MuiBox-root-62"
+            class="MuiBox-root MuiBox-root-63"
           >
             <img
               alt="Discord"
@@ -454,12 +454,12 @@ exports[`Storyshots organisms/NavBar Signed Out 1`] = `
             />
           </div>
           <div
-            class="MuiBox-root MuiBox-root-63"
+            class="MuiBox-root MuiBox-root-64"
           >
             Join us on Discord
           </div>
           <div
-            class="MuiBox-root MuiBox-root-64"
+            class="MuiBox-root MuiBox-root-65"
           />
         </div>
       </span>
@@ -479,10 +479,10 @@ exports[`Storyshots organisms/NavBar Signed Out 1`] = `
         class="MuiButton-label"
       >
         <div
-          class="MuiBox-root MuiBox-root-65"
+          class="MuiBox-root MuiBox-root-66"
         >
           <div
-            class="MuiBox-root MuiBox-root-66"
+            class="MuiBox-root MuiBox-root-67"
           >
             <img
               alt="Patreon"
@@ -491,12 +491,12 @@ exports[`Storyshots organisms/NavBar Signed Out 1`] = `
             />
           </div>
           <div
-            class="MuiBox-root MuiBox-root-67"
+            class="MuiBox-root MuiBox-root-68"
           >
             Support this site!
           </div>
           <div
-            class="MuiBox-root MuiBox-root-68"
+            class="MuiBox-root MuiBox-root-69"
           />
         </div>
       </span>
@@ -515,10 +515,10 @@ exports[`Storyshots organisms/NavBar Signed Out 1`] = `
         class="MuiButton-label"
       >
         <div
-          class="MuiBox-root MuiBox-root-69"
+          class="MuiBox-root MuiBox-root-70"
         >
           <div
-            class="MuiBox-root MuiBox-root-70"
+            class="MuiBox-root MuiBox-root-71"
           >
             <svg
               aria-hidden="true"
@@ -533,12 +533,12 @@ exports[`Storyshots organisms/NavBar Signed Out 1`] = `
             </svg>
           </div>
           <div
-            class="MuiBox-root MuiBox-root-71"
+            class="MuiBox-root MuiBox-root-72"
           >
             FAQ
           </div>
           <div
-            class="MuiBox-root MuiBox-root-72"
+            class="MuiBox-root MuiBox-root-73"
           />
         </div>
       </span>
@@ -557,10 +557,10 @@ exports[`Storyshots organisms/NavBar Signed Out 1`] = `
         class="MuiButton-label"
       >
         <div
-          class="MuiBox-root MuiBox-root-73"
+          class="MuiBox-root MuiBox-root-74"
         >
           <div
-            class="MuiBox-root MuiBox-root-74"
+            class="MuiBox-root MuiBox-root-75"
           >
             <svg
               aria-hidden="true"
@@ -575,12 +575,12 @@ exports[`Storyshots organisms/NavBar Signed Out 1`] = `
             </svg>
           </div>
           <div
-            class="MuiBox-root MuiBox-root-75"
+            class="MuiBox-root MuiBox-root-76"
           >
             Change Log
           </div>
           <div
-            class="MuiBox-root MuiBox-root-76"
+            class="MuiBox-root MuiBox-root-77"
           />
         </div>
       </span>

@@ -118,8 +118,7 @@ export default function ShareGame({
         <Formik
           initialValues={{
             title: "",
-            // TODO: // Why do we need to specify an empty string for typescript not to hate us
-            tags: [""],
+            tags: [] as string[],
             isPublic: true,
             config: store.config,
           }}
