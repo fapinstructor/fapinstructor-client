@@ -1,4 +1,3 @@
-import store from "store";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Grid,
@@ -22,6 +21,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 type MediaStepProps = {
+  values: {
+    redditId: string;
+    slideDuration: number;
+    gifs: boolean;
+    pictures: boolean;
+    videos: boolean;
+  };
   errors: {
     mediaSource: string;
     redditId: string;
@@ -34,6 +40,7 @@ type MediaStepProps = {
 
 export default function MediaStep({
   errors,
+  values,
   handleChange,
   handleCheckChange,
 }: MediaStepProps) {
@@ -52,7 +59,7 @@ export default function MediaStep({
             <Input
               id="redditId"
               required
-              value={store.config.redditId}
+              value={values.redditId}
               onChange={handleChange("redditId")}
             />
             {errors.mediaSource || errors.redditId ? (
@@ -75,7 +82,7 @@ export default function MediaStep({
             <InputLabel>Slide Duration</InputLabel>
             <Input
               id="slideDuration"
-              value={store.config.slideDuration}
+              value={values.slideDuration}
               onChange={handleChange("slideDuration", Number)}
               type="number"
               inputProps={{ step: "1", min: "3" }}
@@ -97,7 +104,7 @@ export default function MediaStep({
               <FormControlLabel
                 control={
                   <Switch
-                    checked={store.config.gifs}
+                    checked={values.gifs}
                     onChange={handleCheckChange("gifs")}
                     value="gifs"
                   />
@@ -107,7 +114,7 @@ export default function MediaStep({
               <FormControlLabel
                 control={
                   <Switch
-                    checked={store.config.pictures}
+                    checked={values.pictures}
                     onChange={handleCheckChange("pictures")}
                     value="pictures"
                   />
@@ -117,7 +124,7 @@ export default function MediaStep({
               <FormControlLabel
                 control={
                   <Switch
-                    checked={store.config.videos}
+                    checked={values.videos}
                     onChange={handleCheckChange("videos")}
                     value="videos"
                   />

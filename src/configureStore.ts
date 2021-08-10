@@ -130,10 +130,7 @@ export type GameConfig = {
   tasks: TaskConfig;
 };
 
-/**
- * A big enum containing all setup information of the game.
- */
-const defaultConfig: GameConfig = {
+export const defaultConfig: GameConfig = Object.freeze({
   isDefaultConfig: true,
   redditId:
     "NSFW_GIF, gonewild, nsfw, 60fpsporn, porninaminute, holdthemoan, cumsluts, realgirls, gwcouples, porninfifteenseconds, cuckold, hotwife, anal, blowjobs, bustypetite, ass, collegesluts, wifesharing, creampies, ruinedorgasms, chastitycouples, postorgasm",
@@ -167,9 +164,9 @@ const defaultConfig: GameConfig = {
   defaultStrokeStyle: "dominant",
   actionFrequency: 30, // sec
   tasks: tasksConfig,
-};
+});
 
 export default function configureStore() {
-  store.config = defaultConfig;
+  store.config = { ...defaultConfig };
   return store;
 }

@@ -1,4 +1,3 @@
-import store from "store";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Grid,
@@ -18,6 +17,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 type TimeStepProps = {
+  values: {
+    minimumGameTime: number;
+    maximumGameTime: number;
+  };
   errors: {
     minimumGameTime: string;
     maximumGameTime: string;
@@ -25,7 +28,11 @@ type TimeStepProps = {
   handleChange: (name: string, cast?: unknown) => (event: unknown) => unknown;
 };
 
-export default function TimeStep({ errors, handleChange }: TimeStepProps) {
+export default function TimeStep({
+  values,
+  errors,
+  handleChange,
+}: TimeStepProps) {
   const classes = useStyles();
 
   return (
@@ -40,7 +47,7 @@ export default function TimeStep({ errors, handleChange }: TimeStepProps) {
             <InputLabel>Minimum Game Time</InputLabel>
             <Input
               id="minimumGameTime"
-              value={store.config.minimumGameTime}
+              value={values.minimumGameTime}
               required
               onChange={handleChange("minimumGameTime", Number)}
               type="number"
@@ -61,7 +68,7 @@ export default function TimeStep({ errors, handleChange }: TimeStepProps) {
             <InputLabel>Maximum Game Time</InputLabel>
             <Input
               id="maximumGameTime"
-              value={store.config.maximumGameTime}
+              value={values.maximumGameTime}
               required
               onChange={handleChange("maximumGameTime", Number)}
               type="number"

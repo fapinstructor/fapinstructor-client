@@ -1,10 +1,7 @@
-import * as React from "react";
 import { Button, FormControl } from "@material-ui/core";
 import styled from "styled-components/macro";
 
 import theme from "theme";
-import { getRandomBoolean } from "utils/math";
-import store from "store";
 import {
   analTasks,
   cbtTasks,
@@ -13,13 +10,13 @@ import {
   speedTasks,
   strokeStyleTasks,
   Task,
-  tasks,
   SpeedTasks,
   StrokeStyleTasks,
   CbtTasks,
   AnalTasks,
   CeiTasks,
   NippleTasks,
+  TaskConfig,
 } from "configureStore";
 import Group from "components/molecules/Group";
 import TaskGroup from "../TaskGroup";
@@ -34,27 +31,6 @@ const TaskContainer = styled.div`
     flex-direction: column;
   }
 `;
-
-function selectedTasks(queryTasks: Task[]) {
-  return queryTasks.filter((task) => store.config.tasks[task]);
-}
-
-function handleToggleTask(toggledTask: string) {
-  store.config.tasks[toggledTask as Task] =
-    !store.config.tasks[toggledTask as Task];
-}
-
-function handleToggleAllTasks(tasks: string[], toggle: boolean) {
-  tasks.forEach((task) => {
-    store.config.tasks[task as Task] = toggle;
-  });
-}
-
-function handleRandomizeTasks() {
-  tasks.forEach((task) => {
-    store.config.tasks[task] = getRandomBoolean();
-  });
-}
 
 type TaskGroupHash<T extends Task> = { [key in T]: string };
 
@@ -109,7 +85,25 @@ const nippleTasksGroup: TaskGroupHash<NippleTasks> = {
   nipplesAndStroke: "Nipples and Stroking",
 };
 
-export default function TaskStep() {
+type TaskStepProps = {
+  values: {
+    tasks: TaskConfig;
+  };
+  handleToggleTask: (toggledTask: string) => void;
+  handleToggleAllTasks: (tasks: string[], toggle: boolean) => void;
+  handleRandomizeTasks: () => void;
+};
+
+export default function TaskStep({
+  values,
+  handleToggleTask,
+  handleToggleAllTasks,
+  handleRandomizeTasks,
+}: TaskStepProps) {
+  function selectedTasks(queryTasks: Task[]) {
+    return queryTasks.filter((task) => values.tasks[task]);
+  }
+
   return (
     <Group title="Tasks">
       <Button

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { getRandomBoolean } from "utils/math";
 import store from "store";
 import { withStyles } from "@material-ui/core/styles";
 import { Button, Paper } from "@material-ui/core";
@@ -15,6 +16,8 @@ import OrgasmStep from "./components/Form/OrgasmStep";
 import EdgingStep from "./components/Form/EdgingStep";
 import StrokeStep from "./components/Form/StrokeStep";
 import TimeStep from "./components/Form/TimeStep";
+
+import { defaultConfig } from "configureStore";
 
 const ONE_HUNDRED_PERCENT = 100; // Maximum Percentage that Can be achieved
 
@@ -43,24 +46,35 @@ const styles = (theme) => ({
 
 class ConfigPage extends React.Component {
   state = {
+    config: null,
     errors: {},
   };
 
   componentDidMount() {
+    let config;
+
     if (store.config.isDefaultConfig) {
       delete store.config.isDefaultConfig;
+      config = { ...defaultConfig };
+    } else {
+      config = store.config;
     }
+
+    this.setState({
+      config,
+    });
   }
 
   handleStartGame = () => {
+    store.config = this.state.config;
     this.props.history.push("/game");
   };
 
   validateConfig = () => {
     const errors = {};
 
-    for (let name in store.config) {
-      let value = store.config[name];
+    for (let name in this.state.config) {
+      let value = this.state.config[name];
       switch (name) {
         case "redditId": {
           if (!value) {
@@ -80,9 +94,9 @@ class ConfigPage extends React.Component {
         case "pictures": {
           delete errors.imageType;
           if (
-            !store.config.gifs &&
-            !store.config.pictures &&
-            !store.config.videos
+            !this.state.config.gifs &&
+            !this.state.config.pictures &&
+            !this.state.config.videos
           ) {
             errors.imageType = "Must select at least one value";
           }
@@ -99,7 +113,7 @@ class ConfigPage extends React.Component {
         case "maximumGameTime": {
           delete errors["minimumGameTime"];
           delete errors["maximumGameTime"];
-          if (!value || store.config.minimumGameTime < 1) {
+          if (!value || this.state.config.minimumGameTime < 1) {
             errors["minimumGameTime"] =
               "Minimum Game Time must be at least 1 minutes";
           }
@@ -108,8 +122,8 @@ class ConfigPage extends React.Component {
               "Maximum Game Time must be at least 2 minutes";
           }
           if (
-            parseInt(store.config.maximumGameTime, 10) <
-            parseInt(store.config.minimumGameTime, 10)
+            parseInt(this.state.config.maximumGameTime, 10) <
+            parseInt(this.state.config.minimumGameTime, 10)
           ) {
             errors["minimumGameTime"] =
               "Minimum Game Time has to be smaller than Maximum Game Time";
@@ -123,9 +137,9 @@ class ConfigPage extends React.Component {
         case "finalOrgasmRuined": {
           delete errors.finalOrgasm;
           if (
-            !store.config.finalOrgasmAllowed &&
-            !store.config.finalOrgasmDenied &&
-            !store.config.finalOrgasmRuined
+            !this.state.config.finalOrgasmAllowed &&
+            !this.state.config.finalOrgasmDenied &&
+            !this.state.config.finalOrgasmRuined
           ) {
             errors.finalOrgasm = "Must select at least one value";
           }
@@ -144,13 +158,8 @@ class ConfigPage extends React.Component {
         }
         case "finalOrgasmRandom": {
           delete errors.finalOrgasmRandom;
-          const {
-            config: {
-              allowedProbability,
-              deniedProbability,
-              ruinedProbability,
-            },
-          } = store;
+          const { allowedProbability, deniedProbability, ruinedProbability } =
+            this.state.config;
           if (
             parseInt(deniedProbability, 10) +
               parseInt(ruinedProbability, 10) +
@@ -187,7 +196,9 @@ class ConfigPage extends React.Component {
         case "postOrgasmTortureMaximumTime": {
           delete errors[name];
           value = parseInt(value, 10);
-          if (value < parseInt(store.config.postOrgasmTortureMinimumTime, 10)) {
+          if (
+            value < parseInt(this.state.config.postOrgasmTortureMinimumTime, 10)
+          ) {
             errors[name] = "Must be greater than the minimum";
           }
           if (!value || value < 5) {
@@ -231,7 +242,7 @@ class ConfigPage extends React.Component {
           delete errors[name];
           if (
             parseInt(value, 10) <
-            parseInt(store.config.minimumRuinedOrgasms, 10)
+            parseInt(this.state.config.minimumRuinedOrgasms, 10)
           ) {
             errors[name] =
               "Maximum Ruined Orgasms cannot be less than Minimum Ruined Orgasms";
@@ -258,7 +269,7 @@ class ConfigPage extends React.Component {
         }
         case "fastestStrokeSpeed": {
           delete errors[name];
-          if (isNaN(value) || value < store.config.slowestStrokeSpeed) {
+          if (isNaN(value) || value < this.state.config.slowestStrokeSpeed) {
             errors[name] = "Cannot be less than the slowest stroke speed";
           }
           if (value > 8) {
@@ -282,103 +293,184 @@ class ConfigPage extends React.Component {
    * After every single change the complete Page is validated.
    *
    * @param name
-   *    the name of the variable in the location  **store.config.name**
+   *    the name of the variable in the location  **config.name**
    * @param cast
    *    a function that converts the input field's value to its intended type (e.g. Number, String, ...)
    */
   handleChange = (name, cast) => (event) => {
-    if (cast) {
-      store.config[name] = cast(event.target.value);
-    } else {
-      store.config[name] = event.target.value;
-    }
-
-    this.setState({ errors: this.validateConfig() });
+    this.setState(
+      {
+        config: {
+          ...this.state.config,
+          [name]: cast ? cast(event.target.value) : event.target.value,
+        },
+      },
+      () => {
+        this.setState({
+          errors: this.validateConfig(),
+        });
+      }
+    );
   };
 
   handleFinalOrgasmGroupCheck = (name) => (event) => {
-    store.config[name] = event.target.value;
-    this.setState({ errors: this.validateConfig() });
+    this.setState(
+      {
+        config: { ...this.state.config, [name]: event.target.value },
+      },
+      () => {
+        this.setState({
+          errors: this.validateConfig(),
+        });
+      }
+    );
   };
 
   handleFinalOrgasmGroupCheckChange = (name) => (event, checked) => {
-    store.config[name] = checked;
+    const config = { ...this.state.config };
+    config[name] = checked;
 
     const {
-      config: {
-        finalOrgasmAllowed,
-        finalOrgasmDenied,
-        finalOrgasmRuined,
-        finalOrgasmRandom,
-      },
-    } = store;
+      finalOrgasmAllowed,
+      finalOrgasmDenied,
+      finalOrgasmRuined,
+      finalOrgasmRandom,
+    } = config;
 
     if (finalOrgasmRandom) {
       let options = [];
       if (finalOrgasmAllowed) {
         options.push("allowedProbability");
       } else {
-        store.config.allowedProbability = 0;
+        config.allowedProbability = 0;
       }
       if (finalOrgasmDenied) {
         options.push("deniedProbability");
       } else {
-        store.config.deniedProbability = 0;
+        config.deniedProbability = 0;
       }
       if (finalOrgasmRuined) {
         options.push("ruinedProbability");
       } else {
-        store.config.ruinedProbability = 0;
+        config.ruinedProbability = 0;
       }
       // equalize share of options for initial display
       let sum = 0;
       for (let i = 1; i < options.length; i++) {
         let o = options[i];
-        store.config[o] = Math.floor(ONE_HUNDRED_PERCENT / options.length);
-        sum += store.config[o];
+        config[o] = Math.floor(ONE_HUNDRED_PERCENT / options.length);
+        sum += config[o];
       }
-      store.config[options[0]] = ONE_HUNDRED_PERCENT - sum;
+      config[options[0]] = ONE_HUNDRED_PERCENT - sum;
     } else {
       if (finalOrgasmAllowed) {
-        store.config.allowedProbability = ONE_HUNDRED_PERCENT;
-        store.config.deniedProbability = 0;
-        store.config.ruinedProbability = 0;
+        config.allowedProbability = ONE_HUNDRED_PERCENT;
+        config.deniedProbability = 0;
+        config.ruinedProbability = 0;
       } else if (finalOrgasmDenied) {
-        store.config.allowedProbability = 0;
-        store.config.deniedProbability = ONE_HUNDRED_PERCENT;
-        store.config.ruinedProbability = 0;
+        config.allowedProbability = 0;
+        config.deniedProbability = ONE_HUNDRED_PERCENT;
+        config.ruinedProbability = 0;
       } else if (finalOrgasmRuined) {
-        store.config.allowedProbability = 0;
-        store.config.deniedProbability = 0;
-        store.config.ruinedProbability = ONE_HUNDRED_PERCENT;
+        config.allowedProbability = 0;
+        config.deniedProbability = 0;
+        config.ruinedProbability = ONE_HUNDRED_PERCENT;
       }
     }
 
-    this.setState({ errors: this.validateConfig() });
+    this.setState({ config }, () => {
+      this.setState({
+        errors: this.validateConfig(),
+      });
+    });
   };
 
   handleCheckChange = (name) => (event, checked) => {
-    store.config[name] = checked;
-    this.setState({ errors: this.validateConfig() });
+    this.setState(
+      {
+        config: { ...this.state.config, [name]: checked },
+      },
+      () => {
+        this.setState({
+          errors: this.validateConfig(),
+        });
+      }
+    );
+  };
+
+  handleToggleTask = (toggledTask) => {
+    this.setState({
+      config: {
+        ...this.state.config,
+        tasks: {
+          ...this.state.config.tasks,
+          [toggledTask]: !this.state.config.tasks[toggledTask],
+        },
+      },
+    });
+  };
+
+  handleToggleAllTasks = (tasks, toggle) => {
+    const toggledTasks = tasks.reduce(
+      (result, task) => ({
+        ...result,
+        [task]: toggle,
+      }),
+      this.state.config.tasks
+    );
+
+    this.setState({
+      config: {
+        ...this.state.config,
+        tasks: toggledTasks,
+      },
+    });
+  };
+
+  handleRandomizeTasks = () => {
+    const tasks = Object.keys(this.state.config.tasks).reduce(
+      (result, task) => ({
+        ...result,
+        [task]: getRandomBoolean(),
+      }),
+      {}
+    );
+
+    this.setState({
+      config: {
+        ...this.state.config,
+        tasks,
+      },
+    });
   };
 
   render() {
     const { classes } = this.props;
     const { errors } = this.state;
 
+    if (!this.state.config) {
+      return <div>Loading...</div>;
+    }
+
     return (
       <ProxyStoreConsumer>
-        {(store) => (
+        {() => (
           <div className={classes.background}>
             <div className={classes.formContainer}>
               <Paper elevation={10} className={classes.form}>
                 <MediaStep
+                  values={this.state.config}
                   errors={errors}
                   handleChange={this.handleChange}
                   handleCheckChange={this.handleCheckChange}
                 />
-                <TimeStep errors={errors} handleChange={this.handleChange} />
+                <TimeStep
+                  values={this.state.config}
+                  errors={errors}
+                  handleChange={this.handleChange}
+                />
                 <OrgasmStep
+                  values={this.state.config}
                   errors={errors}
                   handleChange={this.handleChange}
                   handleCheckChange={this.handleCheckChange}
@@ -387,9 +479,22 @@ class ConfigPage extends React.Component {
                     this.handleFinalOrgasmGroupCheckChange
                   }
                 />
-                <EdgingStep errors={errors} handleChange={this.handleChange} />
-                <StrokeStep errors={errors} handleChange={this.handleChange} />
-                <TaskStep />
+                <EdgingStep
+                  values={this.state.config}
+                  errors={errors}
+                  handleChange={this.handleChange}
+                />
+                <StrokeStep
+                  values={this.state.config}
+                  errors={errors}
+                  handleChange={this.handleChange}
+                />
+                <TaskStep
+                  values={this.state.config}
+                  handleToggleTask={this.handleToggleTask}
+                  handleToggleAllTasks={this.handleToggleAllTasks}
+                  handleRandomizeTasks={this.handleRandomizeTasks}
+                />
                 <Button
                   title="Starts the game."
                   variant="contained"

@@ -1,4 +1,3 @@
-import store from "store";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Grid,
@@ -21,6 +20,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 type OrgasmStepProps = {
+  values: {
+    finalOrgasmAllowed: boolean;
+    finalOrgasmDenied: boolean;
+    finalOrgasmRuined: boolean;
+    finalOrgasmRandom: boolean;
+    postOrgasmTorture: boolean;
+    allowedProbability: number;
+    deniedProbability: number;
+    ruinedProbability: number;
+    postOrgasmTortureMinimumTime: number;
+    postOrgasmTortureMaximumTime: number;
+    minimumRuinedOrgasms: number;
+    maximumRuinedOrgasms: number;
+    ruinCooldown: number;
+  };
   errors: {
     finalOrgasm: string;
     finalOrgasmRandom: string;
@@ -42,6 +56,7 @@ type OrgasmStepProps = {
 };
 
 export default function OrgasmStep({
+  values,
   errors,
   handleChange,
   handleCheckChange,
@@ -69,7 +84,7 @@ export default function OrgasmStep({
                     }
                     control={
                       <Switch
-                        checked={store.config.finalOrgasmAllowed}
+                        checked={values.finalOrgasmAllowed}
                         onChange={handleFinalOrgasmGroupCheckChange(
                           "finalOrgasmAllowed"
                         )}
@@ -82,22 +97,21 @@ export default function OrgasmStep({
                 <Grid item xs={10}>
                   <FormControl
                     className={classes.control}
-                    required={!!store.config.finalOrgasmRandom}
+                    required={!!values.finalOrgasmRandom}
                     error={
                       !!errors.allowedProbability ||
-                      (!!store.config.finalOrgasmRandom && !!errors.finalOrgasm)
+                      (!!values.finalOrgasmRandom && !!errors.finalOrgasm)
                     }
                   >
                     <InputLabel>Probability</InputLabel>
                     <Input
                       id="allowedProbability"
-                      value={store.config.allowedProbability}
+                      value={values.allowedProbability}
                       onChange={handleFinalOrgasmGroupCheck(
                         "allowedProbability"
                       )}
                       disabled={
-                        !store.config.finalOrgasmRandom ||
-                        !store.config.finalOrgasmAllowed
+                        !values.finalOrgasmRandom || !values.finalOrgasmAllowed
                       }
                       endAdornment={
                         <InputAdornment position="end">%</InputAdornment>
@@ -113,7 +127,7 @@ export default function OrgasmStep({
                     title={"Whether you will be denied in the end"}
                     control={
                       <Switch
-                        checked={store.config.finalOrgasmDenied}
+                        checked={values.finalOrgasmDenied}
                         onChange={handleFinalOrgasmGroupCheckChange(
                           "finalOrgasmDenied"
                         )}
@@ -126,22 +140,21 @@ export default function OrgasmStep({
                 <Grid item xs={10}>
                   <FormControl
                     className={classes.control}
-                    required={!!store.config.finalOrgasmRandom}
+                    required={!!values.finalOrgasmRandom}
                     error={
                       !!errors.deniedProbability ||
-                      (!!store.config.finalOrgasmRandom && !!errors.finalOrgasm)
+                      (!!values.finalOrgasmRandom && !!errors.finalOrgasm)
                     }
                   >
                     <InputLabel>Probability</InputLabel>
                     <Input
                       id="deniedProbability"
-                      value={store.config.deniedProbability}
+                      value={values.deniedProbability}
                       onChange={handleFinalOrgasmGroupCheck(
                         "deniedProbability"
                       )}
                       disabled={
-                        !store.config.finalOrgasmRandom ||
-                        !store.config.finalOrgasmDenied
+                        !values.finalOrgasmRandom || !values.finalOrgasmDenied
                       }
                       endAdornment={
                         <InputAdornment position="end">%</InputAdornment>
@@ -157,7 +170,7 @@ export default function OrgasmStep({
                     title={"Whether you will be asked to ruin in the end"}
                     control={
                       <Switch
-                        checked={store.config.finalOrgasmRuined}
+                        checked={values.finalOrgasmRuined}
                         onChange={handleFinalOrgasmGroupCheckChange(
                           "finalOrgasmRuined"
                         )}
@@ -170,22 +183,21 @@ export default function OrgasmStep({
                 <Grid item xs={10}>
                   <FormControl
                     className={classes.control}
-                    required={!!store.config.finalOrgasmRandom}
+                    required={!!values.finalOrgasmRandom}
                     error={
                       !!errors.ruinedProbability ||
-                      (!!store.config.finalOrgasmRandom && !!errors.finalOrgasm)
+                      (!!values.finalOrgasmRandom && !!errors.finalOrgasm)
                     }
                   >
                     <InputLabel>Probability</InputLabel>
                     <Input
                       id="ruinedProbability"
-                      value={store.config.ruinedProbability}
+                      value={values.ruinedProbability}
                       onChange={handleFinalOrgasmGroupCheck(
                         "ruinedProbability"
                       )}
                       disabled={
-                        !store.config.finalOrgasmRandom ||
-                        !store.config.finalOrgasmRuined
+                        !values.finalOrgasmRandom || !values.finalOrgasmRuined
                       }
                       endAdornment={
                         <InputAdornment position="end">%</InputAdornment>
@@ -202,7 +214,7 @@ export default function OrgasmStep({
                   }
                   control={
                     <Switch
-                      checked={store.config.finalOrgasmRandom}
+                      checked={values.finalOrgasmRandom}
                       onChange={handleFinalOrgasmGroupCheckChange(
                         "finalOrgasmRandom"
                       )}
@@ -226,7 +238,7 @@ export default function OrgasmStep({
           <FormControlLabel
             control={
               <Switch
-                checked={store.config.postOrgasmTorture}
+                checked={values.postOrgasmTorture}
                 onChange={handleCheckChange("postOrgasmTorture")}
                 value="postOrgasmTorture"
               />
@@ -237,13 +249,13 @@ export default function OrgasmStep({
         <Grid item xs={12} md={4}>
           <FormControl
             className={classes.control}
-            disabled={!store.config.postOrgasmTorture}
+            disabled={!values.postOrgasmTorture}
             error={!!errors.postOrgasmTortureMinimumTime}
           >
             <InputLabel>Post Orgasm Torture Minimum Time</InputLabel>
             <Input
               id="postOrgasmTortureMinimumTime"
-              value={store.config.postOrgasmTortureMinimumTime}
+              value={values.postOrgasmTortureMinimumTime}
               onChange={handleChange("postOrgasmTortureMinimumTime", Number)}
               fullWidth
               type="number"
@@ -260,13 +272,13 @@ export default function OrgasmStep({
         <Grid item xs={12} md={4}>
           <FormControl
             className={classes.control}
-            disabled={!store.config.postOrgasmTorture}
+            disabled={!values.postOrgasmTorture}
             error={!!errors.postOrgasmTortureMaximumTime}
           >
             <InputLabel>Post Orgasm Torture Maximum Time</InputLabel>
             <Input
               id="postOrgasmTortureMaximumTime"
-              value={store.config.postOrgasmTortureMaximumTime}
+              value={values.postOrgasmTortureMaximumTime}
               onChange={handleChange("postOrgasmTortureMaximumTime", Number)}
               fullWidth
               type="number"
@@ -291,7 +303,7 @@ export default function OrgasmStep({
             <InputLabel>Minimum additional Ruined Orgasms</InputLabel>
             <Input
               id="minimumRuinedOrgasms"
-              value={store.config.minimumRuinedOrgasms}
+              value={values.minimumRuinedOrgasms}
               onChange={handleChange("minimumRuinedOrgasms", Number)}
               fullWidth
               type="number"
@@ -311,7 +323,7 @@ export default function OrgasmStep({
             <InputLabel>Maximum Ruined Orgasms</InputLabel>
             <Input
               id="maximumRuinedOrgasms"
-              value={store.config.maximumRuinedOrgasms}
+              value={values.maximumRuinedOrgasms}
               onChange={handleChange("maximumRuinedOrgasms", Number)}
               fullWidth
               type="number"
@@ -328,7 +340,7 @@ export default function OrgasmStep({
             <InputLabel>Ruin Cooldown</InputLabel>
             <Input
               id="ruinCooldown"
-              value={store.config.ruinCooldown}
+              value={values.ruinCooldown}
               onChange={handleChange("ruinCooldown", Number)}
               fullWidth
               type="number"

@@ -1,5 +1,3 @@
-import * as React from "react";
-import store from "store";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Grid,
@@ -25,6 +23,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 type StrokeStepProps = {
+  values: {
+    initialGripStrength: string;
+    slowestStrokeSpeed: number;
+    fastestStrokeSpeed: number;
+  };
   errors: {
     slowestStrokeSpeed: string;
     fastestStrokeSpeed: string;
@@ -32,7 +35,11 @@ type StrokeStepProps = {
   handleChange: (name: string, cast?: unknown) => (event: unknown) => unknown;
 };
 
-export default function StrokeStep({ errors, handleChange }: StrokeStepProps) {
+export default function StrokeStep({
+  values,
+  errors,
+  handleChange,
+}: StrokeStepProps) {
   const classes = useStyles();
 
   return (
@@ -71,7 +78,7 @@ export default function StrokeStep({ errors, handleChange }: StrokeStepProps) {
           <FormControl className={classes.control}>
             <InputLabel>Initial Grip Strength</InputLabel>
             <Select
-              value={store.config.initialGripStrength}
+              value={values.initialGripStrength}
               onChange={handleChange("initialGripStrength", Number)}
             >
               <MenuItem value={GripStrength.BarelyTouching}>
@@ -106,7 +113,7 @@ export default function StrokeStep({ errors, handleChange }: StrokeStepProps) {
             <InputLabel>Slowest Stroke Speed</InputLabel>
             <Input
               id="slowestStrokeSpeed"
-              value={store.config.slowestStrokeSpeed}
+              value={values.slowestStrokeSpeed}
               onChange={handleChange("slowestStrokeSpeed", Number)}
               fullWidth
               type="number"
@@ -126,7 +133,7 @@ export default function StrokeStep({ errors, handleChange }: StrokeStepProps) {
             <InputLabel>Fastest Stroke Speed</InputLabel>
             <Input
               id="fastestStrokeSpeed"
-              value={store.config.fastestStrokeSpeed}
+              value={values.fastestStrokeSpeed}
               onChange={handleChange("fastestStrokeSpeed", Number)}
               fullWidth
               type="number"

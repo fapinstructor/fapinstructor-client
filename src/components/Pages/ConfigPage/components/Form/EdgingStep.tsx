@@ -1,4 +1,3 @@
-import store from "store";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Grid,
@@ -18,6 +17,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 type EdgingStepProps = {
+  values: {
+    minimumEdges: number;
+    edgeCooldown: number;
+    edgeFrequency: number;
+  };
   errors: {
     minimumEdges: string;
     edgeCooldown: string;
@@ -26,7 +30,11 @@ type EdgingStepProps = {
   handleChange: (name: string, cast?: unknown) => (event: unknown) => unknown;
 };
 
-export default function EdgingStep({ errors, handleChange }: EdgingStepProps) {
+export default function EdgingStep({
+  values,
+  errors,
+  handleChange,
+}: EdgingStepProps) {
   const classes = useStyles();
 
   return (
@@ -43,7 +51,7 @@ export default function EdgingStep({ errors, handleChange }: EdgingStepProps) {
             <InputLabel>Minimum Edges</InputLabel>
             <Input
               id="minimumEdges"
-              value={store.config.minimumEdges}
+              value={values.minimumEdges}
               onChange={handleChange("minimumEdges", Number)}
               fullWidth
               type="number"
@@ -60,7 +68,7 @@ export default function EdgingStep({ errors, handleChange }: EdgingStepProps) {
             <InputLabel>Edge Cooldown</InputLabel>
             <Input
               id="edgeCooldown"
-              value={store.config.edgeCooldown}
+              value={values.edgeCooldown}
               onChange={handleChange("edgeCooldown", Number)}
               fullWidth
               type="number"
@@ -80,7 +88,7 @@ export default function EdgingStep({ errors, handleChange }: EdgingStepProps) {
             <InputLabel>Increase Edge Frequency</InputLabel>
             <Input
               id="edgeFrequency"
-              value={store.config.edgeFrequency}
+              value={values.edgeFrequency}
               onChange={handleChange("edgeFrequency", Number)}
               fullWidth
               type="number"
