@@ -1,135 +1,66 @@
-import { makeStyles } from "@material-ui/core/styles";
 import {
   Grid,
-  Switch,
-  Input,
-  InputLabel,
-  InputAdornment,
   FormControl,
-  FormControlLabel,
   FormGroup,
   FormHelperText,
   FormLabel,
 } from "@material-ui/core";
+import { Field } from "formik";
+import { CheckboxWithLabel } from "formik-material-ui";
 
+import { MediaType } from "common/types/Media";
 import Group from "components/molecules/Group";
-
-const useStyles = makeStyles((theme) => ({
-  control: {
-    width: "100%",
-  },
-}));
+import RedditSelectionField from "../RedditSelectionField";
+import SlideDurationField from "../SlideDurationField";
 
 type MediaStepProps = {
-  values: {
-    redditId: string;
-    slideDuration: number;
-    gifs: boolean;
-    pictures: boolean;
-    videos: boolean;
-  };
   errors: {
     mediaSource: string;
     redditId: string;
     slideDuration: string;
     imageType: string;
   };
-  handleChange: (name: string, cast?: unknown) => (event: unknown) => unknown;
-  handleCheckChange: (name: string) => (event: unknown) => unknown;
 };
 
-export default function MediaStep({
-  errors,
-  values,
-  handleChange,
-  handleCheckChange,
-}: MediaStepProps) {
-  const classes = useStyles();
-
+export default function MediaStep({ errors }: MediaStepProps) {
   return (
     <Group title="Media">
-      <Grid container>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <RedditSelectionField />
+        </Grid>
+        <Grid item xs={4}>
+          <SlideDurationField />
+        </Grid>
+        <Grid item xs={8} />
         <Grid item xs={12}>
           <FormControl
-            className={classes.control}
+            component="fieldset"
             required
-            error={!!errors.mediaSource || !!errors.redditId}
+            error={Boolean(errors.imageType)}
           >
-            <InputLabel>Subreddits</InputLabel>
-            <Input
-              id="redditId"
-              required
-              value={values.redditId}
-              onChange={handleChange("redditId")}
-            />
-            {errors.mediaSource || errors.redditId ? (
-              <FormHelperText>
-                {errors.mediaSource || errors.redditId}
-              </FormHelperText>
-            ) : (
-              <FormHelperText>
-                You can add multiple subreddits each separated by a comma
-              </FormHelperText>
-            )}
-          </FormControl>
-        </Grid>
-        <Grid item xs={12}>
-          <FormControl
-            className={classes.control}
-            required
-            error={!!errors.slideDuration}
-          >
-            <InputLabel>Slide Duration</InputLabel>
-            <Input
-              id="slideDuration"
-              value={values.slideDuration}
-              onChange={handleChange("slideDuration", Number)}
-              type="number"
-              inputProps={{ step: "1", min: "3" }}
-              endAdornment={
-                <InputAdornment position="end">seconds</InputAdornment>
-              }
-            />
-            {errors.slideDuration ? (
-              <FormHelperText>{errors.slideDuration}</FormHelperText>
-            ) : (
-              <FormHelperText>Applies to static images and gifs</FormHelperText>
-            )}
-          </FormControl>
-        </Grid>
-        <Grid item xs={12}>
-          <FormControl component="fieldset" required error={!!errors.imageType}>
             <FormLabel component="legend">Media Type</FormLabel>
             <FormGroup>
-              <FormControlLabel
-                control={
-                  <Switch
-                    checked={values.gifs}
-                    onChange={handleCheckChange("gifs")}
-                    value="gifs"
-                  />
-                }
-                label="Gifs"
+              <Field
+                component={CheckboxWithLabel}
+                type="checkbox"
+                name="imageType"
+                value={MediaType.Gif}
+                Label={{ label: "Gifs" }}
               />
-              <FormControlLabel
-                control={
-                  <Switch
-                    checked={values.pictures}
-                    onChange={handleCheckChange("pictures")}
-                    value="pictures"
-                  />
-                }
-                label="Pictures"
+              <Field
+                component={CheckboxWithLabel}
+                type="checkbox"
+                name="imageType"
+                value={MediaType.Picture}
+                Label={{ label: "Pictures" }}
               />
-              <FormControlLabel
-                control={
-                  <Switch
-                    checked={values.videos}
-                    onChange={handleCheckChange("videos")}
-                    value="videos"
-                  />
-                }
-                label="Videos"
+              <Field
+                component={CheckboxWithLabel}
+                type="checkbox"
+                name="imageType"
+                value={MediaType.Video}
+                Label={{ label: "Videos" }}
               />
             </FormGroup>
             <FormHelperText>{errors.imageType}</FormHelperText>

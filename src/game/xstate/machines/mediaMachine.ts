@@ -37,7 +37,7 @@ function preloadImage(url: string) {
   new Image().src = url;
 }
 
-function getEnabledMediaTypes(config: GameConfig) {
+export function getEnabledMediaTypes(config: GameConfig) {
   const { gifs, pictures, videos } = config;
   const mediaTypes = [];
 
