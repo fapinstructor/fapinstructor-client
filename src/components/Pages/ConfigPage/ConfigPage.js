@@ -8,13 +8,11 @@ import { Formik, Form } from "formik";
 import { MediaType } from "common/types/Media";
 import store from "store";
 import { defaultConfig } from "configureStore";
-import { getRandomBoolean } from "utils/math";
 import Footer from "components/organisms/Footer";
 import ShareGame from "components/organisms/ShareGame";
 import { validSubreddit } from "utils/regex";
 import BackgroundImage from "images/background.jpg";
 import TaskStep from "./components/Form/TaskStep";
-import { ProxyStoreConsumer } from "containers/StoreProvider";
 import MediaStep from "./components/Form/MediaStep";
 import OrgasmStep from "./components/Form/OrgasmStep";
 import EdgingStep from "./components/Form/EdgingStep";
@@ -174,7 +172,7 @@ function mapOldCOnfigToNewConfig(oldConfig) {
   return newConfig;
 }
 
-function mapNewConfigToOldConfig(newConfig, tasks) {
+function mapNewConfigToOldConfig(newConfig) {
   const oldConfig = {
     redditId: newConfig.subreddits.join(","),
     gifs: newConfig.imageType.includes(MediaType.Gif),
@@ -204,7 +202,7 @@ function mapNewConfigToOldConfig(newConfig, tasks) {
     fastestStrokeSpeed: newConfig.strokeSpeed.max,
     defaultStrokeStyle: newConfig.defaultStrokeStyle,
     actionFrequency: newConfig.actionFrequency,
-    tasks,
+    tasks: newConfig.tasks,
   };
 
   return oldConfig;
@@ -230,60 +228,6 @@ class ConfigPage extends React.Component {
     });
   }
 
-  handleStartGame = (...values) => {
-    const config = { ...this.state.config };
-
-    store.config = config;
-
-    this.props.history.push("/game");
-  };
-
-  handleToggleTask = (toggledTask) => {
-    this.setState({
-      config: {
-        ...this.state.config,
-        tasks: {
-          ...this.state.config.tasks,
-          [toggledTask]: !this.state.config.tasks[toggledTask],
-        },
-      },
-    });
-  };
-
-  handleToggleAllTasks = (tasks, toggle) => {
-    const toggledTasks = tasks.reduce(
-      (result, task) => ({
-        ...result,
-        [task]: toggle,
-      }),
-      this.state.config.tasks
-    );
-
-    this.setState({
-      config: {
-        ...this.state.config,
-        tasks: toggledTasks,
-      },
-    });
-  };
-
-  handleRandomizeTasks = () => {
-    const tasks = Object.keys(this.state.config.tasks).reduce(
-      (result, task) => ({
-        ...result,
-        [task]: getRandomBoolean(),
-      }),
-      {}
-    );
-
-    this.setState({
-      config: {
-        ...this.state.config,
-        tasks,
-      },
-    });
-  };
-
   render() {
     const { classes } = this.props;
     const { config } = this.state;
@@ -294,54 +238,47 @@ class ConfigPage extends React.Component {
 
     return (
       <Formik
-        initialValues={mapOldCOnfigToNewConfig(this.state.config)}
+        initialValues={mapOldCOnfigToNewConfig(config)}
         validationSchema={GAME_CONFIG_SCHEMA}
         onSubmit={async (formValues) => {
-          console.log(
-            "Values:",
-            mapNewConfigToOldConfig(formValues, this.state.config.tasks)
-          );
-          console.log("Config:", config);
+          console.log("Form:", mapNewConfigToOldConfig(formValues));
+
+          // const config = { ...this.state.config };
+
+          // store.config = config;
+
+          // this.props.history.push("/game");
         }}
       >
         {({ errors }) => {
-          if (errors) {
+          if (Object.keys(errors).length) {
             console.log("errors:", errors);
           }
           return (
             <Form>
-              <ProxyStoreConsumer>
-                {() => (
-                  <div className={classes.background}>
-                    <div className={classes.formContainer}>
-                      <Paper elevation={10} className={classes.form}>
-                        <MediaStep errors={errors} />
-                        <TimeStep />
-                        <OrgasmStep />
-                        <EdgingStep />
-                        <StrokeStep />
-                        <TaskStep
-                          values={this.state.config}
-                          handleToggleTask={this.handleToggleTask}
-                          handleToggleAllTasks={this.handleToggleAllTasks}
-                          handleRandomizeTasks={this.handleRandomizeTasks}
-                        />
-                        <Button
-                          type="submit"
-                          title="Starts the game."
-                          variant="contained"
-                          color="primary"
-                          className={classes.button}
-                        >
-                          Start
-                        </Button>
-                        <ShareGame disabled={Object.keys(errors).length > 0} />
-                        <Footer />
-                      </Paper>
-                    </div>
-                  </div>
-                )}
-              </ProxyStoreConsumer>
+              <div className={classes.background}>
+                <div className={classes.formContainer}>
+                  <Paper elevation={10} className={classes.form}>
+                    <MediaStep errors={errors} />
+                    <TimeStep />
+                    <OrgasmStep />
+                    <EdgingStep />
+                    <StrokeStep />
+                    <TaskStep />
+                    <Button
+                      type="submit"
+                      title="Starts the game."
+                      variant="contained"
+                      color="primary"
+                      className={classes.button}
+                    >
+                      Start
+                    </Button>
+                    <ShareGame disabled={Object.keys(errors).length > 0} />
+                    <Footer />
+                  </Paper>
+                </div>
+              </div>
             </Form>
           );
         }}

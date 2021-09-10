@@ -1,30 +1,39 @@
 import {
-  Switch,
   FormControl,
   FormControlLabel,
   FormGroup,
   FormLabel,
+  Checkbox,
 } from "@material-ui/core";
-import TaskToggler from "../TaskToggler";
 import Hash from "common/types/Hash";
+import { Field, useFormikContext } from "formik";
+import { CheckboxWithLabel } from "formik-material-ui";
+import { TaskConfig } from "configureStore";
 
 type TaskGroupProps = {
   label: string;
   tasks: Hash<string>;
-  selectedTasks?: string[];
-  onToggleTask: (id: string) => void;
-  onToggleAllTasks: (tasks: string[], toggle: boolean) => void;
 };
 
-export default function TaskGroup({
-  label,
-  tasks,
-  selectedTasks,
-  onToggleTask,
-  onToggleAllTasks,
-}: TaskGroupProps) {
+export default function TaskGroup({ label, tasks }: TaskGroupProps) {
+  // TODO: Use form type
+  const form = useFormikContext<{
+    tasks: TaskConfig;
+  }>();
+
   const availableTasks = Object.keys(tasks);
+
+  const selectedTasks = Object.entries(form.values.tasks)
+    .filter(([key]) => availableTasks.includes(key))
+    .filter(([_, value]) => value);
+
   const allTasksSelected = availableTasks.length === selectedTasks?.length;
+
+  function toggleAllTasks() {
+    availableTasks.forEach((task) => {
+      form.setFieldValue(`tasks.${task}`, !allTasksSelected, false);
+    });
+  }
 
   return (
     <FormControl component="fieldset">
@@ -32,22 +41,17 @@ export default function TaskGroup({
       <FormGroup>
         <FormControlLabel
           control={
-            <Switch
-              checked={allTasksSelected}
-              onChange={() =>
-                onToggleAllTasks(availableTasks, !allTasksSelected)
-              }
-            />
+            <Checkbox checked={allTasksSelected} onChange={toggleAllTasks} />
           }
-          label="Toggle All"
+          label="Select All"
         />
         {Object.entries(tasks).map(([id, label]) => (
-          <TaskToggler
+          <Field
             key={id}
-            id={id}
-            label={label}
-            checked={Boolean(selectedTasks?.includes(id))}
-            onToggleTask={onToggleTask}
+            component={CheckboxWithLabel}
+            type="checkbox"
+            name={`tasks.${id}`}
+            Label={{ label }}
           />
         ))}
       </FormGroup>

@@ -18,6 +18,7 @@ type Sliders = {
 };
 
 export default function OrgasmStep() {
+  // TODO: Use form type
   const form = useFormikContext<{
     probabilities: Sliders;
   }>();

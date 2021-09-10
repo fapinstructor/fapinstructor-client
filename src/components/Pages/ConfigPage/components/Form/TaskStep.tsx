@@ -1,14 +1,8 @@
-import { Button, FormControl } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import styled from "styled-components/macro";
 
 import theme from "theme";
 import {
-  analTasks,
-  cbtTasks,
-  ceiTasks,
-  nippleTasks,
-  speedTasks,
-  strokeStyleTasks,
   Task,
   SpeedTasks,
   StrokeStyleTasks,
@@ -20,6 +14,8 @@ import {
 } from "configureStore";
 import Group from "components/molecules/Group";
 import TaskGroup from "../TaskGroup";
+import { useFormikContext } from "formik";
+import { getRandomBoolean } from "utils/math";
 
 const TaskContainer = styled.div`
   padding-top: 1rem;
@@ -85,81 +81,30 @@ const nippleTasksGroup: TaskGroupHash<NippleTasks> = {
   nipplesAndStroke: "Nipples and Stroking",
 };
 
-type TaskStepProps = {
-  values: {
+export default function TaskStep() {
+  // TODO: Use form type
+  const form = useFormikContext<{
     tasks: TaskConfig;
-  };
-  handleToggleTask: (toggledTask: string) => void;
-  handleToggleAllTasks: (tasks: string[], toggle: boolean) => void;
-  handleRandomizeTasks: () => void;
-};
+  }>();
 
-export default function TaskStep({
-  values,
-  handleToggleTask,
-  handleToggleAllTasks,
-  handleRandomizeTasks,
-}: TaskStepProps) {
-  function selectedTasks(queryTasks: Task[]) {
-    return queryTasks.filter((task) => values.tasks[task]);
+  function randomizeTasks() {
+    Object.keys(form.values.tasks).forEach((task) => {
+      form.setFieldValue(`tasks.${task}`, getRandomBoolean(), false);
+    });
   }
 
   return (
     <Group title="Tasks">
-      <Button
-        variant="outlined"
-        color="secondary"
-        onClick={handleRandomizeTasks}
-      >
+      <Button variant="outlined" color="secondary" onClick={randomizeTasks}>
         Randomize
       </Button>
       <TaskContainer>
-        <FormControl>
-          <TaskGroup
-            label="Speed"
-            onToggleTask={handleToggleTask}
-            onToggleAllTasks={handleToggleAllTasks}
-            selectedTasks={selectedTasks(speedTasks)}
-            tasks={speedTasksGroup}
-          />
-        </FormControl>
-        <FormControl>
-          <TaskGroup
-            label="Stroke Style"
-            onToggleTask={handleToggleTask}
-            onToggleAllTasks={handleToggleAllTasks}
-            selectedTasks={selectedTasks(strokeStyleTasks)}
-            tasks={strokeStyleTasksGroup}
-          />
-        </FormControl>
-        <TaskGroup
-          label="Cock & Ball Torture"
-          onToggleTask={handleToggleTask}
-          onToggleAllTasks={handleToggleAllTasks}
-          selectedTasks={selectedTasks(cbtTasks)}
-          tasks={cbtTasksGroup}
-        />
-        <TaskGroup
-          label="Cum Eating"
-          onToggleTask={handleToggleTask}
-          onToggleAllTasks={handleToggleAllTasks}
-          selectedTasks={selectedTasks(ceiTasks)}
-          tasks={ceiTasksGroup}
-        />
-        <TaskGroup
-          label="Anal"
-          onToggleTask={handleToggleTask}
-          onToggleAllTasks={handleToggleAllTasks}
-          selectedTasks={selectedTasks(analTasks)}
-          tasks={analTasksGroup}
-        />
-        <TaskGroup
-          label="Nipples"
-          onToggleTask={handleToggleTask}
-          onToggleAllTasks={handleToggleAllTasks}
-          selectedTasks={selectedTasks(nippleTasks)}
-          tasks={nippleTasksGroup}
-        />
+        <TaskGroup label="Speed" tasks={speedTasksGroup} />
+        <TaskGroup label="Stroke Style" tasks={strokeStyleTasksGroup} />
+        <TaskGroup label="Cock & Ball Torture" tasks={cbtTasksGroup} />
+        <TaskGroup label="Cum Eating" tasks={ceiTasksGroup} />
+        <TaskGroup label="Anal" tasks={analTasksGroup} />
+        <TaskGroup label="Nipples" tasks={nippleTasksGroup} />
       </TaskContainer>
     </Group>
   );
