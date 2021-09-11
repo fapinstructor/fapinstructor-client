@@ -1,7 +1,6 @@
-import * as React from "react";
-import { withStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { Button, Paper } from "@material-ui/core";
-import { withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import { Formik, Form } from "formik";
 
@@ -20,7 +19,7 @@ import StrokeStep from "./components/Form/StrokeStep";
 import TimeStep from "./components/Form/TimeStep";
 import { getEnabledMediaTypes } from "game/xstate/machines/mediaMachine";
 
-const styles = (theme) => ({
+const useStyles = makeStyles((theme) => ({
   button: {
     marginRight: theme.spacing(),
   },
@@ -41,7 +40,7 @@ const styles = (theme) => ({
     width: "90vw",
     backgroundColor: "rgba(255, 255, 255, 0.9)",
   },
-});
+}));
 
 const GAME_CONFIG_SCHEMA = yup.object().shape({
   subreddits: yup
@@ -208,76 +207,64 @@ function mapNewConfigToOldConfig(newConfig) {
   return oldConfig;
 }
 
-class ConfigPage extends React.Component {
-  state = {
-    config: null,
-  };
+/**
+ * TODO:
+ * - Convert to typescript.
+ * - Organize the code directory structure.
+ * - Make form a11y.
+ * - Make form responsive to screen sizes.
+ * - Test default games, saved games, and all of the above.
+ * - Add tests.
+ * - Error handling.
+ * - Get ride of the mapping functions and use the new structure somehow.
+ */
+export default function ConfigPage() {
+  const history = useHistory();
+  const classes = useStyles();
 
-  componentDidMount() {
-    this.setState({
-      config: isDefaultConfig(store.config)
-        ? { ...defaultConfig }
-        : store.config,
-    });
-  }
-
-  render() {
-    const { classes } = this.props;
-    const { config } = this.state;
-
-    if (!this.state.config) {
-      return <div>Loading...</div>;
-    }
-
-    return (
-      <Formik
-        initialValues={mapOldCOnfigToNewConfig(config)}
-        validationSchema={GAME_CONFIG_SCHEMA}
-        onSubmit={async (formValues) => {
-          console.log("Form:", mapNewConfigToOldConfig(formValues));
-
-          // const config = { ...this.state.config };
-
-          // store.config = config;
-
-          // this.props.history.push("/game");
-        }}
-      >
-        {({ errors }) => {
-          if (Object.keys(errors).length) {
-            console.log("errors:", errors);
-          }
-          return (
-            <Form>
-              <div className={classes.background}>
-                <div className={classes.formContainer}>
-                  <Paper elevation={10} className={classes.form}>
-                    <MediaStep errors={errors} />
-                    <TimeStep />
-                    <OrgasmStep />
-                    <EdgingStep />
-                    <StrokeStep />
-                    <TaskStep />
-                    <Button
-                      type="submit"
-                      title="Starts the game."
-                      variant="contained"
-                      color="primary"
-                      className={classes.button}
-                    >
-                      Start
-                    </Button>
-                    <ShareGame disabled={Object.keys(errors).length > 0} />
-                    <Footer />
-                  </Paper>
-                </div>
+  return (
+    <Formik
+      initialValues={mapOldCOnfigToNewConfig(
+        isDefaultConfig(store.config) ? defaultConfig : store.config
+      )}
+      validationSchema={GAME_CONFIG_SCHEMA}
+      onSubmit={async (formValues) => {
+        store.config = mapNewConfigToOldConfig(formValues);
+        history.push("/game");
+      }}
+    >
+      {({ errors }) => {
+        if (Object.keys(errors).length) {
+          console.log("errors:", errors);
+        }
+        return (
+          <Form>
+            <div className={classes.background}>
+              <div className={classes.formContainer}>
+                <Paper elevation={10} className={classes.form}>
+                  <MediaStep errors={errors} />
+                  <TimeStep />
+                  <OrgasmStep />
+                  <EdgingStep />
+                  <StrokeStep />
+                  <TaskStep />
+                  <Button
+                    type="submit"
+                    title="Starts the game."
+                    variant="contained"
+                    color="primary"
+                    className={classes.button}
+                  >
+                    Start
+                  </Button>
+                  <ShareGame disabled={Object.keys(errors).length > 0} />
+                  <Footer />
+                </Paper>
               </div>
-            </Form>
-          );
-        }}
-      </Formik>
-    );
-  }
+            </div>
+          </Form>
+        );
+      }}
+    </Formik>
+  );
 }
-
-export default withRouter(withStyles(styles)(ConfigPage));
