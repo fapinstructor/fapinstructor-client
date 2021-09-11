@@ -19,6 +19,7 @@ import BackgroundImage from "images/background.jpg";
 import DefaultImage from "images/default-image.jpg";
 import { MediaMachineContext } from "game/xstate/machines/mediaMachine";
 import YouTubeVideo from "components/atoms/YouTubeVideo";
+import { isDefaultConfig } from "configureStore";
 
 const useStyles = makeStyles(() => ({
   progress: {
@@ -76,7 +77,7 @@ export default function GamePage() {
   React.useEffect(() => {
     if (gameConfigId) {
       !isUuid(gameConfigId) && setError("The game config link is invalid");
-    } else if (store.config.isDefaultConfig) {
+    } else if (isDefaultConfig(store.config)) {
       history.push("/");
     }
 

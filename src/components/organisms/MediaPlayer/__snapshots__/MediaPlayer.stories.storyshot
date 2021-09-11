@@ -3,7 +3,7 @@
 exports[`Storyshots organisms/MediaPlayer Play Gif 1`] = `
 <img
   alt=""
-  class="makeStyles-image-17"
+  class="makeStyles-image-9"
   src="file_example_GIF_small.gif"
 />
 `;
@@ -11,7 +11,7 @@ exports[`Storyshots organisms/MediaPlayer Play Gif 1`] = `
 exports[`Storyshots organisms/MediaPlayer Play Image 1`] = `
 <img
   alt=""
-  class="makeStyles-image-14"
+  class="makeStyles-image-6"
   src="file_example_JPG_100kB.jpg"
 />
 `;
@@ -19,7 +19,7 @@ exports[`Storyshots organisms/MediaPlayer Play Image 1`] = `
 exports[`Storyshots organisms/MediaPlayer Play Video 1`] = `
 <video
   autoplay=""
-  class="makeStyles-video-19"
+  class="makeStyles-video-11"
   playsinline=""
   src="file_example_MP4_480_1_5MG.mp4"
   style="pointer-events: none;"

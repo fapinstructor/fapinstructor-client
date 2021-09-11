@@ -7,7 +7,7 @@ import { Formik, Form } from "formik";
 
 import { MediaType } from "common/types/Media";
 import store from "store";
-import { defaultConfig } from "configureStore";
+import { defaultConfig, isDefaultConfig } from "configureStore";
 import Footer from "components/organisms/Footer";
 import ShareGame from "components/organisms/ShareGame";
 import { validSubreddit } from "utils/regex";
@@ -214,17 +214,10 @@ class ConfigPage extends React.Component {
   };
 
   componentDidMount() {
-    let config;
-
-    if (store.config.isDefaultConfig) {
-      delete store.config.isDefaultConfig;
-      config = { ...defaultConfig };
-    } else {
-      config = store.config;
-    }
-
     this.setState({
-      config,
+      config: isDefaultConfig(store.config)
+        ? { ...defaultConfig }
+        : store.config,
     });
   }
 

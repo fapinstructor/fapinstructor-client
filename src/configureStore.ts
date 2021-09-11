@@ -1,6 +1,7 @@
 import store from "store";
 import { StrokeStyle } from "game/enums/StrokeStyle";
 import { GripStrength } from "game/xstate/machines/gripMachine";
+import isEqual from "lodash/isEqual";
 
 const speedTasksConfig = {
   doubleStrokes: true,
@@ -96,7 +97,6 @@ const tasksConfig = {
 export type TaskConfig = typeof tasksConfig;
 
 export type GameConfig = {
-  isDefaultConfig: boolean;
   redditId: string;
   gifs: boolean;
   pictures: boolean;
@@ -131,7 +131,6 @@ export type GameConfig = {
 };
 
 export const defaultConfig: GameConfig = Object.freeze({
-  isDefaultConfig: true,
   redditId:
     "NSFW_GIF, gonewild, nsfw, 60fpsporn, porninaminute, holdthemoan, cumsluts, realgirls, gwcouples, porninfifteenseconds, cuckold, hotwife, anal, blowjobs, bustypetite, ass, collegesluts, wifesharing, creampies, ruinedorgasms, chastitycouples, postorgasm",
   gifs: true,
@@ -165,6 +164,10 @@ export const defaultConfig: GameConfig = Object.freeze({
   actionFrequency: 30, // sec
   tasks: tasksConfig,
 });
+
+export function isDefaultConfig(config: GameConfig) {
+  return isEqual(config, defaultConfig);
+}
 
 export default function configureStore() {
   store.config = { ...defaultConfig };
