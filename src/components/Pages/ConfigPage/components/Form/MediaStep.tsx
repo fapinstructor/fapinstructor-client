@@ -5,7 +5,7 @@ import {
   FormHelperText,
   FormLabel,
 } from "@material-ui/core";
-import { Field } from "formik";
+import { Field, useField } from "formik";
 import { CheckboxWithLabel } from "formik-material-ui";
 
 import { MediaType } from "common/types/Media";
@@ -13,16 +13,9 @@ import Group from "components/molecules/Group";
 import RedditSelectionField from "../RedditSelectionField";
 import SlideDurationField from "../SlideDurationField";
 
-type MediaStepProps = {
-  errors: {
-    mediaSource: string;
-    redditId: string;
-    slideDuration: string;
-    imageType: string;
-  };
-};
+export default function MediaStep() {
+  const [, meta] = useField("imageType");
 
-export default function MediaStep({ errors }: MediaStepProps) {
   return (
     <Group title="Media">
       <Grid container spacing={2}>
@@ -37,7 +30,7 @@ export default function MediaStep({ errors }: MediaStepProps) {
           <FormControl
             component="fieldset"
             required
-            error={Boolean(errors.imageType)}
+            error={Boolean(meta.error)}
           >
             <FormLabel component="legend">Media Type</FormLabel>
             <FormGroup>
@@ -63,7 +56,7 @@ export default function MediaStep({ errors }: MediaStepProps) {
                 Label={{ label: "Videos" }}
               />
             </FormGroup>
-            <FormHelperText>{errors.imageType}</FormHelperText>
+            <FormHelperText>{meta.error}</FormHelperText>
           </FormControl>
         </Grid>
       </Grid>

@@ -1,11 +1,11 @@
-import { GameConfig } from "configureStore";
+import { OldGameConfig } from "configureStore";
 
 export default interface Game {
   id: string;
   title: string;
   tags: string[];
   isPublic: boolean;
-  config: GameConfig;
+  config: OldGameConfig;
   stars: number;
   starred: boolean;
 }

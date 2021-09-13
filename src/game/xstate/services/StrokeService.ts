@@ -1,6 +1,6 @@
 import { interpret, InterpreterFrom } from "xstate";
 import { useService } from "@xstate/react";
-import { GameConfig } from "configureStore";
+import { OldGameConfig } from "configureStore";
 import { createObservable } from "utils/observable";
 import {
   createStrokeMachine,
@@ -26,7 +26,7 @@ function getStrokeServiceContext() {
 export const strokeServiceObserver = createObservable<StrokeMachineEvent>();
 
 const StrokeService = {
-  initialize(gameConfig: GameConfig) {
+  initialize(gameConfig: OldGameConfig) {
     if (service) {
       service.stop();
     }

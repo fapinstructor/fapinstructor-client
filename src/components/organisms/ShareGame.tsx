@@ -18,17 +18,18 @@ import {
 } from "@material-ui/core";
 import { TextField } from "formik-material-ui";
 import SwitchWithLabel from "components/atoms/SwitchWithLabel";
-import { Formik, Form, Field, yupToFormErrors, FormikHelpers } from "formik";
+import { Formik, Form, Field, FormikHelpers } from "formik";
 import TagsField from "components/molecules/TagsField";
 import ButtonWithHelperText from "components/molecules/buttons/ButtonWithHelperText";
 import {
   CREATE_GAME_SCHEMA,
   CreateGameRequest,
-  CreateGameResponse,
 } from "common/api/schemas/games";
 import { useHistory } from "react-router-dom";
-import Game from "common/types/Game";
 import { useAuth0 } from "AuthProvider";
+import { useDispatch, useSelector } from "react-redux";
+import { clearGameId, createGame, selectGameId } from "common/store/createGame";
+import { createNotification, Severity } from "common/store/notifications";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -38,21 +39,15 @@ const useStyles = makeStyles((theme) => ({
 
 export type ShareGameProps = {
   disabled: boolean;
-  loading: boolean;
-  game: Game;
-  createGame: (request: CreateGameRequest) => Promise<CreateGameResponse>;
+  /* createGame: (request: CreateGameRequest) => Promise<CreateGameResponse>; */
 };
 
-export default function ShareGame({
-  disabled,
-  // TODO: Should loading be used?
-  loading,
-  createGame,
-}: ShareGameProps) {
+export default function ShareGame({ disabled }: ShareGameProps) {
+  const dispatch = useDispatch();
+  const gameId = useSelector(selectGameId);
   const { user } = useAuth0();
   const inputLink = useRef<HTMLInputElement>();
   const [open, setOpen] = useState(false);
-  const [gameId, setGameId] = useState<string>();
   const [copyToolTipOpen, setCopyToolTipOpen] = useState(false);
   const history = useHistory();
   const classes = useStyles();
@@ -62,14 +57,15 @@ export default function ShareGame({
     { setErrors }: FormikHelpers<CreateGameRequest>
   ) => {
     try {
-      const res = await createGame(values);
-      setGameId(res.id);
-    } catch (err) {
-      if (err?.response.status === 400) {
-        setErrors(yupToFormErrors(err.response.data.error));
-      } else {
-        throw err;
-      }
+      await dispatch(createGame(values));
+    } catch (error) {
+      dispatch(
+        createNotification({
+          message: `Error creating game: ${error}`,
+          duration: -1,
+          severity: Severity.ERROR,
+        })
+      );
     }
   };
 
@@ -94,7 +90,7 @@ export default function ShareGame({
 
   const handleClose = () => {
     setOpen(false);
-    setGameId(undefined);
+    dispatch(clearGameId());
   };
 
   return (

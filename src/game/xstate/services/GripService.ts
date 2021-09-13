@@ -1,6 +1,6 @@
 import { interpret, InterpreterFrom } from "xstate";
 import { useService } from "@xstate/react";
-import { GameConfig } from "configureStore";
+import { OldGameConfig } from "configureStore";
 import {
   createGripMachine,
   GripStrength,
@@ -22,7 +22,7 @@ function getGripServiceContext() {
 }
 
 const GripService = {
-  initialize(gameConfig: GameConfig) {
+  initialize(gameConfig: OldGameConfig) {
     if (service) {
       service.stop();
     }

@@ -2,6 +2,7 @@ import store from "store";
 import { StrokeStyle } from "game/enums/StrokeStyle";
 import { GripStrength } from "game/xstate/machines/gripMachine";
 import isEqual from "lodash/isEqual";
+import { MediaType } from "common/types/Media";
 
 const speedTasksConfig = {
   doubleStrokes: true,
@@ -96,19 +97,15 @@ const tasksConfig = {
 
 export type TaskConfig = typeof tasksConfig;
 
-export type GameConfig = {
+export type OldGameConfig = {
   redditId: string;
   gifs: boolean;
   pictures: boolean;
   videos: boolean;
   slideDuration: number; // sec
-  finalOrgasmAllowed: boolean;
   allowedProbability: number; // percent
-  finalOrgasmDenied: boolean;
   deniedProbability: number; // percent
-  finalOrgasmRuined: boolean;
   ruinedProbability: number; // percent
-  finalOrgasmRandom: boolean;
   minimumGameTime: number; // min
   maximumGameTime: number; // min
   minimumOrgasms: number;
@@ -130,7 +127,46 @@ export type GameConfig = {
   tasks: TaskConfig;
 };
 
-export const defaultConfig: GameConfig = Object.freeze({
+export type GameConfig = {
+  subreddits: string[];
+  slideDuration: number;
+  imageType: MediaType[];
+  gameLength: {
+    min: number;
+    max: number;
+  };
+  probabilities: {
+    orgasmProbability: number;
+    deniedProbability: number;
+    ruinedProbability: number;
+  };
+  postOrgasmTorture: boolean;
+  postOrgasmTortureDuration: {
+    min: number;
+    max: number;
+  };
+  enableRuinedOrgasms: boolean;
+  ruinedOrgasms: {
+    min: number;
+    max: number;
+  };
+  edgeCooldown: number;
+  ruinCooldown: number;
+  minimumEdges: number;
+  edgeFrequency: number;
+  strokeSpeed: {
+    min: number;
+    max: number;
+  };
+  minimumOrgasms: number;
+  maximumOrgasms: number;
+  initialGripStrength: GripStrength;
+  defaultStrokeStyle: StrokeStyle;
+  actionFrequency: number;
+  tasks: TaskConfig;
+};
+
+export const defaultConfig: OldGameConfig = Object.freeze({
   redditId:
     "NSFW_GIF, gonewild, nsfw, 60fpsporn, porninaminute, holdthemoan, cumsluts, realgirls, gwcouples, porninfifteenseconds, cuckold, hotwife, anal, blowjobs, bustypetite, ass, collegesluts, wifesharing, creampies, ruinedorgasms, chastitycouples, postorgasm",
   gifs: true,
@@ -165,7 +201,7 @@ export const defaultConfig: GameConfig = Object.freeze({
   tasks: tasksConfig,
 });
 
-export function isDefaultConfig(config: GameConfig) {
+export function isDefaultConfig(config: OldGameConfig) {
   return isEqual(config, defaultConfig);
 }
 

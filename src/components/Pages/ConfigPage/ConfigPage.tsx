@@ -6,7 +6,12 @@ import { Formik, Form } from "formik";
 
 import { MediaType } from "common/types/Media";
 import store from "store";
-import { defaultConfig, isDefaultConfig } from "configureStore";
+import {
+  defaultConfig,
+  GameConfig,
+  isDefaultConfig,
+  OldGameConfig,
+} from "configureStore";
 import Footer from "components/organisms/Footer";
 import ShareGame from "components/organisms/ShareGame";
 import { validSubreddit } from "utils/regex";
@@ -127,7 +132,7 @@ const GAME_CONFIG_SCHEMA = yup.object().shape({
   }),
 });
 
-function mapOldCOnfigToNewConfig(oldConfig) {
+function mapOldConfigToNewConfig(oldConfig: OldGameConfig) {
   const newConfig = {
     subreddits: oldConfig.redditId.split(",").map((r) => r.trim()),
     slideDuration: oldConfig.slideDuration,
@@ -171,8 +176,8 @@ function mapOldCOnfigToNewConfig(oldConfig) {
   return newConfig;
 }
 
-function mapNewConfigToOldConfig(newConfig) {
-  const oldConfig = {
+function mapNewConfigToOldConfig(newConfig: GameConfig) {
+  const oldConfig: OldGameConfig = {
     redditId: newConfig.subreddits.join(","),
     gifs: newConfig.imageType.includes(MediaType.Gif),
     pictures: newConfig.imageType.includes(MediaType.Picture),
@@ -183,6 +188,7 @@ function mapNewConfigToOldConfig(newConfig) {
     ruinedProbability: newConfig.probabilities.ruinedProbability,
     minimumGameTime: newConfig.gameLength.min,
     maximumGameTime: newConfig.gameLength.max,
+    minimumEdges: newConfig.minimumEdges,
     minimumOrgasms: newConfig.minimumOrgasms,
     maximumOrgasms: newConfig.maximumOrgasms,
     minimumRuinedOrgasms: newConfig.enableRuinedOrgasms
@@ -199,6 +205,7 @@ function mapNewConfigToOldConfig(newConfig) {
     ruinCooldown: newConfig.ruinCooldown,
     slowestStrokeSpeed: newConfig.strokeSpeed.min,
     fastestStrokeSpeed: newConfig.strokeSpeed.max,
+    initialGripStrength: newConfig.initialGripStrength,
     defaultStrokeStyle: newConfig.defaultStrokeStyle,
     actionFrequency: newConfig.actionFrequency,
     tasks: newConfig.tasks,
@@ -223,8 +230,8 @@ export default function ConfigPage() {
   const classes = useStyles();
 
   return (
-    <Formik
-      initialValues={mapOldCOnfigToNewConfig(
+    <Formik<GameConfig>
+      initialValues={mapOldConfigToNewConfig(
         isDefaultConfig(store.config) ? defaultConfig : store.config
       )}
       validationSchema={GAME_CONFIG_SCHEMA}
@@ -242,7 +249,7 @@ export default function ConfigPage() {
             <div className={classes.background}>
               <div className={classes.formContainer}>
                 <Paper elevation={10} className={classes.form}>
-                  <MediaStep errors={errors} />
+                  <MediaStep />
                   <TimeStep />
                   <OrgasmStep />
                   <EdgingStep />

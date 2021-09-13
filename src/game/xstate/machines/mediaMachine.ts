@@ -2,7 +2,7 @@ import { createMachine, assign, send } from "xstate";
 import { createNotification } from "engine/notification";
 import { Severity } from "common/store/notifications";
 import MediaLink, { MediaType } from "common/types/Media";
-import { GameConfig } from "configureStore";
+import { OldGameConfig } from "configureStore";
 import fetchRedditPics from "api/fetchRedditPics";
 
 const PRELOAD_LINK_THRESHOLD = 5;
@@ -37,7 +37,7 @@ function preloadImage(url: string) {
   new Image().src = url;
 }
 
-export function getEnabledMediaTypes(config: GameConfig) {
+export function getEnabledMediaTypes(config: OldGameConfig) {
   const { gifs, pictures, videos } = config;
   const mediaTypes = [];
 
@@ -75,7 +75,7 @@ export type MediaMachineEvent =
   | { type: "PRELOAD_LINK" }
   | StopEvent;
 
-export function createMediaMachine(config: GameConfig) {
+export function createMediaMachine(config: OldGameConfig) {
   const subreddits = parseRedditIds(config.redditId);
   const mediaTypes = getEnabledMediaTypes(config);
   const estimatedRequiredLinkCount = getEstimatedRequiredLinkCount(

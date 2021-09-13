@@ -1,7 +1,7 @@
 import { assign, createMachine, send } from "xstate";
 import store from "common/store";
 import { selectEnableTicks } from "common/store/settings";
-import { GameConfig } from "configureStore";
+import { OldGameConfig } from "configureStore";
 import { playTick } from "engine/audio";
 import { StrokeService } from "../services";
 import { TIME_TO_TICK } from "components/organisms/BeatMeter/settings";
@@ -62,7 +62,7 @@ export type StrokeMachineEvent =
   | StrokeEvent
   | StopEvent;
 
-export function createStrokeMachine(config: GameConfig) {
+export function createStrokeMachine(config: OldGameConfig) {
   const initialStrokeSpeed = getRandomArbitrary(
     config.slowestStrokeSpeed,
     getAverageStrokeSpeed()

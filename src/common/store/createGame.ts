@@ -1,56 +1,62 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import api from "common/api/client";
-import { AppThunk } from "common/store";
 import { State } from "common/store/rootReducer";
-import { createNotification, Severity } from "common/store/notifications";
 import {
   CreateGameRequest,
   CreateGameResponse,
 } from "common/api/schemas/games";
 
-interface CreateGameState {
+type CreateGameState = {
   loading: boolean;
-  error: string | null;
-}
+  error?: string;
+  gameId: string | null;
+};
 
 const initialState: CreateGameState = {
   loading: false,
-  error: null,
+  gameId: null,
 };
+
+export const createGame = createAsyncThunk(
+  `game/create`,
+  async (values: CreateGameRequest, { getState, rejectWithValue }) => {
+    const response = await api.post<CreateGameResponse>("/v1/games", values);
+    return response.data;
+  }
+);
 
 export const createGameSlice = createSlice({
   name: "createGame",
   initialState,
   reducers: {
-    setLoading: (state: CreateGameState, action: PayloadAction<boolean>) => {
-      state.loading = action.payload;
+    clearGameId: (state: CreateGameState) => {
+      state.gameId = null;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(createGame.pending, (state, action) => {
+        if (!state.loading) {
+          state.loading = true;
+        }
+      })
+      .addCase(createGame.fulfilled, (state, action) => {
+        if (state.loading) {
+          state.loading = false;
+          state.gameId = action.payload.id;
+        }
+      })
+      .addCase(createGame.rejected, (state, action) => {
+        if (state.loading) {
+          state.loading = false;
+          state.error = action.error.message;
+        }
+      });
   },
 });
 
-export const selectLoading = (state: State) => state.createGame.loading;
+export const selectGameId = (state: State) => state.createGame.gameId;
 
-export const { setLoading } = createGameSlice.actions;
+export const { clearGameId } = createGameSlice.actions;
 
 export default createGameSlice.reducer;
-
-export const createGame =
-  (values: CreateGameRequest): AppThunk<Promise<CreateGameResponse>> =>
-  async (dispatch) => {
-    try {
-      dispatch(setLoading(true));
-      const { data } = await api.post<CreateGameResponse>("/v1/games", values);
-      return data;
-    } catch (err) {
-      dispatch(
-        createNotification({
-          message: `Error creating game: ${err.message}`,
-          duration: -1,
-          severity: Severity.ERROR,
-        })
-      );
-      dispatch(setLoading(false));
-
-      throw err;
-    }
-  };

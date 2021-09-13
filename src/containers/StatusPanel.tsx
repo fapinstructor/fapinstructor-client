@@ -163,7 +163,7 @@ export default memo(function StatusPanel() {
                     <Label value="Stroke Style:" />
                     {buttPlugInserted && <Label value="Butt Plug:" />}
                     {rubberBands > 0 && <Label value="Rubberbands:" />}
-                    {clothespins > 0 && <Label value="Clothepins:" />}
+                    {clothespins > 0 && <Label value="Clothespins:" />}
                     {cockAndBallsBound && <Label value="Cock & Balls:" />}
                     {edges > 0 && <Label value="Edges:" />}
                     {ruins > 0 && <Label value="Ruins:" />}

@@ -1,4 +1,4 @@
-import { GameConfig } from "configureStore";
+import { OldGameConfig } from "configureStore";
 import { assign, createMachine, send, actions } from "xstate";
 import history from "browserHistory";
 import store from "store";
@@ -63,7 +63,7 @@ export type ActionMachineEvent =
   | GenerateActionEvent
   | StopEvent;
 
-export function createActionMachine(config: GameConfig) {
+export function createActionMachine(config: OldGameConfig) {
   const actionFrequency = config.actionFrequency;
   const actions = initializeActions(config.tasks);
 

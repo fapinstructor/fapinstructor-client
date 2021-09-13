@@ -1,5 +1,5 @@
 import { createMachine, assign, send } from "xstate";
-import { GameConfig } from "configureStore";
+import { OldGameConfig } from "configureStore";
 import { createNotification } from "engine/notification";
 import audioLibrary from "audio";
 import { playCommand } from "engine/audio";
@@ -50,7 +50,7 @@ export type GripMachineEvent =
   | { type: "SET_TIGHTEST_GRIP_STRENGTH" }
   | StopEvent;
 
-export function createGripMachine(config: GameConfig) {
+export function createGripMachine(config: OldGameConfig) {
   const gripMachine = createMachine<GripMachineContext, GripMachineEvent>(
     {
       id: "grip",
