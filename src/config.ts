@@ -7,6 +7,8 @@ declare global {
       REACT_APP_AUTH0_DOMAIN: string;
       REACT_APP_AUTH0_CLIENT_ID: string;
       REACT_APP_AUTH0_AUDIENCE: string;
+      // Debug flags
+      REACT_APP_STATE_CHARTS: string;
     }
   }
 }
@@ -19,6 +21,7 @@ const config = {
   auth0ClientId: process.env.REACT_APP_AUTH0_CLIENT_ID,
   auth0Audience: process.env.REACT_APP_AUTH0_AUDIENCE,
   publicUrl,
+  enableStateCharts: process.env.REACT_APP_STATE_CHARTS === "true",
 };
 
 export default config;

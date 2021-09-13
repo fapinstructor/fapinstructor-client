@@ -8,8 +8,9 @@ import { Provider } from "react-redux";
 import store from "common/store";
 import NotificationManager from "components/organisms/NotificationManager";
 import { inspect } from "@xstate/inspect";
+import config from "config";
 
-if (process.env.NODE_ENV === "development") {
+if (config.enableStateCharts) {
   inspect({
     iframe: false,
   });

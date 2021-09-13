@@ -216,7 +216,6 @@ function mapNewConfigToOldConfig(newConfig: GameConfig) {
 
 /**
  * TODO:
- * - Convert to typescript.
  * - Organize the code directory structure.
  * - Make form a11y.
  * - Make form responsive to screen sizes.
