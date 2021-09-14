@@ -31,7 +31,6 @@ export default function FapInstructorMenuButton() {
     <RouteLink to="/">
       <MenuItem
         title={<Title>Fap Instructor</Title>}
-        smallTitle={<Title>FI</Title>}
         icon={<FapInstructorIcon size={30} />}
       />
     </RouteLink>

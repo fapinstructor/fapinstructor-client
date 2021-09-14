@@ -44,7 +44,9 @@ type HandyIconProps = {
 };
 
 function HandyIcon({ connected }: HandyIconProps) {
-  return <ContactlessIcon style={{ color: connected ? green[500] : "#FFF" }} />;
+  return (
+    <ContactlessIcon style={{ color: connected ? green[500] : "black" }} />
+  );
 }
 
 export default function ConnectHandy({
