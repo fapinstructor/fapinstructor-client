@@ -95,7 +95,12 @@ export default function TaskStep() {
 
   return (
     <Group title="Tasks">
-      <Button variant="outlined" color="secondary" onClick={randomizeTasks}>
+      <Button
+        className="stack-skip"
+        variant="outlined"
+        color="secondary"
+        onClick={randomizeTasks}
+      >
         Randomize
       </Button>
       <TaskContainer>

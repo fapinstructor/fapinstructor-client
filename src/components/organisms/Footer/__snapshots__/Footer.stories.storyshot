@@ -13,7 +13,7 @@ exports[`Storyshots Organisms/Footer Standard 1`] = `
 }
 
 <div
-  class="makeStyles-container-4"
+  class="makeStyles-container-2"
 >
   <h6
     class="MuiTypography-root MuiTypography-h6"

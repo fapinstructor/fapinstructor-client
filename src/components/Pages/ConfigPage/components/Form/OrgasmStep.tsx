@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Grid } from "@material-ui/core";
 import { useField, useFormikContext } from "formik";
 
 import Group from "components/molecules/Group";
@@ -98,63 +97,41 @@ export default function OrgasmStep() {
 
   return (
     <Group title="Game Ending Orgasm">
-      <Grid container spacing={2}>
-        <Grid item xs={4}>
-          <ProbabilityField
-            name="probabilities.orgasmProbability"
-            label="Probability of an orgasm"
-            onChange={handleProbabilityChange}
-            disabled={disableProbabilities}
-            locked={lockedProbabilities["probabilities.orgasmProbability"]}
-            onToggleLock={handleProbabilityToggle}
-            cap={lockedProbabilitySum}
-          />
-        </Grid>
-        <Grid item xs={8} />
-        <Grid item xs={4}>
-          <ProbabilityField
-            name="probabilities.deniedProbability"
-            label="Probability to be denied an orgasm"
-            onChange={handleProbabilityChange}
-            disabled={disableProbabilities}
-            locked={lockedProbabilities["probabilities.deniedProbability"]}
-            onToggleLock={handleProbabilityToggle}
-            cap={lockedProbabilitySum}
-          />
-        </Grid>
-        <Grid item xs={8} />
-        <Grid item xs={4}>
-          <ProbabilityField
-            name="probabilities.ruinedProbability"
-            label="Probability of a ruined orgasm"
-            disabled={disableProbabilities}
-            onChange={handleProbabilityChange}
-            locked={lockedProbabilities["probabilities.ruinedProbability"]}
-            onToggleLock={handleProbabilityToggle}
-            cap={lockedProbabilitySum}
-          />
-        </Grid>
-        <Grid item xs={8} />
-      </Grid>
-      <Grid container spacing={2}>
-        <Grid item xs={4}>
-          <PostOrgasmTortureDurationField />
-        </Grid>
-        <Grid item xs={8} />
-        <Grid item xs={4}>
-          <RuinedOrgasmsRangeField />
-        </Grid>
-        <Grid item xs={8} />
-        <Grid item xs={4}>
-          <CooldownField
-            name="ruinCooldown"
-            label="Ruin Cooldown"
-            helperText="Length of time to rest before the game continues."
-            disabled={!enableRuinedOrgasms.value}
-          />
-        </Grid>
-        <Grid item xs={8} />
-      </Grid>
+      <ProbabilityField
+        name="probabilities.orgasmProbability"
+        label="Probability of an orgasm"
+        onChange={handleProbabilityChange}
+        disabled={disableProbabilities}
+        locked={lockedProbabilities["probabilities.orgasmProbability"]}
+        onToggleLock={handleProbabilityToggle}
+        cap={lockedProbabilitySum}
+      />
+      <ProbabilityField
+        name="probabilities.deniedProbability"
+        label="Probability to be denied an orgasm"
+        onChange={handleProbabilityChange}
+        disabled={disableProbabilities}
+        locked={lockedProbabilities["probabilities.deniedProbability"]}
+        onToggleLock={handleProbabilityToggle}
+        cap={lockedProbabilitySum}
+      />
+      <ProbabilityField
+        name="probabilities.ruinedProbability"
+        label="Probability of a ruined orgasm"
+        disabled={disableProbabilities}
+        onChange={handleProbabilityChange}
+        locked={lockedProbabilities["probabilities.ruinedProbability"]}
+        onToggleLock={handleProbabilityToggle}
+        cap={lockedProbabilitySum}
+      />
+      <PostOrgasmTortureDurationField />
+      <RuinedOrgasmsRangeField />
+      <CooldownField
+        name="ruinCooldown"
+        label="Ruin Cooldown"
+        helperText="Length of time to rest before the game continues."
+        disabled={!enableRuinedOrgasms.value}
+      />
     </Group>
   );
 }

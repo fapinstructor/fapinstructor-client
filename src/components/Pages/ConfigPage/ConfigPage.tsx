@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, Paper } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import { Formik, Form } from "formik";
@@ -23,6 +23,10 @@ import EdgingStep from "./components/Form/EdgingStep";
 import StrokeStep from "./components/Form/StrokeStep";
 import TimeStep from "./components/Form/TimeStep";
 import { getEnabledMediaTypes } from "game/xstate/machines/mediaMachine";
+import styled from "styled-components/macro";
+import Stack from "components/templates/Stack";
+import Cluster from "components/templates/Cluster";
+import theme from "theme";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -42,7 +46,6 @@ const useStyles = makeStyles((theme) => ({
   form: {
     padding: 20,
     marginBottom: 20,
-    width: "90vw",
     backgroundColor: "rgba(255, 255, 255, 0.9)",
   },
 }));
@@ -229,31 +232,31 @@ export default function ConfigPage() {
   const classes = useStyles();
 
   return (
-    <Formik<GameConfig>
-      initialValues={mapOldConfigToNewConfig(
-        isDefaultConfig(store.config) ? defaultConfig : store.config
-      )}
-      validationSchema={GAME_CONFIG_SCHEMA}
-      onSubmit={async (formValues) => {
-        store.config = mapNewConfigToOldConfig(formValues);
-        history.push("/game");
-      }}
-    >
-      {({ errors }) => {
-        if (Object.keys(errors).length) {
-          console.log("errors:", errors);
-        }
-        return (
-          <Form>
-            <div className={classes.background}>
-              <div className={classes.formContainer}>
-                <Paper elevation={10} className={classes.form}>
-                  <MediaStep />
-                  <TimeStep />
-                  <OrgasmStep />
-                  <EdgingStep />
-                  <StrokeStep />
-                  <TaskStep />
+    <>
+      <Formik<GameConfig>
+        initialValues={mapOldConfigToNewConfig(
+          isDefaultConfig(store.config) ? defaultConfig : store.config
+        )}
+        validationSchema={GAME_CONFIG_SCHEMA}
+        onSubmit={async (formValues) => {
+          store.config = mapNewConfigToOldConfig(formValues);
+          history.push("/game");
+        }}
+      >
+        {({ errors }) => {
+          if (Object.keys(errors).length) {
+            console.log("errors:", errors);
+          }
+          return (
+            <StyledForm>
+              <Stack>
+                <MediaStep />
+                <TimeStep />
+                <OrgasmStep />
+                <EdgingStep />
+                <StrokeStep />
+                <TaskStep />
+                <Cluster>
                   <Button
                     type="submit"
                     title="Starts the game."
@@ -264,13 +267,27 @@ export default function ConfigPage() {
                     Start
                   </Button>
                   <ShareGame disabled={Object.keys(errors).length > 0} />
-                  <Footer />
-                </Paper>
-              </div>
-            </div>
-          </Form>
-        );
-      }}
-    </Formik>
+                </Cluster>
+              </Stack>
+            </StyledForm>
+          );
+        }}
+      </Formik>
+      <Footer />
+    </>
   );
 }
+
+const StyledForm = styled(Form)`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: min-content;
+
+  @media screen and (${theme.breakpoint.mobile.up}) {
+    grid-template-columns: 1fr 1.5fr 1fr;
+  }
+
+  & > * {
+    grid-column: 2;
+  }
+`;

@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Templates/Cluster Standard 1`] = `
+.c0 > * {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.c0 > * + * {
+  margin-left: var(--space,1rem);
+}
+
+.c1 > * {
+  border: 1px dotted black;
+}
+
+<div
+  class="c0 c1"
+>
+  <button>
+    Button 1
+  </button>
+  <button>
+    Button 2
+  </button>
+  <button>
+    Button 3
+  </button>
+</div>
+`;
