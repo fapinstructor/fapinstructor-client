@@ -1,11 +1,5 @@
 import { Field } from "formik";
-import {
-  FormControl,
-  FormHelperText,
-  FormLabel,
-  Grid,
-} from "@material-ui/core";
-import TimelapseIcon from "@material-ui/icons/Timelapse";
+import { FormControl, FormHelperText, FormLabel } from "@material-ui/core";
 
 import FormikSlider from "components/molecules/fields/FormikSlider";
 
@@ -38,28 +32,19 @@ export default function CooldownField({
 }: CooldownFieldProps) {
   return (
     <FormControl fullWidth>
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <FormLabel id={name}>{label}</FormLabel>
-        </Grid>
-        <Grid item>
-          <TimelapseIcon />
-        </Grid>
-        <Grid item xs>
-          <Field
-            name={name}
-            disabled={disabled}
-            aria-labelledby={name}
-            getAriaValueText={getAriaValueText}
-            valueLabelFormat={getValueLabelFormat}
-            component={FormikSlider}
-            marks={marks}
-            min={5}
-            max={60}
-            valueLabelDisplay="auto"
-          />
-        </Grid>
-      </Grid>
+      <FormLabel id={name}>{label}</FormLabel>
+      <Field
+        name={name}
+        disabled={disabled}
+        aria-labelledby={name}
+        getAriaValueText={getAriaValueText}
+        valueLabelFormat={getValueLabelFormat}
+        component={FormikSlider}
+        marks={marks}
+        min={5}
+        max={60}
+        valueLabelDisplay="auto"
+      />
       <FormHelperText>{helperText}</FormHelperText>
     </FormControl>
   );

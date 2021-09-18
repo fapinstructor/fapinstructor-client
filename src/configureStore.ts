@@ -145,7 +145,6 @@ export type GameConfig = {
     min: number;
     max: number;
   };
-  enableRuinedOrgasms: boolean;
   ruinedOrgasms: {
     min: number;
     max: number;

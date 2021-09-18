@@ -2,13 +2,12 @@ import { Field } from "formik";
 import { TextField } from "formik-material-ui";
 import { FormControl, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import ScheduleIcon from "@material-ui/icons/Schedule";
 
 import FormikSlider from "components/molecules/fields/FormikSlider";
 
 const useStyles = makeStyles({
   input: {
-    width: 42,
+    width: 80,
     margin: 0,
   },
 });
@@ -38,12 +37,10 @@ export default function SlideDurationField() {
     <FormControl fullWidth>
       <Grid container spacing={2}>
         <Grid item>
-          <ScheduleIcon />
-        </Grid>
-        <Grid item>
           <Field
             className={classes.input}
             component={TextField}
+            variant="outlined"
             name="gameLength.min"
             margin="dense"
             inputProps={{
@@ -74,6 +71,7 @@ export default function SlideDurationField() {
         <Grid item>
           <Field
             className={classes.input}
+            variant="outlined"
             component={TextField}
             name="gameLength.max"
             margin="dense"

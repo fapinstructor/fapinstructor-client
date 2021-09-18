@@ -10,7 +10,7 @@ import {
 export default function GripStrengthField() {
   return (
     <FormControl fullWidth>
-      <InputLabel>Initial Grip Strength</InputLabel>
+      <InputLabel>Starting Grip Strength</InputLabel>
       <Field
         component={Select}
         name="initialGripStrength"

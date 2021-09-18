@@ -27,6 +27,7 @@ import styled from "styled-components/macro";
 import Stack from "components/templates/Stack";
 import Cluster from "components/templates/Cluster";
 import theme from "theme";
+import RuinedOrgasmsStep from "./components/Form/RuinedOrgasmsStep";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -113,7 +114,7 @@ const GAME_CONFIG_SCHEMA = yup.object().shape({
       ),
   }),
   strokeSpeed: yup.object().shape({
-    min: yup.number().min(0.25),
+    min: yup.number().min(0),
     max: yup
       .number()
       .max(8)
@@ -122,7 +123,7 @@ const GAME_CONFIG_SCHEMA = yup.object().shape({
         "Maximum stroke speed must be greater than minimum stroke speed."
       ),
   }),
-  minimumEdges: yup.number().min(0),
+  minimumEdges: yup.number().min(0).max(1000),
   maximumOrgasms: yup.number().min(0),
   ruinCooldown: yup.number().min(0),
   edgeCooldown: yup.number().min(0),
@@ -154,7 +155,6 @@ function mapOldConfigToNewConfig(oldConfig: OldGameConfig) {
       min: oldConfig.postOrgasmTortureMinimumTime,
       max: oldConfig.postOrgasmTortureMaximumTime,
     },
-    enableRuinedOrgasms: oldConfig.maximumRuinedOrgasms > 0,
     ruinedOrgasms: {
       min: oldConfig.minimumRuinedOrgasms,
       max: oldConfig.maximumRuinedOrgasms,
@@ -194,12 +194,8 @@ function mapNewConfigToOldConfig(newConfig: GameConfig) {
     minimumEdges: newConfig.minimumEdges,
     minimumOrgasms: newConfig.minimumOrgasms,
     maximumOrgasms: newConfig.maximumOrgasms,
-    minimumRuinedOrgasms: newConfig.enableRuinedOrgasms
-      ? newConfig.ruinedOrgasms.min
-      : 0,
-    maximumRuinedOrgasms: newConfig.enableRuinedOrgasms
-      ? newConfig.ruinedOrgasms.max
-      : 0,
+    minimumRuinedOrgasms: newConfig.ruinedOrgasms.min,
+    maximumRuinedOrgasms: newConfig.ruinedOrgasms.max,
     postOrgasmTorture: newConfig.postOrgasmTorture,
     postOrgasmTortureMinimumTime: newConfig.postOrgasmTortureDuration.min,
     postOrgasmTortureMaximumTime: newConfig.postOrgasmTortureDuration.max,
@@ -253,6 +249,7 @@ export default function ConfigPage() {
                 <MediaStep />
                 <TimeStep />
                 <OrgasmStep />
+                <RuinedOrgasmsStep />
                 <EdgingStep />
                 <StrokeStep />
                 <TaskStep />

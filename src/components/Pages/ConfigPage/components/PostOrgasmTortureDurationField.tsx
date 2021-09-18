@@ -1,5 +1,5 @@
 import { Field, useField } from "formik";
-import { Checkbox, TextField } from "formik-material-ui";
+import { Switch, TextField } from "formik-material-ui";
 import {
   FormControl,
   FormHelperText,
@@ -12,7 +12,7 @@ import FormikSlider from "components/molecules/fields/FormikSlider";
 
 const useStyles = makeStyles({
   input: {
-    width: 42,
+    width: 80,
     margin: 0,
   },
 });
@@ -44,11 +44,7 @@ export default function PostOrgasmTortureDurationField() {
           <FormLabel id="post-orgasm-torture">Post orgasm torture</FormLabel>
         </Grid>
         <Grid item>
-          <Field
-            component={Checkbox}
-            type="checkbox"
-            name="postOrgasmTorture"
-          />
+          <Field component={Switch} name="postOrgasmTorture" />
         </Grid>
         <Grid item>
           <Field
@@ -57,6 +53,7 @@ export default function PostOrgasmTortureDurationField() {
             name="postOrgasmTortureDuration.min"
             disabled={!postOrgasmTorture.value}
             margin="dense"
+            variant="outlined"
             inputProps={{
               type: "number",
               min: 1,
@@ -88,6 +85,7 @@ export default function PostOrgasmTortureDurationField() {
             className={classes.input}
             disabled={!postOrgasmTorture.value}
             component={TextField}
+            variant="outlined"
             name="postOrgasmTortureDuration.max"
             margin="dense"
             inputProps={{

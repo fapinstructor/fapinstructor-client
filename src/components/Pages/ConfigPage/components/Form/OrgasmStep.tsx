@@ -1,12 +1,10 @@
 import * as React from "react";
-import { useField, useFormikContext } from "formik";
+import { useFormikContext } from "formik";
 
 import Group from "components/molecules/Group";
 import ProbabilityField from "../ProbabilityField";
 import balanceArray from "utils/balanceArray";
 import PostOrgasmTortureDurationField from "../PostOrgasmTortureDurationField";
-import RuinedOrgasmsRangeField from "../RuinedOrgasmsRangeField";
-import CooldownField from "../CooldownField";
 
 const ONE_HUNDRED_PERCENT = 100;
 
@@ -21,8 +19,6 @@ export default function OrgasmStep() {
   const form = useFormikContext<{
     probabilities: Sliders;
   }>();
-  const [enableRuinedOrgasms] = useField<boolean>("enableRuinedOrgasms");
-
   // Generate a list of enabled probabilities
   const [lockedProbabilities, setLockedProbabilities] = React.useState({
     "probabilities.orgasmProbability": false,
@@ -125,13 +121,6 @@ export default function OrgasmStep() {
         cap={lockedProbabilitySum}
       />
       <PostOrgasmTortureDurationField />
-      <RuinedOrgasmsRangeField />
-      <CooldownField
-        name="ruinCooldown"
-        label="Ruin Cooldown"
-        helperText="Length of time to rest before the game continues."
-        disabled={!enableRuinedOrgasms.value}
-      />
     </Group>
   );
 }

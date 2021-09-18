@@ -5,57 +5,49 @@ import {
   FormLabel,
   Grid,
 } from "@material-ui/core";
-import ScheduleIcon from "@material-ui/icons/Schedule";
+import styled from "styled-components/macro";
+import { TextField } from "formik-material-ui";
 
-import FormikSlider from "components/molecules/fields/FormikSlider";
-
-const marks = [
-  { value: 0.25, label: "0.25" },
-  { value: 2, label: "2" },
-  { value: 4, label: "4" },
-  { value: 6, label: "6" },
-  { value: 8, label: "8" },
-];
-
-function getAriaValueText(value: number) {
-  return `${value} strokes per second`;
-}
-
-function getValueLabelFormat(value: number) {
-  return `${value}`;
-}
+const StyledField = styled(Field)`
+  max-width: 100px;
+  margin-top: 1rem;
+`;
 
 export default function StrokeSpeedField() {
   return (
-    <FormControl fullWidth>
-      <FormLabel id="stroke-speed">Stroke Speed</FormLabel>
-      <Grid container spacing={2}>
-        <Grid item>
-          <ScheduleIcon />
-        </Grid>
-        <Grid item xs>
-          <Field
-            name="strokeSpeed"
-            aria-labelledby="stroke-speed"
-            getAriaValueText={getAriaValueText}
-            valueLabelFormat={getValueLabelFormat}
-            component={FormikSlider}
-            marks={marks}
-            min={0.25}
-            max={8}
-            step={0.25}
-            valueLabelDisplay="auto"
-            parse={({ min, max }: { min: number; max: number }) => [min, max]}
-            format={([min, max]: [number, number]) => ({
-              min,
-              max,
-            })}
+    <Grid container spacing={2}>
+      <Grid item xs={6}>
+        <FormControl>
+          <FormLabel id="minimum-stroke-speed">Minimum Stroke Speed</FormLabel>
+          <StyledField
+            name="strokeSpeed.min"
+            aria-labelledby="minimum-stroke-speed"
+            component={TextField}
+            type="number"
+            inputProps={{ step: "0.25", min: "0" }}
+            variant="outlined"
           />
-        </Grid>
+          <FormHelperText>
+            The minimum number of strokes per second.
+          </FormHelperText>
+        </FormControl>
       </Grid>
-      <FormHelperText>
-        The minimum and maximum number of strokes per second.
-      </FormHelperText>
-    </FormControl>
+      <Grid item xs={6}>
+        <FormControl>
+          <FormLabel id="maximum-stroke-speed">Maximum Stroke Speed</FormLabel>
+          <StyledField
+            name="strokeSpeed.max"
+            aria-labelledby="maximum-stroke-speed"
+            component={TextField}
+            type="number"
+            inputProps={{ step: "0.5", min: "1" }}
+            variant="outlined"
+          />
+          <FormHelperText>
+            The maximum number of strokes per second.
+          </FormHelperText>
+        </FormControl>
+      </Grid>
+    </Grid>
   );
 }

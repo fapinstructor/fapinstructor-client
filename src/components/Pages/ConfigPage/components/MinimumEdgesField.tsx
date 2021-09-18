@@ -1,43 +1,25 @@
 import { Field } from "formik";
-import {
-  FormControl,
-  FormHelperText,
-  FormLabel,
-  Grid,
-} from "@material-ui/core";
-import TimelapseIcon from "@material-ui/icons/Timelapse";
+import { FormControl, FormHelperText, FormLabel } from "@material-ui/core";
+import { TextField } from "formik-material-ui";
+import styled from "styled-components/macro";
 
-import FormikSlider from "components/molecules/fields/FormikSlider";
-
-const marks = [
-  { value: 0, label: "0" },
-  { value: 5, label: "5" },
-  { value: 10, label: "10" },
-  { value: 20, label: "20" },
-  { value: 40, label: "40" },
-  { value: 80, label: "80" },
-];
+const StyledField = styled(Field)`
+  max-width: 100px;
+  margin-top: 1rem;
+`;
 
 export default function MinimumEdgesField() {
   return (
     <FormControl fullWidth>
       <FormLabel id="minimum-edges">Minimum Edges</FormLabel>
-      <Grid container spacing={2}>
-        <Grid item>
-          <TimelapseIcon />
-        </Grid>
-        <Grid item xs>
-          <Field
-            name="minimumEdges"
-            aria-labelledby="minimum-edges"
-            component={FormikSlider}
-            marks={marks}
-            min={0}
-            max={80}
-            valueLabelDisplay="auto"
-          />
-        </Grid>
-      </Grid>
+      <StyledField
+        name="minimumEdges"
+        aria-labelledby="minimum-edges"
+        component={TextField}
+        type="number"
+        inputProps={{ step: "1", min: "0", max: "1000" }}
+        variant="outlined"
+      />
       <FormHelperText>
         The minimum number of times you'll have to edge.
       </FormHelperText>

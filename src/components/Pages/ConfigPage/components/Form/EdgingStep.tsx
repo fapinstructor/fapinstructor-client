@@ -7,12 +7,12 @@ export default function EdgingStep() {
   return (
     <Group title="Edging">
       <MinimumEdgesField />
+      <EdgeFrequencyField />
       <CooldownField
         name="edgeCooldown"
         label="Edge Cooldown"
         helperText="Length of time to rest before the game continues."
       />
-      <EdgeFrequencyField />
     </Group>
   );
 }

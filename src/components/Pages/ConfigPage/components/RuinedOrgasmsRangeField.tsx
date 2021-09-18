@@ -1,57 +1,58 @@
-import { Field, useField } from "formik";
+import { Field } from "formik";
 import {
-  Grid,
   FormControl,
   FormHelperText,
   FormLabel,
+  Grid,
 } from "@material-ui/core";
-import { Checkbox } from "formik-material-ui";
+import { TextField } from "formik-material-ui";
 
-import FormikSlider from "components/molecules/fields/FormikSlider";
+import styled from "styled-components/macro";
 
-const marks = [
-  { value: 0, label: 0 },
-  { value: 5, label: 5 },
-  { value: 10, label: 10 },
-];
+const StyledField = styled(Field)`
+  max-width: 100px;
+  margin-top: 1rem;
+`;
 
 export default function RuinedOrgasmsRangeField() {
-  const [enableRuinedOrgasms] = useField<boolean>("enableRuinedOrgasms");
-
   return (
-    <FormControl fullWidth>
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <FormLabel id="ruined-orgasms">Ruined orgasms</FormLabel>
-        </Grid>
-        <Grid item>
-          <Field
-            component={Checkbox}
-            type="checkbox"
-            name="enableRuinedOrgasms"
+    <Grid container spacing={2}>
+      <Grid item xs={6}>
+        <FormControl>
+          <FormLabel id="minimum-ruined-orgasms">
+            Minimum Ruined Orgasms
+          </FormLabel>
+          <StyledField
+            name="ruinedOrgasms.min"
+            aria-labelledby="minimum-ruined-orgasms"
+            component={TextField}
+            type="number"
+            inputProps={{ step: "1", min: "0", max: "1000" }}
+            variant="outlined"
           />
-        </Grid>
-        <Grid item xs>
-          <Field
-            name="ruinedOrgasms"
-            aria-labelledby="ruined-orgasms"
-            component={FormikSlider}
-            marks={marks}
-            min={0}
-            max={10}
-            disabled={!enableRuinedOrgasms.value}
-            valueLabelDisplay="auto"
-            parse={({ min, max }: { min: number; max: number }) => [min, max]}
-            format={([min, max]: [number, number]) => ({
-              min,
-              max,
-            })}
-          />
-        </Grid>
+          <FormHelperText>
+            The minimum number of times you'll have to ruin your orgasm.
+          </FormHelperText>
+        </FormControl>
       </Grid>
-      <FormHelperText>
-        The minimum and maximum times you'll have to ruin your orgasm.
-      </FormHelperText>
-    </FormControl>
+      <Grid item xs={6}>
+        <FormControl>
+          <FormLabel id="maximum-ruined-orgasms">
+            Maximum Ruined Orgasms
+          </FormLabel>
+          <StyledField
+            name="ruinedOrgasms.max"
+            aria-labelledby="maximum-ruined-orgasms"
+            component={TextField}
+            type="number"
+            inputProps={{ step: "1", min: "0", max: "1000" }}
+            variant="outlined"
+          />
+          <FormHelperText>
+            The maximum number of times you'll have to ruin your orgasm.
+          </FormHelperText>
+        </FormControl>
+      </Grid>
+    </Grid>
   );
 }
