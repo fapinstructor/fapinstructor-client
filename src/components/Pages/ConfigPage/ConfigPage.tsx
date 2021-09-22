@@ -277,14 +277,18 @@ export default function ConfigPage() {
 
 const StyledForm = styled(Form)`
   display: grid;
-  grid-template-columns: 1fr;
   grid-auto-rows: min-content;
 
-  @media screen and (${theme.breakpoint.mobile.up}) {
-    grid-template-columns: 1fr 1.5fr 1fr;
-  }
+  grid-template-columns: 1fr;
+  grid-column-gap: 32px;
+  grid-template-columns: min(60ch, calc(100% - 64px));
+  justify-content: center;
 
-  & > * {
-    grid-column: 2;
+  @media screen and (${theme.breakpoint.desktop.up}) {
+    grid-template-columns: 1fr 1.5fr 1fr;
+
+    & > * {
+      grid-column: 2;
+    }
   }
 `;

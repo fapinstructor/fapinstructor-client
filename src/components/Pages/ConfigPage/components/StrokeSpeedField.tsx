@@ -15,7 +15,7 @@ const StyledField = styled(Field)`
 
 export default function StrokeSpeedField() {
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={0}>
       <Grid item xs={6}>
         <FormControl>
           <FormLabel id="minimum-stroke-speed">Minimum Stroke Speed</FormLabel>

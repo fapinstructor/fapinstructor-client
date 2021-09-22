@@ -5,7 +5,6 @@ import {
   FormLabel,
   Grid,
 } from "@material-ui/core";
-import TimelapseIcon from "@material-ui/icons/Timelapse";
 
 import FormikSlider from "components/molecules/fields/FormikSlider";
 
@@ -29,9 +28,6 @@ export default function SlideDurationField() {
     <FormControl fullWidth>
       <FormLabel id="slide-duration">Slide Duration</FormLabel>
       <Grid container spacing={2}>
-        <Grid item>
-          <TimelapseIcon />
-        </Grid>
         <Grid item xs>
           <Field
             name="slideDuration"

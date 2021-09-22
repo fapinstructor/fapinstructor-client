@@ -1,7 +1,6 @@
 import { Button } from "@material-ui/core";
 import styled from "styled-components/macro";
 
-import theme from "theme";
 import {
   Task,
   SpeedTasks,
@@ -16,15 +15,12 @@ import Group from "components/molecules/Group";
 import TaskGroup from "../TaskGroup";
 import { useFormikContext } from "formik";
 import { getRandomBoolean } from "utils/math";
+import Stack from "components/templates/Stack";
 
-const TaskContainer = styled.div`
-  padding-top: 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-
-  @media screen and (${theme.breakpoint.mobile.down}) {
-    flex-direction: column;
+const TaskContainer = styled(Stack)`
+  & > * {
+    border: 1px solid #3f51b5;
+    padding: 1rem;
   }
 `;
 
