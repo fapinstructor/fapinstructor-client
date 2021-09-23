@@ -1,6 +1,8 @@
 import { Button } from "@material-ui/core";
 import styled from "styled-components/macro";
+import { useFormikContext } from "formik";
 
+import { getRandomBoolean } from "utils/math";
 import {
   Task,
   SpeedTasks,
@@ -12,9 +14,7 @@ import {
   TaskConfig,
 } from "configureStore";
 import Group from "components/molecules/Group";
-import TaskGroup from "../TaskGroup";
-import { useFormikContext } from "formik";
-import { getRandomBoolean } from "utils/math";
+import TaskGroup from "./components/TaskGroup";
 import Stack from "components/templates/Stack";
 
 const TaskContainer = styled(Stack)`

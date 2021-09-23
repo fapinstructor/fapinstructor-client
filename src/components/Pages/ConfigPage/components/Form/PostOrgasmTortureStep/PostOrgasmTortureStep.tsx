@@ -1,5 +1,5 @@
 import Group from "components/molecules/Group";
-import PostOrgasmTortureDurationField from "../PostOrgasmTortureDurationField";
+import PostOrgasmTortureDurationField from "./components/PostOrgasmTortureDurationField";
 
 export default function PostOrgasmTortureStep() {
   return (

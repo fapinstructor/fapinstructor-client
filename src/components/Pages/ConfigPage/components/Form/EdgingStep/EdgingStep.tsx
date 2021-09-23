@@ -1,7 +1,7 @@
 import Group from "components/molecules/Group";
-import CooldownField from "../CooldownField";
-import MinimumEdgesField from "../MinimumEdgesField";
-import EdgeFrequencyField from "../EdgeFrequencyField";
+import CooldownField from "../components/CooldownField";
+import MinimumEdgesField from "./components/MinimumEdgesField";
+import EdgeFrequencyField from "./components/EdgeFrequencyField";
 
 export default function EdgingStep() {
   return (

@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useFormikContext } from "formik";
 
-import Group from "components/molecules/Group";
-import ProbabilityField from "../ProbabilityField";
 import balanceArray from "utils/balanceArray";
+import Group from "components/molecules/Group";
+import ProbabilityField from "./components/ProbabilityField";
 
 const ONE_HUNDRED_PERCENT = 100;
 

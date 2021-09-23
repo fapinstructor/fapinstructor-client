@@ -1,7 +1,7 @@
 import Group from "components/molecules/Group";
 
-import RuinedOrgasmsRangeField from "../RuinedOrgasmsRangeField";
-import CooldownField from "../CooldownField";
+import CooldownField from "../components/CooldownField";
+import RuinedOrgasmsRangeField from "./components/RuinedOrgasmsRangeField";
 
 export default function RuinedOrgasmsStep() {
   return (

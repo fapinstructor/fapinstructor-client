@@ -1,5 +1,5 @@
 import Group from "components/molecules/Group";
-import GameLengthField from "../GameLengthField";
+import GameLengthField from "./components/GameLengthField";
 
 export default function TimeStep() {
   return (

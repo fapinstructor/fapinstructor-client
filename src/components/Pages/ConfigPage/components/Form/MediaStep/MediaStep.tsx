@@ -9,8 +9,8 @@ import { CheckboxWithLabel } from "formik-material-ui";
 
 import { MediaType } from "common/types/Media";
 import Group from "components/molecules/Group";
-import RedditSelectionField from "../RedditSelectionField";
-import SlideDurationField from "../SlideDurationField";
+import RedditSelectionField from "./components/RedditSelectionField";
+import SlideDurationField from "./components/SlideDurationField";
 
 export default function MediaStep() {
   const [, meta] = useField("imageType");

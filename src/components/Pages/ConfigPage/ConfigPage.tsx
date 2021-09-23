@@ -21,7 +21,7 @@ import MediaStep from "./components/Form/MediaStep";
 import OrgasmStep from "./components/Form/OrgasmStep";
 import EdgingStep from "./components/Form/EdgingStep";
 import StrokeStep from "./components/Form/StrokeStep";
-import TimeStep from "./components/Form/TimeStep";
+import GameDurationStep from "./components/Form/GameDurationStep";
 import { getEnabledMediaTypes } from "game/xstate/machines/mediaMachine";
 import styled from "styled-components/macro";
 import Stack from "components/templates/Stack";
@@ -216,9 +216,7 @@ function mapNewConfigToOldConfig(newConfig: GameConfig) {
 
 /**
  * TODO:
- * - Organize the code directory structure.
  * - Make form a11y.
- * - Make form responsive to screen sizes.
  * - Test default games, saved games, and all of the above.
  * - Add tests.
  * - Error handling.
@@ -248,7 +246,7 @@ export default function ConfigPage() {
             <StyledForm>
               <Stack>
                 <MediaStep />
-                <TimeStep />
+                <GameDurationStep />
                 <OrgasmStep />
                 <PostOrgasmTortureStep />
                 <RuinedOrgasmsStep />
