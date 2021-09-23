@@ -4,7 +4,6 @@ import { useFormikContext } from "formik";
 import Group from "components/molecules/Group";
 import ProbabilityField from "../ProbabilityField";
 import balanceArray from "utils/balanceArray";
-import PostOrgasmTortureDurationField from "../PostOrgasmTortureDurationField";
 
 const ONE_HUNDRED_PERCENT = 100;
 
@@ -92,7 +91,7 @@ export default function OrgasmStep() {
   }
 
   return (
-    <Group title="Game Ending Orgasm">
+    <Group title="Game Finale">
       <ProbabilityField
         name="probabilities.orgasmProbability"
         label="Probability of an orgasm"
@@ -120,7 +119,6 @@ export default function OrgasmStep() {
         onToggleLock={handleProbabilityToggle}
         cap={lockedProbabilitySum}
       />
-      <PostOrgasmTortureDurationField />
     </Group>
   );
 }

@@ -13,7 +13,7 @@ export default function GameSummaryCard({ game }: GameSummaryCardProps) {
       <Typography variant="h6" gutterBottom>
         {game.title}
       </Typography>
-      <Typography variant="body1">Game Length</Typography>
+      <Typography variant="body1">Game Duration</Typography>
       <Typography variant="body2" gutterBottom>
         {game.config.minimumGameTime}-{game.config.maximumGameTime} min
       </Typography>

@@ -4,102 +4,90 @@ import {
   FormControl,
   FormHelperText,
   FormLabel,
-  Grid,
+  InputAdornment,
+  InputLabel,
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import styled from "styled-components/macro";
 
-import FormikSlider from "components/molecules/fields/FormikSlider";
+import theme from "theme";
+import { FullBleed } from "components/templates/FullBleed";
 
-const useStyles = makeStyles({
-  input: {
-    width: 80,
-    margin: 0,
-  },
-});
+const StyledField = styled(Field)`
+  max-width: 120px;
+  margin-top: 1rem;
+`;
+const StyledSwitch = styled(Field)`
+  // The Switch has a padding of 12, this will cancel it out.
+  margin-left: -12px;
+`;
 
-const marks = [
-  { value: 10, label: "10s" },
-  { value: 30, label: "30s" },
-  { value: 60, label: "60s" },
-  { value: 90, label: "90s" },
-  { value: 120, label: "120s" },
-];
+const PostOrgasmTortureDurationFieldContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 1rem;
 
-function getAriaValueText(value: number) {
-  return `${value} seconds`;
-}
-
-function getValueLabelFormat(value: number) {
-  return `${value}s`;
-}
+  @media screen and (${theme.breakpoint.mobile.up}) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 32px;
+  }
+`;
 
 export default function PostOrgasmTortureDurationField() {
-  const classes = useStyles();
   const [postOrgasmTorture] = useField<boolean>("postOrgasmTorture");
 
   return (
-    <FormControl fullWidth>
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <FormLabel id="post-orgasm-torture">Post orgasm torture</FormLabel>
-        </Grid>
-        <Grid item>
-          <Field component={Switch} name="postOrgasmTorture" />
-        </Grid>
-        <Grid item>
-          <Field
-            className={classes.input}
-            component={TextField}
-            name="postOrgasmTortureDuration.min"
-            disabled={!postOrgasmTorture.value}
-            margin="dense"
-            variant="outlined"
-            inputProps={{
-              type: "number",
-              min: 1,
-              "aria-labelledby": "post-orgasm-torture",
-            }}
+    <PostOrgasmTortureDurationFieldContainer>
+      <FullBleed>
+        <InputLabel htmlFor="postOrgasmTorture">
+          <StyledSwitch
+            id="postOrgasmTorture"
+            name="postOrgasmTorture"
+            type="checkbox"
+            component={Switch}
           />
-        </Grid>
-        <Grid item xs>
-          <Field
-            name="postOrgasmTortureDuration"
-            disabled={!postOrgasmTorture.value}
-            aria-labelledby="post-orgasm-torture"
-            getAriaValueText={getAriaValueText}
-            valueLabelFormat={getValueLabelFormat}
-            component={FormikSlider}
-            marks={marks}
-            min={0}
-            max={120}
-            valueLabelDisplay="auto"
-            parse={({ min, max }: { min: number; max: number }) => [min, max]}
-            format={([min, max]: [number, number]) => ({
-              min,
-              max,
-            })}
-          />
-        </Grid>
-        <Grid item>
-          <Field
-            className={classes.input}
-            disabled={!postOrgasmTorture.value}
-            component={TextField}
-            variant="outlined"
-            name="postOrgasmTortureDuration.max"
-            margin="dense"
-            inputProps={{
-              type: "number",
-              min: 1,
-              "aria-labelledby": "post-orgasm-torture",
-            }}
-          />
-        </Grid>
-      </Grid>
-      <FormHelperText>
-        The range of time you'll have to continue stroking <em>after</em> you
-        orgasm.
-      </FormHelperText>
-    </FormControl>
+          Enable Post Orgasm Torture
+        </InputLabel>
+      </FullBleed>
+      <FormControl>
+        <FormLabel id="minimum-post-orgasm-torture">
+          Minimum Post Orgasm Torture Duration
+        </FormLabel>
+        <StyledField
+          name="postOrgasmTortureDuration.min"
+          aria-labelledby="minimum-post-orgasm-torture"
+          component={TextField}
+          type="number"
+          inputProps={{ step: "10", min: "0" }}
+          variant="outlined"
+          disabled={!postOrgasmTorture.value}
+          InputProps={{
+            endAdornment: <InputAdornment position="end">sec</InputAdornment>,
+          }}
+        />
+        <FormHelperText>
+          The minimum duration you'll have to continue stroking after orgasm.
+        </FormHelperText>
+      </FormControl>
+      <FormControl>
+        <FormLabel id="maximum-post-orgasm-torture">
+          Minimum Post Orgasm Torture Duration
+        </FormLabel>
+        <StyledField
+          name="postOrgasmTortureDuration.max"
+          aria-labelledby="maximum-post-orgasm-torture"
+          component={TextField}
+          type="number"
+          inputProps={{ step: "10", min: "0" }}
+          variant="outlined"
+          disabled={!postOrgasmTorture.value}
+          InputProps={{
+            endAdornment: <InputAdornment position="end">sec</InputAdornment>,
+          }}
+        />
+        <FormHelperText>
+          The maximum duration you'll have to continue stroking after orgasm.
+        </FormHelperText>
+      </FormControl>
+    </PostOrgasmTortureDurationFieldContainer>
   );
 }

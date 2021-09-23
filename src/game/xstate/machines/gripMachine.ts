@@ -15,13 +15,13 @@ export enum GripStrength {
 }
 
 export const GripStrengthString: { [key in GripStrength]: string } = {
-  [GripStrength.BarelyTouching]: "barely touching",
-  [GripStrength.VeryLight]: "very light",
-  [GripStrength.Light]: "light",
-  [GripStrength.Normal]: "normal",
-  [GripStrength.Tight]: "tight",
-  [GripStrength.VeryTight]: "very tight",
-  [GripStrength.DeathGrip]: "death grip",
+  [GripStrength.BarelyTouching]: "Barely touching",
+  [GripStrength.VeryLight]: "Very light",
+  [GripStrength.Light]: "Light",
+  [GripStrength.Normal]: "Normal",
+  [GripStrength.Tight]: "Tight",
+  [GripStrength.VeryTight]: "Very tight",
+  [GripStrength.DeathGrip]: "Death grip",
 };
 
 export type GripMachine = ReturnType<typeof createGripMachine>;

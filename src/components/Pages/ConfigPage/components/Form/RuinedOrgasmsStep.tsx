@@ -10,7 +10,7 @@ export default function RuinedOrgasmsStep() {
       <CooldownField
         name="ruinCooldown"
         label="Ruin Cooldown"
-        helperText="Length of time to rest before the game continues."
+        helperText="Duration to rest before the game continues."
       />
     </Group>
   );

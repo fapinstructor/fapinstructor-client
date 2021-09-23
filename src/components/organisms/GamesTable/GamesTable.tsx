@@ -164,7 +164,7 @@ export default function GamesTable({
               direction={sort["averageGameLength"]}
               onClick={() => changeDirection("averageGameLength")}
             >
-              Average Game Length
+              Average Game Duration
             </TableSortLabel>
           </TableCell>
           <TableCell>Tags</TableCell>

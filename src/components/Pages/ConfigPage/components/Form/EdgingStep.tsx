@@ -11,7 +11,7 @@ export default function EdgingStep() {
       <CooldownField
         name="edgeCooldown"
         label="Edge Cooldown"
-        helperText="Length of time to rest before the game continues."
+        helperText="Duration to rest before the game continues."
       />
     </Group>
   );

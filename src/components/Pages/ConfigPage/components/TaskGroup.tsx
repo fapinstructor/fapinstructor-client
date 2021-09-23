@@ -57,7 +57,11 @@ export default function TaskGroup({ label, tasks }: TaskGroupProps) {
         <TaskList>
           <FormControlLabel
             control={
-              <Checkbox checked={allTasksSelected} onChange={toggleAllTasks} />
+              <Checkbox
+                color="primary"
+                checked={allTasksSelected}
+                onChange={toggleAllTasks}
+              />
             }
             label="Select All"
           />

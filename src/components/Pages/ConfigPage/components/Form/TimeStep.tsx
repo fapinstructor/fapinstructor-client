@@ -3,7 +3,7 @@ import GameLengthField from "../GameLengthField";
 
 export default function TimeStep() {
   return (
-    <Group title="Game Length">
+    <Group title="Game Duration">
       <GameLengthField />
     </Group>
   );

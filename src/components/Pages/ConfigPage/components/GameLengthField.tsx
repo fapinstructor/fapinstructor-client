@@ -1,88 +1,68 @@
 import { Field } from "formik";
 import { TextField } from "formik-material-ui";
-import { FormControl, Grid } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import {
+  FormControl,
+  FormHelperText,
+  FormLabel,
+  InputAdornment,
+} from "@material-ui/core";
+import styled from "styled-components/macro";
 
-import FormikSlider from "components/molecules/fields/FormikSlider";
+import theme from "theme";
 
-const useStyles = makeStyles({
-  input: {
-    width: 80,
-    margin: 0,
-  },
-});
+const StyledField = styled(Field)`
+  max-width: 120px;
+  margin-top: 1rem;
+`;
 
-const marks = [
-  { value: 1, label: "1m" },
-  { value: 10, label: "10m" },
-  { value: 20, label: "20m" },
-  { value: 30, label: "30m" },
-  { value: 40, label: "40m" },
-  { value: 50, label: "50m" },
-  { value: 60, label: "60m" },
-];
+const GameLengthFieldContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 1rem;
 
-function getAriaValueText(value: number) {
-  return `${value} minutes`;
-}
+  @media screen and (${theme.breakpoint.mobile.up}) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 32px;
+  }
+`;
 
-function getValueLabelFormat(value: number) {
-  return `${value}m`;
-}
-
-export default function SlideDurationField() {
-  const classes = useStyles();
-
+export default function GameLengthField() {
   return (
-    <FormControl fullWidth>
-      <Grid container spacing={2}>
-        <Grid item>
-          <Field
-            className={classes.input}
-            component={TextField}
-            variant="outlined"
-            name="gameLength.min"
-            margin="dense"
-            inputProps={{
-              type: "number",
-              min: 1,
-              "aria-labelledby": "game-length",
-            }}
-          />
-        </Grid>
-        <Grid item xs>
-          <Field
-            name="gameLength"
-            aria-labelledby="game-length"
-            getAriaValueText={getAriaValueText}
-            valueLabelFormat={getValueLabelFormat}
-            component={FormikSlider}
-            marks={marks}
-            min={1}
-            max={60}
-            valueLabelDisplay="auto"
-            parse={({ min, max }: { min: number; max: number }) => [min, max]}
-            format={([min, max]: [number, number]) => ({
-              min,
-              max,
-            })}
-          />
-        </Grid>
-        <Grid item>
-          <Field
-            className={classes.input}
-            variant="outlined"
-            component={TextField}
-            name="gameLength.max"
-            margin="dense"
-            inputProps={{
-              type: "number",
-              min: 1,
-              "aria-labelledby": "game-length",
-            }}
-          />
-        </Grid>
-      </Grid>
-    </FormControl>
+    <GameLengthFieldContainer>
+      <FormControl>
+        <FormLabel id="minimum-game-length">Minimum Game Duration</FormLabel>
+        <StyledField
+          name="gameLength.min"
+          aria-labelledby="minimum-game-length"
+          component={TextField}
+          type="number"
+          inputProps={{ step: "1", min: "1" }}
+          variant="outlined"
+          InputProps={{
+            endAdornment: <InputAdornment position="end">min</InputAdornment>,
+          }}
+        />
+        <FormHelperText>
+          The minimum duration the game will take to finish.
+        </FormHelperText>
+      </FormControl>
+      <FormControl>
+        <FormLabel id="maximum-game-length">Maximum Game Duration</FormLabel>
+        <StyledField
+          name="gameLength.max"
+          aria-labelledby="maximum-game-length"
+          component={TextField}
+          type="number"
+          inputProps={{ step: "1", min: "1" }}
+          variant="outlined"
+          InputProps={{
+            endAdornment: <InputAdornment position="end">min</InputAdornment>,
+          }}
+        />
+        <FormHelperText>
+          A rough maximum duration the game will take to finish.
+        </FormHelperText>
+      </FormControl>
+    </GameLengthFieldContainer>
   );
 }

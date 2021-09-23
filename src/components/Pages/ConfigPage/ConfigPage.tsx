@@ -28,6 +28,7 @@ import Stack from "components/templates/Stack";
 import Cluster from "components/templates/Cluster";
 import theme from "theme";
 import RuinedOrgasmsStep from "./components/Form/RuinedOrgasmsStep";
+import PostOrgasmTortureStep from "./components/Form/PostOrgasmTortureStep";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -249,6 +250,7 @@ export default function ConfigPage() {
                 <MediaStep />
                 <TimeStep />
                 <OrgasmStep />
+                <PostOrgasmTortureStep />
                 <RuinedOrgasmsStep />
                 <EdgingStep />
                 <StrokeStep />
