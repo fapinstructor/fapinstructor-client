@@ -1,25 +1,10 @@
 import { Field, useField } from "formik";
 import { Switch, TextField } from "formik-material-ui";
-import {
-  FormControl,
-  FormHelperText,
-  FormLabel,
-  InputAdornment,
-  InputLabel,
-} from "@material-ui/core";
+import { InputAdornment, InputLabel } from "@material-ui/core";
 import styled from "styled-components/macro";
 
 import theme from "theme";
 import { FullBleed } from "components/templates/FullBleed";
-
-const StyledField = styled(Field)`
-  max-width: 120px;
-  margin-top: 1rem;
-`;
-const StyledSwitch = styled(Field)`
-  // The Switch has a padding of 12, this will cancel it out.
-  margin-left: -12px;
-`;
 
 const PostOrgasmTortureDurationFieldContainer = styled.div`
   display: grid;
@@ -39,7 +24,7 @@ export default function PostOrgasmTortureDurationField() {
     <PostOrgasmTortureDurationFieldContainer>
       <FullBleed>
         <InputLabel htmlFor="postOrgasmTorture">
-          <StyledSwitch
+          <Field
             id="postOrgasmTorture"
             name="postOrgasmTorture"
             type="checkbox"
@@ -48,46 +33,30 @@ export default function PostOrgasmTortureDurationField() {
           Enable Post Orgasm Torture
         </InputLabel>
       </FullBleed>
-      <FormControl>
-        <FormLabel id="minimum-post-orgasm-torture">
-          Minimum Post Orgasm Torture Duration
-        </FormLabel>
-        <StyledField
-          name="postOrgasmTortureDuration.min"
-          aria-labelledby="minimum-post-orgasm-torture"
-          component={TextField}
-          type="number"
-          inputProps={{ step: "10", min: "0" }}
-          variant="outlined"
-          disabled={!postOrgasmTorture.value}
-          InputProps={{
-            endAdornment: <InputAdornment position="end">sec</InputAdornment>,
-          }}
-        />
-        <FormHelperText>
-          The minimum duration you'll have to continue stroking after orgasm.
-        </FormHelperText>
-      </FormControl>
-      <FormControl>
-        <FormLabel id="maximum-post-orgasm-torture">
-          Minimum Post Orgasm Torture Duration
-        </FormLabel>
-        <StyledField
-          name="postOrgasmTortureDuration.max"
-          aria-labelledby="maximum-post-orgasm-torture"
-          component={TextField}
-          type="number"
-          inputProps={{ step: "10", min: "0" }}
-          variant="outlined"
-          disabled={!postOrgasmTorture.value}
-          InputProps={{
-            endAdornment: <InputAdornment position="end">sec</InputAdornment>,
-          }}
-        />
-        <FormHelperText>
-          The maximum duration you'll have to continue stroking after orgasm.
-        </FormHelperText>
-      </FormControl>
+      <Field
+        label="Minimum Post Orgasm Torture Duration"
+        name="postOrgasmTortureDuration.min"
+        component={TextField}
+        type="number"
+        inputProps={{ step: "10", min: "0" }}
+        variant="outlined"
+        disabled={!postOrgasmTorture.value}
+        InputProps={{
+          endAdornment: <InputAdornment position="end">sec</InputAdornment>,
+        }}
+      />
+      <Field
+        label="Minimum Post Orgasm Torture Duration"
+        name="postOrgasmTortureDuration.max"
+        component={TextField}
+        type="number"
+        inputProps={{ step: "10", min: "0" }}
+        variant="outlined"
+        disabled={!postOrgasmTorture.value}
+        InputProps={{
+          endAdornment: <InputAdornment position="end">sec</InputAdornment>,
+        }}
+      />
     </PostOrgasmTortureDurationFieldContainer>
   );
 }

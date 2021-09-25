@@ -1,8 +1,8 @@
-import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import { Formik, Form } from "formik";
+import styled from "styled-components/macro";
 
 import { MediaType } from "common/types/Media";
 import store from "store";
@@ -12,45 +12,22 @@ import {
   isDefaultConfig,
   OldGameConfig,
 } from "configureStore";
+import theme from "theme";
+import { validSubreddit } from "utils/regex";
+import { getEnabledMediaTypes } from "game/xstate/machines/mediaMachine";
 import Footer from "components/organisms/Footer";
 import ShareGame from "components/organisms/ShareGame";
-import { validSubreddit } from "utils/regex";
-import BackgroundImage from "images/background.jpg";
+import AutoFocusFieldErrors from "components/organisms/AutoFocusFieldErrors";
+import Stack from "components/templates/Stack";
+import Cluster from "components/templates/Cluster";
+import RuinedOrgasmsStep from "./components/Form/RuinedOrgasmsStep";
+import PostOrgasmTortureStep from "./components/Form/PostOrgasmTortureStep";
 import TaskStep from "./components/Form/TaskStep";
 import MediaStep from "./components/Form/MediaStep";
 import OrgasmStep from "./components/Form/OrgasmStep";
 import EdgingStep from "./components/Form/EdgingStep";
 import StrokeStep from "./components/Form/StrokeStep";
 import GameDurationStep from "./components/Form/GameDurationStep";
-import { getEnabledMediaTypes } from "game/xstate/machines/mediaMachine";
-import styled from "styled-components/macro";
-import Stack from "components/templates/Stack";
-import Cluster from "components/templates/Cluster";
-import theme from "theme";
-import RuinedOrgasmsStep from "./components/Form/RuinedOrgasmsStep";
-import PostOrgasmTortureStep from "./components/Form/PostOrgasmTortureStep";
-
-const useStyles = makeStyles((theme) => ({
-  button: {
-    marginRight: theme.spacing(),
-  },
-  background: {
-    background: `url(${BackgroundImage})`,
-    backgroundSize: "cover",
-    backgroundAttachment: "fixed",
-  },
-  formContainer: {
-    display: "flex",
-    justifyContent: "center",
-    padding: "0px 5vw 5vh 5vw",
-    paddingTop: 30,
-  },
-  form: {
-    padding: 20,
-    marginBottom: 20,
-    backgroundColor: "rgba(255, 255, 255, 0.9)",
-  },
-}));
 
 const GAME_CONFIG_SCHEMA = yup.object().shape({
   subreddits: yup
@@ -77,7 +54,7 @@ const GAME_CONFIG_SCHEMA = yup.object().shape({
         )
     )
     .unique()
-    .required(),
+    .min(1, "Please specify at least one subreddit."),
   slideDuration: yup.number().min(3),
   imageType: yup.array().min(1, "One media type must be selected."),
   gameLength: yup.object().shape({
@@ -95,9 +72,7 @@ const GAME_CONFIG_SCHEMA = yup.object().shape({
       ),
   }),
   postOrgasmTortureDuration: yup.object().shape({
-    min: yup
-      .number()
-      .min(0, "Minimum post orgasm time cannot be a negative number."),
+    min: yup.number().min(0, "Minimum post orgasm time cannot be less than 0."),
     max: yup
       .number()
       .min(
@@ -106,25 +81,28 @@ const GAME_CONFIG_SCHEMA = yup.object().shape({
       ),
   }),
   ruinedOrgasms: yup.object().shape({
-    min: yup.number().min(0),
+    min: yup.number().min(0, "Minimum ruined orgasms cannot be less than 0."),
     max: yup
       .number()
       .min(
         yup.ref("min"),
-        "Maximum ruined orgasms must be greater than minimum ruined orgasms."
+        "Maximum ruined orgasms must be greater than the minimum ruined orgasms."
       ),
   }),
   strokeSpeed: yup.object().shape({
-    min: yup.number().min(0),
+    min: yup.number().min(0, "Minimum stroke speed cannot be less than 0."),
     max: yup
       .number()
-      .max(8)
+      .max(8, "Maximum stroke speed cannot be greater than 8.")
       .min(
         yup.ref("min"),
         "Maximum stroke speed must be greater than minimum stroke speed."
       ),
   }),
-  minimumEdges: yup.number().min(0).max(1000),
+  minimumEdges: yup
+    .number()
+    .min(0, "Minimum edges cannot be less than 0.")
+    .max(1000),
   maximumOrgasms: yup.number().min(0),
   ruinCooldown: yup.number().min(0),
   edgeCooldown: yup.number().min(0),
@@ -224,7 +202,6 @@ function mapNewConfigToOldConfig(newConfig: GameConfig) {
  */
 export default function ConfigPage() {
   const history = useHistory();
-  const classes = useStyles();
 
   return (
     <>
@@ -243,30 +220,31 @@ export default function ConfigPage() {
             console.log("errors:", errors);
           }
           return (
-            <StyledForm>
-              <Stack>
-                <MediaStep />
-                <GameDurationStep />
-                <OrgasmStep />
-                <PostOrgasmTortureStep />
-                <RuinedOrgasmsStep />
-                <EdgingStep />
-                <StrokeStep />
-                <TaskStep />
-                <Cluster>
-                  <Button
-                    type="submit"
-                    title="Starts the game."
-                    variant="contained"
-                    color="primary"
-                    className={classes.button}
-                  >
-                    Start
-                  </Button>
-                  <ShareGame disabled={Object.keys(errors).length > 0} />
-                </Cluster>
-              </Stack>
-            </StyledForm>
+            <AutoFocusFieldErrors>
+              <StyledForm>
+                <Stack>
+                  <MediaStep />
+                  <GameDurationStep />
+                  <OrgasmStep />
+                  <PostOrgasmTortureStep />
+                  <RuinedOrgasmsStep />
+                  <EdgingStep />
+                  <StrokeStep />
+                  <TaskStep />
+                  <Cluster>
+                    <Button
+                      type="submit"
+                      title="Starts the game."
+                      variant="contained"
+                      color="primary"
+                    >
+                      Start
+                    </Button>
+                    <ShareGame disabled={Object.keys(errors).length > 0} />
+                  </Cluster>
+                </Stack>
+              </StyledForm>
+            </AutoFocusFieldErrors>
           );
         }}
       </Formik>
@@ -276,6 +254,7 @@ export default function ConfigPage() {
 }
 
 const StyledForm = styled(Form)`
+  padding-top: 2rem;
   display: grid;
   grid-auto-rows: min-content;
 

@@ -5,6 +5,7 @@ const textFieldProps = {
   label: "Subreddits",
   helperText: "Enter a subreddit name and then press enter ",
   fullWidth: true,
+  variant: "outlined",
 };
 
 export default function RedditSelectionField() {

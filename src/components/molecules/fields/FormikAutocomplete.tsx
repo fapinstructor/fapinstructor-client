@@ -34,7 +34,7 @@ type FormikAutocompleteProps = AutocompleteProps &
 // We should break up the string into separate tags if there is a delimiter
 export default function FormikAutocomplete({
   field: { name: fieldName, value: fieldValue = [] },
-  form: { dirty, touched, errors, setFieldValue },
+  form: { dirty, errors, setFieldValue },
   getOptionLabel,
   textFieldProps: { helperText, ...textFieldProps },
   ...autoCompleteProps

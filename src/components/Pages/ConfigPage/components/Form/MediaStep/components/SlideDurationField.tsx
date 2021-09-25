@@ -43,7 +43,7 @@ export default function SlideDurationField() {
         </Grid>
       </Grid>
       <FormHelperText>
-        The duration it takes to transition between pictures.
+        The duration it takes to transition between media content.
       </FormHelperText>
     </FormControl>
   );
