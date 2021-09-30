@@ -5,7 +5,10 @@ import EdgeFrequencyField from "./components/EdgeFrequencyField";
 
 export default function EdgingStep() {
   return (
-    <Group title="Edging">
+    <Group
+      title="Edging"
+      tooltip="Edging is where you masturbate up until the moment you're just about to reach orgasm."
+    >
       <MinimumEdgesField />
       <EdgeFrequencyField />
       <CooldownField

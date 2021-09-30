@@ -5,6 +5,8 @@ import styled from "styled-components/macro";
 
 import theme from "theme";
 import { FullBleed } from "components/templates/FullBleed";
+import useAutoMaxField from "hooks/useAutoMaxField";
+import { GameConfig } from "configureStore";
 
 const PostOrgasmTortureDurationFieldContainer = styled.div`
   display: grid;
@@ -18,6 +20,7 @@ const PostOrgasmTortureDurationFieldContainer = styled.div`
 `;
 
 export default function PostOrgasmTortureDurationField() {
+  useAutoMaxField<GameConfig>("postOrgasmTortureDuration");
   const [postOrgasmTorture] = useField<boolean>("postOrgasmTorture");
 
   return (

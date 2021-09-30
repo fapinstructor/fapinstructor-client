@@ -21,4 +21,9 @@ const breakpoint = {
   },
 };
 
-export default { breakpoint };
+const color = {
+  primary: "var(--color-primary)",
+  secondary: "var(--color-secondary)",
+};
+
+export default { breakpoint, color };

@@ -4,6 +4,7 @@ import { useFormikContext } from "formik";
 import balanceArray from "utils/balanceArray";
 import Group from "components/molecules/Group";
 import ProbabilityField from "./components/ProbabilityField";
+import { GameConfig } from "configureStore";
 
 const ONE_HUNDRED_PERCENT = 100;
 
@@ -14,10 +15,8 @@ type Sliders = {
 };
 
 export default function OrgasmStep() {
-  // TODO: Use form type
-  const form = useFormikContext<{
-    probabilities: Sliders;
-  }>();
+  const form = useFormikContext<GameConfig>();
+
   // Generate a list of enabled probabilities
   const [lockedProbabilities, setLockedProbabilities] = React.useState({
     "probabilities.orgasmProbability": false,

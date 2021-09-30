@@ -5,7 +5,10 @@ import RuinedOrgasmsRangeField from "./components/RuinedOrgasmsRangeField";
 
 export default function RuinedOrgasmsStep() {
   return (
-    <Group title="Ruined Orgasms">
+    <Group
+      title="Ruined Orgasms"
+      tooltip="Masturbate all the way to orgasm, but just before you start cumming stop all stimulation."
+    >
       <RuinedOrgasmsRangeField />
       <CooldownField
         name="ruinCooldown"

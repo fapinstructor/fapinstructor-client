@@ -11,15 +11,16 @@ import {
   AnalTasks,
   CeiTasks,
   NippleTasks,
-  TaskConfig,
+  GameConfig,
 } from "configureStore";
 import Group from "components/molecules/Group";
 import TaskGroup from "./components/TaskGroup";
 import Stack from "components/templates/Stack";
+import theme from "theme";
 
 const TaskContainer = styled(Stack)`
   & > * {
-    border: 1px solid #3f51b5;
+    border: 1px solid ${theme.color.primary};
     padding: 1rem;
   }
 `;
@@ -78,10 +79,7 @@ const nippleTasksGroup: TaskGroupHash<NippleTasks> = {
 };
 
 export default function TaskStep() {
-  // TODO: Use form type
-  const form = useFormikContext<{
-    tasks: TaskConfig;
-  }>();
+  const form = useFormikContext<GameConfig>();
 
   function randomizeTasks() {
     Object.keys(form.values.tasks).forEach((task) => {

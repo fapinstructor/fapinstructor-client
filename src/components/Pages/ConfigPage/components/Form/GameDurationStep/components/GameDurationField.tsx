@@ -4,6 +4,8 @@ import { InputAdornment } from "@material-ui/core";
 import styled from "styled-components/macro";
 
 import theme from "theme";
+import { GameConfig } from "configureStore";
+import useAutoMaxField from "hooks/useAutoMaxField";
 
 const GameLengthFieldContainer = styled.div`
   display: grid;
@@ -17,6 +19,8 @@ const GameLengthFieldContainer = styled.div`
 `;
 
 export default function GameLengthField() {
+  useAutoMaxField<GameConfig>("gameLength");
+
   return (
     <GameLengthFieldContainer>
       <Field

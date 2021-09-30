@@ -1,4 +1,4 @@
-import { Button } from "@material-ui/core";
+import { Box, Button, Typography } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import { Formik, Form } from "formik";
@@ -223,25 +223,34 @@ export default function ConfigPage() {
             <AutoFocusFieldErrors>
               <StyledForm>
                 <Stack>
-                  <MediaStep />
+                  <Typography variant="h2" component="h1" color="secondary">
+                    Create a game
+                  </Typography>
+                  <Typography color="secondary" variant="body1">
+                    Tweak your desired settings below to create any desired
+                    experience.
+                  </Typography>
                   <GameDurationStep />
+                  <MediaStep />
                   <OrgasmStep />
                   <PostOrgasmTortureStep />
                   <RuinedOrgasmsStep />
                   <EdgingStep />
                   <StrokeStep />
                   <TaskStep />
-                  <Cluster>
-                    <Button
-                      type="submit"
-                      title="Starts the game."
-                      variant="contained"
-                      color="primary"
-                    >
-                      Start
-                    </Button>
-                    <ShareGame disabled={Object.keys(errors).length > 0} />
-                  </Cluster>
+                  <Box p={3}>
+                    <Cluster>
+                      <Button
+                        type="submit"
+                        title="Starts the game."
+                        variant="contained"
+                        color="primary"
+                      >
+                        Start
+                      </Button>
+                      <ShareGame disabled={Object.keys(errors).length > 0} />
+                    </Cluster>
+                  </Box>
                 </Stack>
               </StyledForm>
             </AutoFocusFieldErrors>
@@ -259,8 +268,8 @@ const StyledForm = styled(Form)`
   grid-auto-rows: min-content;
 
   grid-template-columns: 1fr;
-  grid-column-gap: 32px;
-  grid-template-columns: min(60ch, calc(100% - 64px));
+  grid-column-gap: 16;
+  grid-template-columns: min(60ch, calc(100% - 32px));
   justify-content: center;
 
   @media screen and (${theme.breakpoint.desktop.up}) {

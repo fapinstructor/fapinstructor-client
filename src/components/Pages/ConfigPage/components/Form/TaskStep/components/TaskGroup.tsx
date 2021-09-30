@@ -11,7 +11,7 @@ import { Field, useFormikContext } from "formik";
 import { CheckboxWithLabel } from "formik-material-ui";
 
 import Hash from "common/types/Hash";
-import { TaskConfig } from "configureStore";
+import { GameConfig } from "configureStore";
 import theme from "theme";
 
 type TaskGroupProps = {
@@ -29,10 +29,7 @@ const TaskList = styled.div`
 `;
 
 export default function TaskGroup({ label, tasks }: TaskGroupProps) {
-  // TODO: Use form type
-  const form = useFormikContext<{
-    tasks: TaskConfig;
-  }>();
+  const form = useFormikContext<GameConfig>();
 
   const availableTasks = Object.keys(tasks);
 

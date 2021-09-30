@@ -6,7 +6,7 @@ const EuroFightsBanner = styled.img.attrs({
   alt: "Opens Euro Fights partner site in a new tab",
 })`
   width: 50vw;
-  max-width: 900px;
+  max-width: 500px;
 
   @media only screen and (max-width: 600px) {
     width: 100%;

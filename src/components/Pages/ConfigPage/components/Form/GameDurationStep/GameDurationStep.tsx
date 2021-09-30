@@ -1,10 +1,10 @@
 import Group from "components/molecules/Group";
-import GameLengthField from "./components/GameLengthField";
+import GameDurationField from "./components/GameDurationField";
 
-export default function TimeStep() {
+export default function GameDurationStep() {
   return (
     <Group title="Game Duration">
-      <GameLengthField />
+      <GameDurationField />
     </Group>
   );
 }

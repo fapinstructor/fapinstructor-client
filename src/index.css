@@ -6,6 +6,7 @@ body {
   background-color: #fff;
 }
 
-/** Keeping this here for when we add some css vars */
-/* :root { */
-/* } */
+:root {
+  --color-primary: rgb(63, 81, 181);
+  --color-secondary: rgb(245, 0, 87);
+}
