@@ -109,16 +109,14 @@ export default function GamePage() {
       <>
         <NavBar />
         <div className={classes.startGame}>
-          <Paper style={{ padding: 10 }}>
-            {gameConfigId ? (
-              <SharedGameCard
-                gameConfigId={gameConfigId}
-                onStart={handleStartGame}
-              />
-            ) : (
-              <SoloGameCard onStart={handleStartGame} />
-            )}
-          </Paper>
+          {gameConfigId ? (
+            <SharedGameCard
+              gameConfigId={gameConfigId}
+              onStart={handleStartGame}
+            />
+          ) : (
+            <SoloGameCard onStart={handleStartGame} />
+          )}
         </div>
       </>
     );

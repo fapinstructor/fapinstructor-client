@@ -65,8 +65,7 @@ export default function SharedGameCard({
   let content = null;
   if (game) {
     content = (
-      <>
-        <GameSummaryCard game={game} />
+      <GameSummaryCard game={game}>
         <NodeRow>
           <StarButton
             gameId={game.id}
@@ -74,12 +73,12 @@ export default function SharedGameCard({
             starred={game.starred}
             variant="outlined"
           />
-          <Button onClick={handleStart} variant="contained" color="secondary">
+          <Button onClick={handleStart} variant="contained" color="primary">
             start game
           </Button>
           <BackToConfigButton />
         </NodeRow>
-      </>
+      </GameSummaryCard>
     );
   }
   return content;

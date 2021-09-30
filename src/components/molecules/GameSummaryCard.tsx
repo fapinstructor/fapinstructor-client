@@ -1,28 +1,42 @@
+import * as React from "react";
 import { Typography } from "@material-ui/core";
 import Group from "components/molecules/Group";
 import Tags from "components/molecules/Tags";
 import Game from "common/types/Game";
+import styled from "styled-components/macro";
+import Stack from "components/templates/Stack";
 
 export type GameSummaryCardProps = {
   game: Game;
+  children: React.ReactNode;
 };
 
-export default function GameSummaryCard({ game }: GameSummaryCardProps) {
+const ContentContainer = styled(Stack)`
+  --space: 0.5rem;
+`;
+
+export default function GameSummaryCard({
+  game,
+  children,
+}: GameSummaryCardProps) {
   return (
     <Group title="Game Summary">
-      <Typography variant="h6" gutterBottom>
-        {game.title}
-      </Typography>
-      <Typography variant="body1">Game Duration</Typography>
-      <Typography variant="body2" gutterBottom>
-        {game.config.minimumGameTime}-{game.config.maximumGameTime} min
-      </Typography>
-      {game.tags && game.tags.length > 0 && (
-        <>
-          <Typography variant="body1">Tags</Typography>
-          <Tags tags={game.tags} />
-        </>
-      )}
+      <ContentContainer>
+        <Typography variant="h6" gutterBottom>
+          {game.title}
+        </Typography>
+        <Typography variant="body1">Game Duration</Typography>
+        <Typography variant="body2" gutterBottom>
+          {game.config.minimumGameTime}-{game.config.maximumGameTime} min
+        </Typography>
+        {game.tags && game.tags.length > 0 && (
+          <>
+            <Typography variant="body1">Tags</Typography>
+            <Tags tags={game.tags} />
+          </>
+        )}
+      </ContentContainer>
+      {children}
     </Group>
   );
 }

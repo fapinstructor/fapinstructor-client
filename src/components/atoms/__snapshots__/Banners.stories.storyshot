@@ -3,7 +3,7 @@
 exports[`Storyshots atoms/Banners Large Ero Fights Banner 1`] = `
 .c0 {
   width: 50vw;
-  max-width: 900px;
+  max-width: 500px;
 }
 
 @media only screen and (max-width:600px) {

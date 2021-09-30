@@ -12,10 +12,10 @@ exports[`Storyshots organisms/NavBar Signed In 1`] = `
       href="/"
     >
       <div
-        class="MuiBox-root MuiBox-root-12"
+        class="MuiBox-root MuiBox-root-11"
       >
         <div
-          class="MuiBox-root MuiBox-root-13"
+          class="MuiBox-root MuiBox-root-12"
         >
           <img
             alt="Fap Instructor"
@@ -24,7 +24,7 @@ exports[`Storyshots organisms/NavBar Signed In 1`] = `
           />
         </div>
         <h4
-          class="MuiTypography-root makeStyles-title-14 MuiTypography-h4"
+          class="MuiTypography-root makeStyles-title-13 MuiTypography-h4"
         >
           Fap Instructor
         </h4>
@@ -34,7 +34,7 @@ exports[`Storyshots organisms/NavBar Signed In 1`] = `
       style="flex-grow: 1;"
     />
     <div
-      class="makeStyles-fullMenu-15"
+      class="makeStyles-fullMenu-14"
     >
       <button
         class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
@@ -46,7 +46,7 @@ exports[`Storyshots organisms/NavBar Signed In 1`] = `
           class="MuiButton-label"
         >
           <div
-            class="MuiBox-root MuiBox-root-16"
+            class="MuiBox-root MuiBox-root-15"
           >
             <svg
               aria-hidden="true"
@@ -68,7 +68,7 @@ exports[`Storyshots organisms/NavBar Signed In 1`] = `
       </button>
       <a
         aria-disabled="false"
-        class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-17 MuiButton-colorInherit"
+        class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-16 MuiButton-colorInherit"
         href="/games/search"
         role="button"
         tabindex="0"
@@ -77,10 +77,10 @@ exports[`Storyshots organisms/NavBar Signed In 1`] = `
           class="MuiButton-label"
         >
           <div
-            class="MuiBox-root MuiBox-root-18"
+            class="MuiBox-root MuiBox-root-17"
           >
             <div
-              class="MuiBox-root MuiBox-root-19"
+              class="MuiBox-root MuiBox-root-18"
             >
               <svg
                 aria-hidden="true"
@@ -113,10 +113,10 @@ exports[`Storyshots organisms/NavBar Signed In 1`] = `
           class="MuiButton-label"
         >
           <div
-            class="MuiBox-root MuiBox-root-20"
+            class="MuiBox-root MuiBox-root-19"
           >
             <div
-              class="MuiBox-root MuiBox-root-21"
+              class="MuiBox-root MuiBox-root-20"
             >
               <img
                 alt="Discord"
@@ -143,10 +143,10 @@ exports[`Storyshots organisms/NavBar Signed In 1`] = `
           class="MuiButton-label"
         >
           <div
-            class="MuiBox-root MuiBox-root-22"
+            class="MuiBox-root MuiBox-root-21"
           >
             <div
-              class="MuiBox-root MuiBox-root-23"
+              class="MuiBox-root MuiBox-root-22"
             >
               <img
                 alt="Patreon"
@@ -163,7 +163,7 @@ exports[`Storyshots organisms/NavBar Signed In 1`] = `
       </a>
       <a
         aria-disabled="false"
-        class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-17 MuiButton-colorInherit"
+        class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-16 MuiButton-colorInherit"
         href="/faq"
         role="button"
         tabindex="0"
@@ -172,10 +172,10 @@ exports[`Storyshots organisms/NavBar Signed In 1`] = `
           class="MuiButton-label"
         >
           <div
-            class="MuiBox-root MuiBox-root-24"
+            class="MuiBox-root MuiBox-root-23"
           >
             <div
-              class="MuiBox-root MuiBox-root-25"
+              class="MuiBox-root MuiBox-root-24"
             >
               <svg
                 aria-hidden="true"
@@ -198,7 +198,7 @@ exports[`Storyshots organisms/NavBar Signed In 1`] = `
       </a>
       <a
         aria-disabled="false"
-        class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-17 MuiButton-colorInherit"
+        class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-16 MuiButton-colorInherit"
         href="/changelog"
         role="button"
         tabindex="0"
@@ -207,10 +207,10 @@ exports[`Storyshots organisms/NavBar Signed In 1`] = `
           class="MuiButton-label"
         >
           <div
-            class="MuiBox-root MuiBox-root-26"
+            class="MuiBox-root MuiBox-root-25"
           >
             <div
-              class="MuiBox-root MuiBox-root-27"
+              class="MuiBox-root MuiBox-root-26"
             >
               <svg
                 aria-hidden="true"
@@ -251,7 +251,7 @@ exports[`Storyshots organisms/NavBar Signed In 1`] = `
       </button>
     </div>
     <div
-      class="makeStyles-burgerMenu-28"
+      class="makeStyles-burgerMenu-27"
     >
       <button
         aria-label="Open menu"
@@ -294,10 +294,10 @@ exports[`Storyshots organisms/NavBar Signed Out 1`] = `
       href="/"
     >
       <div
-        class="MuiBox-root MuiBox-root-29"
+        class="MuiBox-root MuiBox-root-28"
       >
         <div
-          class="MuiBox-root MuiBox-root-30"
+          class="MuiBox-root MuiBox-root-29"
         >
           <img
             alt="Fap Instructor"
@@ -306,7 +306,7 @@ exports[`Storyshots organisms/NavBar Signed Out 1`] = `
           />
         </div>
         <h4
-          class="MuiTypography-root makeStyles-title-31 MuiTypography-h4"
+          class="MuiTypography-root makeStyles-title-30 MuiTypography-h4"
         >
           Fap Instructor
         </h4>
@@ -316,7 +316,7 @@ exports[`Storyshots organisms/NavBar Signed Out 1`] = `
       style="flex-grow: 1;"
     />
     <div
-      class="makeStyles-fullMenu-32"
+      class="makeStyles-fullMenu-31"
     >
       <button
         class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
@@ -328,7 +328,7 @@ exports[`Storyshots organisms/NavBar Signed Out 1`] = `
           class="MuiButton-label"
         >
           <div
-            class="MuiBox-root MuiBox-root-33"
+            class="MuiBox-root MuiBox-root-32"
           >
             <svg
               aria-hidden="true"
@@ -350,7 +350,7 @@ exports[`Storyshots organisms/NavBar Signed Out 1`] = `
       </button>
       <a
         aria-disabled="false"
-        class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-34 MuiButton-colorInherit"
+        class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-33 MuiButton-colorInherit"
         href="/games/search"
         role="button"
         tabindex="0"
@@ -359,10 +359,10 @@ exports[`Storyshots organisms/NavBar Signed Out 1`] = `
           class="MuiButton-label"
         >
           <div
-            class="MuiBox-root MuiBox-root-35"
+            class="MuiBox-root MuiBox-root-34"
           >
             <div
-              class="MuiBox-root MuiBox-root-36"
+              class="MuiBox-root MuiBox-root-35"
             >
               <svg
                 aria-hidden="true"
@@ -395,10 +395,10 @@ exports[`Storyshots organisms/NavBar Signed Out 1`] = `
           class="MuiButton-label"
         >
           <div
-            class="MuiBox-root MuiBox-root-37"
+            class="MuiBox-root MuiBox-root-36"
           >
             <div
-              class="MuiBox-root MuiBox-root-38"
+              class="MuiBox-root MuiBox-root-37"
             >
               <img
                 alt="Discord"
@@ -425,10 +425,10 @@ exports[`Storyshots organisms/NavBar Signed Out 1`] = `
           class="MuiButton-label"
         >
           <div
-            class="MuiBox-root MuiBox-root-39"
+            class="MuiBox-root MuiBox-root-38"
           >
             <div
-              class="MuiBox-root MuiBox-root-40"
+              class="MuiBox-root MuiBox-root-39"
             >
               <img
                 alt="Patreon"
@@ -445,7 +445,7 @@ exports[`Storyshots organisms/NavBar Signed Out 1`] = `
       </a>
       <a
         aria-disabled="false"
-        class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-34 MuiButton-colorInherit"
+        class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-33 MuiButton-colorInherit"
         href="/faq"
         role="button"
         tabindex="0"
@@ -454,10 +454,10 @@ exports[`Storyshots organisms/NavBar Signed Out 1`] = `
           class="MuiButton-label"
         >
           <div
-            class="MuiBox-root MuiBox-root-41"
+            class="MuiBox-root MuiBox-root-40"
           >
             <div
-              class="MuiBox-root MuiBox-root-42"
+              class="MuiBox-root MuiBox-root-41"
             >
               <svg
                 aria-hidden="true"
@@ -480,7 +480,7 @@ exports[`Storyshots organisms/NavBar Signed Out 1`] = `
       </a>
       <a
         aria-disabled="false"
-        class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-34 MuiButton-colorInherit"
+        class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-33 MuiButton-colorInherit"
         href="/changelog"
         role="button"
         tabindex="0"
@@ -489,10 +489,10 @@ exports[`Storyshots organisms/NavBar Signed Out 1`] = `
           class="MuiButton-label"
         >
           <div
-            class="MuiBox-root MuiBox-root-43"
+            class="MuiBox-root MuiBox-root-42"
           >
             <div
-              class="MuiBox-root MuiBox-root-44"
+              class="MuiBox-root MuiBox-root-43"
             >
               <svg
                 aria-hidden="true"
@@ -529,7 +529,7 @@ exports[`Storyshots organisms/NavBar Signed Out 1`] = `
       </button>
     </div>
     <div
-      class="makeStyles-burgerMenu-45"
+      class="makeStyles-burgerMenu-44"
     >
       <button
         aria-label="Open menu"

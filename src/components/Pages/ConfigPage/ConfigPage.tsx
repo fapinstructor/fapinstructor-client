@@ -192,14 +192,6 @@ function mapNewConfigToOldConfig(newConfig: GameConfig) {
   return oldConfig;
 }
 
-/**
- * TODO:
- * - Make form a11y.
- * - Test default games, saved games, and all of the above.
- * - Add tests.
- * - Error handling.
- * - Get ride of the mapping functions and use the new structure somehow.
- */
 export default function ConfigPage() {
   const history = useHistory();
 
@@ -232,11 +224,11 @@ export default function ConfigPage() {
                   </Typography>
                   <GameDurationStep />
                   <MediaStep />
-                  <OrgasmStep />
-                  <PostOrgasmTortureStep />
-                  <RuinedOrgasmsStep />
-                  <EdgingStep />
                   <StrokeStep />
+                  <OrgasmStep />
+                  <EdgingStep />
+                  <RuinedOrgasmsStep />
+                  <PostOrgasmTortureStep />
                   <TaskStep />
                   <Box p={3}>
                     <Cluster>
