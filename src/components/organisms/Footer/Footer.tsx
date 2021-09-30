@@ -21,7 +21,7 @@ const StyledFooter = styled.footer`
 export default function Footer() {
   return (
     <StyledFooter>
-      <Typography variant="h6">Affiliates</Typography>
+      <Typography variant="h6">Friends</Typography>
       <a href="https://www.erofights.com/" target="_blank" rel="noreferrer">
         <EroFightsBanner />
       </a>

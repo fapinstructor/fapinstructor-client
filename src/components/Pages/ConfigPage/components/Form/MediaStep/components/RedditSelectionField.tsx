@@ -3,7 +3,7 @@ import FormikAutocomplete from "components/molecules/fields/FormikAutocomplete";
 
 const textFieldProps = {
   label: "Subreddits",
-  helperText: "Enter a subreddit name and then press enter ",
+  helperText: "Enter a subreddit name and then press enter.",
   fullWidth: true,
   variant: "outlined",
 };
