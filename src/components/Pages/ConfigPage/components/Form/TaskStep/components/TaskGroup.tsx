@@ -1,11 +1,4 @@
-import {
-  FormControl,
-  FormControlLabel,
-  FormGroup,
-  FormLabel,
-  Checkbox,
-  Typography,
-} from "@material-ui/core";
+import { FormControlLabel, Checkbox, Typography } from "@material-ui/core";
 import styled from "styled-components/macro";
 import { Field, useFormikContext } from "formik";
 import { CheckboxWithLabel } from "formik-material-ui";
@@ -46,33 +39,33 @@ export default function TaskGroup({ label, tasks }: TaskGroupProps) {
   }
 
   return (
-    <FormControl component="fieldset">
-      <FormLabel component="legend">
-        <Typography color="secondary">{label}</Typography>
-      </FormLabel>
-      <FormGroup>
-        <TaskList>
-          <FormControlLabel
-            control={
-              <Checkbox
-                color="primary"
-                checked={allTasksSelected}
-                onChange={toggleAllTasks}
-              />
-            }
-            label="Select All"
-          />
-          {Object.entries(tasks).map(([id, label]) => (
-            <Field
-              key={id}
-              component={CheckboxWithLabel}
-              type="checkbox"
-              name={`tasks.${id}`}
-              Label={{ label }}
+    <fieldset>
+      <legend>
+        <Typography color="secondary" component="span">
+          {label}
+        </Typography>
+      </legend>
+      <TaskList>
+        <FormControlLabel
+          control={
+            <Checkbox
+              color="primary"
+              checked={allTasksSelected}
+              onChange={toggleAllTasks}
             />
-          ))}
-        </TaskList>
-      </FormGroup>
-    </FormControl>
+          }
+          label="Select All"
+        />
+        {Object.entries(tasks).map(([id, label]) => (
+          <Field
+            key={id}
+            component={CheckboxWithLabel}
+            type="checkbox"
+            name={`tasks.${id}`}
+            Label={{ label }}
+          />
+        ))}
+      </TaskList>
+    </fieldset>
   );
 }
