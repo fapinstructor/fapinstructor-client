@@ -1,10 +1,13 @@
 import * as yup from "yup";
-import validateArrayValueUniqueness from "utils/validation/validateArrayValueUniqueness";
-import { AnyObject, Maybe, Optionals } from "yup/lib/types";
 import { AnySchema } from "yup";
+import { AnyObject, Maybe, Optionals } from "yup/lib/types";
+
 import Lazy from "yup/lib/Lazy";
+import validateArrayValueUniqueness from "utils/validation/validateArrayValueUniqueness";
+import dedupeArray from "utils/validation/dedupeArray";
 
 yup.addMethod(yup.array, "unique", validateArrayValueUniqueness);
+yup.addMethod(yup.array, "dedupe", dedupeArray);
 
 declare module "yup" {
   interface ArraySchema<
@@ -15,5 +18,6 @@ declare module "yup" {
     TOut extends Maybe<yup.Asserts<T>[]> = yup.Asserts<T>[] | Optionals<TIn>
   > extends yup.BaseSchema<TIn, C, TOut> {
     unique(): ArraySchema<T, C>;
+    dedupe(): ArraySchema<T, C>;
   }
 }

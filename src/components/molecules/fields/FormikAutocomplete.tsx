@@ -57,6 +57,7 @@ export default function FormikAutocomplete({
       onChange={(event, value) => setFieldValue(fieldName, value)}
       renderInput={(inputParams) => (
         <TextField
+          type="search"
           {...inputParams}
           error={hasError}
           helperText={hasError ? errorText : helperText}

@@ -12,6 +12,7 @@ export default function RedditSelectionField() {
   return (
     <Field
       name="subreddits"
+      limitTags={10}
       component={FormikAutocomplete}
       textFieldProps={textFieldProps}
       multiple={true}
