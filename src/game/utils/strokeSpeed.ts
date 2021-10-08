@@ -18,7 +18,9 @@ import { StrokeService } from "game/xstate/services";
  * @returns {Number} A random stroke speed.
  */
 export const getRandomStrokeSpeed = ({ slow = 2, fast = 1.4 } = {}) => {
-  const { slowestStrokeSpeed, fastestStrokeSpeed } = store.config;
+  const {
+    strokeSpeed: { min: slowestStrokeSpeed, max: fastestStrokeSpeed },
+  } = store.config;
 
   const slowestAdjustedSpeed =
     slow > 0 ? slowestStrokeSpeed * slow : slowestStrokeSpeed;
@@ -40,16 +42,18 @@ export const getRandomStrokeSpeed = ({ slow = 2, fast = 1.4 } = {}) => {
 };
 
 export const setStrokeSpeed = (newSpeed: number) => {
-  const { slowestStrokeSpeed, fastestStrokeSpeed } = store.config;
-
   let speed = 0;
 
   if (newSpeed > 0) {
-    speed = clamp(newSpeed, slowestStrokeSpeed, fastestStrokeSpeed);
+    speed = clamp(
+      newSpeed,
+      store.config.strokeSpeed.min,
+      store.config.strokeSpeed.max
+    );
   }
 
   StrokeService.setStrokeSpeed(speed);
 };
 
 export const getAverageStrokeSpeed = () =>
-  (store.config.fastestStrokeSpeed + store.config.slowestStrokeSpeed) / 2;
+  (store.config.strokeSpeed.max + store.config.strokeSpeed.min) / 2;

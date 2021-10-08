@@ -7,7 +7,7 @@ import theme from "theme";
 import { GameConfig } from "configureStore";
 import useAutoMaxField from "hooks/useAutoMaxField";
 
-const GameLengthFieldContainer = styled.div`
+const GameDurationFieldContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-row-gap: 1rem;
@@ -18,14 +18,14 @@ const GameLengthFieldContainer = styled.div`
   }
 `;
 
-export default function GameLengthField() {
-  useAutoMaxField<GameConfig>("gameLength");
+export default function GameDurationField() {
+  useAutoMaxField<GameConfig>("gameDuration");
 
   return (
-    <GameLengthFieldContainer>
+    <GameDurationFieldContainer>
       <Field
         type="number"
-        name="gameLength.min"
+        name="gameDuration.min"
         label="Minimum Game Duration"
         component={TextField}
         inputProps={{ step: "1", min: "1" }}
@@ -37,7 +37,7 @@ export default function GameLengthField() {
       />
       <Field
         type="number"
-        name="gameLength.max"
+        name="gameDuration.max"
         label="Maximum Game Duration"
         component={TextField}
         inputProps={{ step: "1", min: "1" }}
@@ -47,6 +47,6 @@ export default function GameLengthField() {
         }}
         helperText="A rough maximum duration the game will take to finish."
       />
-    </GameLengthFieldContainer>
+    </GameDurationFieldContainer>
   );
 }

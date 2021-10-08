@@ -39,7 +39,7 @@ describe.skip("Edge Tests", () => {
 
     const getToTheEdgePromise = getToTheEdge(edging);
 
-    expect(setStrokeSpeed).toBeCalledWith(store.config.fastestStrokeSpeed);
+    expect(setStrokeSpeed).toBeCalledWith(store.config.strokeSpeed.max);
 
     jest.runOnlyPendingTimers();
 

@@ -11,7 +11,7 @@ export function ruin(completed: () => void) {
   return getToTheEdge(async () => {
     await rideTheEdge();
 
-    setStrokeSpeed(store.config.fastestStrokeSpeed);
+    setStrokeSpeed(store.config.strokeSpeed.max);
     playCommand(audioLibrary.RuinItForMe);
     const notificationId = createNotification({ message: "Ruin it!" });
 

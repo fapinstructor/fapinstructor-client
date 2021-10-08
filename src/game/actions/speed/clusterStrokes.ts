@@ -6,9 +6,6 @@ import delay from "utils/delay";
 import { StrokeService } from "game/xstate/services";
 
 export const clusterStrokes = async () => {
-  const {
-    config: { fastestStrokeSpeed },
-  } = store;
   const previousStrokeSpeed = StrokeService.strokeSpeed;
 
   createNotification({
@@ -21,7 +18,7 @@ export const clusterStrokes = async () => {
   const averageSpeed = getAverageStrokeSpeed();
 
   // time to complete set
-  const fastTime = reps / fastestStrokeSpeed;
+  const fastTime = reps / store.config.strokeSpeed.max;
   const averageTime = reps / averageSpeed;
 
   const startDelayTime = 2;
@@ -32,7 +29,7 @@ export const clusterStrokes = async () => {
   setStrokeSpeed(averageSpeed);
 
   for (let i = 0; i < sets; i++) {
-    setStrokeSpeed(fastestStrokeSpeed);
+    setStrokeSpeed(store.config.strokeSpeed.max);
     await delay(fastTime * 1000);
 
     setStrokeSpeed(averageSpeed);

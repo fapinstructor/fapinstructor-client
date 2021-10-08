@@ -11,7 +11,7 @@ export function orgasm(orgasmed: () => void) {
   return getToTheEdge(async () => {
     await rideTheEdge();
 
-    setStrokeSpeed(store.config.fastestStrokeSpeed);
+    setStrokeSpeed(store.config.strokeSpeed.max);
     playCommand(getRandomAudioVariation("Orgasm"));
     const notificationId = createNotification({
       message: "You have permission to have a full orgasm",
@@ -35,7 +35,7 @@ export function orgasm(orgasmed: () => void) {
 }
 
 async function postOrgasmTorture() {
-  setStrokeSpeed(store.config.fastestStrokeSpeed);
+  setStrokeSpeed(store.config.strokeSpeed.max);
 
   const notificationId = createNotification({
     message: "Time for a little post-orgasm torture, don't you dare stop!",
@@ -43,8 +43,8 @@ async function postOrgasmTorture() {
 
   await delay(
     getRandomInclusiveInteger(
-      store.config.postOrgasmTortureMinimumTime,
-      store.config.postOrgasmTortureMaximumTime
+      store.config.postOrgasmTortureDuration.min,
+      store.config.postOrgasmTortureDuration.max
     ) * 1000
   );
 
@@ -69,7 +69,7 @@ export function finalOrgasm(completed: () => void) {
     }
 
     // Continue stroking at the slowest speed until the game is ended.
-    setStrokeSpeed(store.config.slowestStrokeSpeed);
+    setStrokeSpeed(store.config.strokeSpeed.min);
 
     createNotification({
       message:

@@ -56,3 +56,12 @@ export const getRandomArbitrary = (min: number, max: number) => {
 export const clamp = (num: number, min: number, max: number) => {
   return Math.min(Math.max(num, min), max);
 };
+
+/**
+ * Sums an array of numbers
+ * @param values
+ * @returns
+ */
+export function sum(values: number[]) {
+  return values.reduce((sum, v) => sum + v, 0);
+}

@@ -2,26 +2,12 @@ import { createMachine, assign, send } from "xstate";
 import { createNotification } from "engine/notification";
 import { Severity } from "common/store/notifications";
 import MediaLink, { MediaType } from "common/types/Media";
-import { OldGameConfig } from "configureStore";
+import { GameConfig } from "configureStore";
 import fetchRedditPics from "api/fetchRedditPics";
 
 const PRELOAD_LINK_THRESHOLD = 5;
 const ESTIMATED_SKIP_RATE = 1.5;
 const LIMIT_CAP = 1000;
-
-export function parseRedditIds(keys: string) {
-  const splitOnCommaOutsideSqBr = /,(?![^[]*])/g;
-
-  return Array.from(
-    new Set(
-      keys
-        ? keys
-            .split(splitOnCommaOutsideSqBr)
-            .map((key) => key.trim().toLowerCase())
-        : []
-    )
-  );
-}
 
 function getEstimatedRequiredLinkCount(
   maximumGameTime: number,
@@ -35,23 +21,6 @@ function getEstimatedRequiredLinkCount(
 
 function preloadImage(url: string) {
   new Image().src = url;
-}
-
-export function getEnabledMediaTypes(config: OldGameConfig) {
-  const { gifs, pictures, videos } = config;
-  const mediaTypes = [];
-
-  if (gifs) {
-    mediaTypes.push(MediaType.Gif);
-  }
-  if (pictures) {
-    mediaTypes.push(MediaType.Picture);
-  }
-  if (videos) {
-    mediaTypes.push(MediaType.Video);
-  }
-
-  return mediaTypes;
 }
 
 export type MediaMachine = ReturnType<typeof createMediaMachine>;
@@ -75,11 +44,9 @@ export type MediaMachineEvent =
   | { type: "PRELOAD_LINK" }
   | StopEvent;
 
-export function createMediaMachine(config: OldGameConfig) {
-  const subreddits = parseRedditIds(config.redditId);
-  const mediaTypes = getEnabledMediaTypes(config);
+export function createMediaMachine(config: GameConfig) {
   const estimatedRequiredLinkCount = getEstimatedRequiredLinkCount(
-    config.maximumGameTime,
+    config.gameDuration.max,
     config.slideDuration
   );
 
@@ -105,9 +72,9 @@ export function createMediaMachine(config: OldGameConfig) {
             id: "fetchMedia",
             src: () =>
               fetchRedditPics({
-                subreddits,
+                subreddits: config.subreddits,
                 limit: estimatedRequiredLinkCount,
-                mediaTypes,
+                mediaTypes: config.imageType,
               }),
             onDone: {
               target: "playing",

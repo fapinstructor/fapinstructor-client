@@ -14,7 +14,7 @@ describe("Elapsed game time", () => {
   });
 
   it("game completion should be 50%", () => {
-    const time = store.config.maximumGameTime / 2;
+    const time = store.config.gameDuration.max / 2;
 
     store.game.startTime = formatISO(subMinutes(new Date(), time));
 
@@ -24,7 +24,7 @@ describe("Elapsed game time", () => {
   });
 
   it("game completion should be 100%", () => {
-    const time = store.config.maximumGameTime;
+    const time = store.config.gameDuration.max;
 
     store.game.startTime = formatISO(subMinutes(new Date(), time));
 
@@ -34,7 +34,7 @@ describe("Elapsed game time", () => {
   });
 
   it("elapsed game time should be half the maximum time", () => {
-    const time = store.config.maximumGameTime / 2;
+    const time = store.config.gameDuration.max / 2;
 
     store.game.startTime = formatISO(subMinutes(new Date(), time));
 

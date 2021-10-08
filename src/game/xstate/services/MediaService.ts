@@ -1,6 +1,6 @@
 import { interpret, InterpreterFrom } from "xstate";
 import { useService } from "@xstate/react";
-import { OldGameConfig } from "configureStore";
+import { GameConfig } from "configureStore";
 import {
   createMediaMachine,
   MediaMachine,
@@ -17,7 +17,7 @@ export function getMediaService() {
 }
 
 const MediaService = {
-  initialize(gameConfig: OldGameConfig) {
+  initialize(gameConfig: GameConfig) {
     if (service) {
       service.stop();
     }

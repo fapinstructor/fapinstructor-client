@@ -1,4 +1,4 @@
-import { OldGameConfig } from "configureStore";
+import { GameConfig } from "configureStore";
 import { assign, createMachine, send, actions } from "xstate";
 import history from "browserHistory";
 import store from "store";
@@ -63,7 +63,7 @@ export type ActionMachineEvent =
   | GenerateActionEvent
   | StopEvent;
 
-export function createActionMachine(config: OldGameConfig) {
+export function createActionMachine(config: GameConfig) {
   const actionFrequency = config.actionFrequency;
   const actions = initializeActions(config.tasks);
 
@@ -110,17 +110,13 @@ export function createActionMachine(config: OldGameConfig) {
                 type: "EXECUTE",
                 action: () => {
                   const {
-                    config: {
-                      allowedProbability,
-                      deniedProbability,
-                      ruinedProbability,
-                    },
+                    config: { finaleProbabilities },
                   } = store;
 
                   const outcomes = applyProbabilities([
-                    [finalOrgasm, allowedProbability],
-                    [finalRuin, ruinedProbability],
-                    [deny, deniedProbability],
+                    [finalOrgasm, finaleProbabilities.orgasm],
+                    [finalRuin, finaleProbabilities.ruined],
+                    [deny, finaleProbabilities.denied],
                   ]);
 
                   const outcome = getRandomItem(outcomes);
@@ -229,17 +225,14 @@ export function createActionMachine(config: OldGameConfig) {
       guards: {
         isFinishedExecuting: (context) => context.triggers.length === 0,
         shouldEndGame: () => {
-          const {
-            game: { ruins, edges, orgasms },
-            config: { minimumRuinedOrgasms, minimumEdges, minimumOrgasms },
-          } = store;
+          const { game, config } = store;
 
           // Game shouldn't end until minimums are met.
           if (
-            ruins < minimumRuinedOrgasms ||
-            edges < minimumEdges ||
+            game.ruins < config.ruinedOrgasms.min ||
+            game.edges < config.minimumEdges ||
             // The end game can cause an orgasm, so subtract to flow through to that logic.
-            orgasms < minimumOrgasms - 1
+            game.orgasms < config.orgasms.min - 1
           ) {
             return false;
           }
@@ -256,13 +249,10 @@ export function createActionMachine(config: OldGameConfig) {
          * This function is only used when multiple orgasms have been configured.
          */
         shouldOrgasm: () => {
-          const {
-            game: { orgasms },
-            config: { maximumOrgasms },
-          } = store;
+          const { game, config } = store;
 
           // Leave one orgasm available for when the game ends.
-          const remainingOrgasms = maximumOrgasms - (orgasms + 1);
+          const remainingOrgasms = config.orgasms.max - (game.orgasms + 1);
 
           if (remainingOrgasms <= 0 || gameCompletionPercent() < 0.5) {
             return false;
@@ -272,12 +262,12 @@ export function createActionMachine(config: OldGameConfig) {
           return gameCompletionPercent() ** 4 > Math.random();
         },
         shouldRuin: () => {
-          const {
-            game: { ruins },
-            config: { maximumRuinedOrgasms },
-          } = store;
+          const { game, config } = store;
 
-          if (ruins >= maximumRuinedOrgasms || gameCompletionPercent() < 0.5) {
+          if (
+            game.ruins >= config.ruinedOrgasms.max ||
+            gameCompletionPercent() < 0.5
+          ) {
             return false;
           }
 

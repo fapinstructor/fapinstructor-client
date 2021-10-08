@@ -5,7 +5,7 @@ import {
   Action,
 } from "game/xstate/machines/actionMachine";
 import { useService } from "@xstate/react";
-import { OldGameConfig } from "configureStore";
+import { GameConfig } from "configureStore";
 
 let machine: ActionMachine;
 let service: InterpreterFrom<ActionMachine>;
@@ -22,7 +22,7 @@ function getActionServiceContext() {
 }
 
 const ActionService = {
-  initialize(gameConfig: OldGameConfig) {
+  initialize(gameConfig: GameConfig) {
     if (service) {
       service.stop();
     }

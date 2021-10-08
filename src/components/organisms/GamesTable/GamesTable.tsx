@@ -158,11 +158,11 @@ export default function GamesTable({
               Title
             </TableSortLabel>
           </TableCell>
-          <TableCell sortDirection={sort["averageGameLength"]}>
+          <TableCell sortDirection={sort["averageGameDuration"]}>
             <TableSortLabel
-              active={!!sort["averageGameLength"]}
-              direction={sort["averageGameLength"]}
-              onClick={() => changeDirection("averageGameLength")}
+              active={!!sort["averageGameDuration"]}
+              direction={sort["averageGameDuration"]}
+              onClick={() => changeDirection("averageGameDuration")}
             >
               Average Game Duration
             </TableSortLabel>
@@ -203,13 +203,13 @@ export default function GamesTable({
             stars,
             starred,
             updatedAt,
-            averageGameLength,
+            averageGameDuration,
           }: Game) => (
             <TableRow key={id}>
               <StarsColumn gameId={id} stars={stars} starred={starred} />
               <RouteColumn title={title} to={`/game/${id}`} />
               <TableCell>
-                <Typography>{averageGameLength}</Typography>
+                <Typography>{averageGameDuration}</Typography>
               </TableCell>
               <TagsColumn tags={tags} />
               <DateColumn date={updatedAt} align="right" />

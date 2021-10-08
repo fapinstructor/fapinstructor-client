@@ -10,7 +10,7 @@ export const headPalming = async () => {
   const palmCircleCount = getRandomInclusiveInteger(5, 20);
   const delayTime = 2;
   const palmSpeed = getRandomArbitrary(
-    store.config.slowestStrokeSpeed,
+    store.config.strokeSpeed.min,
     getAverageStrokeSpeed()
   );
   const palmTime = palmCircleCount / palmSpeed;

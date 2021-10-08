@@ -1,9 +1,8 @@
 import * as React from "react";
 import * as Sentry from "@sentry/react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useLocation, useParams } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { startServices, stopServices } from "game";
-import store from "store";
 import { Paper } from "@material-ui/core";
 import HUD from "containers/HUD";
 import MediaPlayer from "components/organisms/MediaPlayer";
@@ -19,7 +18,6 @@ import BackgroundImage from "images/background.jpg";
 import DefaultImage from "images/default-image.jpg";
 import { MediaMachineContext } from "game/xstate/machines/mediaMachine";
 import YouTubeVideo from "components/atoms/YouTubeVideo";
-import { isDefaultConfig } from "configureStore";
 
 const useStyles = makeStyles(() => ({
   progress: {
@@ -59,6 +57,9 @@ function handleSlideChange() {
 export default function GamePage() {
   const params = useParams<{ config: string }>();
   const history = useHistory();
+  const location = useLocation<{
+    configured: true;
+  }>();
   const classes = useStyles();
   const [gameStarted, setGameStarted] = React.useState(false);
   const [error, setError] = React.useState<string>();
@@ -77,8 +78,6 @@ export default function GamePage() {
   React.useEffect(() => {
     if (gameConfigId) {
       !isUuid(gameConfigId) && setError("The game config link is invalid");
-    } else if (isDefaultConfig(store.config)) {
-      history.push("/");
     }
 
     Sentry.setTag("page", "game");
@@ -89,7 +88,7 @@ export default function GamePage() {
     return () => {
       gameStarted && stopServices();
     };
-  }, [history, params, gameStarted, gameConfigId]);
+  }, [history, location, params, gameStarted, gameConfigId]);
 
   if (error) {
     return (

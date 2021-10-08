@@ -8,9 +8,6 @@ import audioLibrary from "audio";
 import { StrokeService } from "game/xstate/services";
 
 export const redLightGreenLight = async () => {
-  const {
-    config: { fastestStrokeSpeed },
-  } = store;
   const previousStrokeSpeed = StrokeService.strokeSpeed;
 
   let timeLeft = getRandomInclusiveInteger(30, 60);
@@ -27,7 +24,7 @@ export const redLightGreenLight = async () => {
     if (isGreen) {
       const fastSpeed = getRandomArbitrary(
         getAverageStrokeSpeed(),
-        fastestStrokeSpeed
+        store.config.strokeSpeed.max
       );
 
       setStrokeSpeed(fastSpeed);

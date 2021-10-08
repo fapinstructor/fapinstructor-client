@@ -1,7 +1,6 @@
 import store from "store";
 import { StrokeStyle } from "game/enums/StrokeStyle";
 import { GripStrength } from "game/xstate/machines/gripMachine";
-import isEqual from "lodash/isEqual";
 import { MediaType } from "common/types/Media";
 
 const speedTasksConfig = {
@@ -97,48 +96,18 @@ const tasksConfig = {
 
 export type TaskConfig = typeof tasksConfig;
 
-export type OldGameConfig = {
-  redditId: string;
-  gifs: boolean;
-  pictures: boolean;
-  videos: boolean;
-  slideDuration: number; // sec
-  allowedProbability: number; // percent
-  deniedProbability: number; // percent
-  ruinedProbability: number; // percent
-  minimumGameTime: number; // min
-  maximumGameTime: number; // min
-  minimumOrgasms: number;
-  minimumEdges: number;
-  minimumRuinedOrgasms: number;
-  maximumRuinedOrgasms: number;
-  maximumOrgasms: number;
-  postOrgasmTorture: boolean;
-  postOrgasmTortureMinimumTime: number;
-  postOrgasmTortureMaximumTime: number;
-  edgeCooldown: number; // sec
-  edgeFrequency: number; // percent
-  ruinCooldown: number; // sec
-  slowestStrokeSpeed: number; // sec
-  fastestStrokeSpeed: number; // sec
-  initialGripStrength: number;
-  defaultStrokeStyle: StrokeStyle;
-  actionFrequency: number; // sec
-  tasks: TaskConfig;
-};
-
 export type GameConfig = {
   subreddits: string[];
   slideDuration: number;
   imageType: MediaType[];
-  gameLength: {
+  gameDuration: {
     min: number;
     max: number;
   };
-  probabilities: {
-    orgasmProbability: number;
-    deniedProbability: number;
-    ruinedProbability: number;
+  finaleProbabilities: {
+    orgasm: number;
+    denied: number;
+    ruined: number;
   };
   postOrgasmTorture: boolean;
   postOrgasmTortureDuration: {
@@ -157,52 +126,65 @@ export type GameConfig = {
     min: number;
     max: number;
   };
-  minimumOrgasms: number;
-  maximumOrgasms: number;
+  orgasms: {
+    min: number;
+    max: number;
+  };
   initialGripStrength: GripStrength;
   defaultStrokeStyle: StrokeStyle;
   actionFrequency: number;
   tasks: TaskConfig;
 };
 
-export const defaultConfig: OldGameConfig = Object.freeze({
-  redditId:
-    "NSFW_GIF, gonewild, nsfw, 60fpsporn, porninaminute, holdthemoan, cumsluts, realgirls, gwcouples, porninfifteenseconds, cuckold, hotwife, anal, blowjobs, bustypetite, ass, collegesluts, wifesharing, creampies, ruinedorgasms, chastitycouples, postorgasm",
-  gifs: true,
-  pictures: true,
-  videos: true,
+const defaultConfig: GameConfig = {
+  subreddits: [
+    "gonewild",
+    "nsfw",
+    "realgirls",
+    "nsfw_gif",
+    "cumsluts",
+    "petitegonewild",
+    "holdthemoan",
+    "anal",
+    "creampies",
+  ],
   slideDuration: 10, // sec
-  finalOrgasmAllowed: true,
-  allowedProbability: 100, // percent
-  finalOrgasmDenied: false,
-  deniedProbability: 0, // percent
-  finalOrgasmRuined: false,
-  ruinedProbability: 0, // percent
-  finalOrgasmRandom: false,
-  minimumGameTime: 5, // min
-  maximumGameTime: 20, // min
-  minimumOrgasms: 1,
-  minimumEdges: 0,
-  minimumRuinedOrgasms: 0,
-  maximumRuinedOrgasms: 0,
-  maximumOrgasms: 1,
+  imageType: [MediaType.Picture, MediaType.Gif, MediaType.Video],
+  gameDuration: {
+    min: 5, // min
+    max: 15, // min
+  },
+  finaleProbabilities: {
+    orgasm: 100,
+    denied: 0,
+    ruined: 0,
+  },
   postOrgasmTorture: false,
-  postOrgasmTortureMinimumTime: 10,
-  postOrgasmTortureMaximumTime: 90,
+  postOrgasmTortureDuration: {
+    min: 10, // sec
+    max: 90, // sec
+  },
+  ruinedOrgasms: {
+    min: 0,
+    max: 0,
+  },
   edgeCooldown: 10, // sec
   edgeFrequency: 0, // percent
   ruinCooldown: 20, // sec
-  slowestStrokeSpeed: 0.25, // sec
-  fastestStrokeSpeed: 4, // sec
+  minimumEdges: 0,
+  strokeSpeed: {
+    min: 0.25, // per sec
+    max: 4, // per sec
+  },
+  orgasms: {
+    min: 1,
+    max: 1,
+  },
   initialGripStrength: GripStrength.Normal,
   defaultStrokeStyle: "dominant",
   actionFrequency: 30, // sec
   tasks: tasksConfig,
-});
-
-export function isDefaultConfig(config: OldGameConfig) {
-  return isEqual(config, defaultConfig);
-}
+};
 
 export default function configureStore() {
   store.config = { ...defaultConfig };

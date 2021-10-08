@@ -11,11 +11,11 @@ let lastBaselineAdjustment = 0;
 
 function calculateBaselineStrokeSpeed() {
   let baseline =
-    (store.config.fastestStrokeSpeed / store.config.maximumGameTime) *
+    (store.config.strokeSpeed.max / store.config.gameDuration.max) *
     elapsedGameTime();
 
   // Don't allow the baseline to go over the fastest stroking speed
-  baseline = clamp(baseline, 0, store.config.fastestStrokeSpeed);
+  baseline = clamp(baseline, 0, store.config.strokeSpeed.max);
 
   return baseline;
 }
@@ -47,7 +47,7 @@ export function strokeSpeedAdjustmentLoop({ progress }: GameLoopArgs) {
     if (lastStrokeSpeedAdjustment >= STROKE_SPEED_ADJUSTMENT_FREQ_SEC * 1000) {
       const probabilityAdjustment =
         (StrokeService.strokeSpeedBaseline - StrokeService.strokeSpeed) /
-        store.config.fastestStrokeSpeed;
+        store.config.strokeSpeed.max;
       const weight = 0.5 * (1 + probabilityAdjustment);
       const shouldDecreaseSpeed = getRandomBoolean(weight);
 

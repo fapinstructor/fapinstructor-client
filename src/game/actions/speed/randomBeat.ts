@@ -19,10 +19,10 @@ export const randomBeat = async () => {
   // stroke speed of sets
   const fastSpeed = getRandomArbitrary(
     getAverageStrokeSpeed(),
-    store.config.fastestStrokeSpeed
+    store.config.strokeSpeed.max
   );
   const slowSpeed = getRandomArbitrary(
-    store.config.slowestStrokeSpeed,
+    store.config.strokeSpeed.min,
     getAverageStrokeSpeed()
   );
 

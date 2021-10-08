@@ -21,7 +21,7 @@ export async function edge() {
 }
 
 export async function getToTheEdge(edging: () => void) {
-  setStrokeSpeed(store.config.fastestStrokeSpeed);
+  setStrokeSpeed(store.config.strokeSpeed.max);
   await delay();
 
   playCommand(audioLibrary.Edge);
@@ -60,7 +60,7 @@ export async function rideTheEdge(
   )
 ) {
   // Slow stroke speed by 20%.
-  setStrokeSpeed(store.config.fastestStrokeSpeed * 0.8);
+  setStrokeSpeed(store.config.strokeSpeed.max * 0.8);
 
   const notificationId = createNotification({
     message: "Ride the edge",

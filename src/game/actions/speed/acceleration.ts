@@ -7,9 +7,6 @@ import audioLibrary from "audio";
 import { StrokeService } from "game/xstate/services";
 
 export const acceleration = async () => {
-  const {
-    config: { slowestStrokeSpeed, fastestStrokeSpeed },
-  } = store;
   const previousStrokeSpeed = StrokeService.strokeSpeed;
 
   createNotification({
@@ -17,15 +14,18 @@ export const acceleration = async () => {
     delay: true,
   });
 
-  setStrokeSpeed(slowestStrokeSpeed);
+  setStrokeSpeed(store.config.strokeSpeed.min);
 
   let audioPlayed = false;
 
-  while (StrokeService.strokeSpeed < fastestStrokeSpeed) {
+  while (StrokeService.strokeSpeed < store.config.strokeSpeed.max) {
     setStrokeSpeed(StrokeService.strokeSpeed * 1.05);
     await delay(1000);
 
-    if (!audioPlayed && StrokeService.strokeSpeed > fastestStrokeSpeed / 3) {
+    if (
+      !audioPlayed &&
+      StrokeService.strokeSpeed > store.config.strokeSpeed.max / 3
+    ) {
       playCommand(audioLibrary.LongMoan);
       audioPlayed = true;
     }

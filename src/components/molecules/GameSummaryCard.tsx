@@ -27,7 +27,7 @@ export default function GameSummaryCard({
         </Typography>
         <Typography variant="body1">Game Duration</Typography>
         <Typography variant="body2" gutterBottom>
-          {game.config.minimumGameTime}-{game.config.maximumGameTime} min
+          {game.config.gameDuration.min}-{game.config.gameDuration.max} min
         </Typography>
         {game.tags && game.tags.length > 0 && (
           <>

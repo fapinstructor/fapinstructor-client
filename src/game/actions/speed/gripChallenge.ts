@@ -13,7 +13,7 @@ export const gripChallenge = async () => {
   const sets = getRandomInclusiveInteger(2, 5);
   const reps = getRandomInclusiveInteger(10, 30);
 
-  const speed = (getAverageStrokeSpeed() + store.config.fastestStrokeSpeed) / 2;
+  const speed = (getAverageStrokeSpeed() + store.config.strokeSpeed.max) / 2;
   const time = reps / speed;
 
   createNotification({

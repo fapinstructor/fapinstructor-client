@@ -24,4 +24,10 @@ describe("test math", () => {
 
     jest.spyOn(global.Math, "random").mockRestore();
   });
+
+  it("Should sum an array of integers", () => {
+    const actual = math.sum([1, 2, 3]);
+
+    expect(actual).toBe(6);
+  });
 });

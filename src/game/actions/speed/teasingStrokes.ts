@@ -16,7 +16,7 @@ export const teasingStrokes = async () => {
     delay: true,
   });
 
-  setStrokeSpeed(store.config.slowestStrokeSpeed);
+  setStrokeSpeed(store.config.strokeSpeed.min);
 
   await delay(totalTime * 1000);
 

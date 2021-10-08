@@ -9,9 +9,9 @@ import { GameConfig } from "configureStore";
 const ONE_HUNDRED_PERCENT = 100;
 
 type Sliders = {
-  orgasmProbability: number;
-  deniedProbability: number;
-  ruinedProbability: number;
+  orgasm: number;
+  denied: number;
+  ruined: number;
 };
 
 export default function OrgasmStep() {
@@ -19,9 +19,9 @@ export default function OrgasmStep() {
 
   // Generate a list of enabled probabilities
   const [lockedProbabilities, setLockedProbabilities] = React.useState({
-    "probabilities.orgasmProbability": false,
-    "probabilities.deniedProbability": false,
-    "probabilities.ruinedProbability": false,
+    "finaleProbabilities.orgasm": false,
+    "finaleProbabilities.denied": false,
+    "finaleProbabilities.ruined": false,
   });
   const [lockedProbabilitySum, setLockedProbabilitySum] =
     React.useState<number>();
@@ -56,15 +56,15 @@ export default function OrgasmStep() {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const probabilityKey = name.split(".").pop()!;
     const previousProbability =
-      form.values.probabilities[probabilityKey as keyof Sliders];
+      form.values.finaleProbabilities[probabilityKey as keyof Sliders];
     const probabilityDiff = Math.round(probability - previousProbability);
 
-    const probabilities = Object.entries(form.values.probabilities)
+    const probabilities = Object.entries(form.values.finaleProbabilities)
       // Remove any locked probabilities from balancing.
       .filter(
         ([name]) =>
           !lockedProbabilities[
-            `probabilities.${name}` as keyof typeof lockedProbabilities
+            `finaleProbabilities.${name}` as keyof typeof lockedProbabilities
           ]
       );
 
@@ -76,7 +76,7 @@ export default function OrgasmStep() {
 
     probabilities.forEach(([key], index) => {
       form.setFieldValue(
-        `probabilities.${key}`,
+        `finaleProbabilities.${key}`,
         rebalancedProbabilities[index]
       );
     });
@@ -92,29 +92,29 @@ export default function OrgasmStep() {
   return (
     <Group title="Game Finale">
       <ProbabilityField
-        name="probabilities.orgasmProbability"
+        name="finaleProbabilities.orgasm"
         label="Probability of an orgasm"
         onChange={handleProbabilityChange}
         disabled={disableProbabilities}
-        locked={lockedProbabilities["probabilities.orgasmProbability"]}
+        locked={lockedProbabilities["finaleProbabilities.orgasm"]}
         onToggleLock={handleProbabilityToggle}
         cap={lockedProbabilitySum}
       />
       <ProbabilityField
-        name="probabilities.deniedProbability"
+        name="finaleProbabilities.denied"
         label="Probability to be denied an orgasm"
         onChange={handleProbabilityChange}
         disabled={disableProbabilities}
-        locked={lockedProbabilities["probabilities.deniedProbability"]}
+        locked={lockedProbabilities["finaleProbabilities.denied"]}
         onToggleLock={handleProbabilityToggle}
         cap={lockedProbabilitySum}
       />
       <ProbabilityField
-        name="probabilities.ruinedProbability"
+        name="finaleProbabilities.ruined"
         label="Probability of a ruined orgasm"
         disabled={disableProbabilities}
         onChange={handleProbabilityChange}
-        locked={lockedProbabilities["probabilities.ruinedProbability"]}
+        locked={lockedProbabilities["finaleProbabilities.ruined"]}
         onToggleLock={handleProbabilityToggle}
         cap={lockedProbabilitySum}
       />
