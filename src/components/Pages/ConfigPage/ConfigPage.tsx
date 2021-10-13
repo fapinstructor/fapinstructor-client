@@ -54,9 +54,9 @@ export default function ConfigPage() {
         }}
       >
         {({ errors }) => {
-          if (Object.keys(errors).length) {
-            console.log("errors:", errors);
-          }
+          // if (Object.keys(errors).length) {
+          //   console.log("errors:", errors);
+          // }
           return (
             <AutoFocusFieldErrors>
               <StyledForm>

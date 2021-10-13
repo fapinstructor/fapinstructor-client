@@ -3,70 +3,64 @@ import { StrokeStyle } from "game/enums/StrokeStyle";
 import { GripStrength } from "game/xstate/machines/gripMachine";
 import { MediaType } from "common/types/Media";
 
-const speedTasksConfig = {
-  doubleStrokes: true,
-  halvedStrokes: true,
-  teasingStrokes: true,
-  accelerationCycles: false,
-  randomBeat: false,
-  randomStrokeSpeed: false,
-  redLightGreenLight: false,
-  clusterStrokes: false,
-  gripChallenge: false,
-};
-export type SpeedTasks = keyof typeof speedTasksConfig;
-export const speedTasks = Object.keys(speedTasksConfig) as SpeedTasks[];
+const speedTasks = [
+  "doubleStrokes",
+  "halvedStrokes",
+  "teasingStrokes",
+  "accelerationCycles",
+  "randomBeat",
+  "randomStrokeSpeed",
+  "redLightGreenLight",
+  "clusterStrokes",
+  "gripChallenge",
+] as const;
 
-const strokeStyleTasksConfig = {
-  dominant: true,
-  nondominant: false,
-  headOnly: false,
-  shaftOnly: false,
-  overhandGrip: false,
-  bothHands: false,
-  handsOff: false,
-  gripAdjustments: true,
-};
-export type StrokeStyleTasks = keyof typeof strokeStyleTasksConfig;
-export const strokeStyleTasks = Object.keys(
-  strokeStyleTasksConfig
-) as StrokeStyleTasks[];
+export const strokeStyleTasks = [
+  "dominant",
+  "nondominant",
+  "headOnly",
+  "shaftOnly",
+  "overhandGrip",
+  "bothHands",
+  "handsOff",
+] as const;
 
-const cbtTasksConfig = {
-  bindCockBalls: false,
-  rubberBands: false,
-  ballSlaps: false,
-  squeezeBalls: false,
-  headPalming: false,
-  icyHot: false,
-  toothpaste: false,
-  breathPlay: false,
-  scratching: false,
-  flicking: false,
-  cbtIce: false,
-  clothespins: false,
-};
-export type CbtTasks = keyof typeof cbtTasksConfig;
-export const cbtTasks = Object.keys(cbtTasksConfig) as CbtTasks[];
+const cbtTasks = [
+  "bindCockBalls",
+  "rubberBands",
+  "ballSlaps",
+  "squeezeBalls",
+  "headPalming",
+  "icyHot",
+  "toothpaste",
+  "breathPlay",
+  "scratching",
+  "flicking",
+  "cbtIce",
+  "clothespins",
+] as const;
 
-const ceiTasksConfig = {
-  precum: false,
-};
-export type CeiTasks = keyof typeof ceiTasksConfig;
-export const ceiTasks = Object.keys(ceiTasksConfig) as CeiTasks[];
+const ceiTasks = ["precum"] as const;
 
-const analTasksConfig = {
-  buttplug: false,
-};
-export type AnalTasks = keyof typeof analTasksConfig;
-export const analTasks = Object.keys(analTasksConfig) as AnalTasks[];
+const analTasks = ["buttplug"] as const;
 
-const nippleTasksConfig = {
-  rubNipples: false,
-  nipplesAndStroke: false,
-};
-export type NippleTasks = keyof typeof nippleTasksConfig;
-export const nippleTasks = Object.keys(nippleTasksConfig) as NippleTasks[];
+const nippleTasks = ["rubNipples", "nipplesAndStroke"] as const;
+
+export const tasks = [
+  speedTasks,
+  strokeStyleTasks,
+  cbtTasks,
+  ceiTasks,
+  analTasks,
+  nippleTasks,
+].flat();
+
+export type SpeedTasks = typeof speedTasks[number];
+export type StrokeStyleTasks = typeof strokeStyleTasks[number];
+export type CbtTasks = typeof cbtTasks[number];
+export type CeiTasks = typeof ceiTasks[number];
+export type AnalTasks = typeof analTasks[number];
+export type NippleTasks = typeof nippleTasks[number];
 
 export type Task =
   | SpeedTasks
@@ -75,26 +69,6 @@ export type Task =
   | CeiTasks
   | AnalTasks
   | NippleTasks;
-
-export const tasks: Task[] = [
-  ...speedTasks,
-  ...strokeStyleTasks,
-  ...cbtTasks,
-  ...ceiTasks,
-  ...analTasks,
-  ...nippleTasks,
-];
-
-const tasksConfig = {
-  ...speedTasksConfig,
-  ...strokeStyleTasksConfig,
-  ...cbtTasksConfig,
-  ...ceiTasksConfig,
-  ...analTasksConfig,
-  ...nippleTasksConfig,
-};
-
-export type TaskConfig = typeof tasksConfig;
 
 export type GameConfig = {
   subreddits: string[];
@@ -130,10 +104,11 @@ export type GameConfig = {
     min: number;
     max: number;
   };
+  gripAdjustments: true;
   initialGripStrength: GripStrength;
   defaultStrokeStyle: StrokeStyle;
   actionFrequency: number;
-  tasks: TaskConfig;
+  tasks: Task[];
 };
 
 const defaultConfig: GameConfig = {
@@ -180,10 +155,11 @@ const defaultConfig: GameConfig = {
     min: 1,
     max: 1,
   },
+  gripAdjustments: true,
   initialGripStrength: GripStrength.Normal,
   defaultStrokeStyle: "dominant",
   actionFrequency: 30, // sec
-  tasks: tasksConfig,
+  tasks: ["doubleStrokes", "halvedStrokes", "teasingStrokes", "dominant"],
 };
 
 export default function configureStore() {

@@ -70,7 +70,7 @@ strokeSpeedAdjustmentLoop.reset = () => {
 const GRIP_ADJUSTMENT_FREQ_SEC = 30;
 let lastGripAdjustment = 0;
 export function gripAdjustmentLoop({ progress }: GameLoopArgs) {
-  if (store.config.tasks.gripAdjustments) {
+  if (store.config.gripAdjustments) {
     if (!ActionService.executing && ActionService.triggers.length === 0) {
       if (lastGripAdjustment > GRIP_ADJUSTMENT_FREQ_SEC * 1000) {
         randomGripAdjustment();

@@ -1,4 +1,4 @@
-import type { TaskConfig } from "configureStore";
+import type { Task } from "configureStore";
 import applyProbabilities from "utils/applyProbabilities";
 import {
   doubleStrokes,
@@ -43,48 +43,79 @@ import {
 } from "./actions";
 import type { Action } from "./xstate/machines/actionMachine";
 
-export function initializeActions(taskConfigs: TaskConfig) {
-  const enabledActions: [Action, number][] = [
-    [halvedStrokes, taskConfigs.halvedStrokes ? 5 : 0],
-    [doubleStrokes, taskConfigs.doubleStrokes ? 15 : 0],
-    [teasingStrokes, taskConfigs.teasingStrokes ? 5 : 0],
-    [randomBeat, taskConfigs.randomBeat ? 5 : 0],
-    [randomStrokeSpeed, taskConfigs.randomStrokeSpeed ? 20 : 0],
-    [acceleration, taskConfigs.accelerationCycles ? 7 : 0],
-    [redLightGreenLight, taskConfigs.redLightGreenLight ? 7 : 0],
-    [clusterStrokes, taskConfigs.clusterStrokes ? 7 : 0],
-    [handsOff, taskConfigs.handsOff ? 5 : 0],
-    [gripChallenge, taskConfigs.gripChallenge ? 7 : 0],
-    [addRubberBand, taskConfigs.rubberBands ? 2 : 0],
-    [removeRubberBand, taskConfigs.rubberBands ? 1 : 0],
-    [applyIcyHot, taskConfigs.icyHot ? 1 : 0],
-    [applyToothpaste, taskConfigs.toothpaste ? 1 : 0],
-    [ballSlaps, taskConfigs.ballSlaps ? 4 : 0],
-    [squeezeBalls, taskConfigs.squeezeBalls ? 4 : 0],
-    [headPalming, taskConfigs.headPalming ? 1 : 0],
-    [bindCockAndBalls, taskConfigs.bindCockBalls ? 1 : 0],
-    [snapRubberBand, taskConfigs.rubberBands ? 1 : 0],
-    [holdBreath, taskConfigs.breathPlay ? 1 : 0],
-    [scratchChest, taskConfigs.scratching ? 1 : 0],
-    [scratchThighs, taskConfigs.scratching ? 1 : 0],
-    [scratchShoulders, taskConfigs.scratching ? 1 : 0],
-    [flickCockHead, taskConfigs.flicking ? 1 : 0],
-    [flickNipples, taskConfigs.flicking ? 1 : 0],
-    [rubIceOnBalls, taskConfigs.cbtIce ? 1 : 0],
-    [setStrokeStyleDominant, taskConfigs.dominant ? 15 : 0],
-    [setStrokeStyleNondominant, taskConfigs.nondominant ? 5 : 0],
-    [setStrokeStyleHeadOnly, taskConfigs.headOnly ? 1 : 0],
-    [setStrokeStyleShaftOnly, taskConfigs.shaftOnly ? 2 : 0],
-    [setStrokeStyleOverhandGrip, taskConfigs.overhandGrip ? 1 : 0],
-    [setStrokeStyleBothHands, taskConfigs.bothHands ? 5 : 0],
-    [insertButtPlug, taskConfigs.buttplug ? 2 : 0],
-    [removeButtPlug, taskConfigs.buttplug ? 1 : 0],
-    [eatPrecum, taskConfigs.precum ? 3 : 0],
-    [addClothespin, taskConfigs.clothespins ? 3 : 0],
-    [removeClothespin, taskConfigs.clothespins ? 1 : 0],
-    [rubNipples, taskConfigs.rubNipples ? 5 : 0],
-    [nipplesAndStroke, taskConfigs.nipplesAndStroke ? 10 : 0],
-  ];
+type ActionProbabilityTuple = [Action, number];
+
+type TaskActionMap = {
+  [key in Task]: ActionProbabilityTuple | ActionProbabilityTuple[];
+};
+
+const taskActionProbabilityMap: TaskActionMap = {
+  halvedStrokes: [halvedStrokes, 5],
+  doubleStrokes: [doubleStrokes, 15],
+  teasingStrokes: [teasingStrokes, 5],
+  randomBeat: [randomBeat, 5],
+  randomStrokeSpeed: [randomStrokeSpeed, 20],
+  accelerationCycles: [acceleration, 7],
+  redLightGreenLight: [redLightGreenLight, 7],
+  clusterStrokes: [clusterStrokes, 7],
+  handsOff: [handsOff, 5],
+  gripChallenge: [gripChallenge, 7],
+  rubberBands: [
+    [addRubberBand, 2],
+    [removeRubberBand, 1],
+    [snapRubberBand, 1],
+  ],
+  icyHot: [applyIcyHot, 1],
+  toothpaste: [applyToothpaste, 1],
+  ballSlaps: [ballSlaps, 4],
+  squeezeBalls: [squeezeBalls, 4],
+  headPalming: [headPalming, 1],
+  bindCockBalls: [bindCockAndBalls, 1],
+  breathPlay: [holdBreath, 1],
+  scratching: [
+    [scratchChest, 1],
+    [scratchThighs, 1],
+    [scratchShoulders, 1],
+  ],
+  flicking: [
+    [flickCockHead, 1],
+    [flickNipples, 1],
+  ],
+  cbtIce: [rubIceOnBalls, 1],
+  dominant: [setStrokeStyleDominant, 15],
+  nondominant: [setStrokeStyleNondominant, 5],
+  headOnly: [setStrokeStyleHeadOnly, 1],
+  shaftOnly: [setStrokeStyleShaftOnly, 2],
+  overhandGrip: [setStrokeStyleOverhandGrip, 1],
+  bothHands: [setStrokeStyleBothHands, 5],
+  buttplug: [
+    [insertButtPlug, 2],
+    [removeButtPlug, 1],
+  ],
+  precum: [eatPrecum, 3],
+  clothespins: [
+    [addClothespin, 3],
+    [removeClothespin, 1],
+  ],
+  rubNipples: [rubNipples, 5],
+  nipplesAndStroke: [nipplesAndStroke, 10],
+};
+
+export function initializeActions(tasks: Task[]) {
+  const enabledActions = tasks.reduce<ActionProbabilityTuple[]>(
+    (actions, task) => {
+      const action = taskActionProbabilityMap[task];
+
+      // A task can have multiple actions associated with it.  If it does, we flatten it.
+      if (Array.isArray(action[0])) {
+        return [...actions, ...action] as ActionProbabilityTuple[];
+      }
+      return [...actions, action] as ActionProbabilityTuple[];
+    },
+    []
+  );
+
+  debugger;
 
   return applyProbabilities(enabledActions);
 }

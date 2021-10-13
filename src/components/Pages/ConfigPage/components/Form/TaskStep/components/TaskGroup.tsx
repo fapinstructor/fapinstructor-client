@@ -26,16 +26,23 @@ export default function TaskGroup({ label, tasks }: TaskGroupProps) {
 
   const availableTasks = Object.keys(tasks);
 
-  const selectedTasks = Object.entries(form.values.tasks)
-    .filter(([key]) => availableTasks.includes(key))
-    .filter(([_, value]) => value);
+  const selectedTasks = form.values.tasks.filter((task) =>
+    availableTasks.includes(task)
+  );
 
   const allTasksSelected = availableTasks.length === selectedTasks?.length;
 
   function toggleAllTasks() {
-    availableTasks.forEach((task) => {
-      form.setFieldValue(`tasks.${task}`, !allTasksSelected, false);
-    });
+    // Get all other selected tasks
+    const otherTasks = form.values.tasks.filter(
+      (task) => !availableTasks.includes(task)
+    );
+
+    if (!allTasksSelected) {
+      form.setFieldValue("tasks", [...otherTasks, ...availableTasks], false);
+    } else {
+      form.setFieldValue("tasks", otherTasks, false);
+    }
   }
 
   return (
@@ -61,7 +68,8 @@ export default function TaskGroup({ label, tasks }: TaskGroupProps) {
             key={id}
             component={CheckboxWithLabel}
             type="checkbox"
-            name={`tasks.${id}`}
+            name="tasks"
+            value={id}
             Label={{ label }}
           />
         ))}

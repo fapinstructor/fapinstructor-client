@@ -12,6 +12,7 @@ import {
   CeiTasks,
   NippleTasks,
   GameConfig,
+  tasks,
 } from "configureStore";
 import Group from "components/molecules/Group";
 import TaskGroup from "./components/TaskGroup";
@@ -44,7 +45,6 @@ const strokeStyleTasksGroup: TaskGroupHash<StrokeStyleTasks> = {
   nondominant: "Nondominant",
   headOnly: "Head Only",
   shaftOnly: "Shaft Only",
-  gripAdjustments: "Grip Adjustments",
   overhandGrip: "Overhand Grip",
   bothHands: "Both Hands",
   handsOff: "Hands Off",
@@ -82,9 +82,11 @@ export default function TaskStep() {
   const form = useFormikContext<GameConfig>();
 
   function randomizeTasks() {
-    Object.keys(form.values.tasks).forEach((task) => {
-      form.setFieldValue(`tasks.${task}`, getRandomBoolean(), false);
-    });
+    const randomlySelectedTasks = tasks.reduce<Task[]>((tasks, task) => {
+      return getRandomBoolean() ? [...tasks, task] : tasks;
+    }, []);
+
+    form.setFieldValue("tasks", randomlySelectedTasks, false);
   }
 
   return (

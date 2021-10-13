@@ -62,54 +62,28 @@ export async function setStrokeStyle(
   }
 }
 
-/**
- * Get a array with all active stroke styles.
- *
- * @returns {Array} ["dominant", "headOnly", ...]
- */
-const getActiveStokeStyles = (exclude: StrokeStyle[] = []) => {
-  const {
-    dominant,
-    nondominant,
-    headOnly,
-    shaftOnly,
-    overhandGrip,
-    bothHands,
-    handsOff,
-  } = store.config.tasks;
-
-  const enabledStyles: StrokeStyle[] = Object.entries({
-    dominant,
-    nondominant,
-    headOnly,
-    shaftOnly,
-    overhandGrip,
-    bothHands,
-    handsOff,
-  })
-    // filter out any disabled stroke styles
-    .filter(([key, value]) => value === true)
-    // convert object to list of StrokeStyle keys
-    .map(([key, value]) => key as StrokeStyle)
-    // exclude any specified styles
-    .filter((strokeStyle) => exclude.includes(strokeStyle));
+const getActiveStokeStyles = () => {
+  const enabledStyles = store.config.tasks.filter((task) =>
+    Object.keys(StrokeStyles).includes(task)
+  );
 
   return enabledStyles;
 };
 
-const getRandomStrokeStyle = (exclude: StrokeStyle[] = []) => {
+// TODO: Exclude bothHands and handsOff because some tasks require both hands because some tasks require both hands.
+const getRandomStrokeStyle = () => {
   const strokeStyles = getActiveStokeStyles();
   const randomStyleIndex = getRandomInclusiveInteger(
     0,
     strokeStyles.length - 1
   );
-  const randomStyle = strokeStyles[randomStyleIndex];
+  const randomStyle = strokeStyles[randomStyleIndex] as StrokeStyle;
 
   return randomStyle;
 };
 
 export const setRandomOneHandedStrokeStyle = async () => {
-  const strokeStyle = getRandomStrokeStyle(["bothHands", "handsOff"]);
+  const strokeStyle = getRandomStrokeStyle();
   setStrokeStyle(strokeStyle);
 };
 
