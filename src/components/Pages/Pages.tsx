@@ -7,6 +7,7 @@ const ConfigPage = lazy(() => import("components/Pages/ConfigPage"));
 const GamePage = lazy(() => import("components/Pages/GamePage"));
 const EndPage = lazy(() => import("components/Pages/EndPage"));
 const ChangeLog = lazy(() => import("components/Pages/ChangeLog"));
+const PrivacyPolicy = lazy(() => import("components/Pages/PrivacyPolicy"));
 const FaqPage = lazy(() => import("components/Pages/FaqPage"));
 const SearchPage = lazy(() => import("components/Pages/SearchPage"));
 const ProfilePage = lazy(() => import("components/Pages/ProfilePage"));
@@ -47,6 +48,12 @@ export default function Pages() {
           path="/changelog"
           component={ChangeLog}
           title={getTitle("Change Log")}
+        />
+        <Route
+          exact
+          path="/privacy"
+          component={PrivacyPolicy}
+          title={getTitle("Privacy Policy")}
         />
         <Route exact path="/faq" component={FaqPage} title={getTitle("FAQ")} />
         <Route
