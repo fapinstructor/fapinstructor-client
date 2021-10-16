@@ -49,12 +49,23 @@ export default function FormikAutocomplete({
       `Initial value of autocomplete with name: "${fieldName}" cannot be null. Use [] instead.`
     );
   }
-
   return (
     <Autocomplete
       {...autoCompleteProps}
       value={fieldValue}
       onChange={(event, value) => setFieldValue(fieldName, value)}
+      onInputChange={(event, value, reason) => {
+        const trailingSpace = /\S\s$/.test(value);
+        const multipleSpaces = value.trim().split(" ");
+
+        if (trailingSpace) {
+          // If there is a trailing space, auto submit the tag.
+          setFieldValue(fieldName, [...fieldValue, value.trim()]);
+        } else if (multipleSpaces.length > 1) {
+          // If there's any spaces, split and add as separate tags.
+          setFieldValue(fieldName, [...fieldValue, ...multipleSpaces]);
+        }
+      }}
       renderInput={(inputParams) => (
         <TextField
           type="search"

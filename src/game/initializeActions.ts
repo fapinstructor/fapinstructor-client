@@ -115,7 +115,5 @@ export function initializeActions(tasks: Task[]) {
     []
   );
 
-  debugger;
-
   return applyProbabilities(enabledActions);
 }

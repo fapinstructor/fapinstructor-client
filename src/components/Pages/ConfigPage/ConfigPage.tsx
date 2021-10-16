@@ -1,8 +1,10 @@
+import * as React from "react";
 import { Box, Button, Typography } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import { Formik, Form } from "formik";
 import styled from "styled-components/macro";
 
+import { useAuth0 } from "AuthProvider";
 import { GAME_CONFIG_SCHEMA } from "./GAME_CONFIG_SCHEMA";
 import store from "store";
 import { GameConfig } from "configureStore";
@@ -20,6 +22,7 @@ import OrgasmStep from "./components/Form/OrgasmStep";
 import EdgingStep from "./components/Form/EdgingStep";
 import StrokeStep from "./components/Form/StrokeStep";
 import GameDurationStep from "./components/Form/GameDurationStep";
+import ButtonWithHelperText from "components/molecules/buttons/ButtonWithHelperText";
 
 const StyledForm = styled(Form)`
   padding-top: 2rem;
@@ -42,6 +45,8 @@ const StyledForm = styled(Form)`
 
 export default function ConfigPage() {
   const history = useHistory();
+  const { user } = useAuth0();
+  const [open, setOpen] = React.useState(false);
 
   return (
     <>
@@ -50,13 +55,17 @@ export default function ConfigPage() {
         validationSchema={GAME_CONFIG_SCHEMA}
         onSubmit={async (formValues) => {
           store.config = formValues;
-          history.push("/game");
+
+          const flag = (document.activeElement as HTMLElement)?.dataset.flag;
+
+          if (flag === "submit") {
+            history.push("/game");
+          } else if (flag === "share") {
+            setOpen(true);
+          }
         }}
       >
-        {({ errors }) => {
-          // if (Object.keys(errors).length) {
-          //   console.log("errors:", errors);
-          // }
+        {() => {
           return (
             <AutoFocusFieldErrors>
               <StyledForm>
@@ -79,6 +88,7 @@ export default function ConfigPage() {
                   <Box p={3}>
                     <Cluster>
                       <Button
+                        data-flag="submit"
                         type="submit"
                         title="Starts the game."
                         variant="contained"
@@ -86,7 +96,17 @@ export default function ConfigPage() {
                       >
                         Start
                       </Button>
-                      <ShareGame disabled={Object.keys(errors).length > 0} />
+                      <ButtonWithHelperText
+                        data-flag="share"
+                        type="submit"
+                        variant="contained"
+                        disabled={!user}
+                        color="secondary"
+                        helperText={!user ? "*Requires login" : ""}
+                      >
+                        Share Game
+                      </ButtonWithHelperText>
+                      <ShareGame open={open} onClose={() => setOpen(false)} />
                     </Cluster>
                   </Box>
                 </Stack>

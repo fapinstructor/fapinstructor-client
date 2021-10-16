@@ -3,27 +3,41 @@ import { isAlpha } from "utils/regex";
 import { PaginateParams, WithPagination } from "common/types/pagination";
 import { Game } from "api/types";
 import { GameConfig } from "configureStore";
+import { GAME_CONFIG_SCHEMA } from "components/Pages/ConfigPage/GAME_CONFIG_SCHEMA";
 
-export const CREATE_GAME_SCHEMA = yup.object().shape({
-  title: yup
-    .string()
-    .min(5, "The title must contain at least 5 characters.")
-    .max(50, "The title cannot be greater than 50 characters long.")
-    .required("Please enter a title."),
-  tags: yup
-    .array()
-    .of(
-      yup
-        .string()
-        .matches(isAlpha, "Only lowercase letters and spaces are permitted.")
-        .min(3, "A tag must be at least 3 characters long.")
-        .max(30, "A tag cannot be greater than 30 characters long.")
-        .required()
-    )
-    .min(1, "You must specify at least 1 tag."),
-  isPublic: yup.boolean().required(),
-  config: yup.object().required(),
-});
+export const CREATE_GAME_SCHEMA = yup
+  .object()
+  .required()
+  .shape({
+    title: yup
+      .string()
+      .min(5, ({ min }) => `The title must contain at least ${min} characters.`)
+      .max(
+        50,
+        ({ max }) => `The title cannot be greater than ${max} characters long.`
+      )
+      .required("Please enter a title."),
+    tags: yup
+      .array()
+      .required()
+      .of(
+        yup
+          .string()
+          .required()
+          .matches(isAlpha, "Only lowercase letters and spaces are permitted.")
+          .min(3, ({ min }) => `A tag must be at least ${min} characters long.`)
+          .max(
+            30,
+            ({ max }) => `A tag cannot be greater than ${max} characters long.`
+          )
+          .lowercase()
+          .required()
+      )
+      .min(1, ({ min }) => `You must specify at least ${min} tag.`)
+      .dedupe(),
+    isPublic: yup.boolean().required(),
+    config: GAME_CONFIG_SCHEMA,
+  });
 
 export interface CreateGameRequest {
   title: string;
