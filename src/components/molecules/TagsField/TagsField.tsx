@@ -33,9 +33,9 @@ export default function TagsField({
   if (onChange) {
     return (
       <Autocomplete
-        multiple={true}
-        freeSolo={true}
-        filterSelectedOptions={true}
+        multiple
+        freeSolo
+        filterSelectedOptions
         value={value}
         onChange={(_, values) => {
           onChange(values);
@@ -51,9 +51,9 @@ export default function TagsField({
       name="tags"
       component={FormikAutocomplete}
       textFieldProps={textFieldProps}
-      multiple={true}
-      freeSolo={true}
-      filterSelectedOptions={true}
+      multiple
+      freeSolo
+      filterSelectedOptions
       loading={loading}
       options={tags}
     />

@@ -28,6 +28,7 @@ type AutocompleteProps = React.ComponentProps<typeof Autocomplete>;
 type FormikAutocompleteProps = AutocompleteProps &
   FieldProps & {
     textFieldProps: TextFieldProps;
+    breakSpaces?: boolean;
   };
 
 // TODO: Need to handle when the user pastes.
@@ -37,6 +38,7 @@ export default function FormikAutocomplete({
   form: { dirty, errors, setFieldValue },
   getOptionLabel,
   textFieldProps: { helperText, ...textFieldProps },
+  breakSpaces,
   ...autoCompleteProps
 }: FormikAutocompleteProps) {
   const errorText = formatErrors(getIn(errors, fieldName));
@@ -55,15 +57,17 @@ export default function FormikAutocomplete({
       value={fieldValue}
       onChange={(event, value) => setFieldValue(fieldName, value)}
       onInputChange={(event, value, reason) => {
-        const trailingSpace = /\S\s$/.test(value);
-        const multipleSpaces = value.trim().split(" ");
+        if (breakSpaces) {
+          const trailingSpace = /\S\s$/.test(value);
+          const multipleSpaces = value.trim().split(" ");
 
-        if (trailingSpace) {
-          // If there is a trailing space, auto submit the tag.
-          setFieldValue(fieldName, [...fieldValue, value.trim()]);
-        } else if (multipleSpaces.length > 1) {
-          // If there's any spaces, split and add as separate tags.
-          setFieldValue(fieldName, [...fieldValue, ...multipleSpaces]);
+          if (trailingSpace) {
+            // If there is a trailing space, auto submit the tag.
+            setFieldValue(fieldName, [...fieldValue, value.trim()]);
+          } else if (multipleSpaces.length > 1) {
+            // If there's any spaces, split and add as separate tags.
+            setFieldValue(fieldName, [...fieldValue, ...multipleSpaces]);
+          }
         }
       }}
       renderInput={(inputParams) => (

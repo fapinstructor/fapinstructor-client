@@ -4,6 +4,10 @@ All notable changes to this project will be documented here.
 
 The overall project roadmap and progress can be viewed on our [Trello Board](https://trello.com/b/JAIcnXRf/fap-instructor)
 
+## 2021-10-16
+
+- Allow pasting multiple subreddits.
+
 ## 2021-09-30
 
 - Complete overhaul of the config page.

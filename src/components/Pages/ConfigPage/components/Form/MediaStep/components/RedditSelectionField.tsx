@@ -15,13 +15,10 @@ export default function RedditSelectionField() {
       limitTags={10}
       component={FormikAutocomplete}
       textFieldProps={textFieldProps}
-      multiple={true}
-      freeSolo={true}
-      filterSelectedOptions={true}
-      /**
-       * TODO: An empty array is required, even if we are free solo.
-       * Can be adjusted once we add a list of subreddits to the db
-       */
+      multiple
+      freeSolo
+      filterSelectedOptions
+      breakSpaces
       options={[]}
     />
   );

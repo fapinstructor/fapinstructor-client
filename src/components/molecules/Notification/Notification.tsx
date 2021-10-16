@@ -110,7 +110,7 @@ export default function Notification({
   }
 
   return (
-    <Slide in={true} direction="right">
+    <Slide in direction="right">
       <Paper elevation={10} square className={classes.root}>
         <Box
           display="flex"

@@ -64,7 +64,7 @@ export default function AppAuth0Provider({
       domain={config.auth0Domain}
       clientId={config.auth0ClientId}
       audience={config.auth0Audience}
-      useRefreshTokens={true}
+      useRefreshTokens
       redirectUri={window.location.origin}
       onRedirectCallback={onRedirectCallback}
     >
