@@ -4,6 +4,10 @@ All notable changes to this project will be documented here.
 
 The overall project roadmap and progress can be viewed on our [Trello Board](https://trello.com/b/JAIcnXRf/fap-instructor)
 
+## 2021-10-20
+
+- Fixed handy devices that run v3 firmware.
+
 ## 2021-10-16
 
 - Allow pasting multiple subreddits.

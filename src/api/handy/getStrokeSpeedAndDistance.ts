@@ -24,8 +24,9 @@ export default function getStrokeSpeedAndDistance(bps: number) {
     stroke = maxStrokeSpeed / (bps * fastestBps);
   }
 
+  // Handy doesn't support decimal places with firmware 3+.
   return {
-    speed,
-    stroke,
+    speed: Math.trunc(speed),
+    stroke: Math.trunc(stroke),
   };
 }

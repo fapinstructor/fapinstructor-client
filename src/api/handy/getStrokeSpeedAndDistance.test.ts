@@ -8,21 +8,21 @@ describe("getStrokeSpeedAndDistance", () => {
     const { speed, stroke } = getStrokeSpeedAndDistance(8);
 
     expect(speed).toBe(maxStrokeSpeed);
-    expect(stroke).toBeCloseTo(24.38);
+    expect(stroke).toBeCloseTo(24);
   });
 
   it("should work for 7 bps", () => {
     const { speed, stroke } = getStrokeSpeedAndDistance(7);
 
     expect(speed).toBe(maxStrokeSpeed);
-    expect(stroke).toBeCloseTo(27.86);
+    expect(stroke).toBeCloseTo(27);
   });
 
   it("should work for 6 bps", () => {
     const { speed, stroke } = getStrokeSpeedAndDistance(6);
 
     expect(speed).toBe(maxStrokeSpeed);
-    expect(stroke).toBeCloseTo(32.5);
+    expect(stroke).toBeCloseTo(32);
   });
 
   it("should work for 5 / sec", () => {
@@ -36,7 +36,7 @@ describe("getStrokeSpeedAndDistance", () => {
     const { speed, stroke } = getStrokeSpeedAndDistance(4);
 
     expect(speed).toBe(maxStrokeSpeed);
-    expect(stroke).toBeCloseTo(48.75);
+    expect(stroke).toBeCloseTo(48);
   });
 
   it("should work for 3 / sec", () => {
@@ -63,7 +63,7 @@ describe("getStrokeSpeedAndDistance", () => {
   it("should work for 1 / 2 sec", () => {
     const { speed, stroke } = getStrokeSpeedAndDistance(1 / 2);
 
-    expect(speed).toBeCloseTo(97.5);
+    expect(speed).toBeCloseTo(97);
     expect(stroke).toBe(maxStrokeLength);
   });
 
@@ -77,7 +77,7 @@ describe("getStrokeSpeedAndDistance", () => {
   it("should work for 1 / 4 sec", () => {
     const { speed, stroke } = getStrokeSpeedAndDistance(1 / 4);
 
-    expect(speed).toBeCloseTo(48.75);
+    expect(speed).toBeCloseTo(48);
     expect(stroke).toBe(maxStrokeLength);
   });
 });
