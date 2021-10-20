@@ -7,6 +7,7 @@ The overall project roadmap and progress can be viewed on our [Trello Board](htt
 ## 2021-10-20
 
 - Fixed handy devices that run v3 firmware.
+- Fixed the unique subreddit validation errors.
 
 ## 2021-10-16
 

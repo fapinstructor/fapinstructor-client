@@ -31,8 +31,17 @@ type FormikAutocompleteProps = AutocompleteProps &
     breakSpaces?: boolean;
   };
 
-// TODO: Need to handle when the user pastes.
-// We should break up the string into separate tags if there is a delimiter
+function formatValues(values: string[]) {
+  values = values.map(formatValue);
+  // Remove duplicate items
+  values = Array.from(new Set(values));
+
+  return values;
+}
+function formatValue(value: string) {
+  return value.trim().toLowerCase();
+}
+
 export default function FormikAutocomplete({
   field: { name: fieldName, value: fieldValue = [] },
   form: { dirty, errors, setFieldValue },
@@ -55,18 +64,23 @@ export default function FormikAutocomplete({
     <Autocomplete
       {...autoCompleteProps}
       value={fieldValue}
-      onChange={(event, value) => setFieldValue(fieldName, value)}
+      onChange={(event, values: string[]) =>
+        setFieldValue(fieldName, formatValues(values))
+      }
       onInputChange={(event, value, reason) => {
         if (breakSpaces) {
           const trailingSpace = /\S\s$/.test(value);
-          const multipleSpaces = value.trim().split(" ");
+          const multipleSpaces = value.split(" ").filter((v) => v);
 
-          if (trailingSpace) {
-            // If there is a trailing space, auto submit the tag.
-            setFieldValue(fieldName, [...fieldValue, value.trim()]);
-          } else if (multipleSpaces.length > 1) {
+          if (multipleSpaces.length > 1) {
             // If there's any spaces, split and add as separate tags.
-            setFieldValue(fieldName, [...fieldValue, ...multipleSpaces]);
+            setFieldValue(
+              fieldName,
+              formatValues([...fieldValue, ...multipleSpaces])
+            );
+          } else if (trailingSpace) {
+            // If there is a trailing space, auto submit the tag.
+            setFieldValue(fieldName, formatValues([...fieldValue, value]));
           }
         }
       }}

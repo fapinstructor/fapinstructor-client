@@ -13,9 +13,11 @@ function getEstimatedRequiredLinkCount(
   maximumGameTime: number,
   slideDuration: number
 ) {
-  return Math.min(
-    ((maximumGameTime * 60) / slideDuration) * ESTIMATED_SKIP_RATE,
-    LIMIT_CAP
+  return Math.round(
+    Math.min(
+      ((maximumGameTime * 60) / slideDuration) * ESTIMATED_SKIP_RATE,
+      LIMIT_CAP
+    )
   );
 }
 
