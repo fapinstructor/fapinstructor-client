@@ -55,17 +55,9 @@ export default function ConfigPage() {
         validationSchema={GAME_CONFIG_SCHEMA}
         onSubmit={async (formValues) => {
           store.config = formValues;
-
-          const flag = (document.activeElement as HTMLElement)?.dataset.flag;
-
-          if (flag === "submit") {
-            history.push("/game");
-          } else if (flag === "share") {
-            setOpen(true);
-          }
         }}
       >
-        {() => {
+        {({ submitForm, isValid }) => {
           return (
             <AutoFocusFieldErrors>
               <StyledForm>
@@ -88,21 +80,25 @@ export default function ConfigPage() {
                   <Box p={3}>
                     <Cluster>
                       <Button
-                        data-flag="submit"
-                        type="submit"
                         title="Starts the game."
                         variant="contained"
                         color="primary"
+                        onClick={async () => {
+                          await submitForm();
+                          isValid && history.push("/game");
+                        }}
                       >
                         Start
                       </Button>
                       <ButtonWithHelperText
-                        data-flag="share"
-                        type="submit"
                         variant="contained"
                         disabled={!user}
                         color="secondary"
                         helperText={!user ? "*Requires login" : ""}
+                        onClick={async () => {
+                          await submitForm();
+                          isValid && setOpen(true);
+                        }}
                       >
                         Share Game
                       </ButtonWithHelperText>
