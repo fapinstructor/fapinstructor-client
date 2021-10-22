@@ -104,7 +104,7 @@ export type GameConfig = {
     min: number;
     max: number;
   };
-  gripAdjustments: true;
+  gripAdjustments: boolean;
   initialGripStrength: GripStrength;
   defaultStrokeStyle: StrokeStyle;
   actionFrequency: number;

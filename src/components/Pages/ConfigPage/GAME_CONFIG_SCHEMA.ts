@@ -40,6 +40,14 @@ export const GAME_CONFIG_SCHEMA = yup
       .unique()
       .min(1, ({ min }) => `Please specify at least ${min} subreddit.`)
       .max(200, ({ max }) => `Cannot specify more than ${max} subreddits.`),
+    actionFrequency: yup
+      .number()
+      .required()
+      .min(0)
+      .max(
+        MAX_GAME_DURATION,
+        "Action frequency cannot be greater than 12 hours."
+      ),
     slideDuration: yup
       .number()
       .required()

@@ -16,6 +16,7 @@ import {
 } from "configureStore";
 import Group from "components/molecules/Group";
 import TaskGroup from "./components/TaskGroup";
+import TaskFrequencyField from "./components/TaskFrequencyField";
 import Stack from "components/templates/Stack";
 import theme from "theme";
 
@@ -107,6 +108,7 @@ export default function TaskStep() {
         <TaskGroup label="Anal" tasks={analTasksGroup} />
         <TaskGroup label="Nipples" tasks={nippleTasksGroup} />
       </TaskContainer>
+      <TaskFrequencyField />
     </Group>
   );
 }
