@@ -5,12 +5,20 @@ export default function useStickyState<S extends Serializable>(
   key: string
 ): [S, Dispatch<SetStateAction<S>>] {
   const [value, setValue] = useState<S>(() => {
-    const stickyValue = window.localStorage.getItem(key);
-    return stickyValue !== null ? JSON.parse(stickyValue) : defaultValue;
+    try {
+      const stickyValue = window.localStorage.getItem(key);
+      return stickyValue !== null ? JSON.parse(stickyValue) : defaultValue;
+    } catch {
+      // Security exception
+    }
   });
 
   useEffect(() => {
-    window.localStorage.setItem(key, JSON.stringify(value));
+    try {
+      window.localStorage.setItem(key, JSON.stringify(value));
+    } catch {
+      // Security exception
+    }
   }, [key, value]);
 
   return [value, setValue];
