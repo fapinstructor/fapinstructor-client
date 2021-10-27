@@ -13,6 +13,15 @@ export default async function fetchRedditPics(request: MediaRequest) {
     (subreddit) => !failedSubreddits.includes(subreddit)
   );
 
+  if (filteredSubreddits.length === 0) {
+    createNotification({
+      message: "Error fetching all subreddits!",
+      duration: -1,
+      severity: Severity.ERROR,
+    });
+    return;
+  }
+
   const url = `/v1/reddit?${qs.stringify(
     { ...request, subreddits: filteredSubreddits },
     { arrayFormat: "comma" }
