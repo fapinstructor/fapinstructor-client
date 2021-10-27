@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import debounce from "lodash/debounce";
 import {
   Table,
   TableHead,
@@ -61,6 +62,9 @@ export default function GamesTable({
     [key: string]: SortDirection;
   }>({});
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedSearchGames = useCallback(debounce(searchGames, 500), []);
+
   useEffect(() => {
     const req: SearchGamesRequest = {
       createdBy,
@@ -72,8 +76,16 @@ export default function GamesTable({
         direction === "asc" ? key : `-${key}`
       ),
     };
-    searchGames(req);
-  }, [searchGames, filters, sort, createdBy, playedBy, starredBy, paginate]);
+    debouncedSearchGames(req);
+  }, [
+    debouncedSearchGames,
+    filters,
+    sort,
+    createdBy,
+    playedBy,
+    starredBy,
+    paginate,
+  ]);
 
   const handlePageChange = (_event: unknown, page: number) => {
     setPaginate({
@@ -185,6 +197,9 @@ export default function GamesTable({
               placeholder="Filter by title"
               value={filters.title}
               fullWidth
+              inputProps={{
+                maxLength: 50,
+              }}
               onChange={handleTitleChange}
             />
           </TableCell>
