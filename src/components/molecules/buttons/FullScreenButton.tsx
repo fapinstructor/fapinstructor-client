@@ -1,4 +1,6 @@
 import { useCallback } from "react";
+import { createNotification } from "engine/notification";
+import { Severity } from "common/store/notifications";
 import { Tooltip, IconButton } from "@material-ui/core";
 import FullscreenIcon from "@material-ui/icons/Fullscreen";
 import FullscreenExitIcon from "@material-ui/icons/FullscreenExit";
@@ -56,9 +58,9 @@ function toggleFullScreen() {
     !doc.webkitFullscreenElement &&
     !doc.msFullscreenElement
   ) {
-    requestFullScreen.call(docEl);
+    return requestFullScreen.call(docEl);
   } else {
-    cancelFullScreen.call(doc);
+    return cancelFullScreen.call(doc);
   }
 }
 
@@ -81,7 +83,13 @@ export default function FullScreenButton() {
 
   const handleKeydown = useCallback((event: KeyboardEvent) => {
     if (event.key === "f") {
-      toggleFullScreen();
+      toggleFullScreen().catch(() => {
+        createNotification({
+          message: "An error occurred trying to fullscreen or minimize.",
+          duration: -1,
+          severity: Severity.ERROR,
+        });
+      });
     }
   }, []);
   useWindowEvent("keydown", handleKeydown);
