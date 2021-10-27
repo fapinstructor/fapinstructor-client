@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import BookmarkList from "components/molecules/BookmarkList";
 import BackgroundImage from "images/background.jpg";
+import SupportSiteBanner from "components/atoms/SupportSiteBanner";
 
 const useStyles = makeStyles({
   root: {
@@ -30,6 +31,8 @@ export default function EndPage() {
 
   return (
     <div className={classes.root}>
+      <SupportSiteBanner />
+      <br />
       <Typography
         gutterBottom
         variant="h2"
