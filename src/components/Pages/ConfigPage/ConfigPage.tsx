@@ -23,6 +23,7 @@ import EdgingStep from "./components/Form/EdgingStep";
 import StrokeStep from "./components/Form/StrokeStep";
 import GameDurationStep from "./components/Form/GameDurationStep";
 import ButtonWithHelperText from "components/molecules/buttons/ButtonWithHelperText";
+import SupportSiteBanner from "components/atoms/SupportSiteBanner";
 
 const StyledForm = styled(Form)`
   padding-top: 2rem;
@@ -62,6 +63,7 @@ export default function ConfigPage() {
             <AutoFocusFieldErrors>
               <StyledForm>
                 <Stack>
+                  <SupportSiteBanner />
                   <Typography variant="h2" component="h1" color="secondary">
                     Create a game
                   </Typography>
