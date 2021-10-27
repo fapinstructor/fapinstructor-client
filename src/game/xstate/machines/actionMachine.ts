@@ -18,6 +18,7 @@ import { orgasm, finalOrgasm } from "game/actions/orgasm/orgasm";
 import { deny } from "game/actions/orgasm/deny";
 import { startStrokingAgain } from "game/actions";
 import applyProbabilities from "utils/applyProbabilities";
+import { isFullScreen, toggleFullScreen } from "game/utils/fullscreen";
 
 const { choose } = actions;
 
@@ -25,6 +26,10 @@ export type ActionMachine = ReturnType<typeof createActionMachine>;
 
 function completed() {
   stopServices();
+
+  if (isFullScreen()) {
+    toggleFullScreen();
+  }
   history.push("/endgame");
 }
 
