@@ -1,7 +1,6 @@
 import { createMachine, assign, send } from "xstate";
 import { GameConfig } from "configureStore";
 import { createNotification } from "engine/notification";
-import audioLibrary from "audio";
 import { playCommand } from "engine/audio";
 
 export enum GripStrength {
@@ -144,7 +143,7 @@ export function createGripMachine(config: GameConfig) {
               break;
             }
             case "SET_TIGHTEST_GRIP_STRENGTH": {
-              playCommand(audioLibrary.Tighter);
+              playCommand("tighter");
               createNotification({
                 message: "Tighten your grip until it hurts",
               });

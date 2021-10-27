@@ -1,6 +1,5 @@
 import store from "store";
 import { playCommand } from "engine/audio";
-import { getRandomAudioVariation } from "audio";
 import { getAverageStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
 import { createNotification, dismissNotification } from "engine/notification";
 import { getRandomInclusiveInteger } from "utils/math";
@@ -12,7 +11,7 @@ export function orgasm(orgasmed: () => void) {
     await rideTheEdge();
 
     setStrokeSpeed(store.config.strokeSpeed.max);
-    playCommand(getRandomAudioVariation("Orgasm"));
+    playCommand("orgasm");
     const notificationId = createNotification({
       message: "You have permission to have a full orgasm",
     });

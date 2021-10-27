@@ -7,7 +7,7 @@ import {
   IGainNode,
   IOscillatorNode,
 } from "standardized-audio-context";
-import audioLibrary, { getRandomAudioVariation } from "audio";
+import getAudioUrl, { Audios } from "audio";
 import store from "common/store";
 import { Severity, createNotification } from "common/store/notifications";
 import { selectEnableVoice } from "common/store/settings";
@@ -44,12 +44,14 @@ export const createAudioContext = async () => {
   }
 };
 
-export const fetchAudioFile = memoize(async (url) => {
+const fetchAudioFile = memoize(async (url) => {
   const buffer = await new Promise<AudioBuffer>((resolve, reject) => {
     const request = new XMLHttpRequest();
     request.open("GET", url, true);
     request.responseType = "arraybuffer";
-    request.onerror = reject;
+    request.onerror = () => {
+      reject(new Error(`Failed to load ${url}`));
+    };
     request.onload = () => {
       const audioData = context.decodeAudioData(request.response);
       resolve(audioData);
@@ -64,7 +66,7 @@ let tickCount = 0;
 let previousRhythm = 0;
 export function playTick(rhythm: number) {
   if (!context || !oscillator || !gainNode) {
-    play(audioLibrary.Tick);
+    playCommand("tick", { ignoreMute: true });
   }
 
   let frequency;
@@ -96,21 +98,24 @@ export function playTick(rhythm: number) {
   gainNode.gain.linearRampToValueAtTime(0.0, context.currentTime + 0.11);
 }
 
-export function playVoice(variationName: string) {
-  playCommand(getRandomAudioVariation(variationName));
-}
-
-export function playCommand(url: string) {
-  if (selectEnableVoice(store.getState())) {
-    return play(url);
-  }
-}
-
-export async function play(url: string) {
+async function playAudioUrl(url: string) {
   const buffer = await fetchAudioFile(url);
 
   const source = context.createBufferSource();
   source.buffer = buffer;
   source.connect(context.destination);
   source.start();
+}
+
+type PlayCommandOptions = {
+  ignoreMute: boolean;
+};
+
+export function playCommand(
+  audio: Audios,
+  options: PlayCommandOptions = { ignoreMute: false }
+) {
+  if (options.ignoreMute || selectEnableVoice(store.getState())) {
+    return playAudioUrl(getAudioUrl(audio));
+  }
 }

@@ -1,7 +1,6 @@
 import { createNotification, dismissNotification } from "engine/notification";
 import { getRandomInclusiveInteger } from "utils/math";
 import { playCommand } from "engine/audio";
-import audioLibrary from "audio";
 import { StrokeService } from "game/xstate/services";
 import { pluralize } from "utils/pluralize";
 
@@ -17,7 +16,7 @@ export const ballSlaps = async () => {
     )}`,
     duration: -1,
   });
-  playCommand(audioLibrary.SlapBalls);
+  playCommand("slapBalls");
 
   const done = async () => {
     dismissNotification(nid);

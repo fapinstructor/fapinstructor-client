@@ -1,6 +1,5 @@
 import store from "store";
 import { playCommand } from "engine/audio";
-import audioLibrary, { getRandomAudioVariation } from "audio";
 import { setStrokeSpeed } from "game/utils/strokeSpeed";
 import { createNotification, dismissNotification } from "engine/notification";
 import { handsOff } from "game/actions";
@@ -12,7 +11,7 @@ export function ruin(completed: () => void) {
     await rideTheEdge();
 
     setStrokeSpeed(store.config.strokeSpeed.max);
-    playCommand(audioLibrary.RuinItForMe);
+    playCommand("ruin");
     const notificationId = createNotification({ message: "Ruin it!" });
 
     function cleanup() {
@@ -51,7 +50,7 @@ export function finalRuin(completed: () => void) {
 export async function ruined() {
   store.game.ruins++;
 
-  playCommand(getRandomAudioVariation("Ruined"));
+  playCommand("ruined");
   await handsOff(store.config.ruinCooldown * 1000);
 }
 

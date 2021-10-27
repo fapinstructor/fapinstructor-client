@@ -1,5 +1,4 @@
 import { playCommand } from "engine/audio";
-import { getRandomAudioVariation } from "audio";
 import { createNotification } from "engine/notification";
 import { getRandomDeniedMessage } from "game/texts/messages";
 import { StrokeService } from "game/xstate/services";
@@ -10,7 +9,7 @@ export function deny(denied: () => void) {
     await rideTheEdge();
 
     StrokeService.pause();
-    playCommand(getRandomAudioVariation("Denied"));
+    playCommand("denied");
     createNotification({ message: getRandomDeniedMessage() });
 
     function finishedTrigger() {

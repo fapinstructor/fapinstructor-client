@@ -4,7 +4,6 @@ import { getAverageStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
 import delay from "utils/delay";
 import { getRandomArbitrary, getRandomInclusiveInteger } from "utils/math";
 import { playCommand } from "engine/audio";
-import audioLibrary from "audio";
 import { StrokeService } from "game/xstate/services";
 
 export const redLightGreenLight = async () => {
@@ -18,7 +17,7 @@ export const redLightGreenLight = async () => {
     delay: true,
   });
 
-  playCommand(audioLibrary.Obey);
+  playCommand("obey");
 
   while (timeLeft > 0) {
     if (isGreen) {

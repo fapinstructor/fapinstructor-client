@@ -1,6 +1,5 @@
 import store from "store";
 import { playCommand } from "engine/audio";
-import audioLibrary from "audio";
 import { getRandomStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
 import { createNotification, dismissNotification } from "engine/notification";
 import { chance, getRandomInclusiveInteger } from "utils/math";
@@ -24,7 +23,7 @@ export async function getToTheEdge(edging: () => void) {
   setStrokeSpeed(store.config.strokeSpeed.max);
   await delay();
 
-  playCommand(audioLibrary.Edge);
+  playCommand("edge");
   GripService.resetGripStrength();
   const notificationId = createNotification({
     message: getRandomEdgeMessage(),
@@ -67,7 +66,7 @@ export async function rideTheEdge(
     duration: -1,
   });
 
-  playCommand(audioLibrary.KeepStroking);
+  playCommand("keepStroking");
 
   await delay(duration);
   dismissNotification(notificationId);

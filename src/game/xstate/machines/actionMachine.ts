@@ -5,7 +5,6 @@ import store from "store";
 import { TIME_TO_TICK } from "components/organisms/BeatMeter/settings";
 import warmup from "game/actions/warmup";
 import { playCommand } from "engine/audio";
-import audioLibrary from "audio";
 import interrupt from "engine/interrupt";
 import delay from "utils/delay";
 import { gameCompletionPercent } from "game/utils/elapsedGameTime";
@@ -97,8 +96,8 @@ export function createActionMachine(config: GameConfig) {
               executeImmediately: true,
             }),
             () => {
-              playCommand(audioLibrary.StartGame);
-              playCommand(audioLibrary.CardShuffle);
+              playCommand("startGame");
+              playCommand("shuffle");
             },
           ],
         },

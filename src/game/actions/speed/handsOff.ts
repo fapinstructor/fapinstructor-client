@@ -6,7 +6,6 @@ import { setStrokeStyle } from "game/enums/StrokeStyle";
 import { getRandomHandsOffMessage } from "game/texts/messages";
 import { StrokeService } from "game/xstate/services";
 import { setStrokeStyleHandsOff } from "game/actions";
-import audioLibrary from "audio";
 import { playCommand } from "engine/audio";
 import { getAverageStrokeSpeed } from "game/utils/strokeSpeed";
 
@@ -41,5 +40,5 @@ export async function startStrokingAgain() {
 
   await setStrokeStyle();
   createNotification({ message: "Start stroking again" });
-  playCommand(audioLibrary.StartStrokingAgain);
+  playCommand("startStroking");
 }

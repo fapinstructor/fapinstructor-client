@@ -1,7 +1,6 @@
 import { createNotification, dismissNotification } from "engine/notification";
 import { StrokeService } from "game/xstate/services";
 import { playCommand } from "engine/audio";
-import { getRandomAudioVariation } from "audio";
 
 export const eatPrecum = async () => {
   StrokeService.pause();
@@ -11,7 +10,7 @@ export const eatPrecum = async () => {
     delay: true,
   });
 
-  playCommand(getRandomAudioVariation("CEI"));
+  playCommand("cei");
 
   const done = async () => {
     StrokeService.play();

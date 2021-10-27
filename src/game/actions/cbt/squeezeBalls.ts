@@ -2,7 +2,6 @@ import { createNotification } from "engine/notification";
 import { getRandomInclusiveInteger } from "utils/math";
 import delay from "utils/delay";
 import { playCommand } from "engine/audio";
-import audioLibrary from "audio";
 
 export const squeezeBalls = async () => {
   const time = getRandomInclusiveInteger(15, 40);
@@ -14,7 +13,7 @@ export const squeezeBalls = async () => {
     delay: true,
   });
 
-  playCommand(audioLibrary.SqueezeBalls);
+  playCommand("squeezeBalls");
 
   await delay(time * 1000);
 };

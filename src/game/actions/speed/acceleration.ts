@@ -3,7 +3,6 @@ import { createNotification } from "engine/notification";
 import { setStrokeSpeed } from "game/utils/strokeSpeed";
 import delay from "utils/delay";
 import { playCommand } from "engine/audio";
-import audioLibrary from "audio";
 import { StrokeService } from "game/xstate/services";
 
 export const acceleration = async () => {
@@ -26,7 +25,7 @@ export const acceleration = async () => {
       !audioPlayed &&
       StrokeService.strokeSpeed > store.config.strokeSpeed.max / 3
     ) {
-      playCommand(audioLibrary.LongMoan);
+      playCommand("longMoan");
       audioPlayed = true;
     }
   }

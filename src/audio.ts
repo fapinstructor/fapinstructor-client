@@ -54,87 +54,63 @@ import SlapBalls from "audio/slapballs.mp3";
 import SqueezeBalls from "audio/squeezeballs.mp3";
 import StartStrokingAgain from "audio/start_stroking_again.mp3";
 import StartGame from "audio/startgame.mp3";
-import ThereYouGo from "audio/thereYouGo.mp3";
 import Tick from "audio/tick.mp3";
 import Tighter from "audio/tighter.mp3";
 
-export const audioVariations = {
-  Moan: 24,
-  Faster: 2,
-  Denied: 1,
-  Orgasm: 3,
-  Ruined: 3,
-  CEI: 3,
-};
-
-export const getRandomAudioVariation = (key) => {
-  if (!audioVariations.hasOwnProperty(key)) {
-    throw new Error(`No audio variation found for ${key}`);
-  }
-  return audioLibrary[
-    `${key}${getRandomInclusiveInteger(1, audioVariations[key])}`
-  ];
-};
-
 const audioLibrary = {
-  // cei
-  CEI1,
-  CEI2,
-  CEI3,
-  // denied
-  Denied1,
-  // faster
-  Faster1,
-  Faster2,
-  // moan
-  Moan1,
-  Moan2,
-  Moan3,
-  Moan4,
-  Moan5,
-  Moan6,
-  Moan7,
-  Moan8,
-  Moan9,
-  Moan10,
-  Moan11,
-  Moan12,
-  Moan13,
-  Moan14,
-  Moan15,
-  Moan16,
-  Moan17,
-  Moan18,
-  Moan19,
-  Moan20,
-  Moan21,
-  Moan22,
-  Moan23,
-  Moan24,
-  // orgasm
-  Orgasm1,
-  Orgasm2,
-  Orgasm3,
-  // ruined
-  Ruined1,
-  Ruined2,
-  Ruined3,
-  // misc.
-  CardShuffle,
-  DontCumYet,
-  Edge,
-  HoldEdge,
-  KeepStroking,
-  LongMoan,
-  Obey,
-  RuinItForMe,
-  SlapBalls,
-  SqueezeBalls,
-  StartStrokingAgain,
-  StartGame,
-  ThereYouGo,
-  Tick,
-  Tighter,
+  cei: [CEI1, CEI2, CEI3],
+  denied: [Denied1],
+  faster: [Faster1, Faster2],
+  moan: [
+    Moan1,
+    Moan2,
+    Moan3,
+    Moan4,
+    Moan5,
+    Moan6,
+    Moan7,
+    Moan8,
+    Moan9,
+    Moan10,
+    Moan11,
+    Moan12,
+    Moan13,
+    Moan14,
+    Moan15,
+    Moan16,
+    Moan17,
+    Moan18,
+    Moan19,
+    Moan20,
+    Moan21,
+    Moan22,
+    Moan23,
+    Moan24,
+  ],
+  longMoan: [LongMoan],
+  edge: [Edge],
+  orgasm: [Orgasm1, Orgasm2, Orgasm3],
+  ruin: [RuinItForMe],
+  ruined: [Ruined1, Ruined2, Ruined3],
+  dontCum: [DontCumYet],
+  shuffle: [CardShuffle],
+  holdEdge: [HoldEdge],
+  keepStroking: [KeepStroking],
+  startStroking: [StartStrokingAgain],
+  tighter: [Tighter],
+  obey: [Obey],
+  slapBalls: [SlapBalls],
+  squeezeBalls: [SqueezeBalls],
+  startGame: [StartGame],
+  tick: [Tick],
 };
 
-export default audioLibrary;
+export type Audios = keyof typeof audioLibrary;
+
+export default function getAudioUrl(key: Audios) {
+  const variations = audioLibrary[key];
+  const chosenVariation =
+    variations[getRandomInclusiveInteger(0, variations.length - 1)];
+
+  return chosenVariation;
+}
