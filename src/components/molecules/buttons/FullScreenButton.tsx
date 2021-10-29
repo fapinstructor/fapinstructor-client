@@ -15,7 +15,7 @@ export default function FullScreenButton() {
   const fullscreen = isFullScreen();
 
   const handleKeydown = useCallback((event: KeyboardEvent) => {
-    if (event.key === "f") {
+    if (event.key === "f" && !event.repeat) {
       toggleFullScreen().catch(() => {
         createNotification({
           message: "An error occurred trying to fullscreen or minimize.",

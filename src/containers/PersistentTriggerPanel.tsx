@@ -25,7 +25,7 @@ export default React.memo(function PersistentTriggerPanel() {
   const classes = useStyles();
 
   const handleKeydown = React.useCallback((event: KeyboardEvent) => {
-    if (store.game.cooldown) {
+    if (store.game.cooldown || event.repeat) {
       return;
     }
 

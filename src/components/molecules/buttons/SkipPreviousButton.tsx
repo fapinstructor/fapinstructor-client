@@ -6,7 +6,7 @@ import { MediaService } from "game/xstate/services";
 
 export default function SkipPreviousButton() {
   const handleKeydown = useCallback((event: KeyboardEvent) => {
-    if (event.key === "ArrowLeft") {
+    if (event.key === "ArrowLeft" && !event.repeat) {
       MediaService.previousLink();
     }
   }, []);
