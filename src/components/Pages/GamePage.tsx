@@ -64,6 +64,7 @@ export default function GamePage() {
   const [gameStarted, setGameStarted] = React.useState(false);
   const [error, setError] = React.useState<string>();
   const [media, setMedia] = React.useState<MediaMachineContext>();
+  const [loading, setLoading] = React.useState<boolean>(true);
 
   const activeLink = media?.links[media.linkIndex];
   const gameConfigId = params.config;
@@ -85,10 +86,16 @@ export default function GamePage() {
       gameConfigId,
     });
 
+    setLoading(false);
+
     return () => {
       gameStarted && stopServices();
     };
   }, [history, location, params, gameStarted, gameConfigId]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   if (error) {
     return (
