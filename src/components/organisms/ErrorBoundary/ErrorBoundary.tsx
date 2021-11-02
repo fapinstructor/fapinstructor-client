@@ -1,6 +1,6 @@
 import * as Sentry from "@sentry/react";
 import { Typography } from "@material-ui/core";
-import monkey from "images/monkey.gif";
+import monkey from "assets/images/monkey.gif";
 import store from "store";
 
 type ErrorBoundaryProps = {

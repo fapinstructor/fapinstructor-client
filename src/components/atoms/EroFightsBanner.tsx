@@ -1,5 +1,5 @@
 import styled from "styled-components/macro";
-import EuroFightBanner from "images/eurofights-banner-tf.png";
+import EuroFightBanner from "assets/images/eurofights-banner-tf.png";
 
 const EuroFightsBanner = styled.img.attrs({
   src: EuroFightBanner,

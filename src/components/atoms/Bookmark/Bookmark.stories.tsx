@@ -1,5 +1,5 @@
 import { Story, Meta } from "@storybook/react";
-import DefaultImage from "images/default-image.jpg";
+import DefaultImage from "assets/images/default-image.jpg";
 
 import Bookmark, { BookmarkProps } from "./Bookmark";
 

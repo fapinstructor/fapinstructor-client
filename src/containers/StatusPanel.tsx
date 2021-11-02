@@ -10,7 +10,7 @@ import DownIcon from "@material-ui/icons/ArrowDropDown";
 import UpIcon from "@material-ui/icons/ArrowDropUp";
 import elapsedGameTime from "game/utils/elapsedGameTime";
 import { StrokeStyles } from "game/enums/StrokeStyle";
-import logo from "images/logo.svg";
+import logo from "assets/images/logo.svg";
 import { ProxyStoreConsumer } from "containers/StoreProvider";
 import { useDispatch, useSelector } from "react-redux";
 import {

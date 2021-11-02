@@ -1,4 +1,4 @@
-import FapInstructorImage from "images/logo.svg";
+import FapInstructorImage from "assets/images/logo.svg";
 import Image from "components/atoms/Image";
 import Icon from "components/atoms/Icon";
 

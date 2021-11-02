@@ -1,30 +1,10 @@
+import { HandySettings, Mode, VersionResponse } from "../types";
 import getStrokeSpeedAndDistance, {
   maxStrokeLength,
-} from "./getStrokeSpeedAndDistance";
+} from "../utils/getStrokeSpeedAndDistance";
 
 const api = "https://www.handyfeeling.com/api/v1";
 const CHECK_CONNECTION_INTERVAL = 5000;
-
-enum Mode {
-  Off,
-  On,
-}
-
-type HandySettings = {
-  success: boolean;
-  connected: boolean;
-  mode: Mode;
-  position: number;
-  speed: number;
-  stroke: number;
-};
-
-type VersionResponse = {
-  connected: boolean;
-  success: boolean;
-  version: string;
-  latest: string;
-};
 
 type Subscriber = (connected: boolean) => void;
 

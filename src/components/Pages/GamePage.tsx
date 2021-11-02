@@ -14,8 +14,8 @@ import SoloGameCard from "components/organisms/SoloGameCard";
 import { ProxyStoreConsumer } from "containers/StoreProvider";
 import ExitGamePrompt from "components/organisms/ExitGamePrompt";
 import { MediaService, getMediaService } from "game/xstate/services";
-import BackgroundImage from "images/background.jpg";
-import DefaultImage from "images/default-image.jpg";
+import BackgroundImage from "assets/images/background.jpg";
+import DefaultImage from "assets/images/default-image.jpg";
 import { MediaMachineContext } from "game/xstate/machines/mediaMachine";
 import YouTubeVideo from "components/atoms/YouTubeVideo";
 

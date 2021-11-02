@@ -7,7 +7,7 @@ import { StrokeService } from "../services";
 import { TIME_TO_TICK } from "components/organisms/BeatMeter/settings";
 
 import createIntervalMachine, { TickEvent } from "./intervalMachine";
-import handy from "api/handy";
+import handy from "features/handy/api";
 import { getAverageStrokeSpeed } from "game/utils/strokeSpeed";
 import { getRandomArbitrary } from "utils/math";
 

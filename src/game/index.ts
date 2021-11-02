@@ -18,7 +18,7 @@ import {
   ActionService,
   GripService,
 } from "game/xstate/services";
-import handy from "api/handy";
+import handy from "features/handy/api";
 
 const loops = [
   moanLoop,

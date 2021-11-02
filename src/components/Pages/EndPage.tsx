@@ -3,7 +3,7 @@ import store from "store";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import BookmarkList from "components/molecules/BookmarkList";
-import BackgroundImage from "images/background.jpg";
+import BackgroundImage from "assets/images/background.jpg";
 import SupportSiteBanner from "components/atoms/SupportSiteBanner";
 
 const useStyles = makeStyles({
