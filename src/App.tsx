@@ -4,16 +4,16 @@ import history from "browserHistory";
 import ErrorBoundary from "components/organisms/ErrorBoundary";
 import { ProxyStoreProvider } from "containers/StoreProvider";
 import Auth0Provider from "AuthProvider";
-import Pages from "./Pages";
 import { Store } from "store";
-import LoadingPage from "./Pages/LoadingPage";
-import NavBar from "./organisms/NavBar";
+import LoadingPage from "components/Pages/LoadingPage";
+import NavBar from "components/organisms/NavBar";
+import { AppRoutes } from "./routes";
 
-type RootProps = {
+type AppProps = {
   store: Store;
 };
 
-export default function Root({ store }: RootProps) {
+export default function Root({ store }: AppProps) {
   return (
     <ErrorBoundary>
       <Router history={history}>
@@ -34,7 +34,7 @@ export default function Root({ store }: RootProps) {
                   flexDirection: "column",
                 }}
               >
-                <Pages />
+                <AppRoutes />
               </div>
             </ProxyStoreProvider>
           </Auth0Provider>

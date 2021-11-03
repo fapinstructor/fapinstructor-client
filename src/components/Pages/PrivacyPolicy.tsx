@@ -2,6 +2,7 @@ import Typography from "@material-ui/core/Typography";
 import styled from "styled-components/macro";
 
 import Article from "components/templates/Article";
+import { Head } from "components/Head";
 
 const StyledArticle = styled(Article)`
   h2,
@@ -18,6 +19,7 @@ const StyledArticle = styled(Article)`
 export default function PrivacyPolicy() {
   return (
     <StyledArticle>
+      <Head title="Privacy Policy" />
       <Typography>
         <h2>Privacy Policy</h2>
         <p>

@@ -4,33 +4,26 @@
 
 A fap/joi game where you follow the provided instructions while watching a stream of content that teases and torments you.
 
-## Installation
+## Introduction
 
-### Client
+TODO: Fill in this section.
 
-```bash
-cd client
-yarn
-yarn start
-```
+## Table Of Contents:
 
-### Server
-
-1. Configure your `.env` file under server. Use `.env.example` as a reference
-2. Compile and run
-
-```bash
-cd server
-yarn
-yarn start
-```
-
-## Usage
-
-[Adding a New Task](NEW_TASK.md)
+- [⚙️ Getting started](docs/getting-started.md)
+- [👁️ Style Guide](docs/style-guide.md)
+- [🗄️ Project Structure](docs/project-structure.md)
 
 ## Contributing
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Contributions are always welcome! If you have any ideas, suggestions, fixes, feel free to contribute. You can do that by going through the following steps:
 
-Please make sure to update tests as appropriate.
+1. Clone this repo
+2. Create a branch: `git checkout -b your-feature`
+3. Make some changes
+4. Test your changes
+5. Push your branch and open a Pull Request
+
+## License
+
+[GNU GPLv2](https://choosealicense.com/licenses/gpl-2.0/)

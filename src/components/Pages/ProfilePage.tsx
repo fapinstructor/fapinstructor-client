@@ -6,6 +6,7 @@ import { useAuth0 } from "AuthProvider";
 import DeleteProfileModal from "components/molecules/DeleteProfileModal";
 import { useDispatch } from "react-redux";
 import { deleteProfile } from "common/store/currentUser";
+import { Head } from "components/Head";
 
 export default function ProfilePage() {
   const { user } = useAuth0();
@@ -14,6 +15,7 @@ export default function ProfilePage() {
 
   return (
     <Page>
+      <Head title="Profile" />
       <Box mb={2}>{user && <ProfileCard user={user} />}</Box>
       <DeleteProfileModal
         open={deleteModalOpen}

@@ -18,6 +18,7 @@ import BackgroundImage from "assets/images/background.jpg";
 import DefaultImage from "assets/images/default-image.jpg";
 import { MediaMachineContext } from "game/xstate/machines/mediaMachine";
 import YouTubeVideo from "components/atoms/YouTubeVideo";
+import { Head } from "components/Head";
 
 const useStyles = makeStyles(() => ({
   progress: {
@@ -100,6 +101,7 @@ export default function GamePage() {
   if (error) {
     return (
       <>
+        <Head title="Game" />
         <NavBar />
         <div className={classes.startGame}>
           <Paper style={{ padding: 10 }}>
@@ -113,6 +115,7 @@ export default function GamePage() {
   if (!gameStarted) {
     return (
       <>
+        <Head title="Game" />
         <NavBar />
         <div className={classes.startGame}>
           {gameConfigId ? (
@@ -129,32 +132,37 @@ export default function GamePage() {
   }
 
   return (
-    <ProxyStoreConsumer>
-      {(store) => {
-        if (!store) {
-          return;
-        }
+    <>
+      <Head title="Game" />
+      <ProxyStoreConsumer>
+        {(store) => {
+          if (!store) {
+            return;
+          }
 
-        const {
-          game: { youtube },
-          config: { slideDuration },
-        } = store;
+          const {
+            game: { youtube },
+            config: { slideDuration },
+          } = store;
 
-        return (
-          <div className={classes.container}>
-            <ExitGamePrompt />
-            <HUD />
-            {(youtube && <YouTubeVideo src={youtube} />) ||
-              (activeLink && (
-                <MediaPlayer
-                  link={activeLink}
-                  duration={slideDuration}
-                  onEnded={handleSlideChange}
-                />
-              )) || <img className={classes.image} src={DefaultImage} alt="" />}
-          </div>
-        );
-      }}
-    </ProxyStoreConsumer>
+          return (
+            <div className={classes.container}>
+              <ExitGamePrompt />
+              <HUD />
+              {(youtube && <YouTubeVideo src={youtube} />) ||
+                (activeLink && (
+                  <MediaPlayer
+                    link={activeLink}
+                    duration={slideDuration}
+                    onEnded={handleSlideChange}
+                  />
+                )) || (
+                  <img className={classes.image} src={DefaultImage} alt="" />
+                )}
+            </div>
+          );
+        }}
+      </ProxyStoreConsumer>
+    </>
   );
 }

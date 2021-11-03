@@ -24,6 +24,7 @@ import StrokeStep from "./components/Form/StrokeStep";
 import GameDurationStep from "./components/Form/GameDurationStep";
 import ButtonWithHelperText from "components/molecules/buttons/ButtonWithHelperText";
 import SupportSiteBanner from "components/atoms/SupportSiteBanner";
+import { Head } from "components/Head";
 
 const StyledForm = styled(Form)`
   padding-top: 2rem;
@@ -51,6 +52,7 @@ export default function ConfigPage() {
 
   return (
     <>
+      <Head title="Config" />
       <Formik<GameConfig>
         initialValues={store.config}
         validationSchema={GAME_CONFIG_SCHEMA}

@@ -5,6 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import BookmarkList from "components/molecules/BookmarkList";
 import BackgroundImage from "assets/images/background.jpg";
 import SupportSiteBanner from "components/atoms/SupportSiteBanner";
+import { Head } from "components/Head";
 
 const useStyles = makeStyles({
   root: {
@@ -31,6 +32,7 @@ export default function EndPage() {
 
   return (
     <div className={classes.root}>
+      <Head title="End" />
       <SupportSiteBanner />
       <br />
       <Typography

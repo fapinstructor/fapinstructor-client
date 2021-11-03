@@ -15,7 +15,7 @@ import ChangeLogMenuButton from "components/molecules/buttons/ChangeLogMenuButto
 import FaqMenuButton from "components/molecules/buttons/FaqMenuButton";
 import SearchGameMenuButton from "components/molecules/buttons/SearchGameMenuButton";
 import Grow from "components/atoms/Grow";
-import ConnectHandy from "components/molecules/ConnectHandy";
+import ConnectHandy from "features/handy/components/ConnectHandy";
 import HomeIcon from "@material-ui/icons/Home";
 import MenuItem from "components/templates/MenuItem";
 import RouteButton from "components/atoms/RouteButton";

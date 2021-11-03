@@ -10,6 +10,7 @@ import TabPanel from "components/atoms/TabPanel";
 import AuthTab from "components/atoms/AuthTab";
 import Star from "@material-ui/icons/Star";
 import StarredGamesTable from "components/organisms/GamesTable/StarredGamesTable";
+import { Head } from "components/Head";
 
 export default function SearchPage() {
   const [activeTab, setActiveTab] = useState(0);
@@ -20,6 +21,7 @@ export default function SearchPage() {
 
   return (
     <Paper square>
+      <Head title="Search" />
       <Paper square>
         <Tabs value={activeTab} onChange={handleTabChange} centered>
           <Tab label="Find Games" icon={<SearchIcon />} />
