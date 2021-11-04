@@ -1,10 +1,13 @@
-import store from "store";
-import { createNotification } from "engine/notification";
-import { getAverageStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
-import delay from "utils/delay";
-import { getRandomArbitrary, getRandomInclusiveInteger } from "utils/math";
-import { playCommand } from "engine/audio";
-import { StrokeService } from "game/xstate/services";
+import store from "@/store";
+import { createNotification } from "@/engine/notification";
+import {
+  getAverageStrokeSpeed,
+  setStrokeSpeed,
+} from "@/game/utils/strokeSpeed";
+import delay from "@/utils/delay";
+import { getRandomArbitrary, getRandomInclusiveInteger } from "@/utils/math";
+import { playCommand } from "@/engine/audio";
+import { StrokeService } from "@/game/xstate/services";
 
 export const redLightGreenLight = async () => {
   const previousStrokeSpeed = StrokeService.strokeSpeed;

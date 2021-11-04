@@ -1,6 +1,6 @@
-import { setStrokeStyle } from "game/enums/StrokeStyle";
+import { setStrokeStyle } from "@/game/enums/StrokeStyle";
 
-// Added for backwards compatability, wraps setStrokeStyle
+// Added for backwards compatibility, wraps setStrokeStyle
 export const setStrokeStyleBothHands = () => setStrokeStyle("bothHands");
 export const setStrokeStyleDominant = () => setStrokeStyle("dominant");
 export const setStrokeStyleHeadOnly = () => setStrokeStyle("headOnly");

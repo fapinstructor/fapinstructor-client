@@ -7,17 +7,17 @@
 import { lazy } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 
-import { useAuth0 } from "AuthProvider";
-import NavBar from "components/organisms/NavBar";
+import { useAuth0 } from "@/AuthProvider";
+import NavBar from "@/components/organisms/NavBar";
 
-const ConfigPage = lazy(() => import("components/Pages/ConfigPage"));
-const GamePage = lazy(() => import("components/Pages/GamePage"));
-const EndPage = lazy(() => import("components/Pages/EndPage"));
-const ChangeLog = lazy(() => import("components/Pages/ChangeLog"));
-const PrivacyPolicy = lazy(() => import("components/Pages/PrivacyPolicy"));
-const FaqPage = lazy(() => import("components/Pages/FaqPage"));
-const SearchPage = lazy(() => import("components/Pages/SearchPage"));
-const ProfilePage = lazy(() => import("components/Pages/ProfilePage"));
+const ConfigPage = lazy(() => import("@/components/Pages/ConfigPage"));
+const GamePage = lazy(() => import("@/components/Pages/GamePage"));
+const EndPage = lazy(() => import("@/components/Pages/EndPage"));
+const ChangeLog = lazy(() => import("@/components/Pages/ChangeLog"));
+const PrivacyPolicy = lazy(() => import("@/components/Pages/PrivacyPolicy"));
+const FaqPage = lazy(() => import("@/components/Pages/FaqPage"));
+const SearchPage = lazy(() => import("@/components/Pages/SearchPage"));
+const ProfilePage = lazy(() => import("@/components/Pages/ProfilePage"));
 
 export function AppRoutes() {
   const auth = useAuth0();

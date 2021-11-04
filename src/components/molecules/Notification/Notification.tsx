@@ -7,12 +7,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import {
   Notification as INotification,
   Severity,
-} from "common/store/notifications";
+} from "@/common/store/notifications";
 import IconButton from "@material-ui/core/IconButton";
 import ErrorIcon from "@material-ui/icons/ErrorOutline";
 import StarIcon from "@material-ui/icons/Grade";
 import CloseIcon from "@material-ui/icons/Close";
-import ProgressBar from "components/atoms/ProgressBar";
+import ProgressBar from "@/components/atoms/ProgressBar";
 
 type StyleProps = {
   severity?: Severity;

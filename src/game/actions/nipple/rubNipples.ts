@@ -1,12 +1,15 @@
-import store from "store";
-import { createNotification } from "engine/notification";
-import { setStrokeSpeed } from "game/utils/strokeSpeed";
-import { getRandomRubStrength } from "game/enums/RubStrength";
-import { getRandomInclusiveInteger } from "utils/math";
-import delay from "utils/delay";
-import { getCurrentStrokeStyle, setStrokeStyle } from "game/enums/StrokeStyle";
-import { setStrokeStyleHandsOff } from "game/actions/strokeStyle";
-import { StrokeService } from "game/xstate/services";
+import store from "@/store";
+import { createNotification } from "@/engine/notification";
+import { setStrokeSpeed } from "@/game/utils/strokeSpeed";
+import { getRandomRubStrength } from "@/game/enums/RubStrength";
+import { getRandomInclusiveInteger } from "@/utils/math";
+import delay from "@/utils/delay";
+import {
+  getCurrentStrokeStyle,
+  setStrokeStyle,
+} from "@/game/enums/StrokeStyle";
+import { setStrokeStyleHandsOff } from "@/game/actions/strokeStyle";
+import { StrokeService } from "@/game/xstate/services";
 
 export const rubNipples = async () => {
   const previousStrokeSpeed = StrokeService.strokeSpeed;

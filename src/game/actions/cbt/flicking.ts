@@ -1,8 +1,8 @@
-import { createNotification } from "engine/notification";
-import { getRandomStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
-import { getRandomInclusiveInteger } from "utils/math";
-import delay from "utils/delay";
-import { StrokeService } from "game/xstate/services";
+import { createNotification } from "@/engine/notification";
+import { getRandomStrokeSpeed, setStrokeSpeed } from "@/game/utils/strokeSpeed";
+import { getRandomInclusiveInteger } from "@/utils/math";
+import delay from "@/utils/delay";
+import { StrokeService } from "@/game/xstate/services";
 
 export const flickCockHead = async () => {
   const previousStrokeSpeed = StrokeService.strokeSpeed;

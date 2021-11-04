@@ -4,16 +4,16 @@ import { useHistory } from "react-router-dom";
 import { Formik, Form } from "formik";
 import styled from "styled-components/macro";
 
-import { useAuth0 } from "AuthProvider";
+import { useAuth0 } from "@/AuthProvider";
 import { GAME_CONFIG_SCHEMA } from "./GAME_CONFIG_SCHEMA";
-import store from "store";
-import { GameConfig } from "configureStore";
-import theme from "theme";
-import Footer from "components/organisms/Footer";
-import ShareGame from "components/organisms/ShareGame";
-import AutoFocusFieldErrors from "components/organisms/AutoFocusFieldErrors";
-import Stack from "components/templates/Stack";
-import Cluster from "components/templates/Cluster";
+import store from "@/store";
+import { GameConfig } from "@/configureStore";
+import theme from "@/theme";
+import Footer from "@/components/organisms/Footer";
+import ShareGame from "@/components/organisms/ShareGame";
+import AutoFocusFieldErrors from "@/components/organisms/AutoFocusFieldErrors";
+import Stack from "@/components/templates/Stack";
+import Cluster from "@/components/templates/Cluster";
 import RuinedOrgasmsStep from "./components/Form/RuinedOrgasmsStep";
 import PostOrgasmTortureStep from "./components/Form/PostOrgasmTortureStep";
 import TaskStep from "./components/Form/TaskStep";
@@ -22,9 +22,9 @@ import OrgasmStep from "./components/Form/OrgasmStep";
 import EdgingStep from "./components/Form/EdgingStep";
 import StrokeStep from "./components/Form/StrokeStep";
 import GameDurationStep from "./components/Form/GameDurationStep";
-import ButtonWithHelperText from "components/molecules/buttons/ButtonWithHelperText";
-import SupportSiteBanner from "components/atoms/SupportSiteBanner";
-import { Head } from "components/Head";
+import ButtonWithHelperText from "@/components/molecules/buttons/ButtonWithHelperText";
+import SupportSiteBanner from "@/components/atoms/SupportSiteBanner";
+import { Head } from "@/components/Head";
 
 const StyledForm = styled(Form)`
   padding-top: 2rem;

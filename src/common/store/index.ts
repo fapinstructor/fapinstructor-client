@@ -1,8 +1,10 @@
 import { configureStore, Action } from "@reduxjs/toolkit";
 import { ThunkAction } from "redux-thunk";
-import { loadState, saveState } from "utils/localStorage";
-import rootReducer, { State } from "./rootReducer";
 import throttle from "lodash/throttle";
+
+import { loadState, saveState } from "@/utils/localStorage";
+
+import rootReducer, { State } from "./rootReducer";
 
 const store = configureStore({
   reducer: rootReducer,

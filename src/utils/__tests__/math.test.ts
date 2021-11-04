@@ -1,6 +1,6 @@
 import * as math from "../math";
 
-describe("test math", () => {
+describe("math", () => {
   it("should round up to the specified decimal places", () => {
     expect(math.round(1.23456, 3)).toBe(1.235);
   });

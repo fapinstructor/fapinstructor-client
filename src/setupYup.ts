@@ -3,8 +3,8 @@ import { AnySchema } from "yup";
 import { AnyObject, Maybe, Optionals } from "yup/lib/types";
 
 import Lazy from "yup/lib/Lazy";
-import validateArrayValueUniqueness from "utils/validation/validateArrayValueUniqueness";
-import dedupeArray from "utils/validation/dedupeArray";
+import validateArrayValueUniqueness from "@/utils/validation/validateArrayValueUniqueness";
+import dedupeArray from "@/utils/validation/dedupeArray";
 
 yup.addMethod(yup.array, "unique", validateArrayValueUniqueness);
 yup.addMethod(yup.array, "dedupe", dedupeArray);

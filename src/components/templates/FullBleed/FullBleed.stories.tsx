@@ -1,6 +1,6 @@
 import type { Meta } from "@storybook/react/types-6-0";
 
-import Article from "components/templates/Article";
+import Article from "@/components/templates/Article";
 
 import { FullBleed } from "./FullBleed";
 

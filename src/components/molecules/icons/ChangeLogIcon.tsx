@@ -1,5 +1,5 @@
 import ChangeLogImage from "@material-ui/icons/FormatListBulleted";
-import Icon from "components/atoms/Icon";
+import Icon from "@/components/atoms/Icon";
 
 type ChangeLogProps = {
   size: number;

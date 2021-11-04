@@ -1,5 +1,5 @@
 import HelpIconMUI from "@material-ui/icons/Help";
-import Icon from "components/atoms/Icon";
+import Icon from "@/components/atoms/Icon";
 
 type HelpIconProps = {
   size: number;

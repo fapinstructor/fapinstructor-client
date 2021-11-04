@@ -1,16 +1,16 @@
-import store from "store";
-import { createNotification } from "engine/notification";
-import { setStrokeSpeed } from "game/utils/strokeSpeed";
-import { getRandomRubStrength } from "game/enums/RubStrength";
-import { getRandomLeftOrRight } from "game/enums/HandSide";
-import { getRandomInclusiveInteger } from "utils/math";
-import delay from "utils/delay";
+import store from "@/store";
+import { createNotification } from "@/engine/notification";
+import { setStrokeSpeed } from "@/game/utils/strokeSpeed";
+import { getRandomRubStrength } from "@/game/enums/RubStrength";
+import { getRandomLeftOrRight } from "@/game/enums/HandSide";
+import { getRandomInclusiveInteger } from "@/utils/math";
+import delay from "@/utils/delay";
 import {
   getCurrentStrokeStyle,
   setRandomOneHandedStrokeStyle,
   setStrokeStyle,
-} from "game/enums/StrokeStyle";
-import { StrokeService } from "game/xstate/services";
+} from "@/game/enums/StrokeStyle";
+import { StrokeService } from "@/game/xstate/services";
 
 export const nipplesAndStroke = async () => {
   const previousStrokeSpeed = StrokeService.strokeSpeed;

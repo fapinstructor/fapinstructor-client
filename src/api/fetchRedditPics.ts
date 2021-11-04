@@ -1,9 +1,9 @@
-import { createNotification } from "engine/notification";
-import { Severity } from "common/store/notifications";
 import qs from "query-string";
-import { MediaRequest, MediaResponse } from "common/types/Media";
 
-import api from "common/api/client";
+import { MediaRequest, MediaResponse } from "@/common/types/Media";
+import { Severity } from "@/common/store/notifications";
+import { createNotification } from "@/engine/notification";
+import api from "@/common/api/client";
 
 const failedSubreddits: string[] = [];
 

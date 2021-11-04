@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { MemoryRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
-import store from "common/store";
+import store from "@/common/store";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },

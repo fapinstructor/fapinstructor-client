@@ -1,7 +1,7 @@
 import { Field } from "formik";
 import { FormControl, FormHelperText, FormLabel } from "@material-ui/core";
 
-import FormikSlider from "components/molecules/fields/FormikSlider";
+import FormikSlider from "@/components/molecules/fields/FormikSlider";
 
 const marks = [
   { value: 0, label: "0%" },

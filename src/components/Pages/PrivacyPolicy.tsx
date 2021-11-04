@@ -1,8 +1,8 @@
 import Typography from "@material-ui/core/Typography";
 import styled from "styled-components/macro";
 
-import Article from "components/templates/Article";
-import { Head } from "components/Head";
+import Article from "@/components/templates/Article";
+import { Head } from "@/components/Head";
 
 const StyledArticle = styled(Article)`
   h2,

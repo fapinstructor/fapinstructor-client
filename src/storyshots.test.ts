@@ -1,6 +1,6 @@
 import initStoryshots from "@storybook/addon-storyshots";
 import { styleSheetSerializer } from "jest-styled-components";
-import { render, waitForSuspense } from "test/test-utils";
+import { render, waitForSuspense } from "@/test/test-utils";
 
 initStoryshots({
   asyncJest: true,

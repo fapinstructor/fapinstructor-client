@@ -1,10 +1,10 @@
-import store from "store";
-import elapsedGameTime from "game/utils/elapsedGameTime";
-import { clamp, getRandomBoolean } from "utils/math";
-import { setStrokeSpeed } from "game/utils/strokeSpeed";
-import type { GameLoopArgs } from "engine/loop";
-import randomGripAdjustment from "game/actions/grip";
-import { StrokeService, ActionService } from "game/xstate/services";
+import store from "@/store";
+import elapsedGameTime from "@/game/utils/elapsedGameTime";
+import { clamp, getRandomBoolean } from "@/utils/math";
+import { setStrokeSpeed } from "@/game/utils/strokeSpeed";
+import type { GameLoopArgs } from "@/engine/loop";
+import randomGripAdjustment from "@/game/actions/grip";
+import { StrokeService, ActionService } from "@/game/xstate/services";
 
 const BASELINE_ADJUSTMENT_FREQUENCY_SEC = 60;
 let lastBaselineAdjustment = 0;

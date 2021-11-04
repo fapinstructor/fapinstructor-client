@@ -1,5 +1,5 @@
-import { getRandomBoolean } from "utils/math";
-import { GripService } from "game/xstate/services";
+import { getRandomBoolean } from "@/utils/math";
+import { GripService } from "@/game/xstate/services";
 
 export default function randomGripAdjustment() {
   getRandomBoolean()

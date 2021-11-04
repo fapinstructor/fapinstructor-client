@@ -1,5 +1,5 @@
-import { interruptible } from "engine/interrupt";
-import { TIME_TO_TICK } from "components/organisms/BeatMeter/settings";
+import { interruptible } from "@/engine/interrupt";
+import { TIME_TO_TICK } from "@/components/organisms/BeatMeter/settings";
 
 /**
  * Creates an interruptible awaitable delay

@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import RouteLink from "components/atoms/RouteLink";
-import MenuItem from "components/templates/MenuItem";
-import FapInstructorIcon from "components/molecules/icons/FapInstructorIcon";
+import RouteLink from "@/components/atoms/RouteLink";
+import MenuItem from "@/components/templates/MenuItem";
+import FapInstructorIcon from "@/components/molecules/icons/FapInstructorIcon";
 
 const useStyles = makeStyles({
   title: {

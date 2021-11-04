@@ -1,4 +1,4 @@
-import Group from "components/molecules/Group";
+import Group from "@/components/molecules/Group";
 
 import CooldownField from "../components/CooldownField";
 import RuinedOrgasmsRangeField from "./components/RuinedOrgasmsRangeField";

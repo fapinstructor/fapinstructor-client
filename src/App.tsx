@@ -1,13 +1,13 @@
 import { Suspense } from "react";
 import { Router } from "react-router-dom";
-import history from "browserHistory";
-import ErrorBoundary from "components/organisms/ErrorBoundary";
-import { ProxyStoreProvider } from "containers/StoreProvider";
-import Auth0Provider from "AuthProvider";
-import { Store } from "store";
-import LoadingPage from "components/Pages/LoadingPage";
-import NavBar from "components/organisms/NavBar";
-import { AppRoutes } from "./routes";
+import history from "@/browserHistory";
+import ErrorBoundary from "@/components/organisms/ErrorBoundary";
+import { ProxyStoreProvider } from "@/containers/StoreProvider";
+import Auth0Provider from "@/AuthProvider";
+import { Store } from "@/store";
+import LoadingPage from "@/components/Pages/LoadingPage";
+import NavBar from "@/components/organisms/NavBar";
+import { AppRoutes } from "@/routes";
 
 type AppProps = {
   store: Store;

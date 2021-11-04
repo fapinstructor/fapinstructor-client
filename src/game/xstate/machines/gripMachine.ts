@@ -1,7 +1,7 @@
 import { createMachine, assign, send } from "xstate";
-import { GameConfig } from "configureStore";
-import { createNotification } from "engine/notification";
-import { playCommand } from "engine/audio";
+import { GameConfig } from "@/configureStore";
+import { createNotification } from "@/engine/notification";
+import { playCommand } from "@/engine/audio";
 
 export enum GripStrength {
   BarelyTouching,

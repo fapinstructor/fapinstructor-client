@@ -1,5 +1,5 @@
-import type { Task } from "configureStore";
-import applyProbabilities from "utils/applyProbabilities";
+import type { Task } from "@/configureStore";
+import applyProbabilities from "@/utils/applyProbabilities";
 import {
   doubleStrokes,
   halvedStrokes,

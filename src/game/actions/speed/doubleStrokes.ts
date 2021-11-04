@@ -1,9 +1,9 @@
-import { createNotification } from "engine/notification";
-import { playCommand } from "engine/audio";
-import delay from "utils/delay";
-import { StrokeService } from "game/xstate/services";
-import { setStrokeSpeed } from "game/utils/strokeSpeed";
-import getRandomDuration from "game/utils/getRandomDuration";
+import { createNotification } from "@/engine/notification";
+import { playCommand } from "@/engine/audio";
+import delay from "@/utils/delay";
+import { StrokeService } from "@/game/xstate/services";
+import { setStrokeSpeed } from "@/game/utils/strokeSpeed";
+import getRandomDuration from "@/game/utils/getRandomDuration";
 
 export const doubleStrokes = async () => {
   const previousStrokeSpeed = StrokeService.strokeSpeed;

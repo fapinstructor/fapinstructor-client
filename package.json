@@ -6,9 +6,9 @@
   "license": "MIT",
   "prepare": "npx husky install",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test --env=jsdom",
     "test:ci": "CI=true yarn test --bail --findRelatedTests",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
@@ -21,6 +21,11 @@
     "chromatic": "chromatic --exit-zero-on-changes",
     "bundle-analyzer": "cra-bundle-analyzer",
     "generate": "plop"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1"
+    }
   },
   "browserslist": {
     "production": [
@@ -36,6 +41,7 @@
   },
   "dependencies": {
     "@auth0/auth0-react": "^1.6.0",
+    "@craco/craco": "^6.4.0",
     "@material-ui/core": "^4.12.2",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "4.0.0-alpha.60",

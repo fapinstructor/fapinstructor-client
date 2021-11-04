@@ -1,8 +1,8 @@
-import store from "store";
-import { createNotification, dismissNotification } from "engine/notification";
-import videoLibrary from "video";
-import { getRandomItem } from "utils/math";
-import { MediaService, StrokeService } from "game/xstate/services";
+import store from "@/store";
+import { createNotification, dismissNotification } from "@/engine/notification";
+import videoLibrary from "@/video";
+import { getRandomItem } from "@/utils/math";
+import { MediaService, StrokeService } from "@/game/xstate/services";
 
 const videos = Object.values(videoLibrary);
 

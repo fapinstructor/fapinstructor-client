@@ -1,16 +1,16 @@
 import { getToTheEdge, rideTheEdge, edged } from "./edge";
-import store from "store";
+import store from "@/store";
 
-import * as strokeSpeed from "game/utils/strokeSpeed";
-import * as notification from "engine/notification";
-import * as audio from "engine/audio";
+import * as strokeSpeed from "@/game/utils/strokeSpeed";
+import * as notification from "@/engine/notification";
+import * as audio from "@/engine/audio";
 
 const setStrokeSpeed = jest.spyOn(strokeSpeed, "setStrokeSpeed");
 const createNotification = jest.spyOn(notification, "createNotification");
 const dismissNotification = jest.spyOn(notification, "dismissNotification");
 const playCommand = jest.spyOn(audio, "playCommand");
 
-jest.mock("game/actions");
+jest.mock("@/game/actions");
 
 // eslint-disable-next-line jest/no-disabled-tests
 describe.skip("Edge Tests", () => {

@@ -3,9 +3,9 @@ import { InputAdornment } from "@material-ui/core";
 import styled from "styled-components/macro";
 import { TextField } from "formik-material-ui";
 
-import theme from "theme";
-import useAutoMaxField from "hooks/useAutoMaxField";
-import { GameConfig } from "configureStore";
+import theme from "@/theme";
+import useAutoMaxField from "@/hooks/useAutoMaxField";
+import { GameConfig } from "@/configureStore";
 
 const StrokeSpeedFieldContainer = styled.div`
   display: grid;

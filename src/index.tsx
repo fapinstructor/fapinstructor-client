@@ -5,10 +5,10 @@ import "./setupSentry";
 import "./setupYup";
 import configureStore from "./configureStore";
 import { Provider } from "react-redux";
-import store from "common/store";
-import NotificationManager from "components/organisms/NotificationManager";
+import store from "@/common/store";
+import NotificationManager from "@/components/organisms/NotificationManager";
 import { inspect } from "@xstate/inspect";
-import config from "config";
+import config from "@/config";
 
 if (config.enableStateCharts) {
   inspect({

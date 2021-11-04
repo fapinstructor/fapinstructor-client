@@ -1,6 +1,6 @@
-import store from "store";
-import { createNotification, dismissNotification } from "engine/notification";
-import { StrokeService } from "game/xstate/services";
+import store from "@/store";
+import { createNotification, dismissNotification } from "@/engine/notification";
+import { StrokeService } from "@/game/xstate/services";
 
 export const insertButtPlug = async () => {
   if (!store.game.buttPlugInserted) {

@@ -1,12 +1,12 @@
 import { useState } from "react";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
-import ProfileIcon from "components/molecules/icons/ProfileIcon";
+import ProfileIcon from "@/components/molecules/icons/ProfileIcon";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import Tooltip from "@material-ui/core/Tooltip";
 import { NavLink as RouteNavLink } from "react-router-dom";
-import { useAuth0, authClient } from "AuthProvider";
+import { useAuth0, authClient } from "@/AuthProvider";
 import { PopoverProps } from "@material-ui/core";
 
 export default function ProfileButton() {

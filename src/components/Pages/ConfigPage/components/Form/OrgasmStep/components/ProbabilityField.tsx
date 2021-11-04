@@ -4,7 +4,7 @@ import { ToggleButton } from "@material-ui/lab";
 import LockIcon from "@material-ui/icons/Lock";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 
-import FormikSlider from "components/molecules/fields/FormikSlider";
+import FormikSlider from "@/components/molecules/fields/FormikSlider";
 
 const marks = [
   { value: 1, label: "0%" },

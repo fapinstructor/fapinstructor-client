@@ -1,6 +1,8 @@
 import TableRow from "@material-ui/core/TableRow";
-import SpanningTableCell from "components/molecules/table/SpanningTableCell";
-import ErrorMessage, { ErrorMessageProps } from "components/atoms/ErrorMessage";
+import SpanningTableCell from "@/components/molecules/table/SpanningTableCell";
+import ErrorMessage, {
+  ErrorMessageProps,
+} from "@/components/atoms/ErrorMessage";
 
 export type ErrorTableRowProps = ErrorMessageProps;
 

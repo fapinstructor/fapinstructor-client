@@ -1,8 +1,8 @@
 import { useCallback } from "react";
 import { IconButton, Tooltip } from "@material-ui/core";
 import SkipNextIcon from "@material-ui/icons/SkipNext";
-import useWindowEvent from "hooks/useWindowEvent";
-import { MediaService } from "game/xstate/services";
+import useWindowEvent from "@/hooks/useWindowEvent";
+import { MediaService } from "@/game/xstate/services";
 
 export default function SkipNextButton() {
   const handleKeydown = useCallback((event: KeyboardEvent) => {

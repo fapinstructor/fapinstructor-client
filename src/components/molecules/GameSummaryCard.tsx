@@ -1,10 +1,10 @@
 import * as React from "react";
 import { Typography } from "@material-ui/core";
-import Group from "components/molecules/Group";
-import Tags from "components/molecules/Tags";
-import Game from "common/types/Game";
+import Group from "@/components/molecules/Group";
+import Tags from "@/components/molecules/Tags";
+import Game from "@/common/types/Game";
 import styled from "styled-components/macro";
-import Stack from "components/templates/Stack";
+import Stack from "@/components/templates/Stack";
 
 export type GameSummaryCardProps = {
   game: Game;

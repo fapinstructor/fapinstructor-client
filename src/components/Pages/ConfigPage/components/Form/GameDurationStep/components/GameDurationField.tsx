@@ -3,9 +3,9 @@ import { TextField } from "formik-material-ui";
 import { InputAdornment } from "@material-ui/core";
 import styled from "styled-components/macro";
 
-import theme from "theme";
-import { GameConfig } from "configureStore";
-import useAutoMaxField from "hooks/useAutoMaxField";
+import theme from "@/theme";
+import { GameConfig } from "@/configureStore";
+import useAutoMaxField from "@/hooks/useAutoMaxField";
 
 const GameDurationFieldContainer = styled.div`
   display: grid;

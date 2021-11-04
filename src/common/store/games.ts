@@ -1,15 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import qs from "query-string";
-import { State } from "common/store/rootReducer";
-import { AppThunk } from "common/store";
-import { Game } from "api/types";
-import { Pagination } from "common/types/pagination";
-import { createNotification, Severity } from "common/store/notifications";
-import api from "common/api/client";
+
+import { State } from "@/common/store/rootReducer";
+import { AppThunk } from "@/common/store";
+import { Game } from "@/api/types";
+import { Pagination } from "@/common/types/pagination";
+import { createNotification, Severity } from "@/common/store/notifications";
+import api from "@/common/api/client";
 import {
   SearchGamesRequest,
   SearchGamesResponse,
-} from "common/api/schemas/games";
+} from "@/common/api/schemas/games";
+
 import { selectProfile } from "./currentUser";
 import { selectGame, setGame } from "./currentGame";
 
@@ -139,8 +141,8 @@ export const searchGames =
 
       dispatch(setPagination(games.pagination));
       dispatch(setGames(games.data));
-    } catch (err) {
-      const message = `Error searching games: ${err.message}`;
+    } catch (error) {
+      const message = `Error searching games: ${error.message}`;
 
       dispatch(
         createNotification({

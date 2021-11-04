@@ -1,6 +1,6 @@
-import SearchIcon from "components/molecules/icons/SearchIcon";
-import RouteButton from "components/atoms/RouteButton";
-import MenuItem from "components/templates/MenuItem";
+import SearchIcon from "@/components/molecules/icons/SearchIcon";
+import RouteButton from "@/components/atoms/RouteButton";
+import MenuItem from "@/components/templates/MenuItem";
 
 export default function ChangeLogMenuButton() {
   return (

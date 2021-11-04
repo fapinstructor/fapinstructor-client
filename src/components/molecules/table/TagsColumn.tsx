@@ -1,5 +1,5 @@
 import { TableCell, TableCellProps } from "@material-ui/core";
-import Tags, { TagsProps } from "components/molecules/Tags";
+import Tags, { TagsProps } from "@/components/molecules/Tags";
 
 export type TagsColumnProps = TagsProps & TableCellProps;
 

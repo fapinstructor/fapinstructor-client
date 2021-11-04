@@ -1,8 +1,8 @@
 import formatISO from "date-fns/formatISO";
 
-import store from "store";
-import { StrokeStyle } from "game/enums/StrokeStyle";
-import { BookmarkProps } from "components/atoms/Bookmark";
+import store from "@/store";
+import { StrokeStyle } from "@/game/enums/StrokeStyle";
+import { BookmarkProps } from "@/components/atoms/Bookmark";
 
 export type Game = {
   startTime: string;

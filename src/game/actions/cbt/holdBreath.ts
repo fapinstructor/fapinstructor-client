@@ -1,6 +1,6 @@
-import { createNotification } from "engine/notification";
-import { getRandomInclusiveInteger } from "utils/math";
-import delay from "utils/delay";
+import { createNotification } from "@/engine/notification";
+import { getRandomInclusiveInteger } from "@/utils/math";
+import delay from "@/utils/delay";
 
 export const holdBreath = async () => {
   const holdTime = getRandomInclusiveInteger(10, 60);

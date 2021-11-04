@@ -4,7 +4,7 @@ import {
   ANIMATION_OFFSET_PIXELS,
   FLASH_ANIMATION_DURATION,
   TICK_ANIMATION_DURATION,
-} from "components/organisms/BeatMeter/settings";
+} from "@/components/organisms/BeatMeter/settings";
 
 const BaseAnimation = styled.div<Keyframe>`
   animation-duration: ${(props) => props.duration};
@@ -27,7 +27,7 @@ BaseAnimation.defaultProps = {
   display: "block",
 };
 
-const SlideLeftAnimation = keyframes`  
+const SlideLeftAnimation = keyframes`
   from {
     right: 0;
   }
@@ -36,7 +36,7 @@ const SlideLeftAnimation = keyframes`
   }
 `;
 
-const FadeInAnimation = keyframes`  
+const FadeInAnimation = keyframes`
   from {
     opacity: 0;
   }

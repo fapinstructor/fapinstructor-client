@@ -1,5 +1,5 @@
 import { Box } from "@material-ui/core";
-import Tag from "components/molecules/Tag";
+import Tag from "@/components/molecules/Tag";
 
 export type TagsProps = {
   tags: string[];

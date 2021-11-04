@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 import { State } from "./rootReducer";
 
 type Settings = {

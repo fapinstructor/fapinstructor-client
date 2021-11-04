@@ -1,6 +1,6 @@
-import PatreonIcon from "components/molecules/icons/PatreonIcon";
-import AnchorButton from "components/atoms/AnchorButton";
-import MenuItem from "components/templates/MenuItem";
+import PatreonIcon from "@/components/molecules/icons/PatreonIcon";
+import AnchorButton from "@/components/atoms/AnchorButton";
+import MenuItem from "@/components/templates/MenuItem";
 
 export default function PatreonMenuButton() {
   return (

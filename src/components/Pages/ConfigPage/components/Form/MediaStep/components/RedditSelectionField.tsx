@@ -1,5 +1,5 @@
 import { Field } from "formik";
-import FormikAutocomplete from "components/molecules/fields/FormikAutocomplete";
+import FormikAutocomplete from "@/components/molecules/fields/FormikAutocomplete";
 
 const textFieldProps = {
   label: "Subreddits",

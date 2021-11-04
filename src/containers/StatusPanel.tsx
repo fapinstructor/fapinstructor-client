@@ -8,10 +8,10 @@ import {
 } from "@material-ui/core";
 import DownIcon from "@material-ui/icons/ArrowDropDown";
 import UpIcon from "@material-ui/icons/ArrowDropUp";
-import elapsedGameTime from "game/utils/elapsedGameTime";
-import { StrokeStyles } from "game/enums/StrokeStyle";
-import logo from "assets/images/logo.svg";
-import { ProxyStoreConsumer } from "containers/StoreProvider";
+import elapsedGameTime from "@/game/utils/elapsedGameTime";
+import { StrokeStyles } from "@/game/enums/StrokeStyle";
+import logo from "@/assets/images/logo.svg";
+import { ProxyStoreConsumer } from "@/containers/StoreProvider";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectEnableBeatMeter,
@@ -24,10 +24,10 @@ import {
   toggleTicks,
   toggleVideoAudio,
   toggleVoice,
-} from "common/store/settings";
-import { useGripService } from "game/xstate/services";
-import { GripStrengthString } from "game/xstate/machines/gripMachine";
-import useForceUpdate from "hooks/useForceUpdate";
+} from "@/common/store/settings";
+import { useGripService } from "@/game/xstate/services";
+import { GripStrengthString } from "@/game/xstate/machines/gripMachine";
+import useForceUpdate from "@/hooks/useForceUpdate";
 
 const useStyles = makeStyles({
   root: {

@@ -1,6 +1,6 @@
-import { createObservable } from "utils/observable";
-import type { GameLoopArgs } from "engine/loop";
-import { StrokeService } from "game/xstate/services";
+import { createObservable } from "@/utils/observable";
+import type { GameLoopArgs } from "@/engine/loop";
+import { StrokeService } from "@/game/xstate/services";
 
 type EmissionEvent = {
   type: "emit";

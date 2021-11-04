@@ -1,9 +1,12 @@
-import store from "store";
-import { createNotification } from "engine/notification";
-import { getAverageStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
-import { getRandomInclusiveInteger } from "utils/math";
-import delay from "utils/delay";
-import { StrokeService } from "game/xstate/services";
+import store from "@/store";
+import { createNotification } from "@/engine/notification";
+import {
+  getAverageStrokeSpeed,
+  setStrokeSpeed,
+} from "@/game/utils/strokeSpeed";
+import { getRandomInclusiveInteger } from "@/utils/math";
+import delay from "@/utils/delay";
+import { StrokeService } from "@/game/xstate/services";
 
 export const clusterStrokes = async () => {
   const previousStrokeSpeed = StrokeService.strokeSpeed;

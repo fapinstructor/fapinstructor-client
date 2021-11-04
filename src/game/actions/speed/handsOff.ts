@@ -1,13 +1,13 @@
-import store from "store";
-import { createNotification } from "engine/notification";
-import { getRandomInclusiveInteger } from "utils/math";
-import delay from "utils/delay";
-import { setStrokeStyle } from "game/enums/StrokeStyle";
-import { getRandomHandsOffMessage } from "game/texts/messages";
-import { StrokeService } from "game/xstate/services";
-import { setStrokeStyleHandsOff } from "game/actions";
-import { playCommand } from "engine/audio";
-import { getAverageStrokeSpeed } from "game/utils/strokeSpeed";
+import store from "@/store";
+import { createNotification } from "@/engine/notification";
+import { getRandomInclusiveInteger } from "@/utils/math";
+import delay from "@/utils/delay";
+import { setStrokeStyle } from "@/game/enums/StrokeStyle";
+import { getRandomHandsOffMessage } from "@/game/texts/messages";
+import { StrokeService } from "@/game/xstate/services";
+import { setStrokeStyleHandsOff } from "@/game/actions";
+import { playCommand } from "@/engine/audio";
+import { getAverageStrokeSpeed } from "@/game/utils/strokeSpeed";
 
 const HANDS_OFF_DURATION_MIN = 10_000;
 const HANDS_OFF_DURATION_MAX = 30_000;

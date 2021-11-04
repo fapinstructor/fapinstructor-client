@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Field } from "formik";
-import FormikAutocomplete from "components/molecules/fields/FormikAutocomplete";
+import FormikAutocomplete from "@/components/molecules/fields/FormikAutocomplete";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 

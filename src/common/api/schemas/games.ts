@@ -1,9 +1,10 @@
 import * as yup from "yup";
-import { isAlpha } from "utils/regex";
-import { PaginateParams, WithPagination } from "common/types/pagination";
-import { Game } from "api/types";
-import { GameConfig } from "configureStore";
-import { GAME_CONFIG_SCHEMA } from "components/Pages/ConfigPage/GAME_CONFIG_SCHEMA";
+
+import { GAME_CONFIG_SCHEMA } from "@/components/Pages/ConfigPage/GAME_CONFIG_SCHEMA";
+import { Game } from "@/api/types";
+import { GameConfig } from "@/configureStore";
+import { PaginateParams, WithPagination } from "@/common/types/pagination";
+import { isAlpha } from "@/utils/regex";
 
 export const CREATE_GAME_SCHEMA = yup
   .object()

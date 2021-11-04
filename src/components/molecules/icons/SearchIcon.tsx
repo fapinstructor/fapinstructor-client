@@ -1,5 +1,5 @@
 import SearchImage from "@material-ui/icons/Search";
-import Icon from "components/atoms/Icon";
+import Icon from "@/components/atoms/Icon";
 
 type SearchIconProps = {
   size: number;

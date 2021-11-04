@@ -1,5 +1,6 @@
-import store from "store";
 import differenceInMinutes from "date-fns/differenceInMinutes";
+
+import store from "@/store";
 
 export function gameCompletionPercent() {
   return elapsedGameTime() / store.config.gameDuration.max;

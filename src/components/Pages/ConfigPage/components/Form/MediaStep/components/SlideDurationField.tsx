@@ -6,7 +6,7 @@ import {
   Grid,
 } from "@material-ui/core";
 
-import FormikSlider from "components/molecules/fields/FormikSlider";
+import FormikSlider from "@/components/molecules/fields/FormikSlider";
 
 const marks = [
   { value: 3, label: "3s" },

@@ -3,10 +3,10 @@ import { Switch, TextField } from "formik-material-ui";
 import { InputAdornment, InputLabel } from "@material-ui/core";
 import styled from "styled-components/macro";
 
-import theme from "theme";
-import { FullBleed } from "components/templates/FullBleed";
-import useAutoMaxField from "hooks/useAutoMaxField";
-import { GameConfig } from "configureStore";
+import theme from "@/theme";
+import { FullBleed } from "@/components/templates/FullBleed";
+import useAutoMaxField from "@/hooks/useAutoMaxField";
+import { GameConfig } from "@/configureStore";
 
 const PostOrgasmTortureDurationFieldContainer = styled.div`
   display: grid;

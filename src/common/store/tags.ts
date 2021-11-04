@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import api from "common/api/client";
-import { State } from "common/store/rootReducer";
-import { AppThunk } from "common/store";
-import { createNotification, Severity } from "common/store/notifications";
+
+import api from "@/common/api/client";
+import { State } from "@/common/store/rootReducer";
+import { AppThunk } from "@/common/store";
+import { createNotification, Severity } from "@/common/store/notifications";
 
 interface CurrentTagState {
   isLoading: boolean;
@@ -42,10 +43,10 @@ export const fetchTags = (): AppThunk => async (dispatch) => {
     dispatch(setLoading(true));
     const res = await api.get(url);
     dispatch(setTags(res.data));
-  } catch (err) {
+  } catch (error) {
     dispatch(
       createNotification({
-        message: `Error fetching tags: ${err.message}`,
+        message: `Error fetching tags: ${error.message}`,
         duration: -1,
         severity: Severity.ERROR,
       })

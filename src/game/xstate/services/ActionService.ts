@@ -3,9 +3,9 @@ import {
   createActionMachine,
   ActionMachine,
   Action,
-} from "game/xstate/machines/actionMachine";
+} from "@/game/xstate/machines/actionMachine";
 import { useService } from "@xstate/react";
-import { GameConfig } from "configureStore";
+import { GameConfig } from "@/configureStore";
 
 let machine: ActionMachine;
 let service: InterpreterFrom<ActionMachine>;

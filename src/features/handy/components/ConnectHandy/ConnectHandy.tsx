@@ -15,13 +15,13 @@ import {
 } from "@material-ui/core";
 import { green } from "@material-ui/core/colors";
 import ContactlessIcon from "@material-ui/icons/Contactless";
-import MenuItem from "components/templates/MenuItem";
-import useToggle from "hooks/useToggle";
-import handy from "features/handy/api";
-import { createNotification } from "engine/notification";
-import { Severity } from "common/store/notifications";
-import useStickyState from "hooks/useStickyState";
-import useForceUpdate from "hooks/useForceUpdate";
+import MenuItem from "@/components/templates/MenuItem";
+import useToggle from "@/hooks/useToggle";
+import handy from "@/features/handy/api";
+import { createNotification } from "@/engine/notification";
+import { Severity } from "@/common/store/notifications";
+import useStickyState from "@/hooks/useStickyState";
+import useForceUpdate from "@/hooks/useForceUpdate";
 
 const CONNECT_HANDY_SCHEMA = yup.object().shape({
   connectionKey: yup

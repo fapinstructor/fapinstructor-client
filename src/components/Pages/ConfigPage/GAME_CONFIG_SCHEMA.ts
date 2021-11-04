@@ -1,10 +1,10 @@
 import * as yup from "yup";
 
-import { validSubreddit } from "utils/regex";
-import { sum } from "utils/math";
-import { MediaType } from "common/types/Media";
-import { StrokeStyles } from "game/enums/StrokeStyle";
-import { tasks } from "configureStore";
+import { validSubreddit } from "@/utils/regex";
+import { sum } from "@/utils/math";
+import { MediaType } from "@/common/types/Media";
+import { StrokeStyles } from "@/game/enums/StrokeStyle";
+import { tasks } from "@/configureStore";
 
 const MAX_GAME_DURATION = 60 * 12; // 12 hours
 

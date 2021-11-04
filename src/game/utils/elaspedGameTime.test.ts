@@ -2,7 +2,9 @@ import formatISO from "date-fns/formatISO";
 import subMinutes from "date-fns/subMinutes";
 
 import elapsedGameTime, { gameCompletionPercent } from "./elapsedGameTime";
-import store from "store";
+import store from "@/store";
+
+jest.mock("@/store");
 
 describe("Elapsed game time", () => {
   it("game completion should be 0%", () => {

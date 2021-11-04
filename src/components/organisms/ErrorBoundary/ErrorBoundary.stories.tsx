@@ -1,7 +1,7 @@
 import { Story, Meta } from "@storybook/react";
 import ComponentWithException, {
   ComponentWithExceptionProps,
-} from "test/components/ComponentWithException";
+} from "@/test/components/ComponentWithException";
 
 import ErrorBoundary from "./ErrorBoundary";
 

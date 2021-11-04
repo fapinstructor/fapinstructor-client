@@ -1,4 +1,4 @@
-import Hash from "common/types/Hash";
+import Hash from "@/common/types/Hash";
 import applyProbabilities from "../applyProbabilities";
 
 function count(items: string[]) {

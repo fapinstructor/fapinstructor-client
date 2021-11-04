@@ -37,12 +37,6 @@ module.exports = {
         name: "styled-components",
         message: 'Use "styled-components/macro" instead',
       },
-      // {
-      //   name: "history",
-      //   importNames: ["Location", "History"],
-      //   message:
-      //     "Import useLocation or useHistory from helpers/routingHooksWithState instead",
-      // },
     ],
   },
 };

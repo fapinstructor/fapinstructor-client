@@ -1,7 +1,8 @@
 import axios, { AxiosError } from "axios";
-import config from "config";
-import captureError from "utils/captureError";
-import { authClient } from "AuthProvider/Auth0Provider";
+
+import captureError from "@/utils/captureError";
+import config from "@/config";
+import { authClient } from "@/AuthProvider/Auth0Provider";
 
 const instance = axios.create({
   baseURL: config.fapinstructorApi,

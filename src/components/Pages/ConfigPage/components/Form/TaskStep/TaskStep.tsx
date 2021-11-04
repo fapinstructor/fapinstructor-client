@@ -2,7 +2,7 @@ import { Button } from "@material-ui/core";
 import styled from "styled-components/macro";
 import { useFormikContext } from "formik";
 
-import { getRandomBoolean } from "utils/math";
+import { getRandomBoolean } from "@/utils/math";
 import {
   Task,
   SpeedTasks,
@@ -13,12 +13,12 @@ import {
   NippleTasks,
   GameConfig,
   tasks,
-} from "configureStore";
-import Group from "components/molecules/Group";
+} from "@/configureStore";
+import Group from "@/components/molecules/Group";
 import TaskGroup from "./components/TaskGroup";
 import TaskFrequencyField from "./components/TaskFrequencyField";
-import Stack from "components/templates/Stack";
-import theme from "theme";
+import Stack from "@/components/templates/Stack";
+import theme from "@/theme";
 
 const TaskContainer = styled(Stack)`
   & > * {

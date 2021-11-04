@@ -7,8 +7,8 @@ import {
 import { Field, useField } from "formik";
 import { CheckboxWithLabel } from "formik-material-ui";
 
-import { MediaType } from "common/types/Media";
-import Group from "components/molecules/Group";
+import { MediaType } from "@/common/types/Media";
+import Group from "@/components/molecules/Group";
 import RedditSelectionField from "./components/RedditSelectionField";
 import SlideDurationField from "./components/SlideDurationField";
 

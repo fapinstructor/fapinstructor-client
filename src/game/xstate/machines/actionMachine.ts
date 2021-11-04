@@ -1,24 +1,24 @@
-import { GameConfig } from "configureStore";
+import { GameConfig } from "@/configureStore";
 import { assign, createMachine, send, actions } from "xstate";
-import history from "browserHistory";
-import store from "store";
-import { TIME_TO_TICK } from "components/organisms/BeatMeter/settings";
-import warmup from "game/actions/warmup";
-import { playCommand } from "engine/audio";
-import interrupt from "engine/interrupt";
-import delay from "utils/delay";
-import { gameCompletionPercent } from "game/utils/elapsedGameTime";
-import { getRandomItem } from "utils/math";
-import { initializeActions } from "game/initializeActions";
-import { stopServices } from "game";
+import history from "@/browserHistory";
+import store from "@/store";
+import { TIME_TO_TICK } from "@/components/organisms/BeatMeter/settings";
+import warmup from "@/game/actions/warmup";
+import { playCommand } from "@/engine/audio";
+import interrupt from "@/engine/interrupt";
+import delay from "@/utils/delay";
+import { gameCompletionPercent } from "@/game/utils/elapsedGameTime";
+import { getRandomItem } from "@/utils/math";
+import { initializeActions } from "@/game/initializeActions";
+import { stopServices } from "@/game";
 
-import { edge } from "game/actions/orgasm/edge";
-import { ruin, finalRuin } from "game/actions/orgasm/ruin";
-import { orgasm, finalOrgasm } from "game/actions/orgasm/orgasm";
-import { deny } from "game/actions/orgasm/deny";
-import { startStrokingAgain } from "game/actions";
-import applyProbabilities from "utils/applyProbabilities";
-import { isFullScreen, toggleFullScreen } from "game/utils/fullscreen";
+import { edge } from "@/game/actions/orgasm/edge";
+import { ruin, finalRuin } from "@/game/actions/orgasm/ruin";
+import { orgasm, finalOrgasm } from "@/game/actions/orgasm/orgasm";
+import { deny } from "@/game/actions/orgasm/deny";
+import { startStrokingAgain } from "@/game/actions";
+import applyProbabilities from "@/utils/applyProbabilities";
+import { isFullScreen, toggleFullScreen } from "@/game/utils/fullscreen";
 
 const { choose } = actions;
 

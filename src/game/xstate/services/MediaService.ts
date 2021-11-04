@@ -1,10 +1,10 @@
 import { interpret, InterpreterFrom } from "xstate";
 import { useService } from "@xstate/react";
-import { GameConfig } from "configureStore";
+import { GameConfig } from "@/configureStore";
 import {
   createMediaMachine,
   MediaMachine,
-} from "game/xstate/machines/mediaMachine";
+} from "@/game/xstate/machines/mediaMachine";
 
 let machine: MediaMachine;
 let service: InterpreterFrom<MediaMachine>;

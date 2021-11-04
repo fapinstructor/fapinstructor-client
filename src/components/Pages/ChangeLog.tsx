@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
-import config from "config";
+import config from "@/config";
 import "github-markdown-css";
-import Page from "components/atoms/Page";
-import { Head } from "components/Head";
+import Page from "@/components/atoms/Page";
+import { Head } from "@/components/Head";
 
 const ChangeLogMDUrl = `${config.publicUrl}/CHANGELOG.md`;
 

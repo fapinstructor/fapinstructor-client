@@ -1,5 +1,5 @@
 import * as React from "react";
-import { subscribe, unsubscribe, Store } from "store";
+import { subscribe, unsubscribe, Store } from "@/store";
 
 export type ProxyStoreContextProps = Store | null;
 

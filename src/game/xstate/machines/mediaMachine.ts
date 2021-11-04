@@ -1,9 +1,9 @@
 import { createMachine, assign, send } from "xstate";
-import { createNotification } from "engine/notification";
-import { Severity } from "common/store/notifications";
-import MediaLink, { MediaType } from "common/types/Media";
-import { GameConfig } from "configureStore";
-import fetchRedditPics from "api/fetchRedditPics";
+import { createNotification } from "@/engine/notification";
+import { Severity } from "@/common/store/notifications";
+import MediaLink, { MediaType } from "@/common/types/Media";
+import { GameConfig } from "@/configureStore";
+import fetchRedditPics from "@/api/fetchRedditPics";
 
 const PRELOAD_LINK_THRESHOLD = 5;
 const ESTIMATED_SKIP_RATE = 1.5;

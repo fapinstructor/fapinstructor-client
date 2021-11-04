@@ -1,7 +1,7 @@
-import { createNotification, dismissNotification } from "engine/notification";
-import { getRandomInclusiveInteger } from "utils/math";
-import delay from "utils/delay";
-import { StrokeService } from "game/xstate/services";
+import { createNotification, dismissNotification } from "@/engine/notification";
+import { getRandomInclusiveInteger } from "@/utils/math";
+import delay from "@/utils/delay";
+import { StrokeService } from "@/game/xstate/services";
 
 export const rubIceOnBalls = async () => {
   const time = getRandomInclusiveInteger(10, 50);

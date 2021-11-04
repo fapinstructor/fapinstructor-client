@@ -1,10 +1,13 @@
-import store from "store";
-import { createNotification } from "engine/notification";
-import { getAverageStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
-import { getRandomInclusiveInteger } from "utils/math";
-import delay from "utils/delay";
-import { StrokeService, GripService } from "game/xstate/services";
-import { GripStrength } from "game/xstate/machines/gripMachine";
+import store from "@/store";
+import { createNotification } from "@/engine/notification";
+import {
+  getAverageStrokeSpeed,
+  setStrokeSpeed,
+} from "@/game/utils/strokeSpeed";
+import { getRandomInclusiveInteger } from "@/utils/math";
+import delay from "@/utils/delay";
+import { StrokeService, GripService } from "@/game/xstate/services";
+import { GripStrength } from "@/game/xstate/machines/gripMachine";
 
 export const gripChallenge = async () => {
   const previousGripStrength = GripService.gripStrength;

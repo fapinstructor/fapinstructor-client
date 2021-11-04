@@ -8,7 +8,8 @@ import {
   Auth0ContextInterface,
   AppState,
 } from "@auth0/auth0-react";
-import config from "config";
+
+import config from "@/config";
 
 type Auth0ProviderProps = {
   children: JSX.Element;

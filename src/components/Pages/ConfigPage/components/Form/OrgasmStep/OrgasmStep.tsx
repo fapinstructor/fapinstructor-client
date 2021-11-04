@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useFormikContext } from "formik";
 
-import balanceArray from "utils/balanceArray";
-import Group from "components/molecules/Group";
+import balanceArray from "@/utils/balanceArray";
+import Group from "@/components/molecules/Group";
 import ProbabilityField from "./components/ProbabilityField";
-import { GameConfig } from "configureStore";
+import { GameConfig } from "@/configureStore";
 
 const ONE_HUNDRED_PERCENT = 100;
 

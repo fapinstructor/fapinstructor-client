@@ -1,8 +1,8 @@
-import { createNotification, dismissNotification } from "engine/notification";
-import { getRandomInclusiveInteger } from "utils/math";
-import { playCommand } from "engine/audio";
-import { StrokeService } from "game/xstate/services";
-import { pluralize } from "utils/pluralize";
+import { createNotification, dismissNotification } from "@/engine/notification";
+import { getRandomInclusiveInteger } from "@/utils/math";
+import { playCommand } from "@/engine/audio";
+import { StrokeService } from "@/game/xstate/services";
+import { pluralize } from "@/utils/pluralize";
 
 export const ballSlaps = async () => {
   StrokeService.pause();

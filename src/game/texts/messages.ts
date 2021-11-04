@@ -1,4 +1,4 @@
-import { getRandomInclusiveInteger } from "../../utils/math";
+import { getRandomInclusiveInteger } from "@/utils/math";
 
 export const getRandomMessage = (messageArray: string[]) => {
   return messageArray[getRandomInclusiveInteger(0, messageArray.length - 1)];

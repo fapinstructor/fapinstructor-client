@@ -1,6 +1,6 @@
-import FapInstructorImage from "assets/images/logo.svg";
-import Image from "components/atoms/Image";
-import Icon from "components/atoms/Icon";
+import FapInstructorImage from "@/assets/images/logo.svg";
+import Image from "@/components/atoms/Image";
+import Icon from "@/components/atoms/Icon";
 
 type FapInstructorIconProps = {
   size: number;

@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import * as Sentry from "@sentry/react";
-import api from "common/api/client";
-import { State } from "common/store/rootReducer";
-import { AppThunk } from "common/store";
-import Profile from "common/types/Profile";
-import { createNotification, Severity } from "common/store/notifications";
-import { authClient } from "AuthProvider/Auth0Provider";
+
+import api from "@/common/api/client";
+import { State } from "@/common/store/rootReducer";
+import { AppThunk } from "@/common/store";
+import Profile from "@/common/types/Profile";
+import { createNotification, Severity } from "@/common/store/notifications";
+import { authClient } from "@/AuthProvider/Auth0Provider";
 
 interface CurrentUserState {
   loading: boolean;
@@ -68,8 +69,8 @@ export const deleteProfile = (): AppThunk => async (dispatch, getState) => {
     Sentry.configureScope((scope) => {
       scope.setUser(null);
     });
-  } catch (err) {
-    const message = `Error deleting profile: ${err.message}`;
+  } catch (error) {
+    const message = `Error deleting profile: ${error.message}`;
 
     dispatch(
       createNotification({
@@ -98,13 +99,13 @@ export const fetchProfile =
         dispatch(setLoading(true));
         const res = await api.get(url);
         profile = res.data;
-      } catch (err) {
+      } catch (error) {
         // If profile doesn't exist, attempt to create it
-        if (err.response?.status === 404) {
+        if (error.response?.status === 404) {
           const res = await api.post(url);
           profile = res.data;
         } else {
-          throw err;
+          throw error;
         }
       }
 
@@ -113,8 +114,8 @@ export const fetchProfile =
       });
 
       dispatch(currentUser.actions.setProfile(profile));
-    } catch (err) {
-      const message = `Error fetching profile: ${err.message}`;
+    } catch (error) {
+      const message = `Error fetching profile: ${error.message}`;
 
       dispatch(
         createNotification({
@@ -137,10 +138,10 @@ export const appendGameHistory =
 
     try {
       await api.put(url);
-    } catch (err) {
+    } catch (error) {
       dispatch(
         createNotification({
-          message: `Error appending game to history: ${err.message}`,
+          message: `Error appending game to history: ${error.message}`,
           duration: -1,
           severity: Severity.ERROR,
         })

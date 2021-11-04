@@ -6,9 +6,9 @@ import {
   waitForElementToBeRemoved,
 } from "@testing-library/react";
 import { MemoryRouter as Router } from "react-router-dom";
-import Auth0TestProvider, { Auth } from "AuthProvider/Auth0TestProvider";
+import Auth0TestProvider, { Auth } from "@/AuthProvider/Auth0TestProvider";
 import { Provider } from "react-redux";
-import store from "common/store";
+import store from "@/common/store";
 
 type Options = RenderOptions & {
   route?: string;

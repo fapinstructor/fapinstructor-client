@@ -1,12 +1,12 @@
 import { connect } from "react-redux";
-import { State } from "common/store/rootReducer";
+import { State } from "@/common/store/rootReducer";
 import {
   selectLoading,
   selectGames,
   selectPagination,
   selectError,
   searchGames,
-} from "common/store/games";
+} from "@/common/store/games";
 import GamesTable from "./GamesTable";
 
 const mapStateToProps = (state: State) => ({

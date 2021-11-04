@@ -7,11 +7,11 @@ import {
   IGainNode,
   IOscillatorNode,
 } from "standardized-audio-context";
-import getAudioUrl, { Audios } from "audio";
-import store from "common/store";
-import { Severity, createNotification } from "common/store/notifications";
-import { selectEnableVoice } from "common/store/settings";
-import memoize from "utils/memoize";
+import getAudioUrl, { Audios } from "@/audio";
+import store from "@/common/store";
+import { Severity, createNotification } from "@/common/store/notifications";
+import { selectEnableVoice } from "@/common/store/settings";
+import memoize from "@/utils/memoize";
 
 let context: IAudioContext;
 let oscillator: IOscillatorNode<IAudioContext>;

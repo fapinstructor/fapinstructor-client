@@ -1,15 +1,15 @@
 import { useCallback } from "react";
-import { createNotification } from "engine/notification";
-import { Severity } from "common/store/notifications";
+import { createNotification } from "@/engine/notification";
+import { Severity } from "@/common/store/notifications";
 import { Tooltip, IconButton } from "@material-ui/core";
 import FullscreenIcon from "@material-ui/icons/Fullscreen";
 import FullscreenExitIcon from "@material-ui/icons/FullscreenExit";
-import useWindowEvent from "hooks/useWindowEvent";
+import useWindowEvent from "@/hooks/useWindowEvent";
 import {
   isFullScreen,
   isFullScreenSupported,
   toggleFullScreen,
-} from "game/utils/fullscreen";
+} from "@/game/utils/fullscreen";
 
 export default function FullScreenButton() {
   const fullscreen = isFullScreen();

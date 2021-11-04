@@ -103,8 +103,8 @@ exports[`Storyshots organisms/BeatMeter Standard Flash 1`] = `
   animation-timing-function: linear;
   border: 1px solid #3fbfa1;
   background-color: #3fbfa1;
-  -webkit-animation-name: llVaGI;
-  animation-name: llVaGI;
+  -webkit-animation-name: dSIiRM;
+  animation-name: dSIiRM;
   -webkit-animation-duration: 0.25s;
   animation-duration: 0.25s;
   -webkit-animation-delay: -Infinitys;

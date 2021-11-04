@@ -1,5 +1,5 @@
-import { createNotification, dismissNotification } from "engine/notification";
-import { StrokeService } from "game/xstate/services";
+import { createNotification, dismissNotification } from "@/engine/notification";
+import { StrokeService } from "@/game/xstate/services";
 
 export const applyToothpaste = async () => {
   StrokeService.pause();

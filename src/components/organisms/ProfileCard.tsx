@@ -1,5 +1,5 @@
 import { Paper, Box, Typography } from "@material-ui/core";
-import ProfileIcon from "components/molecules/icons/ProfileIcon";
+import ProfileIcon from "@/components/molecules/icons/ProfileIcon";
 import { User } from "@auth0/auth0-react";
 
 export type ProfileCardProps = {

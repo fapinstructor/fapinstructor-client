@@ -1,5 +1,5 @@
 import { Typography } from "@material-ui/core";
-import Group from "components/molecules/Group";
+import Group from "@/components/molecules/Group";
 
 export type ErrorCardProps = {
   error: string;

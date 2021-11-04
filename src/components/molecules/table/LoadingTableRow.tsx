@@ -1,5 +1,5 @@
 import { TableRow, LinearProgress } from "@material-ui/core";
-import SpanningTableCell from "components/molecules/table/SpanningTableCell";
+import SpanningTableCell from "@/components/molecules/table/SpanningTableCell";
 
 export default function LoadingTableRow() {
   return (

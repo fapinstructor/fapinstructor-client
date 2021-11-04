@@ -1,9 +1,10 @@
 import "@testing-library/jest-dom";
 import "jest-styled-components";
-import throwOnConsoleError from "test/throwOnConsoleError";
 import "@auth0/auth0-react";
 import faker from "faker";
 import mockDate from "mockdate";
+
+import throwOnConsoleError from "@/test/throwOnConsoleError";
 
 // Seed faker so it generates deterministic fake data
 faker.seed(123);

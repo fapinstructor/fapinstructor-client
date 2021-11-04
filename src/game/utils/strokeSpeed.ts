@@ -1,6 +1,6 @@
-import store from "store";
-import { clamp, getRandomArbitrary } from "utils/math";
-import { StrokeService } from "game/xstate/services";
+import store from "@/store";
+import { clamp, getRandomArbitrary } from "@/utils/math";
+import { StrokeService } from "@/game/xstate/services";
 
 /**
  * Generates a random stroke speed

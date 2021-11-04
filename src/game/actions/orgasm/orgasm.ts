@@ -1,9 +1,12 @@
-import store from "store";
-import { playCommand } from "engine/audio";
-import { getAverageStrokeSpeed, setStrokeSpeed } from "game/utils/strokeSpeed";
-import { createNotification, dismissNotification } from "engine/notification";
-import { getRandomInclusiveInteger } from "utils/math";
-import delay from "utils/delay";
+import store from "@/store";
+import { playCommand } from "@/engine/audio";
+import {
+  getAverageStrokeSpeed,
+  setStrokeSpeed,
+} from "@/game/utils/strokeSpeed";
+import { createNotification, dismissNotification } from "@/engine/notification";
+import { getRandomInclusiveInteger } from "@/utils/math";
+import delay from "@/utils/delay";
 import { getToTheEdge, rideTheEdge } from "./edge";
 
 export function orgasm(orgasmed: () => void) {

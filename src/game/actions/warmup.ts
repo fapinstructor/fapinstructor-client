@@ -1,7 +1,7 @@
-import { StrokeService } from "game/xstate/services";
-import { getRandomStrokeSpeed } from "game/utils/strokeSpeed";
-import { createNotification, dismissNotification } from "engine/notification";
-import delay from "utils/delay";
+import { StrokeService } from "@/game/xstate/services";
+import { getRandomStrokeSpeed } from "@/game/utils/strokeSpeed";
+import { createNotification, dismissNotification } from "@/engine/notification";
+import delay from "@/utils/delay";
 
 const warmup = async () => {
   const strokeSpeed = getRandomStrokeSpeed({ fast: getRandomStrokeSpeed() });

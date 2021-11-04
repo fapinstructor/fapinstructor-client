@@ -1,12 +1,12 @@
 import * as React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
-import store from "store";
-import useWindowEvent from "hooks/useWindowEvent";
-import { ActionService } from "game/xstate/services";
-import { ProxyStoreConsumer } from "containers/StoreProvider";
-import { edged } from "game/actions/orgasm/edge";
-import { accidentallyRuined } from "game/actions/orgasm/ruin";
+import store from "@/store";
+import useWindowEvent from "@/hooks/useWindowEvent";
+import { ActionService } from "@/game/xstate/services";
+import { ProxyStoreConsumer } from "@/containers/StoreProvider";
+import { edged } from "@/game/actions/orgasm/edge";
+import { accidentallyRuined } from "@/game/actions/orgasm/ruin";
 
 const useStyles = makeStyles((theme) => ({
   root: {

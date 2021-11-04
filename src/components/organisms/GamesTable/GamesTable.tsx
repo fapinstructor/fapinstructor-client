@@ -11,19 +11,19 @@ import {
   Typography,
   TableSortLabel,
 } from "@material-ui/core";
-import AsyncTableBody from "components/molecules/table/AsyncTableBody";
-import DateColumn from "components/molecules/table/DateColumn";
-import RouteColumn from "components/molecules/table/RouteColumn";
-import TagsColumn from "components/molecules/table/TagsColumn";
-import StarsColumn from "components/molecules/table/StarsColumn";
-import SpanningTableCell from "components/molecules/table/SpanningTableCell";
-import { Game } from "api/types";
-import TagsField from "components/molecules/TagsField";
+import AsyncTableBody from "@/components/molecules/table/AsyncTableBody";
+import DateColumn from "@/components/molecules/table/DateColumn";
+import RouteColumn from "@/components/molecules/table/RouteColumn";
+import TagsColumn from "@/components/molecules/table/TagsColumn";
+import StarsColumn from "@/components/molecules/table/StarsColumn";
+import SpanningTableCell from "@/components/molecules/table/SpanningTableCell";
+import { Game } from "@/api/types";
+import TagsField from "@/components/molecules/TagsField";
 import {
   SearchGamesRequest,
   SearchGamesParams,
-} from "common/api/schemas/games";
-import { PaginateParams, Pagination } from "common/types/pagination";
+} from "@/common/api/schemas/games";
+import { PaginateParams, Pagination } from "@/common/types/pagination";
 
 export type GamesTableProps = {
   createdBy?: string;

@@ -1,4 +1,4 @@
-import { GameConfig } from "configureStore";
+import { GameConfig } from "@/configureStore";
 
 export default interface Game {
   id: string;

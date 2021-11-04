@@ -1,11 +1,11 @@
 import { interpret, InterpreterFrom } from "xstate";
 import { useService } from "@xstate/react";
-import { GameConfig } from "configureStore";
+import { GameConfig } from "@/configureStore";
 import {
   createGripMachine,
   GripStrength,
   GripMachine,
-} from "game/xstate/machines/gripMachine";
+} from "@/game/xstate/machines/gripMachine";
 
 let machine: GripMachine;
 let service: InterpreterFrom<GripMachine>;

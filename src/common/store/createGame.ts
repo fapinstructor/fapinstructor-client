@@ -1,10 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import api from "common/api/client";
-import { State } from "common/store/rootReducer";
+
+import api from "@/common/api/client";
+import { State } from "@/common/store/rootReducer";
 import {
   CreateGameRequest,
   CreateGameResponse,
-} from "common/api/schemas/games";
+} from "@/common/api/schemas/games";
 
 type CreateGameState = {
   loading: boolean;

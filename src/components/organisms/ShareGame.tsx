@@ -1,5 +1,5 @@
 import * as React from "react";
-import store from "store";
+import store from "@/store";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Button,
@@ -17,17 +17,21 @@ import {
   FormHelperText,
 } from "@material-ui/core";
 import { TextField } from "formik-material-ui";
-import SwitchWithLabel from "components/atoms/SwitchWithLabel";
+import SwitchWithLabel from "@/components/atoms/SwitchWithLabel";
 import { Formik, Form, Field, FormikHelpers } from "formik";
-import TagsField from "components/molecules/TagsField";
+import TagsField from "@/components/molecules/TagsField";
 import {
   CREATE_GAME_SCHEMA,
   CreateGameRequest,
-} from "common/api/schemas/games";
+} from "@/common/api/schemas/games";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { clearGameId, createGame, selectGameId } from "common/store/createGame";
-import { createNotification, Severity } from "common/store/notifications";
+import {
+  clearGameId,
+  createGame,
+  selectGameId,
+} from "@/common/store/createGame";
+import { createNotification, Severity } from "@/common/store/notifications";
 
 const useStyles = makeStyles((theme) => ({
   button: {

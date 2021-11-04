@@ -1,6 +1,6 @@
-import store from "store";
-import { createNotification } from "engine/notification";
-import { getRandomInclusiveInteger } from "utils/math";
+import store from "@/store";
+import { createNotification } from "@/engine/notification";
+import { getRandomInclusiveInteger } from "@/utils/math";
 
 export const StrokeStyles = {
   dominant: {

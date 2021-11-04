@@ -1,15 +1,15 @@
 import { assign, createMachine, send } from "xstate";
-import store from "common/store";
-import { selectEnableTicks } from "common/store/settings";
-import { GameConfig } from "configureStore";
-import { playTick } from "engine/audio";
+import store from "@/common/store";
+import { selectEnableTicks } from "@/common/store/settings";
+import { GameConfig } from "@/configureStore";
+import { playTick } from "@/engine/audio";
 import { StrokeService } from "../services";
-import { TIME_TO_TICK } from "components/organisms/BeatMeter/settings";
+import { TIME_TO_TICK } from "@/components/organisms/BeatMeter/settings";
 
 import createIntervalMachine, { TickEvent } from "./intervalMachine";
-import handy from "features/handy/api";
-import { getAverageStrokeSpeed } from "game/utils/strokeSpeed";
-import { getRandomArbitrary } from "utils/math";
+import handy from "@/features/handy/api";
+import { getAverageStrokeSpeed } from "@/game/utils/strokeSpeed";
+import { getRandomArbitrary } from "@/utils/math";
 
 export type StrokeMachine = ReturnType<typeof createStrokeMachine>;
 

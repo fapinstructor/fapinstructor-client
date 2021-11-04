@@ -2,9 +2,9 @@ import { Field } from "formik";
 import { TextField } from "formik-material-ui";
 
 import styled from "styled-components/macro";
-import theme from "theme";
-import { GameConfig } from "configureStore";
-import useAutoMaxField from "hooks/useAutoMaxField";
+import theme from "@/theme";
+import { GameConfig } from "@/configureStore";
+import useAutoMaxField from "@/hooks/useAutoMaxField";
 
 const RuinedOrgasmRangeFieldContainer = styled.div`
   display: grid;

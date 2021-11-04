@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { State } from "common/store/rootReducer";
-import api from "common/api/client";
-import { AppThunk } from "common/store";
-import Game from "common/types/Game";
-import { createNotification, Severity } from "common/store/notifications";
+
+import Game from "@/common/types/Game";
+import api from "@/common/api/client";
+import { AppThunk } from "@/common/store";
+import { State } from "@/common/store/rootReducer";
+import { createNotification, Severity } from "@/common/store/notifications";
 
 type StateType = "idle" | "pending" | "resolved" | "rejected";
 

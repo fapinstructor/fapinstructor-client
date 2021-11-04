@@ -1,6 +1,6 @@
-import DiscordIcon from "components/molecules/icons/DiscordIcon";
-import AnchorButton from "components/atoms/AnchorButton";
-import MenuItem from "components/templates/MenuItem";
+import DiscordIcon from "@/components/molecules/icons/DiscordIcon";
+import AnchorButton from "@/components/atoms/AnchorButton";
+import MenuItem from "@/components/templates/MenuItem";
 
 export default function DiscordMenuButton() {
   return (

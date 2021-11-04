@@ -1,8 +1,8 @@
 /**
  * The game loop will automatically start when this file is imported
  */
-import { createObservable } from "utils/observable";
-import visibilityChange from "utils/visibility";
+import { createObservable } from "@/utils/observable";
+import visibilityChange from "@/utils/visibility";
 
 let visible = true;
 
