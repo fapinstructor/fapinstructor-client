@@ -1,16 +1,19 @@
+import { inspect } from "@xstate/inspect";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+
+import store from "@/common/store";
+import NotificationManager from "@/components/organisms/NotificationManager";
+
+import configureStore from "./configureStore";
 import "./utils/visibility";
 import "./index.css";
 import "./setupSentry";
 import "./setupYup";
-import configureStore from "./configureStore";
-import { Provider } from "react-redux";
-import store from "@/common/store";
-import NotificationManager from "@/components/organisms/NotificationManager";
-import { inspect } from "@xstate/inspect";
-import config from "@/config";
 
-if (config.enableStateCharts) {
+import { STATE_CHARTS } from "@/config";
+
+if (STATE_CHARTS) {
   inspect({
     iframe: false,
   });

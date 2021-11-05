@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
-import config from "@/config";
 import "github-markdown-css";
+
+import { PUBLIC_URL } from "@/config";
 import Page from "@/components/atoms/Page";
 import { Head } from "@/components/Head";
 
-const FaqMD = `${config.publicUrl}/FAQ.md`;
+const FaqMD = `${PUBLIC_URL}/FAQ.md`;
 
 export default function ChangeLog() {
   const [changeLogMD, setChangeLogMD] = useState("");

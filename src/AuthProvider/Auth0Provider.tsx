@@ -9,7 +9,7 @@ import {
   AppState,
 } from "@auth0/auth0-react";
 
-import config from "@/config";
+import { AUTH_DOMAIN, AUTH_CLIENT_ID, AUTH_AUDIENCE } from "@/config";
 
 type Auth0ProviderProps = {
   children: JSX.Element;
@@ -62,9 +62,9 @@ export default function AppAuth0Provider({
 
   return (
     <Auth0Provider
-      domain={config.auth0Domain}
-      clientId={config.auth0ClientId}
-      audience={config.auth0Audience}
+      domain={AUTH_DOMAIN}
+      clientId={AUTH_CLIENT_ID}
+      audience={AUTH_AUDIENCE}
       useRefreshTokens
       redirectUri={window.location.origin}
       onRedirectCallback={onRedirectCallback}
