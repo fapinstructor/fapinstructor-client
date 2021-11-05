@@ -1,4 +1,5 @@
 import { useEffect, useState, memo } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Typography,
@@ -8,11 +9,11 @@ import {
 } from "@material-ui/core";
 import DownIcon from "@material-ui/icons/ArrowDropDown";
 import UpIcon from "@material-ui/icons/ArrowDropUp";
+
 import elapsedGameTime from "@/game/utils/elapsedGameTime";
 import { StrokeStyles } from "@/game/enums/StrokeStyle";
 import logo from "@/assets/images/logo.svg";
-import { ProxyStoreConsumer } from "@/containers/StoreProvider";
-import { useDispatch, useSelector } from "react-redux";
+import { ProxyStoreConsumer } from "@/providers/ProxyStoreProvider";
 import {
   selectEnableBeatMeter,
   selectEnableMoans,

@@ -3,7 +3,7 @@ import { Router } from "react-router-dom";
 
 import history from "@/browserHistory";
 import ErrorBoundary from "@/components/organisms/ErrorBoundary";
-import { ProxyStoreProvider } from "@/containers/StoreProvider";
+import { ProxyStoreProvider } from "@/providers/ProxyStoreProvider";
 import Auth0Provider from "@/providers/AuthProvider";
 import { Store } from "@/store";
 import { Loading } from "@/features/misc";
