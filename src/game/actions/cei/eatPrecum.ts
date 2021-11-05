@@ -1,6 +1,9 @@
-import { createNotification, dismissNotification } from "@/engine/notification";
+import {
+  createNotification,
+  dismissNotification,
+} from "@/game/engine/notification";
 import { StrokeService } from "@/game/xstate/services";
-import { playCommand } from "@/engine/audio";
+import { playCommand } from "@/game/engine/audio";
 
 export const eatPrecum = async () => {
   StrokeService.pause();

@@ -1,4 +1,7 @@
-import { createNotification, dismissNotification } from "@/engine/notification";
+import {
+  createNotification,
+  dismissNotification,
+} from "@/game/engine/notification";
 import { StrokeService } from "@/game/xstate/services";
 
 export const scratchChest = async () => {

@@ -1,8 +1,8 @@
 import store from "@/store";
-import { createNotification } from "@/engine/notification";
+import { createNotification } from "@/game/engine/notification";
 import { setStrokeSpeed } from "@/game/utils/strokeSpeed";
-import delay from "@/utils/delay";
-import { playCommand } from "@/engine/audio";
+import { delay } from "@/game/engine/delay";
+import { playCommand } from "@/game/engine/audio";
 import { StrokeService } from "@/game/xstate/services";
 
 export const acceleration = async () => {

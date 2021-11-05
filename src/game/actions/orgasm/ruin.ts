@@ -1,7 +1,10 @@
 import store from "@/store";
-import { playCommand } from "@/engine/audio";
+import { playCommand } from "@/game/engine/audio";
 import { setStrokeSpeed } from "@/game/utils/strokeSpeed";
-import { createNotification, dismissNotification } from "@/engine/notification";
+import {
+  createNotification,
+  dismissNotification,
+} from "@/game/engine/notification";
 import { handsOff } from "@/game/actions";
 import { getToTheEdge, rideTheEdge } from "./edge";
 import { startStrokingAgain } from "../speed";

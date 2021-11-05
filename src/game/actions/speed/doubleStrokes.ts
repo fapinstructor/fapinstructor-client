@@ -1,6 +1,6 @@
-import { createNotification } from "@/engine/notification";
-import { playCommand } from "@/engine/audio";
-import delay from "@/utils/delay";
+import { createNotification } from "@/game/engine/notification";
+import { playCommand } from "@/game/engine/audio";
+import { delay } from "@/game/engine/delay";
 import { StrokeService } from "@/game/xstate/services";
 import { setStrokeSpeed } from "@/game/utils/strokeSpeed";
 import getRandomDuration from "@/game/utils/getRandomDuration";

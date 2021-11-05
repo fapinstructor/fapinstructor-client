@@ -1,5 +1,5 @@
 import store from "@/store";
-import { createNotification } from "@/engine/notification";
+import { createNotification } from "@/game/engine/notification";
 import { getRandomInclusiveInteger } from "@/utils/math";
 
 export const StrokeStyles = {

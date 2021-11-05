@@ -1,9 +1,9 @@
 /**
  * The entry point to kick start and configure the game
  */
-import { gameLoopObservable } from "@/engine/loop";
-import interrupt from "@/engine/interrupt";
-import { createAudioContext } from "@/engine/audio";
+import { gameLoopObservable } from "@/game/engine/loop";
+import interrupt from "@/game/engine/interrupt";
+import { createAudioContext } from "@/game/engine/audio";
 import configureStore from "./configureStore";
 import moanLoop from "./loops/moanLoop";
 import {

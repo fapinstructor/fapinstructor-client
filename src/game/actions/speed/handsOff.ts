@@ -1,12 +1,12 @@
 import store from "@/store";
-import { createNotification } from "@/engine/notification";
+import { createNotification } from "@/game/engine/notification";
 import { getRandomInclusiveInteger } from "@/utils/math";
-import delay from "@/utils/delay";
+import { delay } from "@/game/engine/delay";
 import { setStrokeStyle } from "@/game/enums/StrokeStyle";
 import { getRandomHandsOffMessage } from "@/game/texts/messages";
 import { StrokeService } from "@/game/xstate/services";
 import { setStrokeStyleHandsOff } from "@/game/actions";
-import { playCommand } from "@/engine/audio";
+import { playCommand } from "@/game/engine/audio";
 import { getAverageStrokeSpeed } from "@/game/utils/strokeSpeed";
 
 const HANDS_OFF_DURATION_MIN = 10_000;

@@ -1,5 +1,8 @@
 import store from "@/store";
-import { createNotification, dismissNotification } from "@/engine/notification";
+import {
+  createNotification,
+  dismissNotification,
+} from "@/game/engine/notification";
 import videoLibrary from "@/video";
 import { getRandomItem } from "@/utils/math";
 import { MediaService, StrokeService } from "@/game/xstate/services";

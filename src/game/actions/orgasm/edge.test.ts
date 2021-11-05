@@ -2,8 +2,8 @@ import { getToTheEdge, rideTheEdge, edged } from "./edge";
 import store from "@/store";
 
 import * as strokeSpeed from "@/game/utils/strokeSpeed";
-import * as notification from "@/engine/notification";
-import * as audio from "@/engine/audio";
+import * as notification from "@/game/engine/notification";
+import * as audio from "@/game/engine/audio";
 
 const setStrokeSpeed = jest.spyOn(strokeSpeed, "setStrokeSpeed");
 const createNotification = jest.spyOn(notification, "createNotification");

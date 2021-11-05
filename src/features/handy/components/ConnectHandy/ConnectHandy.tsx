@@ -18,7 +18,7 @@ import ContactlessIcon from "@material-ui/icons/Contactless";
 import MenuItem from "@/components/templates/MenuItem";
 import useToggle from "@/hooks/useToggle";
 import handy from "@/features/handy/api";
-import { createNotification } from "@/engine/notification";
+import { createNotification } from "@/game/engine/notification";
 import { Severity } from "@/common/store/notifications";
 import useStickyState from "@/hooks/useStickyState";
 import useForceUpdate from "@/hooks/useForceUpdate";

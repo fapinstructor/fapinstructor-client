@@ -2,7 +2,7 @@ import qs from "query-string";
 
 import { MediaRequest, MediaResponse } from "@/common/types/Media";
 import { Severity } from "@/common/store/notifications";
-import { createNotification } from "@/engine/notification";
+import { createNotification } from "@/game/engine/notification";
 import api from "@/common/api/client";
 
 const failedSubreddits: string[] = [];

@@ -1,7 +1,7 @@
-import { createNotification } from "@/engine/notification";
+import { createNotification } from "@/game/engine/notification";
 import { getRandomInclusiveInteger } from "@/utils/math";
-import delay from "@/utils/delay";
-import { playCommand } from "@/engine/audio";
+import { delay } from "@/game/engine/delay";
+import { playCommand } from "@/game/engine/audio";
 
 export const squeezeBalls = async () => {
   const time = getRandomInclusiveInteger(15, 40);

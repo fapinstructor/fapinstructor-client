@@ -1,7 +1,7 @@
-import { createNotification } from "@/engine/notification";
+import { createNotification } from "@/game/engine/notification";
 import { getRandomStrokeSpeed, setStrokeSpeed } from "@/game/utils/strokeSpeed";
 import { getRandomInclusiveInteger } from "@/utils/math";
-import delay from "@/utils/delay";
+import { delay } from "@/game/engine/delay";
 
 export const flickNipples = async () => {
   const flickCount = getRandomInclusiveInteger(3, 6);

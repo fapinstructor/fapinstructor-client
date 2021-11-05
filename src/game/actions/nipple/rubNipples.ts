@@ -1,9 +1,9 @@
 import store from "@/store";
-import { createNotification } from "@/engine/notification";
+import { createNotification } from "@/game/engine/notification";
 import { setStrokeSpeed } from "@/game/utils/strokeSpeed";
 import { getRandomRubStrength } from "@/game/enums/RubStrength";
 import { getRandomInclusiveInteger } from "@/utils/math";
-import delay from "@/utils/delay";
+import { delay } from "@/game/engine/delay";
 import {
   getCurrentStrokeStyle,
   setStrokeStyle,

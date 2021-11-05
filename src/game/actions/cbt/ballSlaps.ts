@@ -1,6 +1,9 @@
-import { createNotification, dismissNotification } from "@/engine/notification";
+import {
+  createNotification,
+  dismissNotification,
+} from "@/game/engine/notification";
 import { getRandomInclusiveInteger } from "@/utils/math";
-import { playCommand } from "@/engine/audio";
+import { playCommand } from "@/game/engine/audio";
 import { StrokeService } from "@/game/xstate/services";
 import { pluralize } from "@/utils/pluralize";
 

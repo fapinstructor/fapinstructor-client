@@ -1,8 +1,8 @@
 import store from "@/store";
-import { createNotification } from "@/engine/notification";
+import { createNotification } from "@/game/engine/notification";
 import { setStrokeSpeed } from "@/game/utils/strokeSpeed";
 import { getRandomInclusiveInteger } from "@/utils/math";
-import delay from "@/utils/delay";
+import { delay } from "@/game/engine/delay";
 import { StrokeService } from "@/game/xstate/services";
 
 export const teasingStrokes = async () => {

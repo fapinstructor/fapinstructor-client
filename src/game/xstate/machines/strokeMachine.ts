@@ -2,7 +2,7 @@ import { assign, createMachine, send } from "xstate";
 import store from "@/common/store";
 import { selectEnableTicks } from "@/common/store/settings";
 import { GameConfig } from "@/configureStore";
-import { playTick } from "@/engine/audio";
+import { playTick } from "@/game/engine/audio";
 import { StrokeService } from "../services";
 import { TIME_TO_TICK } from "@/components/organisms/BeatMeter/settings";
 

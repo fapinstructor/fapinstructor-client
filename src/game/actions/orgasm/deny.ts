@@ -1,5 +1,5 @@
-import { playCommand } from "@/engine/audio";
-import { createNotification } from "@/engine/notification";
+import { playCommand } from "@/game/engine/audio";
+import { createNotification } from "@/game/engine/notification";
 import { getRandomDeniedMessage } from "@/game/texts/messages";
 import { StrokeService } from "@/game/xstate/services";
 import { getToTheEdge, rideTheEdge } from "./edge";

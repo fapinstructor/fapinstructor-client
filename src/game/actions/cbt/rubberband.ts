@@ -1,8 +1,11 @@
 import store from "@/store";
-import { createNotification, dismissNotification } from "@/engine/notification";
+import {
+  createNotification,
+  dismissNotification,
+} from "@/game/engine/notification";
 import { getRandomBoolean, getRandomInclusiveInteger } from "@/utils/math";
 import { getRandomStrokeSpeed, setStrokeSpeed } from "@/game/utils/strokeSpeed";
-import delay from "@/utils/delay";
+import { delay } from "@/game/engine/delay";
 import { StrokeService } from "@/game/xstate/services";
 
 export const addRubberBand = async () => {

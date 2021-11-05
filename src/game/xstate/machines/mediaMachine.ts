@@ -1,6 +1,6 @@
 import { createMachine, assign, send } from "xstate";
 
-import { createNotification } from "@/engine/notification";
+import { createNotification } from "@/game/engine/notification";
 import { Severity } from "@/common/store/notifications";
 import MediaLink, { MediaType } from "@/common/types/Media";
 import { GameConfig } from "@/configureStore";

@@ -1,11 +1,11 @@
 import store from "@/store";
-import { createNotification } from "@/engine/notification";
+import { createNotification } from "@/game/engine/notification";
 import {
   getAverageStrokeSpeed,
   setStrokeSpeed,
 } from "@/game/utils/strokeSpeed";
 import { getRandomArbitrary, getRandomInclusiveInteger } from "@/utils/math";
-import delay from "@/utils/delay";
+import { delay } from "@/game/engine/delay";
 import { StrokeService } from "@/game/xstate/services";
 
 export const headPalming = async () => {
