@@ -17,7 +17,7 @@ import RouteColumn from "@/components/molecules/table/RouteColumn";
 import TagsColumn from "@/components/molecules/table/TagsColumn";
 import StarsColumn from "@/components/molecules/table/StarsColumn";
 import SpanningTableCell from "@/components/molecules/table/SpanningTableCell";
-import { Game } from "@/api/types";
+import { Game } from "@/types/Game";
 import TagsField from "@/components/molecules/TagsField";
 import {
   SearchGamesRequest,

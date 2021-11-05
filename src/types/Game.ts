@@ -1,4 +1,4 @@
-export interface Game {
+export type Game = {
   id: string;
   title: string;
   tags: string[];
@@ -6,4 +6,4 @@ export interface Game {
   starred: boolean;
   updatedAt: string;
   averageGameDuration: number;
-}
+};

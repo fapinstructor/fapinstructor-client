@@ -3,7 +3,7 @@ import qs from "query-string";
 
 import { State } from "@/common/store/rootReducer";
 import { AppThunk } from "@/common/store";
-import { Game } from "@/api/types";
+import { Game } from "@/types/Game";
 import { Pagination } from "@/common/types/pagination";
 import { createNotification, Severity } from "@/common/store/notifications";
 import api from "@/common/api/client";

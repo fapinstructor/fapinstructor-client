@@ -1,7 +1,7 @@
 import * as yup from "yup";
 
 import { GAME_CONFIG_SCHEMA } from "@/components/Pages/ConfigPage/GAME_CONFIG_SCHEMA";
-import { Game } from "@/api/types";
+import { Game } from "@/types/Game";
 import { GameConfig } from "@/configureStore";
 import { PaginateParams, WithPagination } from "@/common/types/pagination";
 import { isAlpha } from "@/utils/regex";
