@@ -6,7 +6,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import Tooltip from "@material-ui/core/Tooltip";
 import { NavLink as RouteNavLink } from "react-router-dom";
-import { useAuth0, authClient } from "@/AuthProvider";
+import { useAuth0, authClient } from "@/providers/AuthProvider";
 import { PopoverProps } from "@material-ui/core";
 
 export default function ProfileButton() {

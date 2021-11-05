@@ -2,7 +2,7 @@ import axios, { AxiosError } from "axios";
 
 import captureError from "@/utils/captureError";
 import { API_URL } from "@/config";
-import { authClient } from "@/AuthProvider/Auth0Provider";
+import { authClient } from "@/providers/AuthProvider/Auth0Provider";
 
 const instance = axios.create({
   baseURL: API_URL,

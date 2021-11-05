@@ -6,7 +6,7 @@ import { State } from "@/common/store/rootReducer";
 import { AppThunk } from "@/common/store";
 import Profile from "@/common/types/Profile";
 import { createNotification, Severity } from "@/common/store/notifications";
-import { authClient } from "@/AuthProvider/Auth0Provider";
+import { authClient } from "@/providers/AuthProvider/Auth0Provider";
 
 interface CurrentUserState {
   loading: boolean;

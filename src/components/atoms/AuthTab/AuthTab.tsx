@@ -1,4 +1,4 @@
-import { useAuth0 } from "@/AuthProvider";
+import { useAuth0 } from "@/providers/AuthProvider";
 import { Tab, TabProps, Tooltip } from "@material-ui/core";
 
 export type AuthTabProps = TabProps;

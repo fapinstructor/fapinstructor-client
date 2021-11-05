@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Box, Button } from "@material-ui/core";
 import Page from "@/components/atoms/Page";
 import ProfileCard from "@/components/organisms/ProfileCard";
-import { useAuth0 } from "@/AuthProvider";
+import { useAuth0 } from "@/providers/AuthProvider";
 import DeleteProfileModal from "@/components/molecules/DeleteProfileModal";
 import { useDispatch } from "react-redux";
 import { deleteProfile } from "@/common/store/currentUser";

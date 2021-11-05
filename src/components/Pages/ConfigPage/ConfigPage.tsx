@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { Formik, Form } from "formik";
 import styled from "styled-components/macro";
 
-import { useAuth0 } from "@/AuthProvider";
+import { useAuth0 } from "@/providers/AuthProvider";
 import { GAME_CONFIG_SCHEMA } from "./GAME_CONFIG_SCHEMA";
 import store from "@/store";
 import { GameConfig } from "@/configureStore";

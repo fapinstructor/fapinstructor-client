@@ -7,7 +7,7 @@
 import { lazy } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 
-import { useAuth0 } from "@/AuthProvider";
+import { useAuth0 } from "@/providers/AuthProvider";
 import NavBar from "@/components/organisms/NavBar";
 
 const ConfigPage = lazy(() => import("@/components/Pages/ConfigPage"));

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Button, ButtonProps, Tooltip } from "@material-ui/core";
 import StarBorder from "@material-ui/icons/StarBorder";
 import Star from "@material-ui/icons/Star";
-import { useAuth0 } from "@/AuthProvider";
+import { useAuth0 } from "@/providers/AuthProvider";
 import { toggleStar } from "@/common/store/games";
 
 export type StarButtonProps = {
