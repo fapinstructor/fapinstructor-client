@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-import { GAME_CONFIG_SCHEMA } from "@/components/Pages/ConfigPage/GAME_CONFIG_SCHEMA";
+import { GAME_CONFIG_SCHEMA } from "@/features/game-config/types/GAME_CONFIG_SCHEMA";
 import { Game } from "@/types/Game";
 import { GameConfig } from "@/configureStore";
 import { PaginateParams, WithPagination } from "@/common/types/pagination";

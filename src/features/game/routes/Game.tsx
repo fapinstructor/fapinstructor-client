@@ -55,7 +55,7 @@ function handleSlideChange() {
   MediaService.nextLink();
 }
 
-export default function GamePage() {
+export function Game() {
   const params = useParams<{ config: string }>();
   const history = useHistory();
   const location = useLocation<{

@@ -8,7 +8,7 @@ import { Head } from "@/components/Head";
 
 const ChangeLogMDUrl = `${PUBLIC_URL}/CHANGELOG.md`;
 
-export default function ChangeLog() {
+export function ChangeLog() {
   const [changeLogMD, setChangeLogMD] = useState("");
 
   useEffect(() => {

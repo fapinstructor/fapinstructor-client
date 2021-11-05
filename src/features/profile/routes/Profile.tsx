@@ -1,14 +1,15 @@
 import { useState } from "react";
-import { Box, Button } from "@material-ui/core";
-import Page from "@/components/atoms/Page";
-import ProfileCard from "@/components/organisms/ProfileCard";
-import { useAuth0 } from "@/providers/AuthProvider";
-import DeleteProfileModal from "@/components/molecules/DeleteProfileModal";
 import { useDispatch } from "react-redux";
+import { Box, Button } from "@material-ui/core";
+
+import { useAuth0 } from "@/providers/AuthProvider";
 import { deleteProfile } from "@/common/store/currentUser";
 import { Head } from "@/components/Head";
+import Page from "@/components/atoms/Page";
+import ProfileCard from "@/components/organisms/ProfileCard";
+import DeleteProfileModal from "@/components/molecules/DeleteProfileModal";
 
-export default function ProfilePage() {
+export function Profile() {
   const { user } = useAuth0();
   const dispatch = useDispatch();
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);

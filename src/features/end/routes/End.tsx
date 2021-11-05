@@ -20,7 +20,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function EndPage() {
+export function End() {
   const classes = useStyles();
   const history = useHistory();
 

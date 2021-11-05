@@ -16,7 +16,7 @@ const StyledArticle = styled(Article)`
   padding-bottom: 5rem;
 `;
 
-export default function PrivacyPolicy() {
+export function PrivacyPolicy() {
   return (
     <StyledArticle>
       <Head title="Privacy Policy" />

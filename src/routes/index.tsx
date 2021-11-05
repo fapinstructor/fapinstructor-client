@@ -3,35 +3,37 @@
  * give the ability to create more dynamic routes in the future.
  * https://reactrouter.com/web/example/route-config
  */
-
-import { lazy } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 
 import { useAuth0 } from "@/providers/AuthProvider";
 import NavBar from "@/components/organisms/NavBar";
+import { lazyImport } from "@/utils/lazyImport";
 
-const ConfigPage = lazy(() => import("@/components/Pages/ConfigPage"));
-const GamePage = lazy(() => import("@/components/Pages/GamePage"));
-const EndPage = lazy(() => import("@/components/Pages/EndPage"));
-const ChangeLog = lazy(() => import("@/components/Pages/ChangeLog"));
-const PrivacyPolicy = lazy(() => import("@/components/Pages/PrivacyPolicy"));
-const FaqPage = lazy(() => import("@/components/Pages/FaqPage"));
-const SearchPage = lazy(() => import("@/components/Pages/SearchPage"));
-const ProfilePage = lazy(() => import("@/components/Pages/ProfilePage"));
+// prettier-ignore
+const { GameConfig } = lazyImport(() => import("@/features/game-config"), "GameConfig");
+const { Game } = lazyImport(() => import("@/features/game"), "Game");
+const { End } = lazyImport(() => import("@/features/end"), "End");
+// prettier-ignore
+const { ChangeLog } = lazyImport(() => import("@/features/changelog"), "ChangeLog");
+// prettier-ignore
+const { PrivacyPolicy } = lazyImport(() => import("@/features/privacy-policy"), "PrivacyPolicy");
+const { Faq } = lazyImport(() => import("@/features/faq"), "Faq");
+const { Search } = lazyImport(() => import("@/features/search"), "Search");
+const { Profile } = lazyImport(() => import("@/features/profile"), "Profile");
 
 export function AppRoutes() {
   const auth = useAuth0();
 
   // const publicRoutes = [];
-  const protectedRoutes = [<Route path="/profile" component={ProfilePage} />];
+  const protectedRoutes = [<Route path="/profile" component={Profile} />];
   const commonRoutes = [
-    <Route path="/games" component={SearchPage} />,
-    <Route exact path="/game/:config?" component={GamePage} />,
+    <Route path="/games" component={Search} />,
+    <Route exact path="/game/:config?" component={Game} />,
     <Route exact path="/changelog" component={ChangeLog} />,
     <Route exact path="/privacy" component={PrivacyPolicy} />,
-    <Route exact path="/faq" component={FaqPage} />,
-    <Route exact path="/endgame" component={EndPage} />,
-    <Route exact path="/" component={ConfigPage} />,
+    <Route exact path="/faq" component={Faq} />,
+    <Route exact path="/endgame" component={End} />,
+    <Route exact path="/" component={GameConfig} />,
   ];
 
   return (

@@ -8,7 +8,7 @@ import { Head } from "@/components/Head";
 
 const FaqMD = `${PUBLIC_URL}/FAQ.md`;
 
-export default function ChangeLog() {
+export function Faq() {
   const [changeLogMD, setChangeLogMD] = useState("");
 
   useEffect(() => {

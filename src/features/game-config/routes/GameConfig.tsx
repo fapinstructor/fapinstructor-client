@@ -5,26 +5,27 @@ import { Formik, Form } from "formik";
 import styled from "styled-components/macro";
 
 import { useAuth0 } from "@/providers/AuthProvider";
-import { GAME_CONFIG_SCHEMA } from "./GAME_CONFIG_SCHEMA";
 import store from "@/store";
-import { GameConfig } from "@/configureStore";
+import { GameConfig as GameConfigType } from "@/configureStore";
 import theme from "@/theme";
 import Footer from "@/components/organisms/Footer";
 import ShareGame from "@/components/organisms/ShareGame";
 import AutoFocusFieldErrors from "@/components/organisms/AutoFocusFieldErrors";
 import Stack from "@/components/templates/Stack";
 import Cluster from "@/components/templates/Cluster";
-import RuinedOrgasmsStep from "./components/Form/RuinedOrgasmsStep";
-import PostOrgasmTortureStep from "./components/Form/PostOrgasmTortureStep";
-import TaskStep from "./components/Form/TaskStep";
-import MediaStep from "./components/Form/MediaStep";
-import OrgasmStep from "./components/Form/OrgasmStep";
-import EdgingStep from "./components/Form/EdgingStep";
-import StrokeStep from "./components/Form/StrokeStep";
-import GameDurationStep from "./components/Form/GameDurationStep";
 import ButtonWithHelperText from "@/components/molecules/buttons/ButtonWithHelperText";
 import SupportSiteBanner from "@/components/atoms/SupportSiteBanner";
 import { Head } from "@/components/Head";
+
+import { GAME_CONFIG_SCHEMA } from "../types/GAME_CONFIG_SCHEMA";
+import RuinedOrgasmsStep from "../components/Form/RuinedOrgasmsStep";
+import PostOrgasmTortureStep from "../components/Form/PostOrgasmTortureStep";
+import TaskStep from "../components/Form/TaskStep";
+import MediaStep from "../components/Form/MediaStep";
+import OrgasmStep from "../components/Form/OrgasmStep";
+import EdgingStep from "../components/Form/EdgingStep";
+import StrokeStep from "../components/Form/StrokeStep";
+import GameDurationStep from "../components/Form/GameDurationStep";
 
 const StyledForm = styled(Form)`
   padding-top: 2rem;
@@ -45,7 +46,7 @@ const StyledForm = styled(Form)`
   }
 `;
 
-export default function ConfigPage() {
+export function GameConfig() {
   const history = useHistory();
   const { user } = useAuth0();
   const [open, setOpen] = React.useState(false);
@@ -53,7 +54,7 @@ export default function ConfigPage() {
   return (
     <>
       <Head title="Config" />
-      <Formik<GameConfig>
+      <Formik<GameConfigType>
         initialValues={store.config}
         validationSchema={GAME_CONFIG_SCHEMA}
         onSubmit={async (formValues) => {

@@ -12,7 +12,7 @@ import Star from "@material-ui/icons/Star";
 import StarredGamesTable from "@/components/organisms/GamesTable/StarredGamesTable";
 import { Head } from "@/components/Head";
 
-export default function SearchPage() {
+export function Search() {
   const [activeTab, setActiveTab] = useState(0);
 
   const handleTabChange = (event: React.ChangeEvent<unknown>, tab: number) => {

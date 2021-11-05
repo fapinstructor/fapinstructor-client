@@ -6,7 +6,7 @@ import ErrorBoundary from "@/components/organisms/ErrorBoundary";
 import { ProxyStoreProvider } from "@/containers/StoreProvider";
 import Auth0Provider from "@/providers/AuthProvider";
 import { Store } from "@/store";
-import LoadingPage from "@/components/Pages/LoadingPage";
+import { Loading } from "@/features/misc";
 import NavBar from "@/components/organisms/NavBar";
 import { AppRoutes } from "@/routes";
 
@@ -22,7 +22,7 @@ export default function Root({ store }: AppProps) {
           fallback={
             <>
               <NavBar />
-              <LoadingPage />
+              <Loading />
             </>
           }
         >
