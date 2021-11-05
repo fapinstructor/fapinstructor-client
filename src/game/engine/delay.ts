@@ -1,4 +1,4 @@
-import { TIME_TO_TICK } from "@/components/organisms/BeatMeter/settings";
+import { TIME_TO_TICK } from "@/features/game/components/BeatMeter/settings";
 
 import { interruptible } from "./interrupt";
 

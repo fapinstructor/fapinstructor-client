@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
-import { TICK_ANIMATION_DURATION } from "@/components/organisms/BeatMeter/settings";
+import { TICK_ANIMATION_DURATION } from "@/features/game/components/BeatMeter/settings";
 import { CircleFlash, Circle, AnimatedDot, HR, Bar } from "./styled-components";
 import { strokeServiceObserver } from "@/game/xstate/services";
 import { StrokeMachineEvent } from "@/game/xstate/machines/strokeMachine";
@@ -54,7 +54,7 @@ function Dots() {
   );
 }
 
-export default function BeatMeter() {
+export function BeatMeter() {
   return (
     <Bar>
       <HR />

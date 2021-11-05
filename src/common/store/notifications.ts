@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { State } from "@/common/store/rootReducer";
-import { TIME_TO_TICK } from "@/components/organisms/BeatMeter/settings";
+import { TIME_TO_TICK } from "@/features/game/components/BeatMeter/settings";
 
 /**
  * @field duration Defaults to 5s.  If set to a falsy value it will show until manually dismissed

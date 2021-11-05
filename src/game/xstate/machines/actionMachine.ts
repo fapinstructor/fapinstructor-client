@@ -2,7 +2,7 @@ import { GameConfig } from "@/configureStore";
 import { assign, createMachine, send, actions } from "xstate";
 import history from "@/browserHistory";
 import store from "@/store";
-import { TIME_TO_TICK } from "@/components/organisms/BeatMeter/settings";
+import { TIME_TO_TICK } from "@/features/game/components/BeatMeter/settings";
 import warmup from "@/game/actions/warmup";
 import { playCommand } from "@/game/engine/audio";
 import interrupt from "@/game/engine/interrupt";

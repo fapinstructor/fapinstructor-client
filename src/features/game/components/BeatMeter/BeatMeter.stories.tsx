@@ -1,6 +1,6 @@
 import { Meta } from "@storybook/react";
 
-import BeatMeter from "./BeatMeter";
+import { BeatMeter } from "./BeatMeter";
 import { CircleFlash, Circle, Dot, HR, Bar } from "./styled-components";
 
 export default {

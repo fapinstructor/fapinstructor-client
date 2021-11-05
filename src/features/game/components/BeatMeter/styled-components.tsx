@@ -1,10 +1,11 @@
 import styled, { keyframes } from "styled-components/macro";
+
 import {
   calculateTickTime,
   ANIMATION_OFFSET_PIXELS,
   FLASH_ANIMATION_DURATION,
   TICK_ANIMATION_DURATION,
-} from "@/components/organisms/BeatMeter/settings";
+} from "./settings";
 
 const BaseAnimation = styled.div<Keyframe>`
   animation-duration: ${(props) => props.duration};
