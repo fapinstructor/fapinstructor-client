@@ -9,7 +9,6 @@ import store from "@/store";
 import { GameConfig as GameConfigType } from "@/configureStore";
 import theme from "@/theme";
 import Footer from "@/components/organisms/Footer";
-import ShareGame from "@/components/organisms/ShareGame";
 import AutoFocusFieldErrors from "@/components/organisms/AutoFocusFieldErrors";
 import Stack from "@/components/templates/Stack";
 import Cluster from "@/components/templates/Cluster";
@@ -18,6 +17,7 @@ import SupportSiteBanner from "@/components/atoms/SupportSiteBanner";
 import { Head } from "@/components/Head";
 
 import { GAME_CONFIG_SCHEMA } from "../types/GAME_CONFIG_SCHEMA";
+import { ShareGame } from "../components/ShareGame";
 import RuinedOrgasmsStep from "../components/Form/RuinedOrgasmsStep";
 import PostOrgasmTortureStep from "../components/Form/PostOrgasmTortureStep";
 import TaskStep from "../components/Form/TaskStep";

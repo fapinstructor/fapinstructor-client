@@ -1,4 +1,4 @@
-import ConnectHandy from "./ConnectHandy";
+import { ConnectHandy } from "./ConnectHandy";
 
 export default {
   title: "molecules/ConnectHandy",

@@ -1,5 +1,6 @@
-export const TIME_TO_TICK = 2500;
-export const TICK_ANIMATION_DURATION = TIME_TO_TICK * 2;
+import { TICK_DELAY } from "@/config";
+
+export const TICK_ANIMATION_DURATION = TICK_DELAY * 2;
 export const ANIMATION_OFFSET_PIXELS = 25;
 export const FLASH_ANIMATION_DURATION = 0.25;
 

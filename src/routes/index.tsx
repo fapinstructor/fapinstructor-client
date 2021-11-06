@@ -25,16 +25,18 @@ export function AppRoutes() {
   const auth = useAuth0();
 
   // const publicRoutes = [];
-  const protectedRoutes = [<Route path="/profile" component={Profile} />];
-  const commonRoutes = [
-    <Route path="/games" component={Search} />,
-    <Route exact path="/game/:config?" component={Game} />,
-    <Route exact path="/changelog" component={ChangeLog} />,
-    <Route exact path="/privacy" component={PrivacyPolicy} />,
-    <Route exact path="/faq" component={Faq} />,
-    <Route exact path="/endgame" component={End} />,
-    <Route exact path="/" component={GameConfig} />,
-  ];
+  const protectedRoutes = <Route path="/profile" component={Profile} />;
+  const commonRoutes = (
+    <>
+      <Route path="/games" component={Search} />
+      <Route exact path="/game/:config?" component={Game} />
+      <Route exact path="/changelog" component={ChangeLog} />
+      <Route exact path="/privacy" component={PrivacyPolicy} />
+      <Route exact path="/faq" component={Faq} />
+      <Route exact path="/endgame" component={End} />
+      <Route exact path="/" component={GameConfig} />
+    </>
+  );
 
   return (
     <>

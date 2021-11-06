@@ -8,7 +8,7 @@ import SkipNextButton from "@/components/molecules/buttons/SkipNextButton";
 import SkipPreviousButton from "@/components/molecules/buttons/SkipPreviousButton";
 import StarButton from "@/components/molecules/buttons/StarButton";
 import { selectGame } from "@/common/store/currentGame";
-import ConnectHandy from "@/features/handy/components/ConnectHandy";
+import { ConnectHandy } from "@/features/handy";
 
 export const HUDButtons = React.memo(function HUDButtons() {
   const currentGame = useSelector(selectGame);

@@ -17,21 +17,21 @@ import {
   FormHelperText,
 } from "@material-ui/core";
 import { TextField } from "formik-material-ui";
-import SwitchWithLabel from "@/components/atoms/SwitchWithLabel";
 import { Formik, Form, Field, FormikHelpers } from "formik";
-import TagsField from "@/components/molecules/TagsField";
-import {
-  CREATE_GAME_SCHEMA,
-  CreateGameRequest,
-} from "@/common/api/schemas/games";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
+import SwitchWithLabel from "@/components/atoms/SwitchWithLabel";
+import TagsField from "@/components/molecules/TagsField";
+import { CreateGameRequest } from "@/common/api/schemas/games";
 import {
   clearGameId,
   createGame,
   selectGameId,
 } from "@/common/store/createGame";
 import { createNotification, Severity } from "@/common/store/notifications";
+
+import { CREATE_GAME_SCHEMA } from "../types/CREATE_GAME_SCHEMA";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -44,7 +44,7 @@ export type ShareGameProps = {
   onClose: () => void;
 };
 
-export default function ShareGame({ open, onClose }: ShareGameProps) {
+export function ShareGame({ open, onClose }: ShareGameProps) {
   const dispatch = useDispatch();
   const gameId = useSelector(selectGameId);
   const inputLink = React.useRef<HTMLInputElement>();

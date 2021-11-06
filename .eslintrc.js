@@ -32,10 +32,15 @@ module.exports = {
     "no-duplicate-imports": "warn",
     "react/jsx-no-useless-fragment": "error",
     "no-restricted-imports": [
-      "warn",
+      "error",
       {
-        name: "styled-components",
-        message: 'Use "styled-components/macro" instead',
+        paths: [
+          {
+            name: "styled-components",
+            message: 'Use "styled-components/macro" instead',
+          },
+        ],
+        patterns: ["@/features/*/*"],
       },
     ],
   },

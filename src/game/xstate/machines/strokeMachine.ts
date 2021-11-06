@@ -1,15 +1,16 @@
 import { assign, createMachine, send } from "xstate";
+
 import store from "@/common/store";
 import { selectEnableTicks } from "@/common/store/settings";
 import { GameConfig } from "@/configureStore";
 import { playTick } from "@/game/engine/audio";
-import { StrokeService } from "../services";
-import { TIME_TO_TICK } from "@/features/game/components/BeatMeter/settings";
-
-import createIntervalMachine, { TickEvent } from "./intervalMachine";
-import handy from "@/features/handy/api";
+import { TICK_DELAY } from "@/config";
+import { handy } from "@/features/handy";
 import { getAverageStrokeSpeed } from "@/game/utils/strokeSpeed";
 import { getRandomArbitrary } from "@/utils/math";
+
+import createIntervalMachine, { TickEvent } from "./intervalMachine";
+import { StrokeService } from "../services";
 
 export type StrokeMachine = ReturnType<typeof createStrokeMachine>;
 
@@ -192,7 +193,7 @@ export function createStrokeMachine(config: GameConfig) {
             return false;
           }
 
-          return timestamp - TIME_TO_TICK >= nextStrokeTimeStamp;
+          return timestamp - TICK_DELAY >= nextStrokeTimeStamp;
         },
       },
     }

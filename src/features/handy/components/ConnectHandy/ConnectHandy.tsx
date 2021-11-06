@@ -15,13 +15,15 @@ import {
 } from "@material-ui/core";
 import { green } from "@material-ui/core/colors";
 import ContactlessIcon from "@material-ui/icons/Contactless";
+
 import MenuItem from "@/components/templates/MenuItem";
 import useToggle from "@/hooks/useToggle";
-import handy from "@/features/handy/api";
 import { createNotification } from "@/game/engine/notification";
 import { Severity } from "@/common/store/notifications";
 import useStickyState from "@/hooks/useStickyState";
 import useForceUpdate from "@/hooks/useForceUpdate";
+
+import { handy } from "../../api/handy";
 
 const CONNECT_HANDY_SCHEMA = yup.object().shape({
   connectionKey: yup
@@ -49,9 +51,7 @@ function HandyIcon({ connected }: HandyIconProps) {
   );
 }
 
-export default function ConnectHandy({
-  variant = "normal",
-}: ConnectHandyProps) {
+export function ConnectHandy({ variant = "normal" }: ConnectHandyProps) {
   const forceUpdate = useForceUpdate();
   const [showModal, toggleModal] = useToggle();
   const [handyConnectionKey, setHandyConnectionKey] = useStickyState<string>(

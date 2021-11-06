@@ -1,8 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { State } from "@/common/store/rootReducer";
-import { TIME_TO_TICK } from "@/features/game/components/BeatMeter/settings";
-
+import { TICK_DELAY } from "@/config";
 /**
  * @field duration Defaults to 5s.  If set to a falsy value it will show until manually dismissed
  * @field dismissible Only evaluated if a duration is set
@@ -59,7 +58,7 @@ export const notificationsSlice = createSlice({
       prepare({ delay, ...notify }: Notify) {
         const notification = {
           id: notificationCount++,
-          delay: delay ? TIME_TO_TICK : 0,
+          delay: delay ? TICK_DELAY : 0,
           ...defaultNotification,
           ...notify,
         };

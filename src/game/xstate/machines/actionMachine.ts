@@ -1,8 +1,9 @@
-import { GameConfig } from "@/configureStore";
 import { assign, createMachine, send, actions } from "xstate";
+
+import { GameConfig } from "@/configureStore";
 import history from "@/browserHistory";
 import store from "@/store";
-import { TIME_TO_TICK } from "@/features/game/components/BeatMeter/settings";
+import { TICK_DELAY } from "@/config";
 import warmup from "@/game/actions/warmup";
 import { playCommand } from "@/game/engine/audio";
 import interrupt from "@/game/engine/interrupt";
@@ -11,7 +12,6 @@ import { gameCompletionPercent } from "@/game/utils/elapsedGameTime";
 import { getRandomItem } from "@/utils/math";
 import { initializeActions } from "@/game/initializeActions";
 import { stopServices } from "@/game";
-
 import { edge } from "@/game/actions/orgasm/edge";
 import { ruin, finalRuin } from "@/game/actions/orgasm/ruin";
 import { orgasm, finalOrgasm } from "@/game/actions/orgasm/orgasm";
@@ -173,7 +173,7 @@ export function createActionMachine(config: GameConfig) {
                   const triggers = Array.isArray(trigger) ? trigger : [trigger];
 
                   if (!executeImmediately) {
-                    await delay(TIME_TO_TICK);
+                    await delay(TICK_DELAY);
                   }
 
                   callback({ type: "SET_TRIGGERS", triggers });

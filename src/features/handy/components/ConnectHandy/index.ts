@@ -1,1 +1,1 @@
-export { default } from "./ConnectHandy";
+export * from "./ConnectHandy";

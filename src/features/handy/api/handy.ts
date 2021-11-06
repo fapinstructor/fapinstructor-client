@@ -175,4 +175,4 @@ class HandyAPI {
   }
 }
 
-export default new HandyAPI();
+export const handy = new HandyAPI();

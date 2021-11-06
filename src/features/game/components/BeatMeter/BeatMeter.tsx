@@ -1,8 +1,10 @@
 import { Fragment, useEffect, useState } from "react";
-import { TICK_ANIMATION_DURATION } from "@/features/game/components/BeatMeter/settings";
-import { CircleFlash, Circle, AnimatedDot, HR, Bar } from "./styled-components";
+
 import { strokeServiceObserver } from "@/game/xstate/services";
 import { StrokeMachineEvent } from "@/game/xstate/machines/strokeMachine";
+
+import { TICK_ANIMATION_DURATION } from "./settings";
+import { CircleFlash, Circle, AnimatedDot, HR, Bar } from "./styled-components";
 
 function Dots() {
   const [dots, setDots] = useState<number[]>([]);
