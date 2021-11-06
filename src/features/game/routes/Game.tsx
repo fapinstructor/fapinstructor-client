@@ -9,7 +9,6 @@ import MediaPlayer from "@/components/organisms/MediaPlayer";
 import NavBar from "@/components/organisms/NavBar";
 import isUuid from "@/utils/isUuid";
 import ErrorCard from "@/components/molecules/ErrorCard";
-import SharedGameCard from "@/components/organisms/SharedGameCard";
 import SoloGameCard from "@/components/organisms/SoloGameCard";
 import { ProxyStoreConsumer } from "@/providers/ProxyStoreProvider";
 import ExitGamePrompt from "@/components/organisms/ExitGamePrompt";
@@ -21,6 +20,7 @@ import YouTubeVideo from "@/components/atoms/YouTubeVideo";
 import { Head } from "@/components/Head";
 
 import { HUD } from "../components/HUD";
+import SharedGameCard from "../components/SharedGameCard";
 
 const useStyles = makeStyles(() => ({
   progress: {
