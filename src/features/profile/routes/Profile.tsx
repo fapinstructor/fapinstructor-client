@@ -6,8 +6,9 @@ import { useAuth0 } from "@/providers/AuthProvider";
 import { deleteProfile } from "@/common/store/currentUser";
 import { Head } from "@/components/Head";
 import Page from "@/components/atoms/Page";
-import ProfileCard from "@/components/organisms/ProfileCard";
-import DeleteProfileModal from "@/components/molecules/DeleteProfileModal";
+
+import { DeleteProfileModal } from "../components/DeleteProfileModal";
+import { ProfileCard } from "../components/ProfileCard";
 
 export function Profile() {
   const { user } = useAuth0();

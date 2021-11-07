@@ -5,13 +5,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Paper } from "@material-ui/core";
 
 import { startServices, stopServices } from "@/game";
-import MediaPlayer from "@/components/organisms/MediaPlayer";
-import NavBar from "@/components/organisms/NavBar";
+import { MediaPlayer } from "@/components/MediaPlayer";
+import { NavBar } from "@/components/NavBar";
 import isUuid from "@/utils/isUuid";
-import ErrorCard from "@/components/molecules/ErrorCard";
-import SoloGameCard from "@/components/organisms/SoloGameCard";
 import { ProxyStoreConsumer } from "@/providers/ProxyStoreProvider";
-import ExitGamePrompt from "@/components/organisms/ExitGamePrompt";
 import { MediaService, getMediaService } from "@/game/xstate/services";
 import BackgroundImage from "@/assets/images/background.jpg";
 import DefaultImage from "@/assets/images/default-image.jpg";
@@ -21,6 +18,9 @@ import { Head } from "@/components/Head";
 
 import { HUD } from "../components/HUD";
 import SharedGameCard from "../components/SharedGameCard";
+import { SoloGameCard } from "../components/SoloGameCard";
+import ExitGamePrompt from "../components/ExitGamePrompt";
+import { ErrorCard } from "../components/ErrorCard";
 
 const useStyles = makeStyles(() => ({
   progress: {

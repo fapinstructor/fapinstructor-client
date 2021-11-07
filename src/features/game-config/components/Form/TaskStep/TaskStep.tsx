@@ -14,7 +14,7 @@ import {
   GameConfig,
   tasks,
 } from "@/configureStore";
-import Group from "@/components/molecules/Group";
+import { Group } from "@/components/Group";
 import TaskGroup from "./components/TaskGroup";
 import TaskFrequencyField from "./components/TaskFrequencyField";
 import Stack from "@/components/templates/Stack";

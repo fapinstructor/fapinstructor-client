@@ -1,4 +1,4 @@
-import Group from "@/components/molecules/Group";
+import { Group } from "@/components/Group";
 import GripStrengthField from "./components/GripStrengthField";
 import StrokeSpeedField from "./components/StrokeSpeedField";
 

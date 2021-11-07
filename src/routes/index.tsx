@@ -6,7 +6,7 @@
 import { Redirect, Route, Switch } from "react-router-dom";
 
 import { useAuth0 } from "@/providers/AuthProvider";
-import NavBar from "@/components/organisms/NavBar";
+import { NavBar } from "@/components/NavBar";
 import { lazyImport } from "@/utils/lazyImport";
 
 // prettier-ignore

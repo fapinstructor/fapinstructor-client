@@ -5,8 +5,8 @@ import * as Sentry from "@sentry/react";
 import { Provider } from "react-redux";
 
 import Auth0Provider from "@/providers/AuthProvider";
-import NavBar from "@/components/organisms/NavBar";
-import NotificationManager from "@/components/organisms/NotificationManager";
+import { NavBar } from "@/components/NavBar";
+import NotificationManager from "@/components/NotificationManager";
 import configureStore from "@/configureStore";
 import history from "@/browserHistory";
 import monkey from "@/assets/images/monkey.gif";

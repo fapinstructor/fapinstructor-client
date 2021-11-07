@@ -1,4 +1,4 @@
-import Group from "@/components/molecules/Group";
+import { Group } from "@/components/Group";
 import GameDurationField from "./components/GameDurationField";
 
 export default function GameDurationStep() {

@@ -2,7 +2,7 @@ import * as React from "react";
 import { useFormikContext } from "formik";
 
 import balanceArray from "@/utils/balanceArray";
-import Group from "@/components/molecules/Group";
+import { Group } from "@/components/Group";
 import ProbabilityField from "./components/ProbabilityField";
 import { GameConfig } from "@/configureStore";
 

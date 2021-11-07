@@ -12,14 +12,16 @@ import {
   TableSortLabel,
 } from "@material-ui/core";
 
-import AsyncTableBody from "@/components/molecules/table/AsyncTableBody";
-import DateColumn from "@/components/molecules/table/DateColumn";
-import RouteColumn from "@/components/molecules/table/RouteColumn";
-import TagsColumn from "@/components/molecules/table/TagsColumn";
-import StarsColumn from "@/components/molecules/table/StarsColumn";
-import SpanningTableCell from "@/components/molecules/table/SpanningTableCell";
+import {
+  AsyncTableBody,
+  DateColumn,
+  RouteColumn,
+  TagsColumn,
+  StarsColumn,
+  SpanningTableCell,
+} from "@/components/Elements";
 import { Game } from "@/types/Game";
-import TagsField from "@/components/molecules/TagsField";
+import TagsField from "@/components/Form/TagsField";
 import {
   SearchGamesRequest,
   SearchGamesParams,

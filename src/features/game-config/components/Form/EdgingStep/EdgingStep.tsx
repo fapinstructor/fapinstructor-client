@@ -1,4 +1,4 @@
-import Group from "@/components/molecules/Group";
+import { Group } from "@/components/Group";
 import CooldownField from "../components/CooldownField";
 import MinimumEdgesField from "./components/MinimumEdgesField";
 import EdgeFrequencyField from "./components/EdgeFrequencyField";
