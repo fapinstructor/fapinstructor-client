@@ -1,8 +1,6 @@
 import { TableCell, TableCellProps } from "@material-ui/core";
 
-import StarButton, {
-  StarButtonProps,
-} from "@/components/molecules/buttons/StarButton";
+import { StarButton, StarButtonProps } from "@/components/StarButton";
 
 export type StarsColumnProps = TableCellProps & StarButtonProps;
 

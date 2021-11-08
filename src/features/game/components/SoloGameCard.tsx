@@ -1,6 +1,7 @@
 import { Box, Button, Paper } from "@material-ui/core";
-import NodeRow from "@/components/templates/NodeRow";
-import BackToConfigButton from "@/components/molecules/buttons/BackToConfigButton";
+import { NodeRow } from "@/components/Templates";
+
+import { BackToConfigButton } from "./BackToConfigButton";
 
 export type SoloGameCardProps = {
   onStart: () => void;

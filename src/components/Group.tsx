@@ -4,8 +4,7 @@ import { Box, Paper, Tooltip } from "@material-ui/core";
 import InfoIcon from "@material-ui/icons/Info";
 import styled from "styled-components/macro";
 
-import Stack from "@/components/templates/Stack";
-import Cluster from "@/components/templates/Cluster";
+import { Stack, Cluster } from "@/components/Templates";
 
 export type GroupProps = {
   title: string;

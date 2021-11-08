@@ -21,7 +21,7 @@ import { Formik, Form, Field, FormikHelpers } from "formik";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import SwitchWithLabel from "@/components/atoms/SwitchWithLabel";
+import { SwitchWithLabel } from "@/components/Form";
 import TagsField from "@/components/Form/TagsField";
 import { CreateGameRequest } from "@/common/api/schemas/games";
 import {

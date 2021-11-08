@@ -15,10 +15,11 @@ import {
   tasks,
 } from "@/configureStore";
 import { Group } from "@/components/Group";
-import TaskGroup from "./components/TaskGroup";
 import TaskFrequencyField from "./components/TaskFrequencyField";
-import Stack from "@/components/templates/Stack";
+import { Stack } from "@/components/Templates";
 import theme from "@/theme";
+
+import TaskGroup from "./components/TaskGroup";
 
 const TaskContainer = styled(Stack)`
   & > * {

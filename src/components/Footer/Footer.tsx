@@ -1,8 +1,8 @@
 import { Typography } from "@material-ui/core";
 import styled from "styled-components/macro";
 
-import EroFightsBanner from "@/components/atoms/EroFightsBanner";
 import theme from "@/theme";
+import { EroFightsBanner } from "./EroFightsBanner";
 
 const StyledFooter = styled.footer`
   margin-top: 8rem;

@@ -1,18 +1,19 @@
 import TableRow from "@material-ui/core/TableRow";
-
-import ErrorMessage, {
-  ErrorMessageProps,
-} from "@/components/atoms/ErrorMessage";
+import { Typography } from "@material-ui/core";
 
 import { SpanningTableCell } from "./SpanningTableCell";
 
-export type ErrorTableRowProps = ErrorMessageProps;
+export type ErrorTableRowProps = {
+  message: string;
+};
 
 export function ErrorTableRow({ message }: ErrorTableRowProps) {
   return (
     <TableRow>
       <SpanningTableCell>
-        <ErrorMessage message={message} />
+        <Typography variant="subtitle2" color="secondary">
+          {message}
+        </Typography>
       </SpanningTableCell>
     </TableRow>
   );

@@ -6,7 +6,7 @@ import {
   GripStrength,
   GripStrengthString,
 } from "@/game/xstate/machines/gripMachine";
-import { FullBleed } from "@/components/templates/FullBleed";
+import { FullBleed } from "@/components/Templates";
 
 export default function GripStrengthField() {
   const [gripAdjustments] = useField<boolean>("gripAdjustments");

@@ -9,18 +9,18 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 import { useHistory } from "react-router-dom";
 
-import ProfileButton from "@/components/molecules/buttons/ProfileButton";
-import FapInstructorMenuButton from "@/components/molecules/buttons/FapInstructorMenuButton";
-import DiscordMenuButton from "@/components/molecules/buttons/DiscordMenuButton";
-import PatreonMenuButton from "@/components/molecules/buttons/PatreonMenuButton";
-import ChangeLogMenuButton from "@/components/molecules/buttons/ChangeLogMenuButton";
-import FaqMenuButton from "@/components/molecules/buttons/FaqMenuButton";
-import SearchGameMenuButton from "@/components/molecules/buttons/SearchGameMenuButton";
-import Grow from "@/components/atoms/Grow";
+import { Grow, MenuItem } from "@/components/Templates";
 import { ConnectHandy } from "@/features/handy";
 import HomeIcon from "@material-ui/icons/Home";
-import MenuItem from "@/components/templates/MenuItem";
-import RouteButton from "@/components/atoms/RouteButton";
+import { RouteButton } from "@/components/Elements";
+
+import { ProfileButton } from "./ProfileButton";
+import { FapInstructorMenuButton } from "./FapInstructorMenuButton";
+import { DiscordMenuButton } from "./DiscordMenuButton";
+import { PatreonMenuButton } from "./PatreonMenuButton";
+import { ChangeLogMenuButton } from "./ChangeLogMenuButton";
+import { FaqMenuButton } from "./FaqMenuButton";
+import { SearchGameMenuButton } from "./SearchGameMenuButton";
 
 export function NavBar() {
   return (

@@ -16,7 +16,7 @@ import {
 import { green } from "@material-ui/core/colors";
 import ContactlessIcon from "@material-ui/icons/Contactless";
 
-import MenuItem from "@/components/templates/MenuItem";
+import { MenuItem } from "@/components/Templates";
 import useToggle from "@/hooks/useToggle";
 import { createNotification } from "@/game/engine/notification";
 import { Severity } from "@/common/store/notifications";

@@ -8,11 +8,10 @@ import { useAuth0 } from "@/providers/AuthProvider";
 import store from "@/store";
 import { GameConfig as GameConfigType } from "@/configureStore";
 import theme from "@/theme";
+import { ButtonWithHelperText } from "@/components/Elements";
 import { Footer } from "@/components/Footer";
 import { AutoFocusFieldErrors } from "@/components/Form";
-import Stack from "@/components/templates/Stack";
-import Cluster from "@/components/templates/Cluster";
-import ButtonWithHelperText from "@/components/molecules/buttons/ButtonWithHelperText";
+import { Stack, Cluster } from "@/components/Templates";
 import SupportSiteBanner from "@/components/atoms/SupportSiteBanner";
 import { Head } from "@/components/Head";
 

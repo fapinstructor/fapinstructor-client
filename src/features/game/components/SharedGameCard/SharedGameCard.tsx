@@ -1,15 +1,16 @@
 import { useEffect } from "react";
 import { Box, Button, CircularProgress } from "@material-ui/core";
-import NodeRow from "@/components/templates/NodeRow";
-import BackToConfigButton from "@/components/molecules/buttons/BackToConfigButton";
+
+import { NodeRow } from "@/components/Templates";
 import store from "@/store";
 import deepCopy from "@/utils/deepCopy";
 import Game from "@/common/types/Game";
 import Profile from "@/common/types/Profile";
-import StarButton from "@/components/molecules/buttons/StarButton";
+import { StarButton } from "@/components/StarButton";
 
 import GameSummaryCard from "./GameSummaryCard";
 import { ErrorCard } from "../ErrorCard";
+import { BackToConfigButton } from "../BackToConfigButton";
 
 export type SharedGameCardProps = {
   gameConfigId: string;
