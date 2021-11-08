@@ -5,3 +5,4 @@ export * from "./Stack";
 export * from "./Grow";
 export * from "./MenuItem";
 export * from "./NodeRow";
+export * from "./Page";

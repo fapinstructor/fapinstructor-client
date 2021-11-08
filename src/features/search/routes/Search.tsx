@@ -5,8 +5,7 @@ import CreateIcon from "@material-ui/icons/Create";
 import { Tabs, Tab, Paper } from "@material-ui/core";
 import Star from "@material-ui/icons/Star";
 
-import TabPanel from "@/components/atoms/TabPanel";
-import AuthTab from "@/components/atoms/AuthTab";
+import { AuthTab, TabPanel } from "@/components/Elements";
 import { Head } from "@/components/Head";
 
 import StarredGamesTable from "../components/GamesTable/StarredGamesTable";

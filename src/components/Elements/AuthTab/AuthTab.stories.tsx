@@ -6,7 +6,7 @@ import Auth0TestProvider, {
 } from "@/providers/AuthProvider/Auth0TestProvider";
 import { user } from "@/test/mocks/user_mock_objects";
 
-import AuthTab, { AuthTabProps } from "./AuthTab";
+import { AuthTab, AuthTabProps } from "./AuthTab";
 
 export default {
   title: "atoms/AuthTab",

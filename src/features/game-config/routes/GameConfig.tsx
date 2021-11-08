@@ -12,7 +12,7 @@ import { ButtonWithHelperText } from "@/components/Elements";
 import { Footer } from "@/components/Footer";
 import { AutoFocusFieldErrors } from "@/components/Form";
 import { Stack, Cluster } from "@/components/Templates";
-import SupportSiteBanner from "@/components/atoms/SupportSiteBanner";
+import { SupportSiteBanner } from "@/components/SupportSiteBanner";
 import { Head } from "@/components/Head";
 
 import { GAME_CONFIG_SCHEMA } from "../types/GAME_CONFIG_SCHEMA";

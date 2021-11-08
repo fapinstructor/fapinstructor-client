@@ -32,7 +32,7 @@ export type ProgressBarProps = {
   duration: number;
 };
 
-export default function ProgressBar({ className, duration }: ProgressBarProps) {
+export function ProgressBar({ className, duration }: ProgressBarProps) {
   const classes = useStyles({ duration });
 
   return (

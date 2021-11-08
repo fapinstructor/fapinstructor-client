@@ -5,7 +5,7 @@ export type BookmarkProps = {
   src: string;
 };
 
-export default function Bookmark({ href, src }: BookmarkProps) {
+export function Bookmark({ href, src }: BookmarkProps) {
   //* TODO: Use media player to show each image
   return (
     <a href={src} target="_blank" rel="noreferrer">

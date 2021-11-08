@@ -5,7 +5,7 @@ import { Box, Button } from "@material-ui/core";
 import { useAuth0 } from "@/providers/AuthProvider";
 import { deleteProfile } from "@/common/store/currentUser";
 import { Head } from "@/components/Head";
-import Page from "@/components/atoms/Page";
+import { Page } from "@/components/Templates";
 
 import { DeleteProfileModal } from "../components/DeleteProfileModal";
 import { ProfileCard } from "../components/ProfileCard";

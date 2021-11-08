@@ -3,7 +3,7 @@ import { Tab, TabProps, Tooltip } from "@material-ui/core";
 
 export type AuthTabProps = TabProps;
 
-export default function AuthTab(props: TabProps) {
+export function AuthTab(props: TabProps) {
   const { isAuthenticated } = useAuth0();
 
   return (

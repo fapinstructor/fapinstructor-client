@@ -1,7 +1,7 @@
 import { Story, Meta } from "@storybook/react";
 import DefaultImage from "@/assets/images/default-image.jpg";
 
-import Bookmark, { BookmarkProps } from "./Bookmark";
+import { Bookmark, BookmarkProps } from "./Bookmark";
 
 export default {
   title: "atoms/Bookmark",

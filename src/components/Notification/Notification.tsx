@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Slide from "@material-ui/core/Slide";
 import Box from "@material-ui/core/Box";
-import { makeStyles } from "@material-ui/core/styles";
-import {
-  Notification as INotification,
-  Severity,
-} from "@/common/store/notifications";
 import IconButton from "@material-ui/core/IconButton";
 import ErrorIcon from "@material-ui/icons/ErrorOutline";
 import StarIcon from "@material-ui/icons/Grade";
 import CloseIcon from "@material-ui/icons/Close";
-import ProgressBar from "@/components/atoms/ProgressBar";
+
+import {
+  Notification as INotification,
+  Severity,
+} from "@/common/store/notifications";
+import { ProgressBar } from "@/components/Elements";
 
 type StyleProps = {
   severity?: Severity;

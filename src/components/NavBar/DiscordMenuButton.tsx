@@ -1,5 +1,5 @@
 import { DiscordIcon } from "@/components/Icons";
-import AnchorButton from "@/components/atoms/AnchorButton";
+import { AnchorButton } from "@/components/Elements";
 import { MenuItem } from "@/components/Templates";
 
 export function DiscordMenuButton() {

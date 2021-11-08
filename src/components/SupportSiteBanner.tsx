@@ -5,7 +5,7 @@ const Container = styled(Paper)`
   background-color: #ffff8d;
 `;
 
-export default function SupportSiteBanner() {
+export function SupportSiteBanner() {
   return (
     <Container elevation={3}>
       <Box p={4}>

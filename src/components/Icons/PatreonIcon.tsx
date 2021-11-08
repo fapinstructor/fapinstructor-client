@@ -1,5 +1,5 @@
-import Image from "@/components/atoms/Image";
 import PatreonImage from "@/assets/images/patreon.svg";
+import { Image } from "@/components/Elements";
 
 import { Icon } from "./Icon";
 

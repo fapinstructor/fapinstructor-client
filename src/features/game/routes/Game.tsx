@@ -13,7 +13,7 @@ import { MediaService, getMediaService } from "@/game/xstate/services";
 import BackgroundImage from "@/assets/images/background.jpg";
 import DefaultImage from "@/assets/images/default-image.jpg";
 import { MediaMachineContext } from "@/game/xstate/machines/mediaMachine";
-import YouTubeVideo from "@/components/atoms/YouTubeVideo";
+import { YouTubeVideo } from "@/components/YouTubeVideo";
 import { Head } from "@/components/Head";
 
 import { HUD } from "../components/HUD";

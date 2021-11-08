@@ -3,7 +3,7 @@ import ReactMarkdown from "react-markdown";
 import "github-markdown-css";
 
 import { PUBLIC_URL } from "@/config";
-import Page from "@/components/atoms/Page";
+import { Page } from "@/components/Templates";
 import { Head } from "@/components/Head";
 
 const ChangeLogMDUrl = `${PUBLIC_URL}/CHANGELOG.md`;

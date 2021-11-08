@@ -11,7 +11,7 @@ type YouTubeVideoProps = {
   src: string;
 };
 
-export default function YouTubeVideo({ src }: YouTubeVideoProps) {
+export function YouTubeVideo({ src }: YouTubeVideoProps) {
   const classes = useYouTubeStyles();
 
   return (

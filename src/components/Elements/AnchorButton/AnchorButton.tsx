@@ -6,7 +6,7 @@ export type AnchorButtonProps = {
   href: string;
 };
 
-export default function AnchorButton({ children, href }: AnchorButtonProps) {
+export function AnchorButton({ children, href }: AnchorButtonProps) {
   return (
     <Button target="_blank" color="inherit" href={href} rel="noreferrer">
       {children}

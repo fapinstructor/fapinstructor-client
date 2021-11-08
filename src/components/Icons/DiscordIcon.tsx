@@ -1,5 +1,5 @@
 import DiscordImage from "@/assets/images/discord.svg";
-import Image from "@/components/atoms/Image";
+import { Image } from "@/components/Elements";
 
 import { Icon } from "./Icon";
 

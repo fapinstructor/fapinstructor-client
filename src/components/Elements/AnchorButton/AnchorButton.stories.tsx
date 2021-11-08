@@ -1,6 +1,6 @@
 import { Story, Meta } from "@storybook/react";
 
-import AnchorButton, { AnchorButtonProps } from "./AnchorButton";
+import { AnchorButton, AnchorButtonProps } from "./AnchorButton";
 
 export default {
   title: "atoms/AnchorButton",
