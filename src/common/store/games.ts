@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import qs from "query-string";
+import * as qs from "query-string";
+
 
 import { State } from "@/common/store/rootReducer";
 import { AppThunk } from "@/common/store";
@@ -12,8 +13,9 @@ import {
   SearchGamesResponse,
 } from "@/common/api/schemas/games";
 
-import { selectProfile } from "./currentUser";
 import { selectGame, setGame } from "./currentGame";
+import { selectProfile } from "./currentUser";
+
 
 interface GamesState {
   loading: boolean;

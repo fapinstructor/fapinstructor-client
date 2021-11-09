@@ -4,7 +4,9 @@ import throttle from "lodash/throttle";
 
 import { loadState, saveState } from "@/utils/localStorage";
 
-import rootReducer, { State } from "./rootReducer";
+import { rootReducer, State } from "./rootReducer";
+
+
 
 const store = configureStore({
   reducer: rootReducer,

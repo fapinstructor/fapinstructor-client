@@ -1,9 +1,10 @@
 import * as React from "react";
 import { Typography } from "@material-ui/core";
+import styled from "styled-components/macro";
+
 import { Group } from "@/components/Group";
 import { Tags } from "@/components/Tags";
 import Game from "@/common/types/Game";
-import styled from "styled-components/macro";
 import { Stack } from "@/components/Templates";
 
 export type GameSummaryCardProps = {

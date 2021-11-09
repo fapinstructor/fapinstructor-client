@@ -1,9 +1,10 @@
 import { useCallback } from "react";
-import { createNotification } from "@/game/engine/notification";
-import { Severity } from "@/common/store/notifications";
 import { Tooltip, IconButton } from "@material-ui/core";
 import FullscreenIcon from "@material-ui/icons/Fullscreen";
 import FullscreenExitIcon from "@material-ui/icons/FullscreenExit";
+
+import { createNotification } from "@/game/engine/notification";
+import { Severity } from "@/common/store/notifications";
 import useWindowEvent from "@/hooks/useWindowEvent";
 import {
   isFullScreen,

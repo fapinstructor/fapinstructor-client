@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
+
 import MediaLink, { MediaType } from "@/common/types/Media";
 import { selectEnableVideoAudio } from "@/common/store/settings";
 

@@ -1,5 +1,7 @@
+
 import type { Task } from "@/configureStore";
 import applyProbabilities from "@/utils/applyProbabilities";
+
 import {
   doubleStrokes,
   halvedStrokes,
@@ -41,7 +43,9 @@ import {
   insertButtPlug,
   removeButtPlug,
 } from "./actions";
+
 import type { Action } from "./xstate/machines/actionMachine";
+
 
 type ActionProbabilityTuple = [Action, number];
 

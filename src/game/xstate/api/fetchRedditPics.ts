@@ -1,4 +1,4 @@
-import qs from "query-string";
+import * as qs from "query-string";
 
 import { MediaRequest, MediaResponse } from "@/common/types/Media";
 import { Severity } from "@/common/store/notifications";

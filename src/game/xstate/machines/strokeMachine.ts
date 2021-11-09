@@ -1,16 +1,22 @@
 import { assign, createMachine, send } from "xstate";
 
+
+
+import type { GameConfig } from "@/configureStore";
 import store from "@/common/store";
 import { selectEnableTicks } from "@/common/store/settings";
-import { GameConfig } from "@/configureStore";
 import { playTick } from "@/game/engine/audio";
 import { TICK_DELAY } from "@/config";
 import { handy } from "@/features/handy";
 import { getAverageStrokeSpeed } from "@/game/utils/strokeSpeed";
 import { getRandomArbitrary } from "@/utils/math";
 
-import createIntervalMachine, { TickEvent } from "./intervalMachine";
 import { StrokeService } from "../services";
+
+import createIntervalMachine, { TickEvent } from "./intervalMachine";
+
+
+
 
 export type StrokeMachine = ReturnType<typeof createStrokeMachine>;
 

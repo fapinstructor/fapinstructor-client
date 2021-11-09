@@ -1,4 +1,5 @@
 import styled from "styled-components/macro";
+
 import { Bookmark, BookmarkProps } from "@/components/Bookmark";
 
 export type BookmarkListProps = {

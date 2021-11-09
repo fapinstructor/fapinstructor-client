@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
 
 import notifications from "./notifications";
+// eslint-disable-next-line import/no-named-as-default
 import currentUser from "./currentUser";
 import currentGame from "./currentGame";
+// eslint-disable-next-line import/no-named-as-default
 import createGame from "./createGame";
 import tags from "./tags";
 import games from "./games";
@@ -19,5 +21,3 @@ export const rootReducer = combineReducers({
 });
 
 export type State = ReturnType<typeof rootReducer>;
-
-export default rootReducer;

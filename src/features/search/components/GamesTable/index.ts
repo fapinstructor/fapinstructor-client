@@ -1,4 +1,6 @@
 import { connect } from "react-redux";
+
+
 import { State } from "@/common/store/rootReducer";
 import {
   selectLoading,
@@ -7,7 +9,9 @@ import {
   selectError,
   searchGames,
 } from "@/common/store/games";
+
 import GamesTable from "./GamesTable";
+
 
 const mapStateToProps = (state: State) => ({
   loading: selectLoading(state),

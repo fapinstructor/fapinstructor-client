@@ -1,4 +1,5 @@
 import ChangeLogImage from "@material-ui/icons/FormatListBulleted";
+
 import { Icon } from "./Icon";
 
 type ChangeLogProps = {

@@ -18,6 +18,7 @@ function render() {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const App = require("./App").default;
 
+  // eslint-disable-next-line import/no-named-as-default-member
   ReactDOM.render(<App />, document.getElementById("root"));
 }
 

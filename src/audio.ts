@@ -1,5 +1,4 @@
 import { getRandomInclusiveInteger } from "@/utils/math";
-
 import CEI1 from "@/assets/audio/cei/1.mp3";
 import CEI2 from "@/assets/audio/cei/2.mp3";
 import CEI3 from "@/assets/audio/cei/3.mp3";

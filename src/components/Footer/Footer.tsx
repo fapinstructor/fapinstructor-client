@@ -2,6 +2,7 @@ import { Typography } from "@material-ui/core";
 import styled from "styled-components/macro";
 
 import theme from "@/theme";
+
 import { EroFightsBanner } from "./EroFightsBanner";
 
 const StyledFooter = styled.footer`

@@ -68,7 +68,7 @@
     "styled-components": "^5.3.0",
     "typescript": "^4.3.5",
     "xstate": "^4.23.1",
-    "yup": "^0.32.9"
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/core": "^7.14.8",
@@ -94,13 +94,15 @@
     "@types/react-router-dom": "^5.1.8",
     "@types/styled-components": "^5.1.11",
     "@types/webpack-env": "^1.16.0",
-    "@types/yup": "^0.29.11",
+    "@types/yup": "^0.29.13",
     "babel-plugin-polyfill-corejs2": "^0.2.2",
     "babel-plugin-polyfill-regenerator": "^0.2.2",
     "chromatic": "^5.9.2",
     "cra-bundle-analyzer": "^0.1.0",
     "eslint": "^7.31.0",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-jest": "^24.4.0",
     "eslint-plugin-testing-library": "^4.10.1",
     "faker": "^5.5.3",

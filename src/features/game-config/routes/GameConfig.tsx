@@ -15,7 +15,7 @@ import { Stack, Cluster } from "@/components/Templates";
 import { SupportSiteBanner } from "@/components/SupportSiteBanner";
 import { Head } from "@/components/Head";
 
-import { GAME_CONFIG_SCHEMA } from "../types/GAME_CONFIG_SCHEMA";
+import { GAME_CONFIG_SCHEMA } from "../schemas/GAME_CONFIG_SCHEMA";
 import { ShareGame } from "../components/ShareGame";
 import RuinedOrgasmsStep from "../components/Form/RuinedOrgasmsStep";
 import PostOrgasmTortureStep from "../components/Form/PostOrgasmTortureStep";

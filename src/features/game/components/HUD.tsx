@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 
+
 import { selectEnableBeatMeter } from "@/common/store/settings";
 
 import PersistentTriggerPanel from "./PersistentTriggerPanel";
@@ -8,6 +9,7 @@ import StatusPanel from "./StatusPanel";
 import TriggerPanel from "./TriggerPanel";
 import { BeatMeter } from "./BeatMeter";
 import { HUDButtons } from "./HUDButtons";
+
 
 const useStyles = makeStyles(() => ({
   root: {

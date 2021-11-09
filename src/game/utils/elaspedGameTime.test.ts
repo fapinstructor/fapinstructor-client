@@ -1,8 +1,10 @@
-import formatISO from "date-fns/formatISO";
-import subMinutes from "date-fns/subMinutes";
+import { subMinutes, formatISO } from "date-fns";
+
+import store from "@/store";
 
 import elapsedGameTime, { gameCompletionPercent } from "./elapsedGameTime";
-import store from "@/store";
+
+
 
 jest.mock("@/store");
 

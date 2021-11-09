@@ -1,4 +1,5 @@
 import styled from "styled-components/macro";
+
 import EuroFightBanner from "@/assets/images/eurofights-banner-tf.png";
 
 export const EroFightsBanner = styled.img.attrs({

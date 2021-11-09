@@ -1,16 +1,10 @@
 /**
  * The entry point to kick start and configure the game
  */
+
 import { gameLoopObservable } from "@/game/engine/loop";
 import interrupt from "@/game/engine/interrupt";
 import { createAudioContext } from "@/game/engine/audio";
-import configureStore from "./configureStore";
-import moanLoop from "./loops/moanLoop";
-import {
-  strokeSpeedBaseLineAdjustmentLoop,
-  strokeSpeedAdjustmentLoop,
-  gripAdjustmentLoop,
-} from "./loops/strokeSpeedLoop";
 import store from "@/store";
 import {
   MediaService,
@@ -19,6 +13,15 @@ import {
   GripService,
 } from "@/game/xstate/services";
 import { handy } from "@/features/handy";
+
+import {
+  strokeSpeedBaseLineAdjustmentLoop,
+  strokeSpeedAdjustmentLoop,
+  gripAdjustmentLoop,
+} from "./loops/strokeSpeedLoop";
+import moanLoop from "./loops/moanLoop";
+import configureStore from "./configureStore";
+
 
 const loops = [
   moanLoop,

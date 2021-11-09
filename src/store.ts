@@ -1,6 +1,7 @@
-import watchObject from "./utils/watchObject";
 import type { GameConfig } from "@/configureStore";
 import type { Game } from "@/game/configureStore";
+
+import watchObject from "./utils/watchObject";
 
 export type Store = {
   title?: string;

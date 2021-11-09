@@ -1,4 +1,5 @@
 import styled from "styled-components/macro";
+
 import theme from "@/theme";
 
 export const Article = styled.article`

@@ -1,8 +1,10 @@
-import type { Meta } from "@storybook/react/types-6-0";
-
 import { Article } from "@/components/Templates";
 
 import { FullBleed } from "./FullBleed";
+
+import type { Meta } from "@storybook/react/types-6-0";
+
+
 
 export default {
   title: "Templates/FullBleed",

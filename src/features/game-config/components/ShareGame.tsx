@@ -1,5 +1,4 @@
 import * as React from "react";
-import store from "@/store";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Button,
@@ -21,6 +20,7 @@ import { Formik, Form, Field, FormikHelpers } from "formik";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
+import store from "@/store";
 import { SwitchWithLabel } from "@/components/Form";
 import TagsField from "@/components/Form/TagsField";
 import { CreateGameRequest } from "@/common/api/schemas/games";
@@ -31,7 +31,7 @@ import {
 } from "@/common/store/createGame";
 import { createNotification, Severity } from "@/common/store/notifications";
 
-import { CREATE_GAME_SCHEMA } from "../types/CREATE_GAME_SCHEMA";
+import { CREATE_GAME_SCHEMA } from "../schemas/CREATE_GAME_SCHEMA";
 
 const useStyles = makeStyles((theme) => ({
   button: {

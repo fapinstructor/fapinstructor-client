@@ -1,5 +1,7 @@
-import Hash from "@/common/types/Hash";
+import type Hash from "@/common/types/Hash";
+
 import applyProbabilities from "../applyProbabilities";
+
 
 function count(items: string[]) {
   const frequency: Hash<number> = {};

@@ -1,8 +1,9 @@
-import { getRandomInclusiveInteger } from "@/utils/math";
 import type { GameLoopArgs } from "@/game/engine/loop";
+import { getRandomInclusiveInteger } from "@/utils/math";
 import { selectEnableMoans } from "@/common/store/settings";
 import store from "@/common/store";
 import { playCommand } from "@/game/engine/audio";
+
 
 let lastMoan = 0;
 let moanDelay = 20;

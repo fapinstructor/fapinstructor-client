@@ -1,10 +1,13 @@
 import { Story, Meta } from "@storybook/react";
+
+
 import Auth0TestProvider, {
   Auth,
 } from "@/providers/AuthProvider/Auth0TestProvider";
 import { user } from "@/test/mocks/user_mock_objects";
 
 import { NavBar } from "./NavBar";
+
 
 export default {
   title: "organisms/NavBar",

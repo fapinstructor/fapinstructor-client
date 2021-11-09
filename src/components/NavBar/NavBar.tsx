@@ -7,12 +7,13 @@ import {
   Toolbar,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
+import HomeIcon from "@material-ui/icons/Home";
 import { useHistory } from "react-router-dom";
 
-import { Grow, MenuItem } from "@/components/Templates";
-import { ConnectHandy } from "@/features/handy";
-import HomeIcon from "@material-ui/icons/Home";
+
 import { RouteButton } from "@/components/Elements";
+import { ConnectHandy } from "@/features/handy";
+import { Grow, MenuItem } from "@/components/Templates";
 
 import { ProfileButton } from "./ProfileButton";
 import { FapInstructorMenuButton } from "./FapInstructorMenuButton";
@@ -21,6 +22,7 @@ import { PatreonMenuButton } from "./PatreonMenuButton";
 import { ChangeLogMenuButton } from "./ChangeLogMenuButton";
 import { FaqMenuButton } from "./FaqMenuButton";
 import { SearchGameMenuButton } from "./SearchGameMenuButton";
+
 
 export function NavBar() {
   return (

@@ -1,4 +1,5 @@
 import { Suspense, PropsWithChildren } from "react";
+import { Provider } from "react-redux";
 import {
   render as rtlRender,
   screen,
@@ -6,10 +7,10 @@ import {
   waitForElementToBeRemoved,
 } from "@testing-library/react";
 import { MemoryRouter as Router } from "react-router-dom";
+
 import Auth0TestProvider, {
   Auth,
 } from "@/providers/AuthProvider/Auth0TestProvider";
-import { Provider } from "react-redux";
 import store from "@/common/store";
 
 type Options = RenderOptions & {
@@ -26,6 +27,7 @@ export async function waitForSuspense() {
   }
 }
 
+// eslint-disable-next-line import/export
 export function render(
   ui: React.ReactElement,
   { route = "/", auth, ...options }: Options = {}
@@ -45,4 +47,5 @@ export function render(
   return rtlRender(ui, { wrapper: Wrapper, ...options });
 }
 
+// eslint-disable-next-line import/export
 export * from "@testing-library/react";

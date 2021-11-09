@@ -1,7 +1,8 @@
-import type { Meta } from "@storybook/react/types-6-0";
 import styled from "styled-components/macro";
 
 import { Stack } from "./Stack";
+
+import type { Meta } from "@storybook/react/types-6-0";
 
 export default {
   title: "Templates/Stack",

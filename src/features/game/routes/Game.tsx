@@ -4,6 +4,7 @@ import { useHistory, useLocation, useParams } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { Paper } from "@material-ui/core";
 
+
 import { startServices, stopServices } from "@/game";
 import { MediaPlayer } from "@/components/MediaPlayer";
 import { NavBar } from "@/components/NavBar";
@@ -16,11 +17,12 @@ import { MediaMachineContext } from "@/game/xstate/machines/mediaMachine";
 import { YouTubeVideo } from "@/components/YouTubeVideo";
 import { Head } from "@/components/Head";
 
-import { HUD } from "../components/HUD";
-import SharedGameCard from "../components/SharedGameCard";
-import { SoloGameCard } from "../components/SoloGameCard";
-import ExitGamePrompt from "../components/ExitGamePrompt";
 import { ErrorCard } from "../components/ErrorCard";
+import ExitGamePrompt from "../components/ExitGamePrompt";
+import { SoloGameCard } from "../components/SoloGameCard";
+import SharedGameCard from "../components/SharedGameCard";
+import { HUD } from "../components/HUD";
+
 
 const useStyles = makeStyles(() => ({
   progress: {

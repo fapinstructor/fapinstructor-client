@@ -1,12 +1,15 @@
 import { useHistory } from "react-router-dom";
-import store from "@/store";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+
+
+import store from "@/store";
 import BackgroundImage from "@/assets/images/background.jpg";
 import { SupportSiteBanner } from "@/components/SupportSiteBanner";
 import { Head } from "@/components/Head";
 
 import { BookmarkList } from "../components/BookmarkList";
+
 
 const useStyles = makeStyles({
   root: {

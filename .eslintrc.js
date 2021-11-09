@@ -12,11 +12,19 @@ module.exports = {
       extends: [
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended",
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "plugin:import/typescript",
         "prettier",
       ],
       rules: {
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/explicit-module-boundary-types": "off",
+      },
+      settings: {
+        "import/resolver": {
+          typescript: {},
+        },
       },
     },
   ],
@@ -29,7 +37,6 @@ module.exports = {
         allowObject: true,
       },
     ],
-    "no-duplicate-imports": "warn",
     "react/jsx-no-useless-fragment": "error",
     "no-restricted-imports": [
       "error",
@@ -43,5 +50,32 @@ module.exports = {
         patterns: ["@/features/*/*"],
       },
     ],
+    "no-duplicate-imports": "warn",
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "always",
+        groups: [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "object",
+          "type",
+        ],
+        pathGroups: [
+          {
+            pattern: "@/**",
+            group: "internal",
+            position: "after",
+          },
+        ],
+      },
+    ],
+    "import/default": "off",
+    "import/no-named-as-default-member": "off",
+    "import/no-named-as-default": "off",
   },
 };
