@@ -1,9 +1,10 @@
-import { useEffect } from "react";
 import { Field } from "formik";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
 import { FormikAutocomplete } from "@/components/Form";
+
+import { useTags } from "../api/getTags";
 
 const textFieldProps = {
   label: "Tags",
@@ -15,21 +16,10 @@ const textFieldProps = {
 export type TagsFieldProps = {
   value?: string[];
   onChange?: (tags: string[]) => void;
-  tags: string[];
-  loading: boolean;
-  fetchTags: () => void;
 };
 
-export default function TagsField({
-  value,
-  onChange,
-  fetchTags,
-  tags,
-  loading,
-}: TagsFieldProps) {
-  useEffect(() => {
-    fetchTags();
-  }, [fetchTags]);
+export function TagsField({ value, onChange }: TagsFieldProps) {
+  const tagsQuery = useTags();
 
   if (onChange) {
     return (
@@ -42,8 +32,8 @@ export default function TagsField({
           onChange(values);
         }}
         renderInput={(params) => <TextField {...params} {...textFieldProps} />}
-        loading={loading}
-        options={tags}
+        loading={tagsQuery.isLoading}
+        options={tagsQuery.data || []}
       />
     );
   }
@@ -55,8 +45,8 @@ export default function TagsField({
       multiple
       freeSolo
       filterSelectedOptions
-      loading={loading}
-      options={tags}
+      loading={tagsQuery.isLoading}
+      options={tagsQuery.data}
     />
   );
 }

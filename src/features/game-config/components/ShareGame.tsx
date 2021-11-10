@@ -22,7 +22,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import store from "@/store";
 import { SwitchWithLabel } from "@/components/Form";
-import TagsField from "@/components/Form/TagsField";
+import { TagsField } from "@/features/tags";
 import { CreateGameRequest } from "@/common/api/schemas/games";
 import {
   clearGameId,

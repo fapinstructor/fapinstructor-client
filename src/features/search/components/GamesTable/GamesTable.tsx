@@ -21,7 +21,7 @@ import {
   SpanningTableCell,
 } from "@/components/Elements";
 import { Game } from "@/types/Game";
-import TagsField from "@/components/Form/TagsField";
+import { TagsField } from "@/features/tags";
 import {
   SearchGamesRequest,
   SearchGamesParams,
