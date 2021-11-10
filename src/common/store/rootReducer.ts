@@ -4,8 +4,6 @@ import notifications from "./notifications";
 // eslint-disable-next-line import/no-named-as-default
 import currentUser from "./currentUser";
 import currentGame from "./currentGame";
-// eslint-disable-next-line import/no-named-as-default
-import createGame from "./createGame";
 import games from "./games";
 import settings from "./settings";
 
@@ -14,7 +12,6 @@ export const rootReducer = combineReducers({
   notifications,
   currentUser,
   currentGame,
-  createGame,
   games,
 });
 

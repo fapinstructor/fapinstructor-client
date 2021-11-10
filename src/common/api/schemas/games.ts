@@ -2,17 +2,6 @@ import { Game } from "@/types/Game";
 import { GameConfig } from "@/configureStore";
 import { PaginateParams, WithPagination } from "@/common/types/pagination";
 
-export interface CreateGameRequest {
-  title: string;
-  tags: string[];
-  isPublic: boolean;
-  config: GameConfig;
-}
-
-export interface CreateGameResponse {
-  id: string;
-}
-
 export interface SearchGamesParams {
   title?: string;
   tags?: string[];

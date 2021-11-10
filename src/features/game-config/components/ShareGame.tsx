@@ -16,22 +16,17 @@ import {
   FormHelperText,
 } from "@material-ui/core";
 import { TextField } from "formik-material-ui";
-import { Formik, Form, Field, FormikHelpers } from "formik";
+import { Formik, Form, Field } from "formik";
 import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import store from "@/store";
 import { SwitchWithLabel } from "@/components/Form";
 import { TagsField } from "@/features/tags";
-import { CreateGameRequest } from "@/common/api/schemas/games";
-import {
-  clearGameId,
-  createGame,
-  selectGameId,
-} from "@/common/store/createGame";
 import { createNotification, Severity } from "@/common/store/notifications";
 
 import { CREATE_GAME_SCHEMA } from "../schemas/CREATE_GAME_SCHEMA";
+import { CreateGameDTO, useCreateGame } from "../api/createGame";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -45,19 +40,19 @@ export type ShareGameProps = {
 };
 
 export function ShareGame({ open, onClose }: ShareGameProps) {
+  const createGame = useCreateGame();
   const dispatch = useDispatch();
-  const gameId = useSelector(selectGameId);
+  /* const gameId = useSelector(selectGameId); */
   const inputLink = React.useRef<HTMLInputElement>();
   const [copyToolTipOpen, setCopyToolTipOpen] = React.useState(false);
+  const [gameId, setGameId] = React.useState<string>();
   const history = useHistory();
   const classes = useStyles();
 
-  const handleSubmit = async (
-    values: CreateGameRequest,
-    { setErrors }: FormikHelpers<CreateGameRequest>
-  ) => {
+  const handleSubmit = async (values: CreateGameDTO) => {
     try {
-      await dispatch(createGame(values));
+      const { id: gameId } = await createGame.mutateAsync(values);
+      setGameId(gameId);
     } catch (error) {
       dispatch(
         createNotification({
@@ -85,7 +80,7 @@ export function ShareGame({ open, onClose }: ShareGameProps) {
   };
 
   const handleClose = () => {
-    dispatch(clearGameId());
+    setGameId(undefined);
     onClose();
   };
 
