@@ -1,4 +1,4 @@
-export type Game = {
+export type GameRecord = {
   id: string;
   title: string;
   tags: string[];

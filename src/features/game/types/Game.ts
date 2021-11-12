@@ -1,6 +1,6 @@
 import { GameConfig } from "@/configureStore";
 
-export default interface Game {
+export type Game = {
   id: string;
   title: string;
   tags: string[];
@@ -8,4 +8,4 @@ export default interface Game {
   config: GameConfig;
   stars: number;
   starred: boolean;
-}
+};

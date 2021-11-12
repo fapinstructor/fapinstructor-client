@@ -1,6 +1,6 @@
 import { TableCell, TableCellProps } from "@material-ui/core";
 
-import { StarButton, StarButtonProps } from "@/components/StarButton";
+import { StarButton, StarButtonProps } from "@/features/game";
 
 export type StarsColumnProps = TableCellProps & StarButtonProps;
 

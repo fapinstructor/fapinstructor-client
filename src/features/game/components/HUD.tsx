@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 
-
 import { selectEnableBeatMeter } from "@/common/store/settings";
 
 import PersistentTriggerPanel from "./PersistentTriggerPanel";
@@ -10,6 +9,9 @@ import TriggerPanel from "./TriggerPanel";
 import { BeatMeter } from "./BeatMeter";
 import { HUDButtons } from "./HUDButtons";
 
+type HUDProps = {
+  gameId?: string;
+};
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -20,7 +22,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export function HUD() {
+export function HUD({ gameId }: HUDProps) {
   const classes = useStyles();
   const enableBeatMeter = useSelector(selectEnableBeatMeter);
 
@@ -48,7 +50,7 @@ export function HUD() {
               <PersistentTriggerPanel />
             </div>
             <div>
-              <HUDButtons />
+              <HUDButtons gameId={gameId} />
             </div>
           </div>
         </div>

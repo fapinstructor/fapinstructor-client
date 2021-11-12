@@ -1,5 +1,4 @@
-import { Game } from "@/types/Game";
-import { GameConfig } from "@/configureStore";
+import { GameRecord } from "@/types/GameRecord";
 import { PaginateParams, WithPagination } from "@/common/types/pagination";
 
 export interface SearchGamesParams {
@@ -15,4 +14,4 @@ export interface SearchGamesRequest extends SearchGamesParams, PaginateParams {
   sort?: string[];
 }
 
-export type SearchGamesResponse = WithPagination<Game[]>;
+export type SearchGamesResponse = WithPagination<GameRecord[]>;

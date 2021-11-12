@@ -4,7 +4,6 @@ import { useHistory, useLocation, useParams } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { Paper } from "@material-ui/core";
 
-
 import { startServices, stopServices } from "@/game";
 import { MediaPlayer } from "@/components/MediaPlayer";
 import { NavBar } from "@/components/NavBar";
@@ -22,7 +21,6 @@ import ExitGamePrompt from "../components/ExitGamePrompt";
 import { SoloGameCard } from "../components/SoloGameCard";
 import SharedGameCard from "../components/SharedGameCard";
 import { HUD } from "../components/HUD";
-
 
 const useStyles = makeStyles(() => ({
   progress: {
@@ -60,7 +58,7 @@ function handleSlideChange() {
 }
 
 export function Game() {
-  const params = useParams<{ config: string }>();
+  const params = useParams<{ config?: string }>();
   const history = useHistory();
   const location = useLocation<{
     configured: true;
@@ -152,7 +150,7 @@ export function Game() {
           return (
             <div className={classes.container}>
               <ExitGamePrompt />
-              <HUD />
+              <HUD gameId={gameConfigId} />
               {(youtube && <YouTubeVideo src={youtube} />) ||
                 (activeLink && (
                   <MediaPlayer

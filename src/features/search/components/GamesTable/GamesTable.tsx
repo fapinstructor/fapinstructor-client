@@ -20,7 +20,7 @@ import {
   StarsColumn,
   SpanningTableCell,
 } from "@/components/Elements";
-import { Game } from "@/types/Game";
+import { GameRecord } from "@/types/GameRecord";
 import { TagsField } from "@/features/tags";
 import {
   SearchGamesRequest,
@@ -33,7 +33,7 @@ export type GamesTableProps = {
   playedBy?: string;
   starredBy?: string;
   searchGames: (request: SearchGamesRequest) => void;
-  games: Game[];
+  games: GameRecord[];
   pagination: Pagination;
   loading: boolean;
   error?: string;
@@ -222,7 +222,7 @@ export default function GamesTable({
             starred,
             updatedAt,
             averageGameDuration,
-          }: Game) => (
+          }: GameRecord) => (
             <TableRow key={id}>
               <StarsColumn gameId={id} stars={stars} starred={starred} />
               <RouteColumn title={title} to={`/game/${id}`} />

@@ -1,63 +1,45 @@
 import { useEffect } from "react";
 import { Box, Button, CircularProgress } from "@material-ui/core";
 
-
-
 import { NodeRow } from "@/components/Templates";
 import store from "@/store";
 import deepCopy from "@/utils/deepCopy";
-import Game from "@/common/types/Game";
 import Profile from "@/common/types/Profile";
-import { StarButton } from "@/components/StarButton";
+import { StarButton } from "@/features/game";
 
 import { BackToConfigButton } from "../BackToConfigButton";
 import { ErrorCard } from "../ErrorCard";
+import { useGame } from "../../api/getGame";
+import { Game } from "../../types/Game";
 
 import GameSummaryCard from "./GameSummaryCard";
 
-
-
 export type SharedGameCardProps = {
   gameConfigId: string;
-  onStart: () => void;
-  loading: boolean;
-  error: string | null;
-  game: Game | null;
+  onStart: (game: Game) => void;
   profile: Profile | null;
-  fetchGame: (gameId: string) => void;
   appendGameHistory: (userId: string, gameId: string) => void;
 };
 
 export default function SharedGameCard({
-  loading,
-  error,
-  game,
   profile,
-  fetchGame,
   appendGameHistory,
   gameConfigId,
   onStart,
 }: SharedGameCardProps) {
-  useEffect(() => {
-    fetchGame(gameConfigId);
-  }, [gameConfigId, fetchGame]);
+  const gameQuery = useGame({ gameId: gameConfigId });
 
   useEffect(() => {
+    const game = gameQuery.data;
+
     if (game) {
       store.title = game.title;
       store.tags = game.tags;
       store.config = deepCopy(game.config);
     }
-  }, [game]);
+  }, [gameQuery]);
 
-  const handleStart = () => {
-    if (profile && game) {
-      appendGameHistory(profile.id, game.id);
-    }
-    onStart();
-  };
-
-  if (loading) {
+  if (gameQuery.isLoading) {
     return (
       <Box p={5}>
         <CircularProgress size={100} thickness={2} />
@@ -65,28 +47,37 @@ export default function SharedGameCard({
     );
   }
 
-  if (error) {
-    return <ErrorCard error={error} />;
+  if (gameQuery.isError) {
+    return <ErrorCard error="An error occurred loading the game." />;
   }
 
-  let content = null;
-  if (game) {
-    content = (
-      <GameSummaryCard game={game}>
-        <NodeRow>
-          <StarButton
-            gameId={game.id}
-            stars={game.stars}
-            starred={game.starred}
-            variant="outlined"
-          />
-          <Button onClick={handleStart} variant="contained" color="primary">
-            start game
-          </Button>
-          <BackToConfigButton />
-        </NodeRow>
-      </GameSummaryCard>
-    );
-  }
-  return content;
+  if (!gameQuery.data) return null;
+
+  const game = gameQuery.data;
+
+  return (
+    <GameSummaryCard game={game}>
+      <NodeRow>
+        <StarButton
+          gameId={game.id}
+          stars={game.stars}
+          starred={game.starred}
+          variant="outlined"
+        />
+        <Button
+          onClick={() => {
+            if (profile && game) {
+              appendGameHistory(profile.id, game.id);
+            }
+            onStart(game);
+          }}
+          variant="contained"
+          color="primary"
+        >
+          start game
+        </Button>
+        <BackToConfigButton />
+      </NodeRow>
+    </GameSummaryCard>
+  );
 }

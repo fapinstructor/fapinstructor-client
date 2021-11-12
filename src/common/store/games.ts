@@ -1,10 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import * as qs from "query-string";
 
-
 import { State } from "@/common/store/rootReducer";
 import { AppThunk } from "@/common/store";
-import { Game } from "@/types/Game";
+import { GameRecord } from "@/types/GameRecord";
 import { Pagination } from "@/common/types/pagination";
 import { createNotification, Severity } from "@/common/store/notifications";
 import api from "@/common/api/client";
@@ -13,14 +12,13 @@ import {
   SearchGamesResponse,
 } from "@/common/api/schemas/games";
 
-import { selectGame, setGame } from "./currentGame";
-import { selectProfile } from "./currentUser";
-
+/* import { selectGame, setGame } from "./currentGame"; */
+/* import { selectProfile } from "./currentUser"; */
 
 interface GamesState {
   loading: boolean;
   error?: string;
-  games: Game[];
+  games: GameRecord[];
   pagination: Pagination;
 }
 
@@ -51,10 +49,10 @@ export const gamesSlice = createSlice({
     setPagination: (state: GamesState, action: PayloadAction<Pagination>) => {
       state.pagination = action.payload;
     },
-    setGames: (state: GamesState, action: PayloadAction<Game[]>) => {
+    setGames: (state: GamesState, action: PayloadAction<GameRecord[]>) => {
       state.games = action.payload;
     },
-    updateGame: (state: GamesState, action: PayloadAction<Game>) => {
+    updateGame: (state: GamesState, action: PayloadAction<GameRecord>) => {
       const { id, starred, stars } = action.payload;
       const game = state.games.find((game) => game.id === id);
 
@@ -84,41 +82,41 @@ export default gamesSlice.reducer;
  * and the currentGame since they are stored as separate entities.
  * TODO: Normalize it so games are stored in one location for both.
  */
-export const toggleStar =
-  (gameId: string): AppThunk =>
-  async (dispatch, getState) => {
-    const profile = selectProfile(getState());
-    if (!profile) {
-      throw new Error("User profile doesn't exist");
-    }
+/* export const toggleStar = */
+/*   (gameId: string): AppThunk => */
+/*   async (dispatch, getState) => { */
+/*     const profile = selectProfile(getState()); */
+/*     if (!profile) { */
+/*       throw new Error("User profile doesn't exist"); */
+/*     } */
 
-    const currentGame = selectGame(getState());
-    const game = selectGameById(getState(), gameId);
+/*     const currentGame = selectGame(getState()); */
+/*     const game = selectGameById(getState(), gameId); */
 
-    if (!currentGame && !game) {
-      throw new Error("Game doesn't exist");
-    }
+/*     if (!currentGame && !game) { */
+/*       throw new Error("Game doesn't exist"); */
+/*     } */
 
-    let stars = currentGame?.stars || game?.stars || 0;
-    const starred = currentGame?.starred || game?.starred;
+/*     let stars = currentGame?.stars || game?.stars || 0; */
+/*     const starred = currentGame?.starred || game?.starred; */
 
-    if (starred) {
-      await api.delete(`/v1/users/${profile.id}/games/star/${gameId}`);
-      stars -= 1;
-    } else {
-      await api.post(`/v1/users/${profile.id}/games/star/${gameId}`);
-      stars += 1;
-    }
+/*     if (starred) { */
+/*       await api.delete(`/v1/users/${profile.id}/games/star/${gameId}`); */
+/*       stars -= 1; */
+/*     } else { */
+/*       await api.post(`/v1/users/${profile.id}/games/star/${gameId}`); */
+/*       stars += 1; */
+/*     } */
 
-    if (currentGame) {
-      dispatch(
-        setGame({ ...currentGame, starred: !currentGame.starred, stars })
-      );
-    }
-    if (game) {
-      dispatch(updateGame({ ...game, starred: !game.starred, stars }));
-    }
-  };
+/*     if (currentGame) { */
+/*       dispatch( */
+/*         setGame({ ...currentGame, starred: !currentGame.starred, stars }) */
+/*       ); */
+/*     } */
+/*     if (game) { */
+/*       dispatch(updateGame({ ...game, starred: !game.starred, stars })); */
+/*     } */
+/*   }; */
 
 export const searchGames =
   (request: SearchGamesRequest): AppThunk =>

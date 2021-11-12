@@ -4,8 +4,9 @@ import styled from "styled-components/macro";
 
 import { Group } from "@/components/Group";
 import { Tags } from "@/components/Tags";
-import Game from "@/common/types/Game";
 import { Stack } from "@/components/Templates";
+
+import { Game } from "../../types/Game";
 
 export type GameSummaryCardProps = {
   game: Game;
