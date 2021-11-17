@@ -1,5 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
-import debounce from "lodash/debounce";
+import { useState } from "react";
 import {
   Table,
   TableHead,
@@ -21,22 +20,15 @@ import {
   SpanningTableCell,
 } from "@/components/Elements";
 import { GameRecord } from "@/types/GameRecord";
+import { PaginateQuery } from "@/types/Pagination";
 import { TagsField } from "@/features/tags";
-import {
-  SearchGamesRequest,
-  SearchGamesParams,
-} from "@/common/api/schemas/games";
-import { PaginateParams, Pagination } from "@/common/types/pagination";
+
+import { SearchGamesFilters, useSearchGames } from "../api/searchGames";
 
 export type GamesTableProps = {
   createdBy?: string;
   playedBy?: string;
   starredBy?: string;
-  searchGames: (request: SearchGamesRequest) => void;
-  games: GameRecord[];
-  pagination: Pagination;
-  loading: boolean;
-  error?: string;
 };
 
 type SortDirection = "asc" | "desc" | undefined;
@@ -45,50 +37,30 @@ export default function GamesTable({
   createdBy,
   playedBy,
   starredBy,
-  searchGames,
-  games,
-  pagination,
-  loading,
-  error,
 }: GamesTableProps) {
-  const [paginate, setPaginate] = useState<PaginateParams>({
+  const [paginate, setPaginate] = useState<PaginateQuery>({
     perPage: 10,
     currentPage: 1,
   });
 
-  const [filters, setFilters] = useState<SearchGamesParams>({
+  const [filters, setFilters] = useState<SearchGamesFilters>({
     title: "",
     tags: [],
   });
 
   const [sort, setSort] = useState<{
     [key: string]: SortDirection;
-  }>({});
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const debouncedSearchGames = useCallback(debounce(searchGames, 500), []);
-
-  useEffect(() => {
-    const req: SearchGamesRequest = {
-      createdBy,
-      playedBy,
-      starredBy,
-      ...filters,
-      ...paginate,
-      sort: Object.entries(sort).map(([key, direction]) =>
-        direction === "asc" ? key : `-${key}`
-      ),
-    };
-    debouncedSearchGames(req);
-  }, [
-    debouncedSearchGames,
-    filters,
-    sort,
+  }>({ title: "asc" });
+  const searchGamesQuery = useSearchGames({
     createdBy,
     playedBy,
     starredBy,
-    paginate,
-  ]);
+    ...filters,
+    ...paginate,
+    sort: Object.entries(sort).map(([key, direction]) =>
+      direction === "asc" ? key : `-${key}`
+    ),
+  });
 
   const handlePageChange = (_event: unknown, page: number) => {
     setPaginate({
@@ -212,8 +184,11 @@ export default function GamesTable({
           </SpanningTableCell>
         </TableRow>
       </TableHead>
-      <AsyncTableBody loading={loading} error={error}>
-        {games?.map(
+      <AsyncTableBody
+        loading={searchGamesQuery.isLoading}
+        error={searchGamesQuery.error as string}
+      >
+        {searchGamesQuery.data?.data?.map(
           ({
             id,
             title,
@@ -238,7 +213,7 @@ export default function GamesTable({
       <TableFooter>
         <TableRow>
           <TablePagination
-            count={pagination && pagination.total}
+            count={searchGamesQuery.data?.pagination.total || 0}
             rowsPerPage={paginate.perPage}
             page={paginate.currentPage - 1}
             onPageChange={handlePageChange}

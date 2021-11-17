@@ -42,6 +42,9 @@ export function useDeleteStar() {
 
       return { previousGame };
     },
+    onSuccess() {
+      return queryClient.invalidateQueries(["games"], { exact: false });
+    },
   });
 }
 
@@ -50,24 +53,24 @@ export function useAddStar() {
     mutationFn: addStar,
     async onMutate(options) {
       await queryClient.cancelQueries("game");
-      // TODO: Add optimistic update for games table
 
       const previousGame = queryClient.getQueryData<Game>([
         "game",
         options.gameId,
       ]);
 
-      if (!previousGame) {
-        return;
+      if (previousGame) {
+        queryClient.setQueryData(["game", options.gameId], {
+          ...previousGame,
+          stars: previousGame.stars + 1,
+          starred: true,
+        });
       }
 
-      queryClient.setQueryData(["game", options.gameId], {
-        ...previousGame,
-        stars: previousGame.stars + 1,
-        starred: true,
-      });
-
       return { previousGame };
+    },
+    onSuccess() {
+      return queryClient.invalidateQueries(["games"], { exact: false });
     },
   });
 }

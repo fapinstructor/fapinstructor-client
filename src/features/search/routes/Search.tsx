@@ -5,15 +5,13 @@ import CreateIcon from "@material-ui/icons/Create";
 import { Tabs, Tab, Paper } from "@material-ui/core";
 import Star from "@material-ui/icons/Star";
 
-
 import { Head } from "@/components/Head";
 import { AuthTab, TabPanel } from "@/components/Elements";
 
-import StarredGamesTable from "../components/GamesTable/StarredGamesTable";
 import GamesTable from "../components/GamesTable";
-import CreatedGamesTable from "../components/GamesTable/CreatedGamesTable";
-import PlayedGamesTable from "../components/GamesTable/PlayedGamesTable";
-
+import StarredGamesTable from "../components/StarredGamesTable";
+import CreatedGamesTable from "../components/CreatedGamesTable";
+import PlayedGamesTable from "../components/PlayedGamesTable";
 
 export function Search() {
   const [activeTab, setActiveTab] = useState(0);
