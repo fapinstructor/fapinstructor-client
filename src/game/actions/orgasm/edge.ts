@@ -1,4 +1,3 @@
-
 import store from "@/store";
 import { playCommand } from "@/game/engine/audio";
 import { getRandomStrokeSpeed, setStrokeSpeed } from "@/game/utils/strokeSpeed";
@@ -13,7 +12,6 @@ import { getRandomEdgeMessage } from "@/game/texts/messages";
 import { GripService } from "@/game/xstate/services";
 
 import { startStrokingAgain } from "../speed";
-
 
 export async function edge() {
   return getToTheEdge(async () => {

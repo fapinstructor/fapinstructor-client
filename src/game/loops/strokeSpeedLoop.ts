@@ -6,7 +6,6 @@ import { setStrokeSpeed } from "@/game/utils/strokeSpeed";
 import randomGripAdjustment from "@/game/actions/grip";
 import { StrokeService, ActionService } from "@/game/xstate/services";
 
-
 const BASELINE_ADJUSTMENT_FREQUENCY_SEC = 60;
 let lastBaselineAdjustment = 0;
 

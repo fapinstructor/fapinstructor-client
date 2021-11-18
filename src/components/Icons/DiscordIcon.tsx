@@ -1,9 +1,7 @@
-
 import DiscordImage from "@/assets/images/discord.svg";
 import { Image } from "@/components/Elements";
 
 import { Icon } from "./Icon";
-
 
 type DiscordIconProps = {
   size: number;

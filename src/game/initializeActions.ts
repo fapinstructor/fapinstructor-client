@@ -1,4 +1,3 @@
-
 import type { Task } from "@/configureStore";
 import applyProbabilities from "@/utils/applyProbabilities";
 
@@ -45,7 +44,6 @@ import {
 } from "./actions";
 
 import type { Action } from "./xstate/machines/actionMachine";
-
 
 type ActionProbabilityTuple = [Action, number];
 

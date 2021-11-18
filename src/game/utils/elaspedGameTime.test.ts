@@ -4,8 +4,6 @@ import store from "@/store";
 
 import elapsedGameTime, { gameCompletionPercent } from "./elapsedGameTime";
 
-
-
 jest.mock("@/store");
 
 describe("Elapsed game time", () => {

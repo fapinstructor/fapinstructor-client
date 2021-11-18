@@ -1,7 +1,6 @@
 import { interpret, InterpreterFrom } from "xstate";
 import { useService } from "@xstate/react";
 
-
 import type { GameConfig } from "@/configureStore";
 import { createObservable } from "@/utils/observable";
 import {
@@ -11,8 +10,6 @@ import {
 } from "@/game/xstate/machines/strokeMachine";
 
 import GripService from "./GripService";
-
-
 
 let machine: StrokeMachine;
 let service: InterpreterFrom<StrokeMachine>;

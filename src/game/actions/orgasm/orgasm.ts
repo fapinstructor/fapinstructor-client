@@ -1,4 +1,3 @@
-
 import store from "@/store";
 import { playCommand } from "@/game/engine/audio";
 import {
@@ -13,7 +12,6 @@ import { getRandomInclusiveInteger } from "@/utils/math";
 import { delay } from "@/game/engine/delay";
 
 import { getToTheEdge, rideTheEdge } from "./edge";
-
 
 export function orgasm(orgasmed: () => void) {
   return getToTheEdge(async () => {

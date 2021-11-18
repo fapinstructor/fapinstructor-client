@@ -13,8 +13,6 @@ import { Group } from "@/components/Group";
 import RedditSelectionField from "./components/RedditSelectionField";
 import SlideDurationField from "./components/SlideDurationField";
 
-
-
 export default function MediaStep() {
   const [, meta] = useField("imageType");
 

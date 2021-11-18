@@ -1,7 +1,5 @@
 import { assign, createMachine, send } from "xstate";
 
-
-
 import type { GameConfig } from "@/configureStore";
 import store from "@/common/store";
 import { selectEnableTicks } from "@/common/store/settings";
@@ -14,9 +12,6 @@ import { getRandomArbitrary } from "@/utils/math";
 import { StrokeService } from "../services";
 
 import createIntervalMachine, { TickEvent } from "./intervalMachine";
-
-
-
 
 export type StrokeMachine = ReturnType<typeof createStrokeMachine>;
 

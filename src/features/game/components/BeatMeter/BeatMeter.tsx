@@ -6,8 +6,6 @@ import { StrokeMachineEvent } from "@/game/xstate/machines/strokeMachine";
 import { TICK_ANIMATION_DURATION } from "./settings";
 import { CircleFlash, Circle, AnimatedDot, HR, Bar } from "./styled-components";
 
-
-
 function Dots() {
   const [dots, setDots] = useState<number[]>([]);
   const [observerId, setObserverId] = useState<number>();

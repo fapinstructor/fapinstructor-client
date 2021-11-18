@@ -4,8 +4,6 @@ import DefaultImage from "@/assets/images/default-image.jpg";
 
 import { Bookmark, BookmarkProps } from "./Bookmark";
 
-
-
 export default {
   title: "atoms/Bookmark",
   component: Bookmark,

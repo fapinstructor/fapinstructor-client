@@ -2,7 +2,6 @@ import { Article } from "./Article";
 
 import type { Meta } from "@storybook/react/types-6-0";
 
-
 export default {
   title: "Templates/Article",
   component: Article,

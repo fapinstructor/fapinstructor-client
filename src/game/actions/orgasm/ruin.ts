@@ -1,5 +1,3 @@
-
-
 import store from "@/store";
 import { playCommand } from "@/game/engine/audio";
 import { setStrokeSpeed } from "@/game/utils/strokeSpeed";
@@ -12,8 +10,6 @@ import { handsOff } from "@/game/actions";
 import { startStrokingAgain } from "../speed";
 
 import { getToTheEdge, rideTheEdge } from "./edge";
-
-
 
 export function ruin(completed: () => void) {
   return getToTheEdge(async () => {

@@ -2,7 +2,6 @@ import { Button } from "@material-ui/core";
 import styled from "styled-components/macro";
 import { useFormikContext } from "formik";
 
-
 import { getRandomBoolean } from "@/utils/math";
 import {
   Task,
@@ -21,7 +20,6 @@ import theme from "@/theme";
 
 import TaskGroup from "./components/TaskGroup";
 import TaskFrequencyField from "./components/TaskFrequencyField";
-
 
 const TaskContainer = styled(Stack)`
   & > * {

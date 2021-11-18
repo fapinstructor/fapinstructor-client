@@ -10,7 +10,6 @@ import MenuIcon from "@material-ui/icons/Menu";
 import HomeIcon from "@material-ui/icons/Home";
 import { useHistory } from "react-router-dom";
 
-
 import { RouteButton } from "@/components/Elements";
 import { ConnectHandy } from "@/features/handy";
 import { Grow, MenuItem } from "@/components/Templates";
@@ -22,7 +21,6 @@ import { PatreonMenuButton } from "./PatreonMenuButton";
 import { ChangeLogMenuButton } from "./ChangeLogMenuButton";
 import { FaqMenuButton } from "./FaqMenuButton";
 import { SearchGameMenuButton } from "./SearchGameMenuButton";
-
 
 export function NavBar() {
   return (

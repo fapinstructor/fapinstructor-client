@@ -1,13 +1,11 @@
 import * as React from "react";
 import { useFormikContext } from "formik";
 
-
 import balanceArray from "@/utils/balanceArray";
 import { Group } from "@/components/Group";
 import { GameConfig } from "@/configureStore";
 
 import ProbabilityField from "./components/ProbabilityField";
-
 
 const ONE_HUNDRED_PERCENT = 100;
 

@@ -2,7 +2,6 @@ import type { GameLoopArgs } from "@/game/engine/loop";
 import { createObservable } from "@/utils/observable";
 import { StrokeService } from "@/game/xstate/services";
 
-
 type EmissionEvent = {
   type: "emit";
   strokeTime: number;

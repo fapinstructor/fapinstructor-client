@@ -4,7 +4,6 @@ import { selectEnableMoans } from "@/common/store/settings";
 import store from "@/common/store";
 import { playCommand } from "@/game/engine/audio";
 
-
 let lastMoan = 0;
 let moanDelay = 20;
 

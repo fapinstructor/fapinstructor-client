@@ -22,7 +22,6 @@ import {
 import moanLoop from "./loops/moanLoop";
 import configureStore from "./configureStore";
 
-
 const loops = [
   moanLoop,
   strokeSpeedAdjustmentLoop,

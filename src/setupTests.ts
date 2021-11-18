@@ -12,7 +12,6 @@ faker.seed(123);
 mockDate.set("November 22, 2020 04:19:00");
 
 global.fetch = require("jest-fetch-mock");
-global.context = {};
 
 jest.useFakeTimers("modern");
 

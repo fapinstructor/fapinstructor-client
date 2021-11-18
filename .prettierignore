@@ -1,0 +1,33 @@
+# Currently prettier doesn't allow multiple ignore files ie, .gitignore, .prettierignore.
+# That's why the below section is a copy-pate from the .gitignore file.
+
+###################### .gitignore ######################
+# dependencies
+/node_modules
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.idea/
+
+# yarn log files
+yarn-debug.log*
+yarn-error.log*
+
+# We use yarn, so npm files shouldn't exist
+package-lock.json
+npm-debug.log*
+
+# storybook log files
+build-storybook.log
+
+###################### .prettierignore ######################
+
+# react-scripts overrides this file without proper prettier formatting causing CI to fail.
+tsconfig.json

@@ -11,7 +11,7 @@ exports[`Storyshots molecules/ConnectHandy Standard 1`] = `
     class="MuiButton-label"
   >
     <div
-      class="MuiBox-root MuiBox-root-45"
+      class="MuiBox-root MuiBox-root-44"
     >
       <svg
         aria-hidden="true"
