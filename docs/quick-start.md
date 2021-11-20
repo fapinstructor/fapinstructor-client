@@ -1,4 +1,4 @@
-# ⚙️ Getting started
+# ⚙️ Quick Start
 
 Prerequisites:
 
@@ -7,10 +7,11 @@ Prerequisites:
 
 To set up the app execute the following commands.
 
+**TODO: Add steps on setting up the server before starting the client.**
+
 ```bash
 git clone https://github.com/fapinstructor
 cd fapinstructor
-cp .env.example .env
 yarn install
 yarn start
 ```

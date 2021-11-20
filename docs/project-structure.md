@@ -13,6 +13,8 @@ src
 |
 +-- features          # feature based modules
 |
++-- game              # core logic of the game
+|
 +-- hooks             # shared hooks used across the entire application
 |
 +-- lib               # re-exporting different libraries preconfigured for the application
@@ -29,6 +31,30 @@ src
 |
 +-- utils             # shared utility functions
 ```
+
+## Game
+
+More details about game development can be found in the [🎮 Game Guide](docs/game-guide.md).
+
+```
+game
+|
++-- actions       # instructions sent to the user
+|
++-- engine        # core foundational blocks
+|
++-- enums         # common types used throughout different actions
+|
++-- loops         # loops executed by the main game loop
+|
++-- texts         # copy shown to the user
+|
++-- utils         # helper functions used by actions
+|
++-- xstate        # game state, logic and transitions
+```
+
+## Features
 
 In order to scale the application in the easiest and most maintainable way, keep most of the code inside the `features` folder, which should contain different feature-based things. Every `feature` folder should contain domain specific code for a given feature. This will allow you to keep functionalities scoped to a feature and not mix its declarations with shared things. This is much easier to maintain than a flat folder structure with many files.
 
