@@ -2,7 +2,7 @@
 
 Contributions are always welcome! If you have any ideas, suggestions, fixes, feel free to contribute. You can do that by going through the following steps:
 
-1. Clone this repo
+1. Fork this repo
 2. Create a branch: `git checkout -b your-feature`
 3. Make some changes
 4. Test your changes
