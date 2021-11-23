@@ -1,4 +1,5 @@
 # Fap Instructor
+This is just a nice little test branch
 
 ![Release](https://github.com/fapinstructor/fapinstructor-client/workflows/Release/badge.svg)
 
