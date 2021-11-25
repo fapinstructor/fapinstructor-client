@@ -16,6 +16,8 @@ class HandyAPI {
   mode = 0;
   speed = 0;
   stroke = maxStrokeLength;
+  strokeZone = { min: 0, max: 100 };
+  version = 0;
 
   constructor() {
     this.connect = this.connect.bind(this);
@@ -65,6 +67,10 @@ class HandyAPI {
           this.setMode(1);
           this.setSpeed(this.speed);
           this.setStroke(this.stroke);
+
+          if (this.version >= 3) {
+            this.setStrokeZone(this.strokeZone);
+          }
         }
         this.notify(connected);
       }
@@ -77,6 +83,7 @@ class HandyAPI {
     try {
       const versionResponse = await this.getVersion();
       connected = versionResponse.connected;
+      this.version = parseFloat(versionResponse.version);
     } catch {
       connected = false;
     }
@@ -98,6 +105,10 @@ class HandyAPI {
     this.setMode(0);
     this.setSpeed(0);
     this.setStroke(maxStrokeLength);
+
+    if (this.version >= 3) {
+      this.setStrokeZone({ min: 0, max: 100 });
+    }
   }
 
   setBeatsPerSecond(bps: number) {
@@ -105,10 +116,19 @@ class HandyAPI {
       throw new Error("Handy is disconnected");
     }
 
-    const { speed, stroke } = getStrokeSpeedAndDistance(bps);
+    const { speed, stroke, strokeZone } = getStrokeSpeedAndDistance(bps);
 
     this.setSpeed(speed);
     this.setStroke(stroke);
+
+    if (this.version >= 3) {
+      if (
+        this.strokeZone.min !== strokeZone.min ||
+        this.strokeZone.max !== strokeZone.max
+      ) {
+        this.setStrokeZone(strokeZone);
+      }
+    }
   }
 
   private setMode(mode: Mode) {
@@ -148,6 +168,17 @@ class HandyAPI {
       this.stroke = stroke;
       fetch(`${api}/${this.connectionKey}/setStroke?stroke=${stroke}`);
     }
+  }
+
+  private setStrokeZone(strokeZone: { min: number; max: number }) {
+    if (!this.connected) {
+      throw new Error("Handy is disconnected");
+    }
+
+    this.strokeZone = strokeZone;
+    fetch(
+      `${api}/${this.connectionKey}/setStrokeZone?min=${strokeZone.min}&max=${strokeZone.max}`
+    );
   }
 
   private getSettings() {
