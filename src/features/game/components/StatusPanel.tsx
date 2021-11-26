@@ -14,18 +14,7 @@ import elapsedGameTime from "@/game/utils/elapsedGameTime";
 import { StrokeStyles } from "@/game/enums/StrokeStyle";
 import logo from "@/assets/images/logo.svg";
 import { ProxyStoreConsumer } from "@/providers/ProxyStoreProvider";
-import {
-  selectEnableBeatMeter,
-  selectEnableMoans,
-  selectEnableTicks,
-  selectEnableVideoAudio,
-  selectEnableVoice,
-  toggleBeatMeter,
-  toggleMoans,
-  toggleTicks,
-  toggleVideoAudio,
-  toggleVoice,
-} from "@/common/store/settings";
+import { selectSettings, toggleSetting } from "@/common/store/settings";
 import { useGripService } from "@/game/xstate/services";
 import { GripStrengthString } from "@/game/xstate/machines/gripMachine";
 import useForceUpdate from "@/hooks/useForceUpdate";
@@ -93,11 +82,7 @@ export default memo(function StatusPanel() {
   const [open, setOpen] = useState(true);
 
   const dispatch = useDispatch();
-  const enableVoice = useSelector(selectEnableVoice);
-  const enableMoans = useSelector(selectEnableMoans);
-  const enableTicks = useSelector(selectEnableTicks);
-  const enableBeatMeter = useSelector(selectEnableBeatMeter);
-  const enableVideoAudio = useSelector(selectEnableVideoAudio);
+  const settings = useSelector(selectSettings);
 
   const [
     {
@@ -188,33 +173,33 @@ export default memo(function StatusPanel() {
                   <Toggle
                     id="enableVoice"
                     label="Voice"
-                    checked={enableVoice}
-                    onChange={() => dispatch(toggleVoice())}
+                    checked={settings.voice}
+                    onChange={() => dispatch(toggleSetting("voice"))}
                   />
                   <Toggle
                     id="enableMoans"
                     label="Moans"
-                    checked={enableMoans}
-                    onChange={() => dispatch(toggleMoans())}
+                    checked={settings.moans}
+                    onChange={() => dispatch(toggleSetting("moans"))}
                   />
                   <Toggle
                     id="enableVideoAudio"
                     label="Mute Videos"
-                    checked={!enableVideoAudio}
-                    onChange={() => dispatch(toggleVideoAudio())}
+                    checked={!settings.videoAudio}
+                    onChange={() => dispatch(toggleSetting("videoAudio"))}
                   />
                   <div>
                     <Toggle
                       id="enableTicks"
                       label="Metronome"
-                      checked={enableTicks}
-                      onChange={() => dispatch(toggleTicks())}
+                      checked={settings.ticks}
+                      onChange={() => dispatch(toggleSetting("ticks"))}
                     />
                     <Toggle
                       id="enableBeatMeter"
                       label="Beat Meter"
-                      checked={enableBeatMeter}
-                      onChange={() => dispatch(toggleBeatMeter())}
+                      checked={settings.beatMeter}
+                      onChange={() => dispatch(toggleSetting("beatMeter"))}
                     />
                   </div>
                 </div>

@@ -1,6 +1,6 @@
 import type { GameLoopArgs } from "@/game/engine/loop";
 import { getRandomInclusiveInteger } from "@/utils/math";
-import { selectEnableMoans } from "@/common/store/settings";
+import { selectSettings } from "@/common/store/settings";
 import store from "@/common/store";
 import { playCommand } from "@/game/engine/audio";
 
@@ -8,8 +8,8 @@ let lastMoan = 0;
 let moanDelay = 20;
 
 const moanLoop = ({ progress }: GameLoopArgs) => {
-  const enableMoans = selectEnableMoans(store.getState());
-  if (enableMoans) {
+  const settings = selectSettings(store.getState());
+  if (settings.moans) {
     if (lastMoan > moanDelay * 1000) {
       playCommand("moan", { ignoreMute: true });
       lastMoan = 0;

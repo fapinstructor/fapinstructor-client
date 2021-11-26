@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 
 import MediaLink, { MediaType } from "@/common/types/Media";
-import { selectEnableVideoAudio } from "@/common/store/settings";
+import { selectSettings } from "@/common/store/settings";
 
 const useStyles = makeStyles(() => ({
   video: {
@@ -32,7 +32,7 @@ export type MediaPlayerProps = {
 export function MediaPlayer({ link, duration, onEnded }: MediaPlayerProps) {
   const classes = useStyles();
   const [playCount, setPlayCount] = useState(0);
-  const enableVideoAudio = useSelector(selectEnableVideoAudio);
+  const settings = useSelector(selectSettings);
 
   useEffect(() => {
     let timeout = 0;
@@ -70,7 +70,7 @@ export function MediaPlayer({ link, duration, onEnded }: MediaPlayerProps) {
           pointerEvents: `none`,
         }}
         autoPlay
-        muted={!enableVideoAudio}
+        muted={!settings.videoAudio}
         onError={onEnded}
         onEnded={repeatForDuration}
         playsInline

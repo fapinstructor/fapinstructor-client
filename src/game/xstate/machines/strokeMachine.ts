@@ -2,7 +2,7 @@ import { assign, createMachine, send } from "xstate";
 
 import type { GameConfig } from "@/configureStore";
 import store from "@/common/store";
-import { selectEnableTicks } from "@/common/store/settings";
+import { selectSettings } from "@/common/store/settings";
 import { playTick } from "@/game/engine/audio";
 import { TICK_DELAY } from "@/config";
 import { handy } from "@/features/handy";
@@ -169,9 +169,9 @@ export function createStrokeMachine(config: GameConfig) {
           strokeQueue: (context) => [],
         }),
         stroke: assign((context, event) => {
-          const enableTicks = selectEnableTicks(store.getState());
+          const settings = selectSettings(store.getState());
 
-          if (enableTicks) {
+          if (settings.ticks) {
             playTick(StrokeService.strokeSpeed);
           }
 

@@ -11,7 +11,7 @@ import {
 import getAudioUrl, { Audios } from "@/audio";
 import store from "@/common/store";
 import { Severity, createNotification } from "@/common/store/notifications";
-import { selectEnableVoice } from "@/common/store/settings";
+import { selectSettings } from "@/common/store/settings";
 import memoize from "@/utils/memoize";
 
 let context: IAudioContext;
@@ -116,7 +116,9 @@ export function playCommand(
   audio: Audios,
   options: PlayCommandOptions = { ignoreMute: false }
 ) {
-  if (options.ignoreMute || selectEnableVoice(store.getState())) {
+  const settings = selectSettings(store.getState());
+
+  if (options.ignoreMute || settings.voice) {
     return playAudioUrl(getAudioUrl(audio));
   }
 }
