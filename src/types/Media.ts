@@ -4,19 +4,19 @@ export enum MediaType {
   Video = "VIDEO",
 }
 
-export default interface MediaLink {
+export type MediaLink = {
   sourceLink: string;
   directLink: string;
   mediaType: MediaType;
-}
+};
 
-export interface MediaRequest {
+export type MediaRequest = {
   subreddits: string[];
   limit: number;
   mediaTypes: MediaType[];
-}
+};
 
-export interface MediaResponse {
+export type MediaResponse = {
   failedSubreddits: [string];
   links: [MediaLink];
-}
+};

@@ -12,7 +12,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import {
   Notification as INotification,
   Severity,
-} from "@/common/store/notifications";
+} from "@/stores/notifications";
 import { ProgressBar } from "@/components/Elements";
 
 type StyleProps = {

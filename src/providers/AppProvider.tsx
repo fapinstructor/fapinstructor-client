@@ -12,7 +12,7 @@ import NotificationManager from "@/components/NotificationManager";
 import configureStore from "@/configureStore";
 import history from "@/browserHistory";
 import monkey from "@/assets/images/monkey.gif";
-import store from "@/common/store";
+import store from "@/stores";
 import { Loading } from "@/features/misc";
 import { ProxyStoreProvider } from "@/providers/ProxyStoreProvider";
 import { queryClient } from "@/lib/react-query";

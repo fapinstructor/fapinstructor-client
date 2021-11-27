@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import * as Sentry from "@sentry/react";
 
-import api from "@/common/api/client";
-import { State } from "@/common/store/rootReducer";
-import { AppThunk } from "@/common/store";
-import Profile from "@/common/types/Profile";
-import { createNotification, Severity } from "@/common/store/notifications";
+import { axios } from "@/lib/axios";
+import { State } from "@/stores/rootReducer";
+import { AppThunk } from "@/stores";
+import { Profile } from "@/types/Profile";
+import { createNotification, Severity } from "@/stores/notifications";
 import { authClient } from "@/providers/AuthProvider/Auth0Provider";
 
 interface CurrentUserState {
@@ -62,7 +62,7 @@ export const deleteProfile = (): AppThunk => async (dispatch, getState) => {
   try {
     dispatch(setLoading(true));
 
-    await api.delete(url);
+    await axios.delete(url);
 
     dispatch(logout());
     authClient.current?.logout();
@@ -97,12 +97,12 @@ export const fetchProfile =
       try {
         // First attempt to GET the profile
         dispatch(setLoading(true));
-        const res = await api.get(url);
+        const res = await axios.get(url);
         profile = res.data;
       } catch (error) {
         // If profile doesn't exist, attempt to create it
         if (error.response?.status === 404) {
-          const res = await api.post(url);
+          const res = await axios.post(url);
           profile = res.data;
         } else {
           throw error;
@@ -137,7 +137,7 @@ export const appendGameHistory =
     const url = `/v1/users/${userId}/games/history/${gameId}`;
 
     try {
-      await api.put(url);
+      await axios.put(url);
     } catch (error) {
       dispatch(
         createNotification({

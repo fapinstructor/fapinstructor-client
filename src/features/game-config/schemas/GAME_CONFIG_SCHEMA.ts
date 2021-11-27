@@ -2,7 +2,7 @@ import * as yup from "yup";
 
 import { validSubreddit } from "@/utils/regex";
 import { sum } from "@/utils/math";
-import { MediaType } from "@/common/types/Media";
+import { MediaType } from "@/types/Media";
 import { StrokeStyles } from "@/game/enums/StrokeStyle";
 import { tasks } from "@/configureStore";
 

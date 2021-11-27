@@ -23,7 +23,7 @@ import { useDispatch } from "react-redux";
 import store from "@/store";
 import { SwitchWithLabel } from "@/components/Form";
 import { TagsField } from "@/features/tags";
-import { createNotification, Severity } from "@/common/store/notifications";
+import { createNotification, Severity } from "@/stores/notifications";
 
 import { CREATE_GAME_SCHEMA } from "../schemas/CREATE_GAME_SCHEMA";
 import { CreateGameDTO, useCreateGame } from "../api/createGame";

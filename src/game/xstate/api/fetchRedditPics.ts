@@ -1,9 +1,9 @@
 import * as qs from "query-string";
 
-import { MediaRequest, MediaResponse } from "@/common/types/Media";
-import { Severity } from "@/common/store/notifications";
+import { MediaRequest, MediaResponse } from "@/types/Media";
+import { Severity } from "@/stores/notifications";
 import { createNotification } from "@/game/engine/notification";
-import api from "@/common/api/client";
+import { axios } from "@/lib/axios";
 
 const failedSubreddits: string[] = [];
 
@@ -27,7 +27,7 @@ export default async function fetchRedditPics(request: MediaRequest) {
     { arrayFormat: "comma" }
   )}`;
 
-  const res = await api.get<MediaResponse>(url);
+  const res = await axios.get<MediaResponse>(url);
 
   // Append failed subreddits to the filter array.
   failedSubreddits.push(...res.data.failedSubreddits);

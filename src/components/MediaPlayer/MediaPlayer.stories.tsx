@@ -1,6 +1,6 @@
 import { Story, Meta } from "@storybook/react";
 
-import { MediaType } from "@/common/types/Media";
+import { MediaType } from "@/types/Media";
 import SampleImage from "@/test/samples/images/file_example_JPG_100kB.jpg";
 //@ts-expect-error Not sure why bu the mp4 imports showing a TS error
 import SampleVideo from "@/test/samples/videos/file_example_MP4_480_1_5MG.mp4";

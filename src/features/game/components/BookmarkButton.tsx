@@ -3,7 +3,7 @@ import { IconButton, Tooltip } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 
 import store from "@/store";
-import { createNotification } from "@/common/store/notifications";
+import { createNotification } from "@/stores/notifications";
 import { useMediaService } from "@/game/xstate/services";
 
 export type BookmarkButtonProps = {

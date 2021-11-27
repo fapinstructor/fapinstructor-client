@@ -1,7 +1,7 @@
 import type { GameLoopArgs } from "@/game/engine/loop";
 import { getRandomInclusiveInteger } from "@/utils/math";
-import { selectSettings } from "@/common/store/settings";
-import store from "@/common/store";
+import { selectSettings } from "@/stores/settings";
+import store from "@/stores";
 import { playCommand } from "@/game/engine/audio";
 
 let lastMoan = 0;

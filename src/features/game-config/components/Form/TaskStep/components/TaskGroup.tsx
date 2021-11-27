@@ -3,7 +3,7 @@ import styled from "styled-components/macro";
 import { Field, useFormikContext } from "formik";
 import { CheckboxWithLabel } from "formik-material-ui";
 
-import Hash from "@/common/types/Hash";
+import { Hash } from "@/types/Hash";
 import { GameConfig } from "@/configureStore";
 import theme from "@/theme";
 

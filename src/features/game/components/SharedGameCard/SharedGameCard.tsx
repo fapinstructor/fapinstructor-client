@@ -4,7 +4,7 @@ import { Box, Button, CircularProgress } from "@material-ui/core";
 import { NodeRow } from "@/components/Templates";
 import store from "@/store";
 import deepCopy from "@/utils/deepCopy";
-import Profile from "@/common/types/Profile";
+import { Profile } from "@/types/Profile";
 import { StarButton } from "@/features/game";
 
 import { BackToConfigButton } from "../BackToConfigButton";

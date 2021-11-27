@@ -7,7 +7,7 @@ import {
 import { Field, useField } from "formik";
 import { CheckboxWithLabel } from "formik-material-ui";
 
-import { MediaType } from "@/common/types/Media";
+import { MediaType } from "@/types/Media";
 import { Group } from "@/components/Group";
 
 import RedditSelectionField from "./components/RedditSelectionField";

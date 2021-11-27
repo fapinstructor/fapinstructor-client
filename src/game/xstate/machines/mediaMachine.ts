@@ -1,8 +1,8 @@
 import { createMachine, assign, send } from "xstate";
 
-import { Severity } from "@/common/store/notifications";
+import { Severity } from "@/stores/notifications";
 import type { GameConfig } from "@/configureStore";
-import MediaLink, { MediaType } from "@/common/types/Media";
+import { MediaLink, MediaType } from "@/types/Media";
 import { createNotification } from "@/game/engine/notification";
 
 import fetchRedditPics from "../api/fetchRedditPics";

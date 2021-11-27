@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Box, Button } from "@material-ui/core";
 
 import { useAuth0 } from "@/providers/AuthProvider";
-import { deleteProfile } from "@/common/store/currentUser";
+import { deleteProfile } from "@/stores/currentUser";
 import { Head } from "@/components/Head";
 import { Page } from "@/components/Templates";
 

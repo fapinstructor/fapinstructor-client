@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import { fetchProfile } from "@/common/store/currentUser";
+import { fetchProfile } from "@/stores/currentUser";
 
 import Auth0Provider, { useAuth0, authClient } from "./Auth0Provider";
 

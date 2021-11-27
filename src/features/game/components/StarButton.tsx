@@ -3,7 +3,7 @@ import { Button, ButtonProps, Tooltip } from "@material-ui/core";
 import StarBorder from "@material-ui/icons/StarBorder";
 import Star from "@material-ui/icons/Star";
 
-import { selectProfile } from "@/common/store/currentUser";
+import { selectProfile } from "@/stores/currentUser";
 import { useAuth0 } from "@/providers/AuthProvider";
 
 import { useAddStar, useDeleteStar } from "../api/toggleStar";

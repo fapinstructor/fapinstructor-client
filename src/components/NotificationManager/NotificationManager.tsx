@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 
-import { Notification as INotification } from "@/common/store/notifications";
+import { Notification as INotification } from "@/stores/notifications";
 import Notification from "@/components/Notification";
 import { Grow } from "@/components/Templates";
 

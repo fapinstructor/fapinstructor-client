@@ -1,7 +1,7 @@
 import { QueryClient, QueryCache } from "react-query";
 
 import { createNotification } from "@/game/engine/notification";
-import { Severity } from "@/common/store/notifications";
+import { Severity } from "@/stores/notifications";
 
 export const queryClient = new QueryClient({
   queryCache: new QueryCache({

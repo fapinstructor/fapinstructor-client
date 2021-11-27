@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import { dismissNotification } from "@/common/store/notifications";
+import { dismissNotification } from "@/stores/notifications";
 
 import Notification from "./Notification";
 

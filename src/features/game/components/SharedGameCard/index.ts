@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 
-import { State } from "@/common/store/rootReducer";
-import { appendGameHistory, selectProfile } from "@/common/store/currentUser";
+import { State } from "@/stores/rootReducer";
+import { appendGameHistory, selectProfile } from "@/stores/currentUser";
 
 import SharedGameCard from "./SharedGameCard";
 

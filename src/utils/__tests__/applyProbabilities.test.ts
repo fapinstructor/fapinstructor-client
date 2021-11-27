@@ -1,4 +1,4 @@
-import type Hash from "@/common/types/Hash";
+import type { Hash } from "@/types/Hash";
 
 import applyProbabilities from "../applyProbabilities";
 

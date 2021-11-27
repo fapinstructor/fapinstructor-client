@@ -1,4 +1,4 @@
-import Hash from "@/common/types/Hash";
+import { Hash } from "@/types/Hash";
 
 export default function memoize<ReturnValue>(
   func: (arg: string) => ReturnValue

@@ -1,7 +1,7 @@
 import store from "@/store";
 import { StrokeStyle } from "@/game/enums/StrokeStyle";
 import { GripStrength } from "@/game/xstate/machines/gripMachine";
-import { MediaType } from "@/common/types/Media";
+import { MediaType } from "@/types/Media";
 
 const speedTasks = [
   "doubleStrokes",

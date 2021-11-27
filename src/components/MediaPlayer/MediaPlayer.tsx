@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 
-import MediaLink, { MediaType } from "@/common/types/Media";
-import { selectSettings } from "@/common/store/settings";
+import { MediaLink, MediaType } from "@/types/Media";
+import { selectSettings } from "@/stores/settings";
 
 const useStyles = makeStyles(() => ({
   video: {

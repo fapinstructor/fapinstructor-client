@@ -1,8 +1,8 @@
 import { assign, createMachine, send } from "xstate";
 
 import type { GameConfig } from "@/configureStore";
-import store from "@/common/store";
-import { selectSettings } from "@/common/store/settings";
+import store from "@/stores";
+import { selectSettings } from "@/stores/settings";
 import { playTick } from "@/game/engine/audio";
 import { TICK_DELAY } from "@/config";
 import { handy } from "@/features/handy";

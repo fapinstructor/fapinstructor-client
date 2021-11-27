@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { selectSettings } from "@/common/store/settings";
+import { selectSettings } from "@/stores/settings";
 
 import PersistentTriggerPanel from "./PersistentTriggerPanel";
 import StatusPanel from "./StatusPanel";

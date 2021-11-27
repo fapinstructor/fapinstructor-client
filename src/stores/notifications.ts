@@ -1,21 +1,21 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { State } from "@/common/store/rootReducer";
+import { State } from "@/stores/rootReducer";
 import { TICK_DELAY } from "@/config";
 /**
  * @field duration Defaults to 5s.  If set to a falsy value it will show until manually dismissed
  * @field dismissible Only evaluated if a duration is set
  */
-export interface Notify {
+export type Notify = {
   severity?: Severity;
   message: string;
   duration?: number;
   dismissible?: boolean;
   showProgress?: boolean;
   delay?: boolean;
-}
+};
 
-export interface Notification {
+export type Notification = {
   id: number;
   severity: Severity;
   message: string;
@@ -23,7 +23,7 @@ export interface Notification {
   dismissible?: boolean;
   showProgress?: boolean;
   delay?: number;
-}
+};
 
 export enum Severity {
   ERROR,

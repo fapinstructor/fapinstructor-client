@@ -9,9 +9,9 @@ import {
 } from "standardized-audio-context";
 
 import getAudioUrl, { Audios } from "@/audio";
-import store from "@/common/store";
-import { Severity, createNotification } from "@/common/store/notifications";
-import { selectSettings } from "@/common/store/settings";
+import store from "@/stores";
+import { Severity, createNotification } from "@/stores/notifications";
+import { selectSettings } from "@/stores/settings";
 import memoize from "@/utils/memoize";
 
 let context: IAudioContext;
