@@ -27,13 +27,13 @@ export default async function fetchRedditPics(request: MediaRequest) {
     { arrayFormat: "comma" }
   )}`;
 
-  const res = await axios.get<MediaResponse>(url);
+  const res: MediaResponse = await axios.get(url);
 
   // Append failed subreddits to the filter array.
-  failedSubreddits.push(...res.data.failedSubreddits);
+  failedSubreddits.push(...res.failedSubreddits);
 
   // Notify user of failed subreddits
-  res.data.failedSubreddits.forEach((subreddit) => {
+  res.failedSubreddits.forEach((subreddit) => {
     createNotification({
       message: `Error fetching subreddit: ${subreddit}`,
       duration: -1,
@@ -41,5 +41,5 @@ export default async function fetchRedditPics(request: MediaRequest) {
     });
   });
 
-  return res.data.links;
+  return res.links;
 }
