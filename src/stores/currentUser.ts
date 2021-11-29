@@ -97,13 +97,11 @@ export const fetchProfile =
       try {
         // First attempt to GET the profile
         dispatch(setLoading(true));
-        const res = await axios.get(url);
-        profile = res.data;
+        profile = await axios.get(url);
       } catch (error) {
         // If profile doesn't exist, attempt to create it
         if (error.response?.status === 404) {
-          const res = await axios.post(url);
-          profile = res.data;
+          profile = await axios.post(url);
         } else {
           throw error;
         }
