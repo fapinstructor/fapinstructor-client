@@ -144,7 +144,7 @@ const defaultConfig: GameConfig = {
     max: 0,
   },
   edgeCooldown: 10, // sec
-  edgeFrequency: 0, // percent
+  edgeFrequency: 10, // percent
   ruinCooldown: 20, // sec
   minimumEdges: 0,
   strokeSpeed: {

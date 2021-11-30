@@ -280,15 +280,24 @@ export function createActionMachine(config: GameConfig) {
         },
         shouldEdge: () => {
           const {
-            config: { edgeFrequency },
+            config: { edgeFrequency, minimumEdges },
+            game: { edges },
           } = store;
 
-          if (gameCompletionPercent() < 0.4) {
+          if (gameCompletionPercent() < 0.3) {
             return false;
           }
 
+          let edgeProbability = edgeFrequency / 100;
+          const remainingEdges = minimumEdges - edges;
+
+          if (remainingEdges > 0) {
+            // Increase the probability if there are remaining edges.
+            edgeProbability += gameCompletionPercent() ** 3;
+          }
+
           // Use the time complexity of n (linear) to calculate probability.
-          return gameCompletionPercent() + edgeFrequency / 100 > Math.random();
+          return edgeProbability > Math.random();
         },
       },
     }

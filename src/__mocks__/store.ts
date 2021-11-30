@@ -47,7 +47,7 @@ const store = {
       max: 0,
     },
     edgeCooldown: 10,
-    edgeFrequency: 0,
+    edgeFrequency: 10,
     ruinCooldown: 20,
     minimumEdges: 0,
     strokeSpeed: {
