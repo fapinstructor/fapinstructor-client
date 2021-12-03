@@ -1,30 +1,35 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { Box, Button } from "@material-ui/core";
+import { useAuth0 } from "@auth0/auth0-react";
 
-import { useAuth0 } from "@/providers/AuthProvider";
-import { deleteProfile } from "@/stores/currentUser";
 import { Head } from "@/components/Head";
 import { Page } from "@/components/Templates";
 
 import { ProfileCard } from "../components/ProfileCard";
 import { DeleteProfileModal } from "../components/DeleteProfileModal";
+import { useDeleteProfile } from "../api/deleteProfile";
 
 export function Profile() {
   const { user } = useAuth0();
-  const dispatch = useDispatch();
+  const deleteProfileMutation = useDeleteProfile();
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+
+  if (!user) {
+    throw new Error("Only logged in users are able to view this page.");
+  }
 
   return (
     <Page>
       <Head title="Profile" />
-      <Box mb={2}>{user && <ProfileCard user={user} />}</Box>
+      <Box mb={2}>
+        <ProfileCard user={user} />
+      </Box>
       <DeleteProfileModal
         open={deleteModalOpen}
         onCancel={() => setDeleteModalOpen(false)}
         onConfirm={() => {
           setDeleteModalOpen(false);
-          dispatch(deleteProfile());
+          deleteProfileMutation.mutate();
         }}
       />
       <Button

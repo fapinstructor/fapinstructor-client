@@ -6,7 +6,7 @@ import { Typography } from "@material-ui/core";
 import * as Sentry from "@sentry/react";
 import { Provider } from "react-redux";
 
-import Auth0Provider from "@/providers/AuthProvider";
+import Auth0Provider from "@/providers/Auth0Provider";
 import { NavBar } from "@/components/NavBar";
 import NotificationManager from "@/components/NotificationManager";
 import configureStore from "@/configureStore";

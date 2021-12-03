@@ -1,12 +1,9 @@
-import { connect } from "react-redux";
-
-import { State } from "@/stores/rootReducer";
-import { selectProfile } from "@/stores/currentUser";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import GamesTable from "./GamesTable";
 
-const mapStateToProps = (state: State) => ({
-  playedBy: selectProfile(state)?.id,
-});
+export default function PlayedGamesTable() {
+  const { user } = useAuth0();
 
-export default connect(mapStateToProps)(GamesTable);
+  return <GamesTable playedBy={user?.sub} />;
+}

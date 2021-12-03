@@ -8,9 +8,7 @@ import {
 } from "@testing-library/react";
 import { MemoryRouter as Router } from "react-router-dom";
 
-import Auth0TestProvider, {
-  Auth,
-} from "@/providers/AuthProvider/Auth0TestProvider";
+import Auth0TestProvider, { Auth } from "@/providers/Auth0TestProvider";
 import store from "@/stores";
 
 type Options = RenderOptions & {

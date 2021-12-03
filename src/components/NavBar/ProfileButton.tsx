@@ -1,14 +1,13 @@
 import { useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import { NavLink as RouteNavLink } from "react-router-dom";
 import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import IconButton from "@material-ui/core/IconButton";
 import { PopoverProps } from "@material-ui/core";
-import Tooltip from "@material-ui/core/Tooltip";
 
 import { ProfileIcon } from "@/components/Icons";
-import { useAuth0, authClient } from "@/providers/AuthProvider";
 
 export function ProfileButton() {
   const { logout, user, loginWithRedirect, isLoading } = useAuth0();
@@ -55,18 +54,6 @@ export function ProfileButton() {
     </Menu>
   );
 
-  if (authClient.error) {
-    return (
-      <Tooltip title={authClient.error.message}>
-        <span>
-          <Button variant="contained" color="primary" disabled>
-            Login
-          </Button>
-        </span>
-      </Tooltip>
-    );
-  }
-
   if (!user) {
     return (
       <Button
@@ -78,14 +65,14 @@ export function ProfileButton() {
         Login
       </Button>
     );
-  } else {
-    return (
-      <>
-        <IconButton onClick={handleProfileMenuOpen}>
-          <ProfileIcon user={user} />
-        </IconButton>
-        {renderMenu}
-      </>
-    );
   }
+
+  return (
+    <>
+      <IconButton onClick={handleProfileMenuOpen}>
+        <ProfileIcon user={user} />
+      </IconButton>
+      {renderMenu}
+    </>
+  );
 }

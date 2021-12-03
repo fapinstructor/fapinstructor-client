@@ -1,33 +1,32 @@
 import { useEffect } from "react";
 import { Box, Button, CircularProgress } from "@material-ui/core";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import { NodeRow } from "@/components/Templates";
 import store from "@/store";
 import deepCopy from "@/utils/deepCopy";
-import { Profile } from "@/types/Profile";
 import { StarButton } from "@/features/game";
 
-import { BackToConfigButton } from "../BackToConfigButton";
-import { ErrorCard } from "../ErrorCard";
-import { useGame } from "../../api/getGame";
-import { Game } from "../../types/Game";
+import { useGame } from "../api/getGame";
+import { useAppendGameHistory } from "../api/appendGameHistory";
+import { Game } from "../types/Game";
 
+import { BackToConfigButton } from "./BackToConfigButton";
+import { ErrorCard } from "./ErrorCard";
 import GameSummaryCard from "./GameSummaryCard";
 
 export type SharedGameCardProps = {
   gameConfigId: string;
   onStart: (game: Game) => void;
-  profile: Profile | null;
-  appendGameHistory: (userId: string, gameId: string) => void;
 };
 
 export default function SharedGameCard({
-  profile,
-  appendGameHistory,
   gameConfigId,
   onStart,
 }: SharedGameCardProps) {
+  const { user } = useAuth0();
   const gameQuery = useGame({ gameId: gameConfigId });
+  const appendGameHistoryMutation = useAppendGameHistory();
 
   useEffect(() => {
     const game = gameQuery.data;
@@ -66,8 +65,11 @@ export default function SharedGameCard({
         />
         <Button
           onClick={() => {
-            if (profile && game) {
-              appendGameHistory(profile.id, game.id);
+            if (user?.sub && game) {
+              appendGameHistoryMutation.mutate({
+                gameId: game.id,
+                userId: user.sub,
+              });
             }
             onStart(game);
           }}

@@ -4,8 +4,8 @@
  * https://reactrouter.com/web/example/route-config
  */
 import { Redirect, Route, Switch } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
-import { useAuth0 } from "@/providers/AuthProvider";
 import { NavBar } from "@/components/NavBar";
 import { lazyImport } from "@/utils/lazyImport";
 
@@ -22,21 +22,9 @@ const { Search } = lazyImport(() => import("@/features/search"), "Search");
 const { Profile } = lazyImport(() => import("@/features/profile"), "Profile");
 
 export function AppRoutes() {
-  const auth = useAuth0();
+  const { user } = useAuth0();
 
-  // const publicRoutes = [];
   const protectedRoutes = <Route path="/profile" component={Profile} />;
-  const commonRoutes = (
-    <>
-      <Route path="/games" component={Search} />
-      <Route exact path="/game/:config?" component={Game} />
-      <Route exact path="/changelog" component={ChangeLog} />
-      <Route exact path="/privacy" component={PrivacyPolicy} />
-      <Route exact path="/faq" component={Faq} />
-      <Route exact path="/endgame" component={End} />
-      <Route exact path="/" component={GameConfig} />
-    </>
-  );
 
   return (
     <>
@@ -45,8 +33,14 @@ export function AppRoutes() {
         <Route path="/" component={NavBar} />
       </Switch>
       <Switch>
-        {auth.user && protectedRoutes}
-        {commonRoutes}
+        <Route path="/games" component={Search} />
+        <Route exact path="/game/:config?" component={Game} />
+        <Route exact path="/changelog" component={ChangeLog} />
+        <Route exact path="/privacy" component={PrivacyPolicy} />
+        <Route exact path="/faq" component={Faq} />
+        <Route exact path="/endgame" component={End} />
+        <Route exact path="/" component={GameConfig} />
+        {user && protectedRoutes}
         <Redirect to="/" />
       </Switch>
     </>

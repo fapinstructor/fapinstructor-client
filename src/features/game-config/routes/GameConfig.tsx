@@ -1,10 +1,10 @@
 import * as React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import { Box, Button, Typography } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import { Formik, Form } from "formik";
 import styled from "styled-components/macro";
 
-import { useAuth0 } from "@/providers/AuthProvider";
 import store from "@/store";
 import { GameConfig as GameConfigType } from "@/configureStore";
 import theme from "@/theme";

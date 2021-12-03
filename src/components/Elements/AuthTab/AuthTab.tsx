@@ -1,6 +1,5 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import { Tab, TabProps, Tooltip } from "@material-ui/core";
-
-import { useAuth0 } from "@/providers/AuthProvider";
 
 export type AuthTabProps = TabProps;
 

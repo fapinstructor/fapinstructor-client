@@ -1,10 +1,7 @@
-import { useSelector } from "react-redux";
+import { useAuth0 } from "@auth0/auth0-react";
 import { Button, ButtonProps, Tooltip } from "@material-ui/core";
 import StarBorder from "@material-ui/icons/StarBorder";
 import Star from "@material-ui/icons/Star";
-
-import { selectProfile } from "@/stores/currentUser";
-import { useAuth0 } from "@/providers/AuthProvider";
 
 import { useAddStar, useDeleteStar } from "../api/toggleStar";
 
@@ -20,8 +17,7 @@ export function StarButton({
   starred,
   ...buttonProps
 }: StarButtonProps) {
-  const { isAuthenticated } = useAuth0();
-  const profile = useSelector(selectProfile);
+  const { user, isAuthenticated } = useAuth0();
 
   const addStarMutation = useAddStar();
   const deleteStarMutation = useDeleteStar();
@@ -33,11 +29,11 @@ export function StarButton({
           color="secondary"
           startIcon={starred ? <Star /> : <StarBorder />}
           onClick={() => {
-            if (isAuthenticated && profile) {
+            if (isAuthenticated && user?.sub) {
               if (starred) {
-                deleteStarMutation.mutate({ profileId: profile?.id, gameId });
+                deleteStarMutation.mutate({ profileId: user.sub, gameId });
               } else {
-                addStarMutation.mutate({ profileId: profile?.id, gameId });
+                addStarMutation.mutate({ profileId: user.sub, gameId });
               }
             }
           }}

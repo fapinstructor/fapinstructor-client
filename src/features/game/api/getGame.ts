@@ -16,10 +16,7 @@ export function useGame({ gameId }: UseGameConfig) {
   return useQuery(
     ["game", gameId],
     () => {
-      if (!gameId) {
-        return;
-      }
-
+      if (!gameId) return;
       return getGame({ gameId });
     },
     {
