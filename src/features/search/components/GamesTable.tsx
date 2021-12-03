@@ -1,4 +1,4 @@
-import { useState } from "react";
+import * as React from "react";
 import {
   Table,
   TableHead,
@@ -38,19 +38,20 @@ export default function GamesTable({
   playedBy,
   starredBy,
 }: GamesTableProps) {
-  const [paginate, setPaginate] = useState<PaginateQuery>({
+  const [paginate, setPaginate] = React.useState<PaginateQuery>({
     perPage: 10,
     currentPage: 1,
   });
 
-  const [filters, setFilters] = useState<SearchGamesFilters>({
+  const [filters, setFilters] = React.useState<SearchGamesFilters>({
     title: "",
     tags: [],
   });
 
-  const [sort, setSort] = useState<{
+  const [sort, setSort] = React.useState<{
     [key: string]: SortDirection;
-  }>({ title: "asc" });
+  }>({});
+
   const searchGamesQuery = useSearchGames({
     createdBy,
     playedBy,
@@ -120,7 +121,15 @@ export default function GamesTable({
       }
     }
 
-    setSort({ ...sort, [columnId]: direction });
+    const newSort = { ...sort };
+
+    if (direction === undefined) {
+      delete newSort[columnId];
+    } else {
+      newSort[columnId] = direction;
+    }
+
+    setSort(newSort);
   }
 
   return (
