@@ -22,7 +22,7 @@ export default function getStrokeSpeedAndDistance(bps: number) {
 
   // Shorten stroke distance to increase BPS
   if (bps > fastestBps) {
-    stroke = maxStrokeSpeed / (bps * fastestBps);
+    stroke = (maxStrokeLength * fastestBps) / bps;
     strokeZone.min = Math.trunc(
       ((maxStrokeLength - stroke) / maxStrokeLength) * 100
     );
