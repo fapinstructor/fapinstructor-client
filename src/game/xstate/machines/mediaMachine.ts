@@ -1,4 +1,5 @@
 import { createMachine, assign, send } from "xstate";
+import * as Sentry from "@sentry/react";
 
 import { Severity } from "@/stores/notifications";
 import type { GameConfig } from "@/configureStore";
@@ -9,18 +10,35 @@ import fetchRedditPics from "../api/fetchRedditPics";
 
 const PRELOAD_LINK_THRESHOLD = 5;
 const ESTIMATED_SKIP_RATE = 1.5;
-const LIMIT_CAP = 1000;
+const UPPER_LIMIT_CAP = 1000;
+const LOWER_LIMIT_CAP = 10;
 
 function getEstimatedRequiredLinkCount(
   maximumGameTime: number,
   slideDuration: number
 ) {
-  return Math.round(
-    Math.min(
-      ((maximumGameTime * 60) / slideDuration) * ESTIMATED_SKIP_RATE,
-      LIMIT_CAP
-    )
-  );
+  let estimatedLinksRequired =
+    ((maximumGameTime * 60) / slideDuration) * ESTIMATED_SKIP_RATE;
+
+  // Cap the upper limit of the number of links to fetch.
+  estimatedLinksRequired = Math.min(estimatedLinksRequired, UPPER_LIMIT_CAP);
+
+  // Cap the lower limit of the number of links to fetch.
+  estimatedLinksRequired = Math.max(estimatedLinksRequired, LOWER_LIMIT_CAP);
+
+  // TODO: Unsure why, but sometimes the number is NaN.  Will investigate later once Sentry stops dropping events.
+  // For now if it's NaN let's set it to the lower limit cap to prevent an exception.
+  if (Number.isNaN(estimatedLinksRequired)) {
+    estimatedLinksRequired = LOWER_LIMIT_CAP;
+
+    Sentry.captureException(
+      new Error(
+        `getEstimatedRequiredLinkCount returns NaN, maximumGameTime: ${maximumGameTime}, slideDuration:${slideDuration}`
+      )
+    );
+  }
+
+  return Math.round(estimatedLinksRequired);
 }
 
 function preloadImage(url: string) {
