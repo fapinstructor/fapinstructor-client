@@ -30,6 +30,8 @@ export function ProfileProvider({ children }: ProfileProviderProps) {
         config.headers.Authorization = `Bearer ${token}`;
       }
 
+      config.headers.Accept = "application/json";
+
       return config;
     });
 
