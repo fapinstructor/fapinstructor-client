@@ -46,7 +46,7 @@ export default function balanceArray(
 
     if (previousRemainder === remainder) {
       throw new Error(
-        `The remainder '${remainder}' as index '${adjustIndex}' wasn't adjusted by '${adjustBy}'' after iterating through the array '${balancedArray}'`
+        `The remainder '${remainder}' as index '${adjustIndex}' wasn't adjusted by '${adjustBy}'' after iterating through the array '${balancedArray}' starting with the unbalanced array of '${unbalancedArray}'`
       );
     }
   }
