@@ -50,8 +50,8 @@ const fetchAudioFile = memoize(async (url) => {
     const request = new XMLHttpRequest();
     request.open("GET", url, true);
     request.responseType = "arraybuffer";
-    request.onerror = () => {
-      reject(new Error(`Failed to load ${url}`));
+    request.onerror = (error) => {
+      reject(new Error(`Failed to load ${url} with error ${error}`));
     };
     request.onload = () => {
       const audioData = context.decodeAudioData(request.response);
