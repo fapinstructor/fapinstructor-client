@@ -40,4 +40,14 @@ describe("balance array tests", () => {
 
     expect(balancedArray).toEqual([100, 0, 0]);
   });
+
+  it("Should balance array with decimals.", () => {
+    const unbalancedArray = [81.5, 0.5, 18];
+    const index = 0;
+    const adjustBy = 18.5;
+
+    const balancedArray = balanceArray(index, adjustBy, unbalancedArray);
+
+    expect(balancedArray).toEqual([100, 0, 0]);
+  });
 });

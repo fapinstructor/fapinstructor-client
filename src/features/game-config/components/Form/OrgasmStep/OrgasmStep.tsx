@@ -58,7 +58,7 @@ export default function OrgasmStep() {
     const probabilityKey = name.split(".").pop()!;
     const previousProbability =
       form.values.finaleProbabilities[probabilityKey as keyof Sliders];
-    const probabilityDiff = Math.round(probability - previousProbability);
+    const probabilityDiff = probability - previousProbability;
 
     const probabilities = Object.entries(form.values.finaleProbabilities)
       // Remove any locked probabilities from balancing.
