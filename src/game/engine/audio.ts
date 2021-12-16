@@ -101,6 +101,11 @@ export function playTick(rhythm: number) {
 
 async function playAudioUrl(url: string) {
   try {
+    if (!context) {
+      // Cannot decode an audio URL if the context doesn't exist.
+      return;
+    }
+
     const buffer = await fetchAudioFile(url);
 
     const source = context.createBufferSource();
