@@ -50,8 +50,8 @@ const fetchAudioFile = memoize(async (url) => {
     const request = new XMLHttpRequest();
     request.open("GET", url, true);
     request.responseType = "arraybuffer";
-    request.onerror = (error) => {
-      reject(new Error(`Failed to load ${url} with error ${error}`));
+    request.onerror = () => {
+      reject(new Error(`Failed to load ${url}`));
     };
     request.onload = () => {
       const audioData = context.decodeAudioData(request.response);
@@ -100,12 +100,16 @@ export function playTick(rhythm: number) {
 }
 
 async function playAudioUrl(url: string) {
-  const buffer = await fetchAudioFile(url);
+  try {
+    const buffer = await fetchAudioFile(url);
 
-  const source = context.createBufferSource();
-  source.buffer = buffer;
-  source.connect(context.destination);
-  source.start();
+    const source = context.createBufferSource();
+    source.buffer = buffer;
+    source.connect(context.destination);
+    source.start();
+  } catch {
+    // if an audio file fails to download and play, eat the exception since it's not critical.
+  }
 }
 
 type PlayCommandOptions = {
