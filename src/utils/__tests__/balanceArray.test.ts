@@ -50,4 +50,14 @@ describe("balance array tests", () => {
 
     expect(balancedArray).toEqual([100, 0, 0]);
   });
+
+  it("Should balance array when there are completed indexes.", () => {
+    const unbalancedArray = [99, 1, 0];
+    const index = 2;
+    const adjustBy = 91;
+
+    const balancedArray = balanceArray(index, adjustBy, unbalancedArray);
+
+    expect(balancedArray).toEqual([9, 0, 91]);
+  });
 });

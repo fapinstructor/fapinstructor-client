@@ -20,28 +20,40 @@ export default function balanceArray(
   // Adjust the specified index.
   balancedArray[adjustIndex] += adjustBy;
 
-  // Evenly split the total adjustment across all elements.
-  const elementAdjustment = adjustBy / (balancedArray.length - 1);
+  // Keep track and skip any indexes that can no longer be adjusted.
+  const ignoredIndexes: number[] = [adjustIndex];
 
   // Subtract the adjustment amount from the other elements.
   let remainder = adjustBy;
+
   while (remainder !== 0) {
     const previousRemainder = remainder;
 
+    // Evenly split the total adjustment across all indexes.
+    const splitAdjustBy =
+      remainder / (balancedArray.length - ignoredIndexes.length);
+
     for (let i = 0; i < balancedArray.length; i++) {
-      // Skip the adjustIndex since we've already made the change manually.
-      if (i === adjustIndex) {
+      // Skip over any ignored indexes.
+      if (ignoredIndexes.includes(i)) {
         continue;
       }
 
       const originalValue = balancedArray[i];
-      const adjustedValue = Math.max(originalValue - elementAdjustment, 0);
+      const newValue = Math.max(originalValue - splitAdjustBy, 0);
+      const adjustedAmount = originalValue - newValue;
+      const unusedAmount = splitAdjustBy - adjustedAmount;
 
       // Apply the adjusted value to the index
-      balancedArray[i] = adjustedValue;
+      balancedArray[i] = newValue;
 
       // Subtract the amount adjusted from the remainder.
-      remainder -= originalValue - adjustedValue;
+      remainder -= adjustedAmount;
+
+      if (unusedAmount > 0) {
+        // An unused amount means that we can no longer adjust this index.  Add it to the ignore list.
+        ignoredIndexes.push(i);
+      }
     }
 
     if (previousRemainder === remainder) {
