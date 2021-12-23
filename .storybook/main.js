@@ -15,8 +15,7 @@ module.exports = {
     check: true,
     checkOptions: {},
     reactDocgen: "none",
-    // TODO: Renable docgen when https://github.com/styleguidist/react-docgen-typescript/issues/356 is fixed
-    // reactDocgen: "react-docgen-typescript",
+    reactDocgen: "react-docgen-typescript",
     reactDocgenTypescriptOptions: {
       shouldExtractLiteralValuesFromEnum: true,
       propFilter: (prop) =>

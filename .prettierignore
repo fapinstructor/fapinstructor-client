@@ -34,6 +34,8 @@ tsconfig.json
 
 # ignore generated files
 *.storyshot
+yarn.lock
 
 # ignore unsupported prettier files
+.prettierignore
 *.hbs
