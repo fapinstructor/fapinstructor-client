@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Storyshots features/profile/DeleteProfileModal Standard 1`] = `null`;
+
 exports[`Storyshots molecules/DeleteProfileModal Standard 1`] = `null`;

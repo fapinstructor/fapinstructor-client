@@ -3,7 +3,7 @@ import { Meta } from "@storybook/react";
 import { HomeButton } from "./HomeButton";
 
 export default {
-  title: "atoms/HomeButton",
+  title: "features/game/HomeButton",
   component: HomeButton,
 } as Meta;
 

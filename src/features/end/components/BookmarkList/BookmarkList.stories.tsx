@@ -7,7 +7,7 @@ import DefaultImage from "@/assets/images/default-image.jpg";
 import { BookmarkList, BookmarkListProps } from "./BookmarkList";
 
 export default {
-  title: "molecules/BookmarkList",
+  title: "features/end/BookmarkList",
   component: BookmarkList,
 } as Meta;
 

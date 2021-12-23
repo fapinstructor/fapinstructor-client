@@ -7,7 +7,7 @@ import { user } from "@/test/mocks/user_mock_objects";
 import { AuthTab, AuthTabProps } from "./AuthTab";
 
 export default {
-  title: "atoms/AuthTab",
+  title: "elements/AuthTab",
   component: AuthTab,
 } as Meta;
 

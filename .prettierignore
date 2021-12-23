@@ -31,3 +31,9 @@ build-storybook.log
 
 # react-scripts overrides this file without proper prettier formatting causing CI to fail.
 tsconfig.json
+
+# ignore generated files
+*.storyshot
+
+# ignore unsupported prettier files
+*.hbs

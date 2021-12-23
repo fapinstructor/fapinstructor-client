@@ -3,7 +3,7 @@ import { Story, Meta } from "@storybook/react";
 import { AnchorButton, AnchorButtonProps } from "./AnchorButton";
 
 export default {
-  title: "atoms/AnchorButton",
+  title: "elements/AnchorButton",
   component: AnchorButton,
 } as Meta;
 

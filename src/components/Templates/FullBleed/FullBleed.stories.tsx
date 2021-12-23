@@ -5,7 +5,7 @@ import { FullBleed } from "./FullBleed";
 import type { Meta } from "@storybook/react/types-6-0";
 
 export default {
-  title: "Templates/FullBleed",
+  title: "templates/FullBleed",
   component: FullBleed,
 } as Meta;
 

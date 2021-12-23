@@ -10,7 +10,7 @@ import noop from "@/test/noop";
 import { MediaPlayer, MediaPlayerProps } from "./MediaPlayer";
 
 export default {
-  title: "organisms/MediaPlayer",
+  title: "components/MediaPlayer",
   component: MediaPlayer,
 } as Meta;
 

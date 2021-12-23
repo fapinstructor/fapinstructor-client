@@ -5,7 +5,7 @@ import { Cluster } from "./Cluster";
 import type { Meta } from "@storybook/react/types-6-0";
 
 export default {
-  title: "Templates/Cluster",
+  title: "templates/Cluster",
   component: Cluster,
 } as Meta;
 

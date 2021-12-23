@@ -3,7 +3,7 @@ import { Story, Meta } from "@storybook/react";
 import { BackToConfigButton } from "./BackToConfigButton";
 
 export default {
-  title: "molecules/BackToConfigButton",
+  title: "features/game/BackToConfigButton",
   component: BackToConfigButton,
 } as Meta;
 

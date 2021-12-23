@@ -62,3 +62,66 @@ exports[`Storyshots atoms/AuthTab Unauthenticated Tab 1`] = `
   </button>
 </span>
 `;
+
+exports[`Storyshots elements/AuthTab Authenticated Tab 1`] = `
+<span
+  class=""
+>
+  <button
+    class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-labelIcon"
+    role="tab"
+    tabindex="-1"
+    type="button"
+  >
+    <span
+      class="MuiTab-wrapper"
+    >
+      <svg
+        aria-hidden="true"
+        class="MuiSvgIcon-root"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
+        />
+      </svg>
+      Created Games
+    </span>
+    <span
+      class="MuiTouchRipple-root"
+    />
+  </button>
+</span>
+`;
+
+exports[`Storyshots elements/AuthTab Unauthenticated Tab 1`] = `
+<span
+  class=""
+  title="Please login"
+>
+  <button
+    class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit Mui-disabled MuiTab-labelIcon Mui-disabled"
+    disabled=""
+    role="tab"
+    tabindex="-1"
+    type="button"
+  >
+    <span
+      class="MuiTab-wrapper"
+    >
+      <svg
+        aria-hidden="true"
+        class="MuiSvgIcon-root"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
+        />
+      </svg>
+      Created Games
+    </span>
+  </button>
+</span>
+`;

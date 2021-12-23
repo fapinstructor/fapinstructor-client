@@ -5,7 +5,7 @@ import { Stack } from "./Stack";
 import type { Meta } from "@storybook/react/types-6-0";
 
 export default {
-  title: "Templates/Stack",
+  title: "templates/Stack",
   component: Stack,
 } as Meta;
 

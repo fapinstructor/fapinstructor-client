@@ -57,3 +57,61 @@ exports[`Storyshots Templates/Stack Standard 1`] = `
   </div>
 </div>
 `;
+
+exports[`Storyshots templates/Stack Standard 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+
+.c0 > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.c0 > * + * {
+  margin-top: var(--space,1.5rem);
+}
+
+.c0 > .stack-skip {
+  --space: 0;
+  -webkit-align-self: flex-start;
+  -ms-flex-item-align: start;
+  align-self: flex-start;
+}
+
+.c1 > * {
+  border: 1px dotted black;
+}
+
+<div
+  class="c0 c1"
+>
+  <h1>
+    Stack Example
+  </h1>
+  <div>
+    Item 1
+  </div>
+  <div>
+    Item 2
+  </div>
+  <button
+    class="stack-skip"
+  >
+    Skip Stack
+  </button>
+  <div>
+    Item 4
+  </div>
+</div>
+`;

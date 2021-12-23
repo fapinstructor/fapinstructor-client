@@ -1,5 +1,103 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Storyshots features/end/BookmarkList Standard 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  max-width: 80vw;
+  max-height: 40vh;
+  overflow: auto;
+}
+
+<div
+  class="c0"
+>
+  <div>
+    <a
+      href="default-image.jpg"
+      rel="noreferrer"
+      target="_blank"
+    >
+      <h6
+        class="MuiTypography-root MuiTypography-subtitle1"
+      >
+        default-image.jpg
+      </h6>
+    </a>
+  </div>
+  <div>
+    <a
+      href="background.jpg"
+      rel="noreferrer"
+      target="_blank"
+    >
+      <h6
+        class="MuiTypography-root MuiTypography-subtitle1"
+      >
+        background.jpg
+      </h6>
+    </a>
+  </div>
+  <div>
+    <a
+      href="default-image.jpg"
+      rel="noreferrer"
+      target="_blank"
+    >
+      <h6
+        class="MuiTypography-root MuiTypography-subtitle1"
+      >
+        default-image.jpg
+      </h6>
+    </a>
+  </div>
+  <div>
+    <a
+      href="background.jpg"
+      rel="noreferrer"
+      target="_blank"
+    >
+      <h6
+        class="MuiTypography-root MuiTypography-subtitle1"
+      >
+        background.jpg
+      </h6>
+    </a>
+  </div>
+  <div>
+    <a
+      href="default-image.jpg"
+      rel="noreferrer"
+      target="_blank"
+    >
+      <h6
+        class="MuiTypography-root MuiTypography-subtitle1"
+      >
+        default-image.jpg
+      </h6>
+    </a>
+  </div>
+  <div>
+    <a
+      href="background.jpg"
+      rel="noreferrer"
+      target="_blank"
+    >
+      <h6
+        class="MuiTypography-root MuiTypography-subtitle1"
+      >
+        background.jpg
+      </h6>
+    </a>
+  </div>
+</div>
+`;
+
 exports[`Storyshots molecules/BookmarkList Standard 1`] = `
 .c0 {
   display: -webkit-box;

@@ -26,3 +26,30 @@ exports[`Storyshots atoms/HomeButton Standard 1`] = `
   />
 </button>
 `;
+
+exports[`Storyshots features/game/HomeButton Standard 1`] = `
+<button
+  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+  tabindex="0"
+  title="Home"
+  type="button"
+>
+  <span
+    class="MuiIconButton-label"
+  >
+    <svg
+      aria-hidden="true"
+      class="MuiSvgIcon-root"
+      focusable="false"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"
+      />
+    </svg>
+  </span>
+  <span
+    class="MuiTouchRipple-root"
+  />
+</button>
+`;

@@ -4,7 +4,7 @@ import { BeatMeter } from "./BeatMeter";
 import { CircleFlash, Circle, Dot, HR, Bar } from "./styled-components";
 
 export default {
-  title: "organisms/BeatMeter",
+  title: "features/game/BeatMeter",
   component: BeatMeter,
 } as Meta;
 

@@ -1,7 +1,7 @@
 import { ConnectHandy } from "./ConnectHandy";
 
 export default {
-  title: "molecules/ConnectHandy",
+  title: "features/handy/ConnectHandy",
   component: ConnectHandy,
 };
 

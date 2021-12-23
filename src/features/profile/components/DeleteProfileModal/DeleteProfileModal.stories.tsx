@@ -3,7 +3,7 @@ import { Story, Meta } from "@storybook/react";
 import { DeleteProfileModal } from "./DeleteProfileModal";
 
 export default {
-  title: "molecules/DeleteProfileModal",
+  title: "features/profile/DeleteProfileModal",
   component: DeleteProfileModal,
 } as Meta;
 

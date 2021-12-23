@@ -6,7 +6,7 @@ import { user } from "@/test/mocks/user_mock_objects";
 import { NavBar } from "./NavBar";
 
 export default {
-  title: "organisms/NavBar",
+  title: "components/NavBar",
   component: NavBar,
 } as Meta;
 

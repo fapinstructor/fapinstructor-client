@@ -3,7 +3,7 @@ import { Quote } from "./Quote";
 import type { Meta } from "@storybook/react/types-6-0";
 
 export default {
-  title: "Components/Elements/Quote",
+  title: "elements/Quote",
   component: Quote,
 } as Meta;
 
