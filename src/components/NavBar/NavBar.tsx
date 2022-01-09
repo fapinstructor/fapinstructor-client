@@ -13,6 +13,7 @@ import history from "@/browserHistory";
 import { RouteButton } from "@/components/Elements";
 import { ConnectHandy } from "@/features/handy";
 import { Grow, MenuItem } from "@/components/Templates";
+import { FileSystemSelector } from "@/features/file-system";
 
 import { ProfileButton } from "./ProfileButton";
 import { FapInstructorMenuButton } from "./FapInstructorMenuButton";
@@ -48,6 +49,7 @@ function FullMenu() {
 
   return (
     <div className={classes.fullMenu}>
+      <FileSystemSelector />
       <ConnectHandy />
       <SearchGameMenuButton />
       <DiscordMenuButton />
@@ -92,6 +94,7 @@ function BurgerMenu() {
         <FaqMenuButton />
         <ChangeLogMenuButton />
         <ConnectHandy />
+        <FileSystemSelector />
         <ProfileButton />
       </Drawer>
     </div>

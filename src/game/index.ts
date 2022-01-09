@@ -40,7 +40,7 @@ export async function startServices() {
   configureStore();
 
   // Start services
-  MediaService.initialize(store.config);
+  await MediaService.initialize(store.config);
   GripService.initialize(store.config);
   StrokeService.initialize(store.config);
   ActionService.initialize(store.config);

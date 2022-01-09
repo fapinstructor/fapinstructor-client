@@ -1,15 +1,15 @@
 import * as React from "react";
 
-export default function useIsMounted() {
+export function useIsMounted() {
   const mounted = React.useRef(false);
 
   React.useEffect(() => {
     mounted.current = true;
 
-    return function () {
+    return () => {
       mounted.current = false;
     };
   }, [mounted]);
 
-  return mounted.current;
+  return React.useCallback(() => mounted.current, []);
 }

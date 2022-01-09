@@ -27,25 +27,6 @@ import EdgingStep from "../components/Form/EdgingStep";
 import StrokeStep from "../components/Form/StrokeStep";
 import GameDurationStep from "../components/Form/GameDurationStep";
 
-const StyledForm = styled(Form)`
-  padding-top: 2rem;
-  display: grid;
-  grid-auto-rows: min-content;
-
-  grid-template-columns: 1fr;
-  grid-column-gap: 16;
-  grid-template-columns: min(60ch, calc(100% - 32px));
-  justify-content: center;
-
-  @media screen and (${theme.breakpoint.desktop.up}) {
-    grid-template-columns: 1fr 1.5fr 1fr;
-
-    & > * {
-      grid-column: 2;
-    }
-  }
-`;
-
 export function GameConfig() {
   const navigate = useNavigate();
   const { user } = useAuth0();
@@ -121,3 +102,22 @@ export function GameConfig() {
     </>
   );
 }
+
+const StyledForm = styled(Form)`
+  padding-top: 2rem;
+  display: grid;
+  grid-auto-rows: min-content;
+
+  grid-template-columns: 1fr;
+  grid-column-gap: 16;
+  grid-template-columns: min(60ch, calc(100% - 32px));
+  justify-content: center;
+
+  @media screen and (${theme.breakpoint.desktop.up}) {
+    grid-template-columns: 1fr 1.5fr 1fr;
+
+    & > * {
+      grid-column: 2;
+    }
+  }
+`;

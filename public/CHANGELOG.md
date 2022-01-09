@@ -4,6 +4,10 @@ All notable changes to this project will be documented here.
 
 The overall project roadmap and progress can be viewed on our [Trello Board](https://trello.com/b/JAIcnXRf/fap-instructor)
 
+## 2022-01-09
+
+- Added local file system selector (only available in supported browsers)
+
 ## 2021-11-25
 
 - Added support for handy stroke zones.
