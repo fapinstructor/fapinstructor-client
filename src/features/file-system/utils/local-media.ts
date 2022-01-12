@@ -1,6 +1,7 @@
 import * as React from "react";
 import { get, set } from "idb-keyval";
 import MIMEType from "whatwg-mimetype";
+import shuffle from "lodash/shuffle";
 
 import { getFileHandles } from "@/utils/file-system";
 import { MediaLink, MediaType } from "@/types/Media";
@@ -120,7 +121,7 @@ export async function getLocalMediaLinks() {
   // Convert the file data to a format that the media player understands.
   const mediaLinks = convertFilesToMediaLink(files);
 
-  return mediaLinks;
+  return shuffle(mediaLinks);
 }
 
 export function convertFilesToMediaLink(files: File[]) {
