@@ -1,12 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import { Box, Button } from "@material-ui/core";
 
 import store from "@/store";
 import BackgroundImage from "@/assets/images/background.jpg";
 import { SupportSiteBanner } from "@/components/SupportSiteBanner";
 import { Head } from "@/components/Head";
 import { NavBar } from "@/components/NavBar";
+import { Cluster } from "@/components/Templates";
 
 import { BookmarkList } from "../components/BookmarkList";
 
@@ -33,6 +35,46 @@ export function End() {
     return null;
   }
 
+  const sendBookmarks = async () => {   
+    let bmList = "";
+
+    store.game.bookmarks.forEach(bookmark => {
+      if (bmList !==""){
+        bmList = bmList + "\n" + bookmark.href;
+      } else {
+        bmList = bookmark.href;
+      }     
+    });
+    await navigator.clipboard.writeText(bmList);
+    alert('Bookmarks copied');
+  };
+
+  const downloadBookmarks = async () => {   
+    let bmList = "";
+
+    store.game.bookmarks.forEach(bookmark => {
+      if (bmList !==""){
+        bmList = bmList + "\n" + bookmark.href;
+      } else {
+        bmList = bookmark.href;
+      }     
+    });
+    
+    const element = document.createElement("a");
+    const file = new Blob([bmList], {
+      type: "text/plain"
+    });
+    element.href = URL.createObjectURL(file);
+
+    const today = new Date();
+    const dateStr = today.getFullYear() + "_" + today.getMonth() + "_" + today.getDate() + " " + today.toLocaleTimeString()
+
+    element.download = "fapInstructorBookmarks_" + dateStr + ".txt";
+    document.body.appendChild(element);
+    element.click();
+  };
+
+
   return (
     <>
       <NavBar />
@@ -56,6 +98,19 @@ export function End() {
             src: bookmark.src,
           }))}
         />
+        <br />
+
+        <Box p={3}>
+          <Cluster>
+            <Button onClick={sendBookmarks} variant="contained" color="primary">
+              Copy to clipboard 
+            </Button>
+
+            <Button onClick={downloadBookmarks} variant="contained" color="primary">
+              Save text File
+            </Button>
+          </Cluster>   
+        </Box>      
       </div>
     </>
   );
