@@ -9,6 +9,8 @@ import { SupportSiteBanner } from "@/components/SupportSiteBanner";
 import { Head } from "@/components/Head";
 import { NavBar } from "@/components/NavBar";
 import { Cluster } from "@/components/Templates";
+import { createNotification } from "@/game/engine/notification";
+import { Severity } from "@/stores/notifications";
 
 import { BookmarkList } from "../components/BookmarkList";
 
@@ -46,7 +48,11 @@ export function End() {
       }     
     });
     await navigator.clipboard.writeText(bmList);
-    alert('Bookmarks copied');
+
+    createNotification({
+      message: "Bookmarks copied",
+      severity: Severity.INFO,
+    });
   };
 
   const downloadBookmarks = async () => {   
