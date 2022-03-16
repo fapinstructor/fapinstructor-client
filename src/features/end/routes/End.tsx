@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import { Box, Button } from "@material-ui/core";
+import format from "date-fns/format";
 
 import store from "@/store";
 import BackgroundImage from "@/assets/images/background.jpg";
@@ -38,16 +39,8 @@ export function End() {
   }
 
   const sendBookmarks = async () => {   
-    let bmList = "";
 
-    store.game.bookmarks.forEach(bookmark => {
-      if (bmList !==""){
-        bmList = bmList + "\n" + bookmark.href;
-      } else {
-        bmList = bookmark.href;
-      }     
-    });
-    await navigator.clipboard.writeText(bmList);
+    await navigator.clipboard.writeText(store.game.bookmarks.map(bookmark => bookmark.href).join("\n"));
 
     createNotification({
       message: "Bookmarks copied",
@@ -56,26 +49,13 @@ export function End() {
   };
 
   const downloadBookmarks = async () => {   
-    let bmList = "";
-
-    store.game.bookmarks.forEach(bookmark => {
-      if (bmList !==""){
-        bmList = bmList + "\n" + bookmark.href;
-      } else {
-        bmList = bookmark.href;
-      }     
-    });
-    
     const element = document.createElement("a");
-    const file = new Blob([bmList], {
+    const file = new Blob([store.game.bookmarks.map(bookmark => bookmark.href).join("\n")], {
       type: "text/plain"
     });
     element.href = URL.createObjectURL(file);
 
-    const today = new Date();
-    const dateStr = today.getFullYear() + "_" + today.getMonth() + "_" + today.getDate() + " " + today.toLocaleTimeString()
-
-    element.download = "fapInstructorBookmarks_" + dateStr + ".txt";
+    element.download = `fapinstructor_bookmarks_${format(Date.now(), "yyyy_MM_dd_hh_mm_ss")}.txt`
     document.body.appendChild(element);
     element.click();
   };
