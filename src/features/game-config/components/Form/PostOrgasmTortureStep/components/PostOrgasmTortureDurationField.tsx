@@ -49,7 +49,7 @@ export default function PostOrgasmTortureDurationField() {
         }}
       />
       <Field
-        label="Minimum Post Orgasm Torture Duration"
+        label="Maximum Post Orgasm Torture Duration"
         name="postOrgasmTortureDuration.max"
         component={TextField}
         type="number"
