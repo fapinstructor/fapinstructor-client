@@ -78,3 +78,15 @@ export async function searchRedGifs(...tags: string[]): Promise<MediaLink[]> {
     directLink: gif.urls.hd,
   }));
 }
+
+export async function loadRedGifLink(link: MediaLink): Promise<MediaLink> {
+  const redGifID = link.directLink.split("/")[4].split("-")[0].split('.')[0];
+
+  const response = await instance(`https://api.redgifs.com/v2/gifs/${redGifID}`);
+  const mediaLink = {
+    mediaType: MediaType.Video,
+    sourceLink: link.sourceLink,
+    directLink: response.data.gif.urls.hd,
+  };
+  return mediaLink;
+}

@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { MediaLink, MediaType } from "@/types/Media";
 import { selectSettings } from "@/stores/settings";
+import { loadRedGifLink } from "@/api/redgifs/redgifs";
 
 const useStyles = makeStyles(() => ({
   video: {
@@ -32,14 +33,16 @@ export type MediaPlayerProps = {
 export function MediaPlayer({ link, duration, onEnded }: MediaPlayerProps) {
   const classes = useStyles();
   const [playCount, setPlayCount] = useState(0);
+  const [directLink, setDirectLink] = useState(link.directLink);
+  const [mediaType, setMediaType] = useState(link.mediaType);
   const settings = useSelector(selectSettings);
 
   useEffect(() => {
     let timeout = 0;
 
     if (
-      link.mediaType === MediaType.Picture ||
-      link.mediaType === MediaType.Gif
+      mediaType === MediaType.Picture ||
+      mediaType === MediaType.Gif
     ) {
       if (timeout === 0) {
         timeout = window.setTimeout(onEnded, duration * 1000);
@@ -49,7 +52,22 @@ export function MediaPlayer({ link, duration, onEnded }: MediaPlayerProps) {
     return () => {
       clearTimeout(timeout);
     };
-  }, [link, duration, onEnded]);
+  }, [directLink, mediaType, duration, onEnded]);
+
+  useEffect(() => {
+    if (!link.directLink.includes('redgifs.com')) {
+      setDirectLink(link.directLink);
+      setMediaType(link.mediaType);
+      return;
+    }
+
+    loadRedGifLink(link)
+      .then((rgLink) => {
+        setDirectLink(rgLink.directLink);
+        setMediaType(rgLink.mediaType);
+      })
+      .catch(() => onEnded());
+  }, [link, onEnded]);
 
   function repeatForDuration(event: React.ChangeEvent<HTMLVideoElement>) {
     if (event.target.duration * (playCount + 1) < duration) {
@@ -64,11 +82,14 @@ export function MediaPlayer({ link, duration, onEnded }: MediaPlayerProps) {
     }
   }
 
-  if (link.mediaType === MediaType.Video) {
+  if (directLink === '') {
+    //  Placeholder while we load the image URL from redgifs
+    return <div></div>;
+  } else if (mediaType === MediaType.Video) {
     return (
       <video
         className={classes.video}
-        src={link.directLink}
+        src={directLink}
         style={{
           pointerEvents: `none`,
         }}
@@ -80,14 +101,14 @@ export function MediaPlayer({ link, duration, onEnded }: MediaPlayerProps) {
       />
     );
   } else if (
-    link.mediaType === MediaType.Gif ||
-    link.mediaType === MediaType.Picture
+    mediaType === MediaType.Gif ||
+    mediaType === MediaType.Picture
   ) {
-    return <img className={classes.image} src={link.directLink} alt="" />;
-  } else if (isYouTube(link.directLink)) {
+    return <img className={classes.image} src={directLink} alt="" />;
+  } else if (isYouTube(directLink)) {
     return (
       <iframe
-        src={link.directLink}
+        src={directLink}
         title="youtube"
         className={classes.youtube}
         frameBorder="0"
