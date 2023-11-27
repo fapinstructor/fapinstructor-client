@@ -2,6 +2,7 @@ import axios from "axios";
 import jwtDecode, { JwtPayload } from "jwt-decode";
 
 import { MediaLink, MediaType } from "@/types/Media";
+import { API_URL } from "@/config";
 
 const SESSION_STORAGE_REDGIF_TOKEN = "redgif_token";
 
@@ -28,13 +29,18 @@ function setAuthToken(token: string) {
   return sessionStorage.setItem(SESSION_STORAGE_REDGIF_TOKEN, token);
 }
 
-const instance = axios.create();
-instance.interceptors.request.use(async (request) => {
+async function ensureAuthToken() {
   let token = getAuthToken();
   if (!token || isTokenExpired(token)) {
     token = await fetchAuthToken();
     setAuthToken(token);
   }
+  return token;
+}
+
+const instance = axios.create();
+instance.interceptors.request.use(async (request) => {
+  const token = await ensureAuthToken();
 
   request.headers = {
     Authorization: `Bearer ${token}`,
@@ -82,11 +88,10 @@ export async function searchRedGifs(...tags: string[]): Promise<MediaLink[]> {
 export async function loadRedGifLink(link: MediaLink): Promise<MediaLink> {
   const redGifID = link.directLink.split("/")[4].split("-")[0].split('.')[0];
 
-  const response = await instance(`https://api.redgifs.com/v2/gifs/${redGifID}`);
   const mediaLink = {
     mediaType: MediaType.Video,
     sourceLink: link.sourceLink,
-    directLink: response.data.gif.urls.hd,
+    directLink: `${API_URL}/v1/redgifs/?id=${redGifID}&token=${await ensureAuthToken()}`,
   };
   return mediaLink;
 }
