@@ -88,10 +88,12 @@ export async function searchRedGifs(...tags: string[]): Promise<MediaLink[]> {
 export async function loadRedGifLink(link: MediaLink): Promise<MediaLink> {
   const redGifID = link.directLink.split("/")[4].split("-")[0].split('.')[0];
 
+  const response = await instance<RedGif>(`${API_URL}/v1/redgifs/?id=${redGifID}`);
+
   const mediaLink = {
     mediaType: MediaType.Video,
     sourceLink: link.sourceLink,
-    directLink: `${API_URL}/v1/redgifs/?id=${redGifID}&token=${await ensureAuthToken()}`,
+    directLink: response.data.urls.hd,
   };
   return mediaLink;
 }
