@@ -6,7 +6,9 @@ A fap/joi game where you follow the provided instructions while watching a strea
 
 ## Introduction
 
-**TODO: Fill in this section.**
+Hello fellow internet stranger!  
+The following content is for people who are interested in the project and want to contribute to it or make your own adaptions and have the know-how. If you are just a player, you can find the game [here](https://fapinstructor.com).  
+If you run into issues or have questions, feel free to open an issue or join the [Discord](https://discord.gg/3HfdkmUZK8).
 
 ## Table Of Contents:
 

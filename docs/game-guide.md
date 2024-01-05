@@ -20,16 +20,9 @@ game
 +-- xstate        # game state, logic and transitions
 ```
 
-## Guides & Concepts
+## Guides and examples
 
-### Actions
+[//]: # (TODO Maybe add some guides and examples for creating actions and configs here)
 
-**TODO: Write a guide on how to create new actions.**
-
-### Game Config
-
-**TODO: Write a guide on how to add a user configurable option.**
-
-## Examples
-
-**TODO: Write example of a very basic action.**
+... won't be created. The version 2 is in strong development, therefore not much of the coding time is spent on this version.  
+Maybe in the future, when version 2 is released or when someone has time to do it. You'll figure it out by yourself if you really want to.
