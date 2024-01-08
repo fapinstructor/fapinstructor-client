@@ -1,45 +1,45 @@
-import { Box, Paper, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import styled from "styled-components/macro";
 
-import KiirooLogo from "@/assets/images/kiiroo.png";
-
-const Container = styled(Paper)`
-  background-color: #ffff8d;
-  &:hover {
-    background-color: #ffff1d;
-  }
-`;
-
-export const KiirooBanner = styled.img.attrs({
-  src: KiirooLogo,
-  alt: "Opens the Kiiroo partner site within a new tab",
-})`
-  max-width: 100px;
-`;
+import LovenseBannerImage from "@/assets/images/lovense-banner.png";
 
 export function Affiliates() {
   return (
     <a
-      href="http://www.kiiroo.com/fapinstructor"
+      href="https://cdn.lovense.com/UploadFiles/web/affiliate/20221122/d501f7336a204a1ca5e54082bb5e0a9a.png"
       target="_blank"
       rel="noreferrer"
       style={{ textDecoration: "none" }}
     >
-      <Container>
-        <Box p={2}>
-          <div style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
-            <div>
-              <KiirooBanner />
-            </div>
-            <div>
-              <Typography variant="body1">
-                Click here to support this site and save 10% on any purchase
-                with our affiliate Kiiroo.
-              </Typography>
-            </div>
-          </div>
-        </Box>
-      </Container>
+      <div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "0.5rem",
+            flexDirection: "column",
+          }}
+        >
+          <Lovensebanner />
+          <LovenseContent />
+        </div>
+      </div>
     </a>
+  );
+}
+
+export const Lovensebanner = styled.img.attrs({
+  src: LovenseBannerImage,
+  alt: "Opens the Lovense affiliate site within a new tab",
+})`
+  max-width: 100vw;
+`;
+
+function LovenseContent() {
+  return (
+    <Typography variant="body2" style={{ textAlign: "center" }}>
+      Click here to support our community and server all while also getting
+      great discounts.
+    </Typography>
   );
 }
