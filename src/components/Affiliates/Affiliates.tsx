@@ -6,7 +6,7 @@ import LovenseBannerImage from "@/assets/images/lovense-banner.png";
 export function Affiliates() {
   return (
     <a
-      href="https://cdn.lovense.com/UploadFiles/web/affiliate/20221122/d501f7336a204a1ca5e54082bb5e0a9a.png"
+      href="https://www.lovense.com/r/kb1zjm"
       target="_blank"
       rel="noreferrer"
       style={{ textDecoration: "none" }}
