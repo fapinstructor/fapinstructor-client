@@ -18,6 +18,12 @@ const useStyles = makeStyles(() => ({
   youtube: {
     width: "99%",
     height: "90%",
+    border: 0,
+  },
+  redgifs: {
+    width: "100%",
+    height: "99%",
+    border: 0,
   },
 }));
 
@@ -34,12 +40,15 @@ export function MediaPlayer({ link, duration, onEnded }: MediaPlayerProps) {
   const [playCount, setPlayCount] = useState(0);
   const settings = useSelector(selectSettings);
 
+  const isRedgifsVideo = link.mediaType === MediaType.Video && link.directLink.includes('redgifs.com/')
+
   useEffect(() => {
     let timeout = 0;
 
     if (
       link.mediaType === MediaType.Picture ||
-      link.mediaType === MediaType.Gif
+      link.mediaType === MediaType.Gif ||
+      isRedgifsVideo
     ) {
       if (timeout === 0) {
         timeout = window.setTimeout(onEnded, duration * 1000);
@@ -64,17 +73,16 @@ export function MediaPlayer({ link, duration, onEnded }: MediaPlayerProps) {
     }
   }
 
-  if (link.mediaType === MediaType.Video) {
+  if (isRedgifsVideo) {
+    // directLink: https://thumbs44.redgifs.com/RespectfulLightsalmonEnglishpointer-mobile.mp4
+    // <iframe src="https://www.redgifs.com/ifr/respectfullightsalmonenglishpointer" />
     const redgifsId = link.directLink.match(/redgifs\.com\/([a-z0-9]+)/i)?.[1]?.toLowerCase()
-    if (redgifsId) {
-      // directLink: https://thumbs44.redgifs.com/RespectfulLightsalmonEnglishpointer-mobile.mp4
-      // <iframe src="https://www.redgifs.com/ifr/respectfullightsalmonenglishpointer" />
-      return <iframe
-        className={classes.video}
-        src={'https://www.redgifs.com/ifr/' + redgifsId}
-        title="redgifs"
-      />
-    }
+    return <iframe
+      src={'https://www.redgifs.com/ifr/' + redgifsId}
+      title="redgifs"
+      className={classes.redgifs}
+    />
+  } else if (link.mediaType === MediaType.Video) {
     return (
       <video
         className={classes.video}
@@ -100,7 +108,6 @@ export function MediaPlayer({ link, duration, onEnded }: MediaPlayerProps) {
         src={link.directLink}
         title="youtube"
         className={classes.youtube}
-        frameBorder="0"
         allowFullScreen
       />
     );
