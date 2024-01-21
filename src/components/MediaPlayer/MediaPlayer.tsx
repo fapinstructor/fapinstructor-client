@@ -58,7 +58,7 @@ export function MediaPlayer({ link, duration, onEnded }: MediaPlayerProps) {
     return () => {
       clearTimeout(timeout);
     };
-  }, [link, duration, onEnded]);
+  }, [link, isRedgifsVideo, duration, onEnded]);
 
   function repeatForDuration(event: React.ChangeEvent<HTMLVideoElement>) {
     if (event.target.duration * (playCount + 1) < duration) {
