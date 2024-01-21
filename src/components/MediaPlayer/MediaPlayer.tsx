@@ -65,6 +65,16 @@ export function MediaPlayer({ link, duration, onEnded }: MediaPlayerProps) {
   }
 
   if (link.mediaType === MediaType.Video) {
+    const redgifsId = link.directLink.match(/redgifs\.com\/([a-z0-9]+)/i)?.[1]?.toLowerCase()
+    if (redgifsId) {
+      // directLink: https://thumbs44.redgifs.com/RespectfulLightsalmonEnglishpointer-mobile.mp4
+      // <iframe src="https://www.redgifs.com/ifr/respectfullightsalmonenglishpointer" />
+      return <iframe
+        className={classes.video}
+        src={'https://www.redgifs.com/ifr/' + redgifsId}
+        title="redgifs"
+      />
+    }
     return (
       <video
         className={classes.video}
