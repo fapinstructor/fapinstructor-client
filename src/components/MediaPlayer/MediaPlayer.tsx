@@ -90,9 +90,12 @@ export function MediaPlayer({ link, duration, onEnded }: MediaPlayerProps) {
         alt=""
         onError={onEnded}
         onLoad={(e) => {
-          if ( // https://i.redd.it/82i0kk14a27c1.jpg
-            e.currentTarget.naturalWidth === 130 &&
-            e.currentTarget.naturalHeight === 60
+          // Skip deleted images
+          if (
+            // https://i.redd.it/82i0kk14a27c1.jpg
+            (e.currentTarget.naturalWidth === 130 && e.currentTarget.naturalHeight === 60) ||
+            // https://i.imgur.com/GooGxMd.gif
+            (e.currentTarget.naturalWidth === 161 && e.currentTarget.naturalHeight === 81)
           ) {
             onEnded();
           }
