@@ -17,6 +17,5 @@ export type MediaRequest = {
 };
 
 export type MediaResponse = {
-  failedSubreddits: [string];
-  links: [MediaLink];
+  links: MediaLink[];
 };
