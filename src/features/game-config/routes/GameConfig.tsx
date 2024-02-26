@@ -14,6 +14,7 @@ import { AutoFocusFieldErrors } from "@/components/Form";
 import { Stack, Cluster } from "@/components/Templates";
 import { Head } from "@/components/Head";
 import { NavBar } from "@/components/NavBar";
+import { FapInstructorAlphaBanner } from "@/components/FapInstructorAlphaBanner";
 
 import { GAME_CONFIG_SCHEMA } from "../schemas/GAME_CONFIG_SCHEMA";
 import { ShareGame } from "../components/ShareGame";
@@ -47,6 +48,7 @@ export function GameConfig() {
             <AutoFocusFieldErrors>
               <StyledForm>
                 <Stack>
+                  <FapInstructorAlphaBanner />
                   <Affiliates />
                   <Typography variant="h2" component="h1" color="secondary">
                     Create a game

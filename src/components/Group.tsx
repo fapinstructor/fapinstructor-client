@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import Typography from "@material-ui/core/Typography";
+import { CSSProperties } from "@material-ui/core/styles/withStyles";
 import { Box, Paper, Tooltip } from "@material-ui/core";
 import InfoIcon from "@material-ui/icons/Info";
 import styled from "styled-components/macro";
@@ -7,9 +8,10 @@ import styled from "styled-components/macro";
 import { Stack, Cluster } from "@/components/Templates";
 
 export type GroupProps = {
-  title: string;
+  title: ReactNode;
   children: ReactNode;
   tooltip?: string;
+  style?: CSSProperties;
 };
 
 const TitleContainer = styled(Cluster)`
@@ -17,9 +19,9 @@ const TitleContainer = styled(Cluster)`
   gap: 0.5rem;
 `;
 
-export function Group({ title, children, tooltip }: GroupProps) {
+export function Group({ title, children, tooltip, style }: GroupProps) {
   return (
-    <Paper elevation={3}>
+    <Paper elevation={3} style={style}>
       <Box p={4}>
         <Stack>
           <Typography variant="h6" color="primary">
